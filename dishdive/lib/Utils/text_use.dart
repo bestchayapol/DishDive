@@ -26,7 +26,7 @@ class TextStyles {
   static TextStyle regularTextStyleButton() {
     return const TextStyle(
         fontSize: 16.0,
-        color: colorUse.textColorButton,
+        color: colorUse.textColorWhite,
         fontWeight: FontWeight.bold);
   }
 

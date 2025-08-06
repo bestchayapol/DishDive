@@ -60,7 +60,7 @@ class WishGrant extends StatelessWidget {
                       price,
                       style: const TextStyle(
                         fontSize: 18.0,
-                        color: colorUse.textFriend,
+                        color: colorUse.textColorBlack,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

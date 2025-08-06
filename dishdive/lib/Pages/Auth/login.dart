@@ -22,30 +22,30 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController passwordController = TextEditingController();
   final Dio dio = Dio();
 
-  void _login() async {
-    final data = {
-      "username": usernameController.text,
-      "password": passwordController.text,
-    };
+  // void _login() async {
+  //   final data = {
+  //     "username": usernameController.text,
+  //     "password": passwordController.text,
+  //   };
 
-    try {
-      final response = await _makeLoginRequest(data);
-      print('start');
+  //   try {
+  //     final response = await _makeLoginRequest(data);
+  //     print('start');
 
-      if (response.statusCode == 200) {
-        final token = response.data['token'];
-        final userId = response.data['user_id'];
-        Provider.of<TokenProvider>(context, listen: false)
-            .setToken(token, userId);
-        _navigateToFirstHomePage(token);
-      } else {
-        _showErrorMessage(
-            'Login failed. Response status code: ${response.statusCode}');
-      }
-    } catch (e) {
-      _showErrorMessage('Login Failed');
-    }
-  }
+  //     if (response.statusCode == 200) {
+  //       final token = response.data['token'];
+  //       final userId = response.data['user_id'];
+  //       Provider.of<TokenProvider>(context, listen: false)
+  //           .setToken(token, userId);
+  //       _navigateToFirstHomePage(token);
+  //     } else {
+  //       _showErrorMessage(
+  //           'Login failed. Response status code: ${response.statusCode}');
+  //     }
+  //   } catch (e) {
+  //     _showErrorMessage('Login Failed');
+  //   }
+  // }
 
   @override
 void dispose() {
@@ -54,18 +54,18 @@ void dispose() {
   super.dispose();
 }
 
-  Future<Response> _makeLoginRequest(Map<String, dynamic> data) async {
-    return dio.post(
-      'http://10.0.2.2:5428/Login', // Use HTTPS
-      data: data,
-      options: Options(
-        headers: {
-          'Content-Type': 'application/json',
-          // 'secret': 'NeedfulSecret',
-        },
-      ),
-    );
-  }
+  // Future<Response> _makeLoginRequest(Map<String, dynamic> data) async {
+  //   return dio.post(
+  //     'http://10.0.2.2:5428/Login', // Use HTTPS
+  //     data: data,
+  //     options: Options(
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         // 'secret': 'NeedfulSecret',
+  //       },
+  //     ),
+  //   );
+  // }
 
   void _navigateToFirstHomePage(String token) {
     Navigator.push(
@@ -74,11 +74,11 @@ void dispose() {
     );
   }
 
-  void _showErrorMessage(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
-    );
-  }
+  // void _showErrorMessage(String message) {
+  //   ScaffoldMessenger.of(context).showSnackBar(
+  //     SnackBar(content: Text(message)),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -143,7 +143,10 @@ void dispose() {
                   text: "Sign In",
                   width: 400,
                   height: 58,
-                  onTap: _login,
+                  onTap: () {
+                              String fakeToken = "test123";
+                              _navigateToFirstHomePage(fakeToken);
+                            },
                 ),
 
                 const SizedBox(height: 40),

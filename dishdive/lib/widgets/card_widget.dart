@@ -1,7 +1,7 @@
 // import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:dishdive/Pages/Chats/ChatRoom.dart';
-import 'package:dishdive/Pages/Item/Item_details.dart';
+import 'package:dishdive/Pages/Preferences/ChatRoom.dart';
+import 'package:dishdive/Pages/Restaurant/Item_details.dart';
 import 'package:dishdive/Utils/color_use.dart';
 import 'package:dishdive/Utils/text_use.dart';
 // import 'package:provider/provider.dart';
@@ -149,7 +149,7 @@ class CardWidget extends StatelessWidget {
                 : (askedByUserId != null && alreadyGave == false)
                     ? const Color(0xFFFCDDA2)
                     : (askedByUserId != null && alreadyGave == true)
-                    ? colorUse.activeButton : colorUse.rejectButton,
+                    ? colorUse.activeButton : colorUse.activeButton,
             elevation: 7,
             child: Column(
               mainAxisSize: MainAxisSize.min,

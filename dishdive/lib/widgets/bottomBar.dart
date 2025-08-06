@@ -1,10 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
-import 'package:dishdive/Pages/Chats/ChatLog.dart';
+import 'package:dishdive/Pages/Preferences/ChatLog.dart';
 import 'package:dishdive/Pages/Home/FirstHomePage.dart';
-import 'package:dishdive/Pages/Item/NewItemAdd.dart';
-import 'package:dishdive/Pages/Marketplace/MarketPlace.dart';
+import 'package:dishdive/Pages/Restaurant/NewItemAdd.dart';
+import 'package:dishdive/Pages/Favorites/MarketPlace.dart';
 import 'package:dishdive/Utils/color_use.dart';
 
 
@@ -84,13 +84,13 @@ class _bottomBar extends State<bottomBar> with SingleTickerProviderStateMixin {
                 height: 40,
                 decoration: BoxDecoration(
                   color:
-                      currentPage == index ? colorUse.activeIconCircle : null,
+                      currentPage == index ? colorUse.activeButton : null,
                   shape: BoxShape.circle,
                 ),
                 child: Icon(icons[index],
                     color: currentPage == index
-                        ? colorUse.activeIcon
-                        : colorUse.inactiveIcon),
+                        ? colorUse.activeButton
+                        : colorUse.textColorWhite),
               ),
             ),
           ),

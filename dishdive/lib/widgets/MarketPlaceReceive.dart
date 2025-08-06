@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:dishdive/Pages/Item/Item_details.dart';
+import 'package:dishdive/Pages/Restaurant/Item_details.dart';
 import 'package:dishdive/Utils/color_use.dart';
 import 'package:dishdive/components/integrate_model.dart' as components;
 import 'package:dishdive/provider/token_provider.dart';
@@ -107,8 +107,8 @@ class _MarketPlaceReceiveState extends State<MarketPlaceReceive> {
                                     begin: Alignment.topLeft,
                                     end: Alignment.bottomRight,
                                     colors: [
-                                      colorUse.activeIconCircle,
-                                      colorUse.activeIconCircle.withOpacity(0.7),
+                                      colorUse.activeButton,
+                                      colorUse.activeButton.withOpacity(0.7),
                                       colorUse.activeButton.withOpacity(0.9),
                                     ],
                                     stops: const [0.0, 0.5, 1.0],

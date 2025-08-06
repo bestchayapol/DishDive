@@ -254,7 +254,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                           widget.onUpdateBuy;
                         },
                         text: 'Delete item',
-                        color: colorUse.rejectButton,
+                        color: colorUse.activeButton,
                       ),
                     if (alreadyGave == false && (confirmFromOwner == null || confirmFromAsker == null)
                         )
@@ -270,7 +270,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                         : 'Waiting for mutal ready',
                         color: userId == userIdFromToken && confirmFromOwner == null ? colorUse.activeButton 
                         : askbyUserId == userIdFromToken && confirmFromAsker == null ? colorUse.activeButton
-                        : colorUse.rejectButton,
+                        : colorUse.activeButton,
                       ),
                       if (alreadyGave == false && ((confirmFromAsker!=null && confirmFromOwner != null)
                           && (confirmFromOwner == false || confirmFromAsker == false))
@@ -288,7 +288,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                         : 'Waiting for mutal confirmation',
                         color: userId == userIdFromToken && confirmFromOwner == false ? colorUse.activeButton 
                         : askbyUserId == userIdFromToken && confirmFromAsker == false ? colorUse.activeButton
-                        : colorUse.rejectButton,
+                        : colorUse.activeButton,
                       ),
                     //marketplace
                     if ((userId != userIdFromToken && offerType == 'Receive') 

@@ -20,14 +20,12 @@ class Welcome extends StatelessWidget {
               height: 50,
             ),
             Image.asset(
-              "assets/Logo.jpg",
-              width: 400,
-              height: 400,
+              "assets/Logo.png",
             ),
             const SizedBox(
               height: 10,
             ),
-            const Text('Welcome to Needful!',
+            const Text('Welcome to DishDive!',
                 style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
