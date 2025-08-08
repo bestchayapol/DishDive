@@ -12,28 +12,48 @@ class Welcome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: colorUse.primaryColor,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 50,
-            ),
-            Image.asset(
-              "assets/Logo.png",
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Text('Welcome to DishDive!',
-                style: TextStyle(
-                    fontSize: 24,
+      body: Column(
+        children: [
+          // Black header section with logo and app name
+          Container(
+            width: MediaQuery.of(context).size.width,
+            padding: const EdgeInsets.only(top: 60, bottom: 40),
+            decoration: BoxDecoration(color: colorUse.appBarColor),
+            child: Column(
+              children: [
+                Image.asset("assets/Logo.png"),
+                const SizedBox(height: 16),
+                Text(
+                  'DishDive',
+                  style: TextStyle(
+                    fontFamily: 'InriaSans',
+                    fontSize: 64,
                     fontWeight: FontWeight.bold,
-                    color: colorUse.accent)),
-            const SizedBox(
-              height: 35,
+                    color: colorUse.activeButton,
+                  ),
+                ),
+              ],
             ),
-            ElevatedButton(
+          ),
+          const SizedBox(height: 60),
+          // Subtitle
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 32.0),
+            child: Text(
+              'See reviews of\nyour favorite dish',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 36,
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          const Spacer(),
+          // Login Button
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40.0),
+            child: ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
@@ -47,23 +67,29 @@ class Welcome extends StatelessWidget {
                 );
               },
               style: ElevatedButton.styleFrom(
-                fixedSize: const Size(200, 50),
-                elevation: 5,
-                backgroundColor: colorUse.activeButton
+                minimumSize: const Size.fromHeight(55),
+                backgroundColor: colorUse.activeButton,
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
               ),
               child: const Text(
                 "Login",
                 style: TextStyle(
+                  fontFamily: 'InriaSans',
                   color: Colors.white,
-                  fontSize: 16,
+                  fontSize: 32,
                   fontWeight: FontWeight.w600,
                 ),
               ),
             ),
-            const SizedBox(
-              height: 15,
-            ),
-            ElevatedButton(
+          ),
+          const SizedBox(height: 16),
+          // Register Button
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40.0),
+            child: ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
@@ -77,20 +103,25 @@ class Welcome extends StatelessWidget {
                 );
               },
               style: ElevatedButton.styleFrom(
-                fixedSize: const Size(200, 50),
-                elevation: 5,
-                backgroundColor: colorUse.accent,
+                minimumSize: const Size.fromHeight(55),
+                backgroundColor: colorUse.secondaryColor,
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
               ),
-              child: const Text(
+              child: Text(
                 "Register",
                 style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black54),
+                  fontSize: 32,
+                  fontWeight: FontWeight.w600,
+                  color: colorUse.activeButton,
+                ),
               ),
             ),
-          ],
-        ),
+          ),
+          const SizedBox(height: 50),
+        ],
       ),
     );
   }

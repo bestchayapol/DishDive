@@ -58,16 +58,18 @@ class _MainAppState extends State<MainApp> {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: 'Inter'),
-      home: 
-      // home: Home(),
-       !welcomeProvider.isWelcomeShown
-          ? Welcome(onFinished: () {
-              welcomeProvider.setWelcomeShown();
-            })
+      theme: ThemeData(fontFamily: 'InriaSans'),
+      home:
+          // home: Home(),
+          !welcomeProvider.isWelcomeShown
+          ? Welcome(
+              onFinished: () {
+                welcomeProvider.setWelcomeShown();
+              },
+            )
           : tokenProvider.token == null
-              ? const LoginOrRegister()
-              : const FirstHomePage(),
+          ? const LoginOrRegister()
+          : const FirstHomePage(),
     );
   }
 }
