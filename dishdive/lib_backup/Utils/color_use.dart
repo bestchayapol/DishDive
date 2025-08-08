@@ -1,0 +1,14 @@
+import 'package:flutter/material.dart';
+
+class colorUse {
+  static const primaryColor = Color(0xFF0E2B3B);
+  static const secondaryColor = Color(0xFFFFFAE2);
+  static const textColorBlack = Color(0xFF000000);
+  static const textColorWhite = Color(0xFFFFFFFF);
+  static const activeButton = Color(0xFFFA8958);
+  static const textShadow = Color.fromARGB(255, 124, 124, 124);
+  static const appBarColor = Color(0xFF151F27);
+  static const backgroundColor = Color(0xFF0E2B3B);
+  static const accent = Color(0xFFFFBC68);
+  static const sentimentColor = Color(0xFFE34483);
+}
