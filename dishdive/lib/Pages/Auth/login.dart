@@ -23,11 +23,11 @@ class _LoginPageState extends State<LoginPage> {
   final Dio dio = Dio();
 
   @override
-void dispose() {
-  usernameController.dispose();
-  passwordController.dispose();
-  super.dispose();
-}
+  void dispose() {
+    usernameController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   void _navigateToFirstHomePage(String token) {
     Navigator.push(
@@ -41,7 +41,7 @@ void dispose() {
     return Scaffold(
       backgroundColor: colorUse.primaryColor,
       body: SingleChildScrollView(
-<<<<<<< Updated upstream
+
         padding: const EdgeInsets.only(top: 90),
         child: Center(
           child: Padding(
@@ -116,7 +116,7 @@ void dispose() {
                       "Don't have an account? ",
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-=======
+
         child: Column(
           children: [
             // Curved header with logo and app name
@@ -132,7 +132,7 @@ void dispose() {
                       fontSize: 64,
                       fontWeight: FontWeight.bold,
                       color: colorUse.activeButton,
->>>>>>> Stashed changes
+
                     ),
                   ),
                 ],
