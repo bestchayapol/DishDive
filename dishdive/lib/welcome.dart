@@ -13,7 +13,6 @@ class Welcome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: colorUse.primaryColor,
-        child: Column(
       body: Column(
         children: [
           // Black header section with logo and app name
