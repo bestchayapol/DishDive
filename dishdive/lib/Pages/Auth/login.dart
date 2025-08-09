@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:dishdive/components/my_button.dart';
 import 'package:dishdive/components/my_textfield.dart';
 import 'package:dishdive/pages/home.dart';
-import 'package:dishdive/provider/token_provider.dart';
-import 'package:provider/provider.dart';
+// import 'package:dishdive/provider/token_provider.dart';
+// import 'package:provider/provider.dart';
 import 'package:dishdive/Utils/color_use.dart';
+import 'package:dishdive/pages/Auth/register.dart';
 
 class LoginPage extends StatefulWidget {
   final void Function()? onTap;
@@ -17,35 +18,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  //text constrollers
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final Dio dio = Dio();
-
-  // void _login() async {
-  //   final data = {
-  //     "username": usernameController.text,
-  //     "password": passwordController.text,
-  //   };
-
-  //   try {
-  //     final response = await _makeLoginRequest(data);
-  //     print('start');
-
-  //     if (response.statusCode == 200) {
-  //       final token = response.data['token'];
-  //       final userId = response.data['user_id'];
-  //       Provider.of<TokenProvider>(context, listen: false)
-  //           .setToken(token, userId);
-  //       _navigateToFirstHomePage(token);
-  //     } else {
-  //       _showErrorMessage(
-  //           'Login failed. Response status code: ${response.statusCode}');
-  //     }
-  //   } catch (e) {
-  //     _showErrorMessage('Login Failed');
-  //   }
-  // }
 
   @override
 void dispose() {
@@ -54,19 +29,6 @@ void dispose() {
   super.dispose();
 }
 
-  // Future<Response> _makeLoginRequest(Map<String, dynamic> data) async {
-  //   return dio.post(
-  //     'http://10.0.2.2:5428/Login', // Use HTTPS
-  //     data: data,
-  //     options: Options(
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         // 'secret': 'NeedfulSecret',
-  //       },
-  //     ),
-  //   );
-  // }
-
   void _navigateToFirstHomePage(String token) {
     Navigator.push(
       context,
@@ -74,17 +36,12 @@ void dispose() {
     );
   }
 
-  // void _showErrorMessage(String message) {
-  //   ScaffoldMessenger.of(context).showSnackBar(
-  //     SnackBar(content: Text(message)),
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: colorUse.backgroundColor,
+      backgroundColor: colorUse.primaryColor,
       body: SingleChildScrollView(
+<<<<<<< Updated upstream
         padding: const EdgeInsets.only(top: 90),
         child: Center(
           child: Padding(
@@ -159,23 +116,124 @@ void dispose() {
                       "Don't have an account? ",
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+=======
+        child: Column(
+          children: [
+            // Curved header with logo and app name
+            Container(
+              width: MediaQuery.of(context).size.width,
+              padding: const EdgeInsets.only(top: 80, bottom: 40),
+              decoration: BoxDecoration(color: colorUse.appBarColor),
+              child: Column(
+                children: [
+                  Text(
+                    'DishDive',
+                    style: TextStyle(
+                      fontSize: 64,
+                      fontWeight: FontWeight.bold,
+                      color: colorUse.activeButton,
+>>>>>>> Stashed changes
                     ),
-                    GestureDetector(
-                      onTap: widget.onTap,
-                      child: const Text(
-                        "Register Here",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: colorUse.activeButton,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 40),
+            // Login title
+            const Text(
+              "Login",
+              style: TextStyle(
+                fontFamily: 'InriaSans',
+                fontSize: 48,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(height: 36),
+            // Username/email textfield
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32.0),
+              child: MyTextField(
+                hintText: 'Email or User Name',
+                obscureText: false,
+                controller: usernameController,
+                iconData: Icons.person_outline,
+                border: true, // or false if you want no border
+              ),
+            ),
+            const SizedBox(height: 35),
+            // Password textfield
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32.0),
+              child: MyTextField(
+                hintText: 'Password',
+                obscureText: true,
+                controller: passwordController,
+                iconData: Icons.lock_outline,
+                border: true,
+              ),
+            ),
+            const SizedBox(height: 36),
+            // Sign in button
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 90.0,
+                vertical: 10.0,
+              ),
+              child: MyButton(
+                text: "Sign in",
+                onTap: () {
+                  String fakeToken = "test123";
+                  _navigateToFirstHomePage(fakeToken);
+                },
+                backgroundColor: colorUse.activeButton,
+                textColor: Colors.white,
+                fontSize: 32,
+                borderRadius: 10,
+              ),
+            ),
+            const SizedBox(height: 40),
+            // Register prompt
+            Padding(
+              padding: const EdgeInsets.only(bottom: 24.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "Don’t have an account? ",
+                    style: TextStyle(
+                      fontFamily: 'InriaSans',
+                      fontSize: 16,
+                      color: Colors.white,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignUpPage(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                          ),
                         ),
+                      );
+                    },
+                    child: Text(
+                      "Register",
+                      style: TextStyle(
+                        fontFamily: 'InriaSans',
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: colorUse.activeButton,
                       ),
                     ),
-                  ],
-                ),
-              ],
+                  ),
+                ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
