@@ -148,7 +148,11 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           iconSize: 32,
                           padding: EdgeInsets.zero,
-                          onPressed: () => Navigator.pop(context),
+                          onPressed: () {
+                            Navigator.of(
+                              context,
+                            ).popUntil((route) => route.isFirst);
+                          },
                         ),
                       ),
                     ],

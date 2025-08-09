@@ -18,7 +18,7 @@ class Welcome extends StatelessWidget {
           // Black header section with logo and app name
           Container(
             width: MediaQuery.of(context).size.width,
-            padding: const EdgeInsets.only(top: 90, bottom: 40),
+            padding: const EdgeInsets.only(top: 60, bottom: 40),
             decoration: BoxDecoration(color: colorUse.appBarColor),
             child: Column(
               children: [
@@ -27,16 +27,16 @@ class Welcome extends StatelessWidget {
                 Text(
                   'DishDive',
                   style: TextStyle(
+                    fontFamily: 'InriaSans',
                     fontSize: 64,
                     fontWeight: FontWeight.bold,
-                    color: colorUse.accent,
+                    color: colorUse.activeButton,
                   ),
                 ),
-                const SizedBox(height: 35),
               ],
             ),
           ),
-          const SizedBox(height: 65),
+          const SizedBox(height: 60),
           // Subtitle
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 32.0),
