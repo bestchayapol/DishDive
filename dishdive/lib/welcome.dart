@@ -29,10 +29,10 @@ class Welcome extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 64,
                     fontWeight: FontWeight.bold,
-                    color: colorUse.accent)),
-            const SizedBox(
-              height: 35,
-            ),
+                    color: colorUse.accent,
+                  ),
+                ),
+                const SizedBox(height: 35),
               ],
             ),
           ),
@@ -70,19 +70,7 @@ class Welcome extends StatelessWidget {
                     ),
                   ),
                 );
-              }
-
-              backgroundColor: colorUse.activeButton,
-              textColor: Colors.white,
-              fontSize: 32,
-              borderRadius: 10,
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            ElevatedButton(
-              onPressed: () {
-
+              },
               backgroundColor: colorUse.activeButton,
               textColor: Colors.white,
               fontSize: 32,
@@ -99,7 +87,6 @@ class Welcome extends StatelessWidget {
             child: MyButton(
               text: "Register",
               onTap: () {
-
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -111,28 +98,6 @@ class Welcome extends StatelessWidget {
                   ),
                 );
               },
-              style: ElevatedButton.styleFrom(
-                fixedSize: const Size(200, 50),
-                elevation: 5,
-                backgroundColor: colorUse.accent,
-              ),
-              child: const Text(
-                "Register",
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black54),
-              ),
-
-              backgroundColor: colorUse.secondaryColor,
-              textColor: colorUse.activeButton,
-              fontSize: 32,
-              borderRadius: 10,
-
-            ),
-          ],
-        ),
-
               backgroundColor: colorUse.secondaryColor,
               textColor: colorUse.activeButton,
               fontSize: 32,
@@ -140,7 +105,6 @@ class Welcome extends StatelessWidget {
             ),
           ),
         ],
-
       ),
     );
   }
