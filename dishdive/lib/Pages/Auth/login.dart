@@ -5,6 +5,8 @@ import 'package:dishdive/components/my_textfield.dart';
 import 'package:dishdive/pages/home.dart';
 // import 'package:dishdive/provider/token_provider.dart';
 // import 'package:provider/provider.dart';
+import 'package:dishdive/provider/token_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:dishdive/Utils/color_use.dart';
 import 'package:dishdive/pages/Auth/register.dart';
 
@@ -18,9 +20,35 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  //text constrollers
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final Dio dio = Dio();
+
+  // void _login() async {
+  //   final data = {
+  //     "username": usernameController.text,
+  //     "password": passwordController.text,
+  //   };
+
+  //   try {
+  //     final response = await _makeLoginRequest(data);
+  //     print('start');
+
+  //     if (response.statusCode == 200) {
+  //       final token = response.data['token'];
+  //       final userId = response.data['user_id'];
+  //       Provider.of<TokenProvider>(context, listen: false)
+  //           .setToken(token, userId);
+  //       _navigateToFirstHomePage(token);
+  //     } else {
+  //       _showErrorMessage(
+  //           'Login failed. Response status code: ${response.statusCode}');
+  //     }
+  //   } catch (e) {
+  //     _showErrorMessage('Login Failed');
+  //   }
+  // }
 
   @override
   void dispose() {
@@ -29,6 +57,19 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
+  // Future<Response> _makeLoginRequest(Map<String, dynamic> data) async {
+  //   return dio.post(
+  //     'http://10.0.2.2:5428/Login', // Use HTTPS
+  //     data: data,
+  //     options: Options(
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         // 'secret': 'NeedfulSecret',
+  //       },
+  //     ),
+  //   );
+  // }
+
   void _navigateToFirstHomePage(String token) {
     Navigator.push(
       context,
@@ -36,10 +77,17 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  // void _showErrorMessage(String message) {
+  //   ScaffoldMessenger.of(context).showSnackBar(
+  //     SnackBar(content: Text(message)),
+  //   );
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: colorUse.primaryColor,
+      backgroundColor: colorUse.backgroundColor,
       body: SingleChildScrollView(
 
         padding: const EdgeInsets.only(top: 90),
@@ -217,6 +265,14 @@ class _LoginPageState extends State<LoginPage> {
                               Navigator.pop(context);
                             },
                           ),
+                    GestureDetector(
+                      onTap: widget.onTap,
+                      child: const Text(
+                        "Register Here",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: colorUse.activeButton,
                         ),
                       );
                     },
@@ -232,8 +288,12 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ],
               ),
+                  ],
+                ),
+              ],
             ),
           ],
+          ),
         ),
       ),
     );

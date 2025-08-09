@@ -18,9 +18,12 @@ class AddImage extends StatefulWidget {
     required this.onImageSelected,
     required this.textfill,
   });
+  const AddImage(
+      {super.key, required this.onImageSelected, required this.textfill});
 
   @override
   State<AddImage> createState() => _AddImageState();
+  _AddImageState createState() => _AddImageState();
 }
 
 class _AddImageState extends State<AddImage> {
@@ -28,12 +31,18 @@ class _AddImageState extends State<AddImage> {
 
   Future<void> _pickImage() async {
     final picker = ImagePicker();
+  Future<File?> getImage() async {
+    final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
       setState(() {
         _imageFile = File(image.path);
       });
       widget.onImageSelected(_imageFile!);
+    if (image == null) {
+      return null;
+    } else {
+      return File(image.path);
     }
   }
 
@@ -42,6 +51,7 @@ class _AddImageState extends State<AddImage> {
     return InkWell(
       borderRadius: BorderRadius.circular(12),
       onTap: _pickImage,
+    return Center(
       child: Container(
         width: 200,
         height: 210,
@@ -86,8 +96,47 @@ class _AddImageState extends State<AddImage> {
                 fontSize: 15.0,
                 color: Color.fromARGB(255, 27, 28, 50),
               ),
+        margin: const EdgeInsets.only(bottom: 25),
+        child: InkWell(
+          onTap: () async {
+            File? image = await getImage();
+            if (image != null) {
+              setState(() {
+                _imageFile = image;
+              });
+              widget.onImageSelected(image);
+            }
+          },
+          child: Card(
+            color: const Color.fromARGB(255, 222, 247, 220),
+            child: Padding(
+              padding: const EdgeInsets.only(
+                  top: 40, left: 40, right: 40, bottom: 30),
+              child: Column(mainAxisSize: MainAxisSize.min, children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: _imageFile != null
+                      ? Image.file(_imageFile!, // Show selected image
+                          width: 170,
+                          height: 170,
+                          fit: BoxFit.cover)
+                      : const Icon(
+                          Icons.image,
+                          size: 30,
+                        ), // Placeholder
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  widget.textfill,
+                  style: const TextStyle(
+                    fontSize: 14.0,
+                    color: Color.fromARGB(255, 27, 28, 50),
+                  ),
+                ),
+              ]),
             ),
           ],
+          ),
         ),
       ),
     );

@@ -111,7 +111,6 @@ class Welcome extends StatelessWidget {
                   ),
                 );
               },
-
               style: ElevatedButton.styleFrom(
                 fixedSize: const Size(200, 50),
                 elevation: 5,

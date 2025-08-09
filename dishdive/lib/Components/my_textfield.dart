@@ -34,6 +34,8 @@ class _MyTextFieldState extends State<MyTextField> {
     iconData = obscureText
         ? Icons.remove_red_eye_outlined
         : Icons.remove_red_eye;
+    iconData =
+        obscureText ? Icons.remove_red_eye_outlined : Icons.remove_red_eye;
   }
 
   @override
@@ -50,6 +52,7 @@ class _MyTextFieldState extends State<MyTextField> {
             ? Icon(widget.iconData, color: Colors.black87)
             : null,
         suffixIcon: widget.obscureText
+        suffixIcon: widget.iconData != null
             ? IconButton(
                 icon: Icon(iconData),
                 onPressed: () {
@@ -67,13 +70,17 @@ class _MyTextFieldState extends State<MyTextField> {
             : null,
         filled: true,
         fillColor: colorUse.secondaryColor,
+        fillColor: Colors.white,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(
             color: widget.border ?? false
                 ? colorUse.accent
+                ? const Color.fromARGB(255, 0, 0, 0)
                 : Colors.transparent,
             width: 3,
+            width: 0.5,
           ),
         ),
         focusedBorder: OutlineInputBorder(
@@ -84,6 +91,9 @@ class _MyTextFieldState extends State<MyTextField> {
                 : Colors.transparent,
             width: 3,
           ),
+          borderRadius: BorderRadius.circular(12),
+          borderSide:
+              const BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 1.5),
         ),
       ),
       obscureText: obscureText,
