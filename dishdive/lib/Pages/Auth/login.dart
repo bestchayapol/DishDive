@@ -48,11 +48,11 @@ class _LoginPageState extends State<LoginPage> {
   // }
 
   @override
-  void dispose() {
-    usernameController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
+void dispose() {
+  usernameController.dispose();
+  passwordController.dispose();
+  super.dispose();
+}
 
   // Future<Response> _makeLoginRequest(Map<String, dynamic> data) async {
   //   return dio.post(
@@ -135,6 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                 //     )
                 //   ],
                 // ),
+
                 const SizedBox(height: 25),
 
                 //sign in button
@@ -143,9 +144,9 @@ class _LoginPageState extends State<LoginPage> {
                   width: 400,
                   height: 58,
                   onTap: () {
-                    String fakeToken = "test123";
-                    _navigateToFirstHomePage(fakeToken);
-                  },
+                              String fakeToken = "test123";
+                              _navigateToFirstHomePage(fakeToken);
+                            },
                 ),
 
                 const SizedBox(height: 40),
@@ -156,10 +157,8 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     const Text(
                       "Don't have an account? ",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                      ),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                     ),
                     GestureDetector(
                       onTap: widget.onTap,

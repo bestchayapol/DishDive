@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"github.com/gofiber/fiber/v2"
 	"log"
-	"needful/internal/dtos"
-	"needful/internal/entities"
-	"needful/internal/repository"
-	"needful/internal/utils/v"
+	"github.com/bestchayapol/DishDive/internal/dtos"
+	"github.com/bestchayapol/DishDive/internal/entities"
+	"github.com/bestchayapol/DishDive/internal/repository"
+	v "github.com/bestchayapol/DishDive/internal/utils/v"
 	"strings"
 )
 
@@ -364,13 +364,14 @@ func (s itemService) PutAskByItemIdAndPostAskMessage(itemID, askerUserID int) (*
 	// Determine the preposition based on the OfferType
 	var preposition string
 	var askMSGType string
-	if *item.OfferType == "Receive" {
+	switch *item.OfferType {
+case "Receive":
 		askMSGType = "Donate"
 		preposition = "for"
-	} else if *item.OfferType == "Donate" {
+	case "Donate":
 		askMSGType = "Receive"
 		preposition = "from"
-	} else {
+	default:
 		preposition = "with"
 	}
 

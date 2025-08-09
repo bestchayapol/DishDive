@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"needful/internal/entities"
+	"github.com/bestchayapol/DishDive/internal/entities"
 )
 
 type MessageRepository interface {

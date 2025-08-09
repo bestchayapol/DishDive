@@ -2,12 +2,13 @@ package handler
 
 import (
 	"errors"
-	"github.com/gofiber/fiber/v2"
-	"needful/internal/dtos"
-	"needful/internal/service"
-	"needful/internal/utils"
 	"strconv"
 	"strings"
+
+	"github.com/bestchayapol/DishDive/internal/dtos"
+	"github.com/bestchayapol/DishDive/internal/service"
+	"github.com/bestchayapol/DishDive/internal/utils"
+	"github.com/gofiber/fiber/v2"
 )
 
 type itemHandler struct {
@@ -101,14 +102,14 @@ func (h *itemHandler) GetItemDetailsByItemId(c *fiber.Ctx) error {
 	}
 
 	itemResponse := dtos.ItemDetailsByItemIdResponse{
-		ItemID:        item.ItemID,
-		UserID:        item.UserID,
-		Itemname:      item.Itemname,
-		Description:   item.Description,
-		ItemPic:       item.ItemPic,
-		OfferType:     item.OfferType,
-		AskedByUserID: item.AskedByUserID,
-		AlreadyGave:   item.AlreadyGave,
+		ItemID:           item.ItemID,
+		UserID:           item.UserID,
+		Itemname:         item.Itemname,
+		Description:      item.Description,
+		ItemPic:          item.ItemPic,
+		OfferType:        item.OfferType,
+		AskedByUserID:    item.AskedByUserID,
+		AlreadyGave:      item.AlreadyGave,
 		ConFromItemOwner: item.ConFromItemOwner,
 		ConFromItemAsker: item.ConFromItemAsker,
 	}

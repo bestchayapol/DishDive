@@ -1,12 +1,13 @@
 package service
 
 import (
-	"github.com/gofiber/fiber/v2"
 	"log"
-	"needful/internal/dtos"
-	"needful/internal/entities"
-	"needful/internal/repository"
-	"needful/internal/utils/v"
+
+	"github.com/bestchayapol/DishDive/internal/dtos"
+	"github.com/bestchayapol/DishDive/internal/entities"
+	"github.com/bestchayapol/DishDive/internal/repository"
+	v "github.com/bestchayapol/DishDive/internal/utils/v"
+	"github.com/gofiber/fiber/v2"
 )
 
 type messageService struct {

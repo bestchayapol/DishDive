@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"needful/internal/entities"
-	"needful/internal/utils/v"
+	"github.com/bestchayapol/DishDive/internal/entities"
+	v "github.com/bestchayapol/DishDive/internal/utils/v"
 
 	"gorm.io/gorm"
 )

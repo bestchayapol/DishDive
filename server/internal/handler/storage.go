@@ -1,8 +1,7 @@
 package handler
 
 import (
-	"needful/internal/service"
-
+	"github.com/bestchayapol/DishDive/internal/service"
 	"github.com/gofiber/fiber/v2"
 )
 

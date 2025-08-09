@@ -2,12 +2,13 @@ package handler
 
 import (
 	"errors"
-	"github.com/gofiber/fiber/v2"
-	"needful/internal/dtos"
-	"needful/internal/service"
-	"needful/internal/utils"
 	"strconv"
 	"strings"
+
+	"github.com/bestchayapol/DishDive/internal/dtos"
+	"github.com/bestchayapol/DishDive/internal/service"
+	"github.com/bestchayapol/DishDive/internal/utils"
+	"github.com/gofiber/fiber/v2"
 )
 
 type userHandler struct {

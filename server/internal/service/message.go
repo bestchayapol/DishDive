@@ -1,8 +1,8 @@
 package service
 
 import (
-	"needful/internal/dtos"
-	"needful/internal/entities"
+	"github.com/bestchayapol/DishDive/internal/dtos"
+	"github.com/bestchayapol/DishDive/internal/entities"
 )
 
 type MessageService interface {

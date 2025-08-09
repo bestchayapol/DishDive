@@ -1,8 +1,8 @@
 package repository
 
 import (
+	"github.com/bestchayapol/DishDive/internal/entities"
 	"gorm.io/gorm"
-	"needful/internal/entities"
 )
 
 type messageRepositoryDB struct {

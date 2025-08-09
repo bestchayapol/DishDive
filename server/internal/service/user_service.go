@@ -2,16 +2,17 @@ package service
 
 import (
 	"errors"
-	"github.com/dgrijalva/jwt-go"
+	"log"
+	"strconv"
+
+	"github.com/bestchayapol/DishDive/internal/dtos"
+	"github.com/bestchayapol/DishDive/internal/entities"
+	"github.com/bestchayapol/DishDive/internal/repository"
+	v "github.com/bestchayapol/DishDive/internal/utils/v"
+	"github.com/golang-jwt/jwt/v4"
 	"github.com/gofiber/fiber/v2"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
-	"log"
-	"needful/internal/dtos"
-	"needful/internal/entities"
-	"needful/internal/repository"
-	"needful/internal/utils/v"
-	"strconv"
 )
 
 type userService struct {
@@ -259,7 +260,7 @@ func (s userService) Login(request dtos.LoginRequest, jwtSecret string) (*dtos.L
 	}
 
 	// Generate JWT token
-	claims := jwt.StandardClaims{
+	claims := jwt.RegisteredClaims{
 		Issuer: strconv.Itoa(int(*user.UserID)),
 	}
 

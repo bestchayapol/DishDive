@@ -2,18 +2,20 @@ package main
 
 import (
 	"fmt"
+
 	jwtware "github.com/gofiber/contrib/jwt"
 
 	//jwtware "github.com/gofiber/contrib/jwt"
-	"github.com/minio/minio-go/v7"
-	"github.com/minio/minio-go/v7/pkg/credentials"
 	"log"
-	"needful/internal/entities"
-	"needful/internal/handler"
-	"needful/internal/repository"
-	"needful/internal/service"
 	"strings"
 	"time"
+
+	"github.com/bestchayapol/DishDive/internal/entities"
+	"github.com/bestchayapol/DishDive/internal/handler"
+	"github.com/bestchayapol/DishDive/internal/repository"
+	"github.com/bestchayapol/DishDive/internal/service"
+	"github.com/minio/minio-go/v7"
+	"github.com/minio/minio-go/v7/pkg/credentials"
 
 	"github.com/gofiber/fiber/v2"
 
@@ -22,7 +24,7 @@ import (
 	"gorm.io/gorm"
 )
 
-const jwtSecret = "NeedFulSecret"
+const jwtSecret = "DishDiveSecret"
 
 func main() {
 	initTimeZone()
@@ -150,7 +152,7 @@ func main() {
 
 	//#####################################################################################
 
-	log.Printf("NeedFul running at port:  %v", viper.GetInt("app.port"))
+	log.Printf("DishDive running at port:  %v", viper.GetInt("app.port"))
 	app.Listen(fmt.Sprintf(":%v", viper.GetInt("app.port")))
 
 }

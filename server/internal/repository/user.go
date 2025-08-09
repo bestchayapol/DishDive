@@ -1,6 +1,6 @@
 package repository
 
-import "needful/internal/entities"
+import "github.com/bestchayapol/DishDive/internal/entities"
 
 type UserRepository interface {
 	GetAllUser() ([]entities.User, error)
