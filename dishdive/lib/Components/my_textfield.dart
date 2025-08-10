@@ -46,6 +46,7 @@ class _MyTextFieldState extends State<MyTextField> {
           horizontal: 20,
         ),
         hintText: widget.hintText,
+        hintStyle: TextStyle(fontSize: 14),
         prefixIcon: widget.iconData != null
             ? Icon(widget.iconData, color: Colors.black87)
             : null,

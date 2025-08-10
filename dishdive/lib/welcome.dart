@@ -18,12 +18,12 @@ class Welcome extends StatelessWidget {
           // Black header section with logo and app name
           Container(
             width: MediaQuery.of(context).size.width,
-            padding: const EdgeInsets.only(top: 60, bottom: 40),
+            padding: const EdgeInsets.only(top: 70, bottom: 40),
             decoration: BoxDecoration(color: colorUse.appBarColor),
             child: Column(
               children: [
                 Image.asset("assets/Logo.png"),
-                const SizedBox(height: 16),
+                const SizedBox(height: 40),
                 Text(
                   'DishDive',
                   style: TextStyle(
@@ -36,7 +36,7 @@ class Welcome extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 60),
+          const SizedBox(height: 70),
           // Subtitle
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 32.0),
@@ -54,7 +54,7 @@ class Welcome extends StatelessWidget {
           // Login Button
           Padding(
             padding: const EdgeInsets.symmetric(
-              horizontal: 90.0,
+              horizontal: 80.0,
               vertical: 10.0,
             ),
             child: MyButton(
@@ -81,7 +81,7 @@ class Welcome extends StatelessWidget {
           // Register Button
           Padding(
             padding: const EdgeInsets.symmetric(
-              horizontal: 90.0,
+              horizontal: 80.0,
               vertical: 10.0,
             ),
             child: MyButton(

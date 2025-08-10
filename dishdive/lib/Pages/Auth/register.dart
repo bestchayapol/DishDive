@@ -285,7 +285,7 @@ class _SignUpPageState extends State<SignUpPage> {
             // Sign up button
             Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: 90.0,
+                horizontal: 80.0,
                 vertical: 10.0,
               ),
               child: MyButton(

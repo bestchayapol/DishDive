@@ -61,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 60),
             // Login title
             const Text(
               "Login",
@@ -72,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                 color: Colors.white,
               ),
             ),
-            const SizedBox(height: 36),
+            const SizedBox(height: 60),
             // Username/email textfield
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32.0),
@@ -100,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
             // Sign in button
             Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: 90.0,
+                horizontal: 80.0,
                 vertical: 10.0,
               ),
               child: MyButton(

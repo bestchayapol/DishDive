@@ -9,7 +9,6 @@ import 'package:dishdive/provider/token_provider.dart';
 // import 'package:provider/provider.dart';
 import 'package:dishdive/widgets/button_at_bottom.dart';
 import 'package:dishdive/widgets/text_form.dart';
-import 'package:dishdive/widgets/title_bar.dart';
 import 'package:provider/provider.dart';
 
 class EditProfile extends StatefulWidget {
@@ -105,14 +104,16 @@ class _EditProfileState extends State<EditProfile> {
         const SnackBar(content: Text('Profile updated successfully')),
       );
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Failed to update profile')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Failed to update profile')));
     }
 
     // Static response for testing
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Profile updated successfully (static data)')),
+      const SnackBar(
+        content: Text('Profile updated successfully (static data)'),
+      ),
     );
   }
 
@@ -120,11 +121,11 @@ class _EditProfileState extends State<EditProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: colorUse.backgroundColor,
-      appBar: const CustomAppBarPop(
-        backgroundColor: colorUse.primaryColor,
-        title: 'Edit profile',
-        centerTitle: true,
-      ),
+      // appBar: const CustomAppBarPop(
+      //   backgroundColor: colorUse.primaryColor,
+      //   title: 'Edit profile',
+      //   centerTitle: true,
+      // ),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.all(20),
@@ -141,7 +142,7 @@ class _EditProfileState extends State<EditProfile> {
                     'Last name',
                     'Username',
                     'Phone number',
-                    'Email'
+                    'Email',
                   ][index],
                   controller: controller,
                 );

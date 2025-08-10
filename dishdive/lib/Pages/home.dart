@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dishdive/widgets/bottomBar.dart';
+import 'package:dishdive/widgets/BottomBar.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -16,8 +16,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      bottomNavigationBar: bottomBar(),
-    );
+    return const Scaffold(bottomNavigationBar: BottomBar());
   }
 }
