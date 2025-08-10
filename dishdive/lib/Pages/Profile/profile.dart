@@ -4,11 +4,8 @@ import 'package:dishdive/Pages/Auth/LoR.dart';
 import 'package:dishdive/Pages/Profile/edit_profile.dart';
 import 'package:dishdive/Pages/Profile/eula.dart';
 import 'package:dishdive/Utils/color_use.dart';
-import 'package:dishdive/Utils/text_use.dart';
-import 'package:dishdive/provider/token_provider.dart';
-import 'package:dishdive/widgets/button_at_bottom.dart';
-import 'package:dishdive/widgets/card_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:dishdive/provider/token_provider.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key});
@@ -18,12 +15,6 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  final double coverHeight = 250;
-  final double profileHeight = 150;
-  String? username;
-  String? email;
-  String? phoneNum;
-
   Future<Map<String, dynamic>>? _userData;
 
   @override
@@ -33,8 +24,6 @@ class _ProfileState extends State<Profile> {
   }
 
   Future<Map<String, dynamic>> fetchUserData() async {
-    // Commented out for static data example
-
     final token = Provider.of<TokenProvider>(context, listen: false).token;
     final userId = Provider.of<TokenProvider>(context, listen: false).userId;
 
@@ -44,7 +33,7 @@ class _ProfileState extends State<Profile> {
       options: Options(
         headers: {
           'Authorization': 'Bearer $token',
-          'Content-Type': 'application/json', // Adjust content type as needed
+          'Content-Type': 'application/json',
         },
       ),
     );
@@ -54,120 +43,226 @@ class _ProfileState extends State<Profile> {
     } else {
       throw Exception('Failed to load user data');
     }
-
-    // Static data for testing
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: colorUse.backgroundColor,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            FutureBuilder<Map<String, dynamic>>(
-              future: _userData,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const CircularProgressIndicator(); // Display a loading indicator while data is being fetched
-                } else if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                } else {
-                  final userData = snapshot.data;
-                  return Column(
+      body: Stack(
+        children: [
+          // Bottom rectangles (replace spheres)
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Row(
+              children: [
+                Expanded(
+                  child: Container(height: 60, color: colorUse.sentimentColor),
+                ),
+                Expanded(
+                  child: Container(height: 60, color: Colors.amber[200]),
+                ),
+              ],
+            ),
+          ),
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                // Top section with back, logout, and profile
+                Container(
+                  color: colorUse.appBarColor,
+                  padding: const EdgeInsets.only(
+                    top: 40,
+                    left: 16,
+                    right: 16,
+                    bottom: 0,
+                  ),
+                  child: Stack(
                     children: [
-                      buildtop(userData),
-                      const SizedBox(height: 20),
-                      RegularTextBold(userData?['username'] ?? ''),
-                      const SizedBox(height: 15),
-                      RegularText(
-                        '${userData?['email'] ?? "Thejustice@gmail.com"} | ${userData?['phone_num'] ?? "123-456-7890"}',
+                      // Back button
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: TextButton.icon(
+                          onPressed: () => Navigator.pop(context),
+                          icon: const Icon(
+                            Icons.arrow_back,
+                            color: Colors.white,
+                          ),
+                          label: const Text(
+                            "Back",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.white,
+                          ),
+                        ),
                       ),
-                      const SizedBox(height: 40),
-                      const ProfileCard(
-                        product: 'Edit profile information',
-                        icon: Icons.edit,
-                        destination: EditProfile(),
+                      // Logout button
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: TextButton(
+                          onPressed: logout,
+                          child: const Text(
+                            "Log out",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
                       ),
-                      const ProfileCard(
-                        product: 'Privacy policy',
-                        icon: Icons.policy,
-                        destination: Eula(),
+                      // Profile picture (centered)
+                      Column(
+                        children: [
+                          const SizedBox(height: 40),
+                          Center(
+                            child: Stack(
+                              alignment: Alignment.bottomRight,
+                              children: [
+                                FutureBuilder<Map<String, dynamic>>(
+                                  future: _userData,
+                                  builder: (context, snapshot) {
+                                    String? profilePic =
+                                        snapshot.data?['user_pic'];
+                                    return CircleAvatar(
+                                      radius: 54,
+                                      backgroundColor: Colors.white,
+                                      backgroundImage:
+                                          profilePic != null &&
+                                              profilePic.isNotEmpty
+                                          ? NetworkImage(profilePic)
+                                          : null,
+                                    );
+                                  },
+                                ),
+                                Positioned(
+                                  bottom: 0,
+                                  right: 0,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const EditProfile(),
+                                        ),
+                                      );
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: colorUse.activeButton,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      padding: const EdgeInsets.all(6),
+                                      child: const Icon(
+                                        Icons.edit,
+                                        color: Colors.white,
+                                        size: 20,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ],
-                  );
-                }
-              },
+                  ),
+                ),
+                const SizedBox(height: 16),
+                // Username (centered)
+                FutureBuilder<Map<String, dynamic>>(
+                  future: _userData,
+                  builder: (context, snapshot) {
+                    String username = snapshot.data?['username'] ?? "Username";
+                    return Text(
+                      username,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    );
+                  },
+                ),
+                const SizedBox(height: 24),
+                // Preferences button
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                  child: ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/preferences');
+                    },
+                    icon: const Icon(
+                      Icons.restaurant_menu,
+                      color: Colors.black,
+                    ),
+                    label: const Text(
+                      "Preferences",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: colorUse.activeButton,
+                      minimumSize: const Size.fromHeight(48),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      elevation: 0,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                // Blacklist button
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                  child: OutlinedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/blacklist');
+                    },
+                    child: const Text(
+                      "Blacklist",
+                      style: TextStyle(
+                        color: colorUse.activeButton,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(color: colorUse.activeButton, width: 2),
+                      minimumSize: const Size.fromHeight(48),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 80),
+              ],
             ),
-            const SizedBox(height: 50), // Add some spacing at the bottom
-            logout(),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
-  Widget logout() {
-    void logoutFunction() {
-      // Notify the TokenProvider that the token has been cleared
-      Provider.of<TokenProvider>(context, listen: false).setToken("", 0);
-
-      // Navigate to the login page
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const LoginOrRegister()),
-      );
-    }
-
-    return ButtonAtBottom(
-      onPressed: logoutFunction,
-      text: 'Logout',
-      color: colorUse.activeButton,
-    );
-  }
-
-  Widget buildtop(Map<String, dynamic>? userData) {
-    final top = coverHeight - profileHeight / 2;
-    final bottom = profileHeight / 2;
-
-    return Stack(
-      clipBehavior: Clip.none,
-      alignment: Alignment.center,
-      children: [
-        Container(
-          margin: EdgeInsets.only(bottom: bottom),
-          child: backgroundColorSquare(),
-        ),
-        Positioned(top: top, child: pictureOverlay(userData)),
-      ],
-    );
-  }
-
-  Widget backgroundColorSquare() => Container(
-    child: Column(
-      children: [
-        Center(
-          child: Container(
-            height: coverHeight,
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              color: colorUse.primaryColor,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.elliptical(220, 60),
-                bottomRight: Radius.elliptical(220, 60),
-              ),
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
-
-  Widget pictureOverlay(Map<String, dynamic>? userData) {
-    final profilePic = userData?['user_pic'] ?? '';
-    return CircleAvatar(
-      radius: profileHeight / 2,
-      backgroundImage: NetworkImage(profilePic),
+  void logout() {
+    Provider.of<TokenProvider>(context, listen: false).setToken("", 0);
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const LoginOrRegister()),
     );
   }
 }

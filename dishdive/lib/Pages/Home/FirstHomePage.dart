@@ -3,11 +3,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:dishdive/Components/profile_bar.dart';
 import 'package:dishdive/Utils/color_use.dart';
-import 'package:dishdive/provider/token_provider.dart';
+import 'package:dishdive/Pages/Profile/profile.dart';
 import 'package:dishdive/widgets/ListView.dart';
 import 'package:dishdive/widgets/MapView.dart';
 import 'package:dishdive/components/my_textfield.dart';
 import 'package:dishdive/components/integrate_model.dart' as components;
+import 'package:dishdive/provider/token_provider.dart';
 import 'package:provider/provider.dart';
 
 class FirstHomePage extends StatefulWidget {
@@ -90,24 +91,32 @@ class _FirstHomePageState extends State<FirstHomePage>
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     // Placeholder for profile image (grey sphere)
-                    Container(
-                      width: 48,
-                      height: 48,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.grey, // Placeholder color
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => Profile()),
+                        );
+                      },
+                      child: Container(
+                        width: 48,
+                        height: 48,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.grey, // Placeholder color
+                        ),
+                        // Uncomment below to use actual profile image:
+                        // child: img != null
+                        //     ? ClipOval(
+                        //         child: Image.network(
+                        //           img!,
+                        //           width: 48,
+                        //           height: 48,
+                        //           fit: BoxFit.cover,
+                        //         ),
+                        //       )
+                        //     : null,
                       ),
-                      // Uncomment below to use actual profile image:
-                      // child: img != null
-                      //     ? ClipOval(
-                      //         child: Image.network(
-                      //           img!,
-                      //           width: 48,
-                      //           height: 48,
-                      //           fit: BoxFit.cover,
-                      //         ),
-                      //       )
-                      //     : null,
                     ),
                   ],
                 ),
