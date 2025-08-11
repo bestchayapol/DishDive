@@ -110,7 +110,6 @@ class _SignUpPageState extends State<SignUpPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Curved header with back button and title
             Stack(
               children: [
                 Container(
