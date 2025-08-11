@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:dishdive/components/my_button.dart';
 import 'package:dishdive/Pages/Auth/LoR.dart';
 import 'package:dishdive/Pages/Profile/edit_profile.dart';
-import 'package:dishdive/Pages/Profile/eula.dart';
 import 'package:dishdive/Utils/color_use.dart';
 import 'package:dishdive/widgets/BackgroundCircle.dart';
 import 'package:provider/provider.dart';
