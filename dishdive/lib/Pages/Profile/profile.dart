@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:dishdive/components/my_button.dart';
 import 'package:dishdive/Pages/Auth/LoR.dart';
+import 'package:dishdive/Pages/Preferences/PreferencesSettings.dart';
+import 'package:dishdive/Pages/Preferences/BlacklistSettings.dart';
 import 'package:dishdive/Pages/Profile/edit_profile.dart';
 import 'package:dishdive/Utils/color_use.dart';
 import 'package:dishdive/widgets/BackgroundCircle.dart';
@@ -90,7 +92,10 @@ class _ProfileState extends State<Profile> {
               child: MyButton(
                 text: "Preferences",
                 onTap: () {
-                  Navigator.pushNamed(context, '/preferences');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => SetPref()),
+                  );
                 },
                 backgroundColor: colorUse.activeButton,
                 textColor: Colors.black,
@@ -109,7 +114,10 @@ class _ProfileState extends State<Profile> {
               child: MyButton(
                 text: "Blacklist",
                 onTap: () {
-                  Navigator.pushNamed(context, '/blacklist');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => SetBlack()),
+                  );
                 },
                 backgroundColor: Colors.black,
                 textColor: colorUse.activeButton,
