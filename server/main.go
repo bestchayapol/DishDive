@@ -1,6 +1,8 @@
 package main
 
 import (
+	"context"
+	"database/sql"
 	"fmt"
 
 	jwtware "github.com/gofiber/contrib/jwt"
@@ -17,7 +19,9 @@ import (
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/credentials"
 
+	_"github.com/go-sql-driver/mysql"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 
 	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
@@ -29,19 +33,28 @@ const jwtSecret = "DishDiveSecret"
 func main() {
 	initTimeZone()
 	initConfig()
-	dsn := fmt.Sprintf("%v:%v@tcp(%v:%v)/%v?parseTime=true",
-		viper.GetString("db.username"),
-		viper.GetString("db.password"),
-		viper.GetString("db.host"),
-		viper.GetInt("db.port"),
-		viper.GetString("db.database"),
-	)
+	dbUser := viper.GetString("db.username")
+	dbPass := viper.GetString("db.password")
+	dbHost := viper.GetString("db.host")
+	dbPort := viper.GetInt("db.port")
+	dbName := viper.GetString("db.database")
+
+	// Prefer IPv4 for localhost to avoid ::1 issues on Windows
+	if strings.EqualFold(dbHost, "localhost") {
+		dbHost = "127.0.0.1"
+	}
+
+	// Ensure DB exists
+	if err := ensureDatabase(dbUser, dbPass, dbHost, dbPort, dbName); err != nil {
+		log.Fatalf("failed ensuring database (%s:%d as %s): %v", dbHost, dbPort, dbUser, err)
+	}
+
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true&charset=utf8mb4&loc=Local", dbUser, dbPass, dbHost, dbPort, dbName)
 	log.Println(dsn)
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
-
 	if err != nil {
-		panic("Failed to connect database")
+		log.Fatalf("Failed to connect database: %v", err)
 	}
 
 	err = db.AutoMigrate(&entities.User{})
@@ -59,17 +72,42 @@ func main() {
 		panic("Failed to AutoMigrate Messages")
 	}
 
-	minioClient, err := minio.New(viper.GetString("minio.host")+":"+viper.GetString("minio.port"), &minio.Options{
-		Creds:  credentials.NewStaticV4("HDeAly8XddiQTvjjTRfL", "9OtiaCEOL1586uDgPAXNANDndM04ga3oMdGy7kGF", ""),
-		Secure: false,
+	minioEndpoint := viper.GetString("minio.host") + ":" + viper.GetString("minio.port")
+	minioAccessKey := viper.GetString("minio.accessKey")
+	minioSecretKey := viper.GetString("minio.secretKey")
+	minioSecure := viper.GetBool("minio.secure")
+	bucket := viper.GetString("minio.bucket")
+
+	minioClient, err := minio.New(minioEndpoint, &minio.Options{
+		Creds:  credentials.NewStaticV4(minioAccessKey, minioSecretKey, ""),
+		Secure: minioSecure,
 	})
 	if err != nil {
 		log.Fatalln(err)
 	}
 	fmt.Println("Minio connected")
 
-	uploadSer := service.NewUploadService(minioClient)
-	storageHandler := handler.NewStorageHandler(uploadSer)
+	// Ensure the bucket exists
+	{
+		ctx := context.Background()
+		exists, err := minioClient.BucketExists(ctx, bucket)
+		if err != nil {
+			log.Fatalln("minio bucket check error:", err)
+		}
+		if !exists {
+			if err := minioClient.MakeBucket(ctx, bucket, minio.MakeBucketOptions{}); err != nil {
+				log.Fatalln("failed to create minio bucket:", err)
+			}
+		}
+	}
+	// Configure public URL for uploaded objects (optional)
+	var publicBaseURLPtr *string
+	if v := viper.GetString("minio.publicBaseURL"); v != "" {
+		publicBaseURLPtr = &v
+	}
+
+	uploadSvc := service.NewUploadService(minioClient, bucket, publicBaseURLPtr)
+	storageHandler := handler.NewStorageHandler(uploadSvc)
 
 	userRepositoryDB := repository.NewUserRepositoryDB(db)
 	itemRepositoryDB := repository.NewItemRepositoryDB(db)
@@ -78,13 +116,19 @@ func main() {
 	userService := service.NewUserService(userRepositoryDB, jwtSecret)
 	itemService := service.NewItemService(itemRepositoryDB)
 	messageService := service.NewMessageService(messageRepositoryDB)
-	uploadService := service.NewUploadService(minioClient)
-
-	userHandler := handler.NewUserHandler(userService, jwtSecret, uploadService)
-	itemHandler := handler.NewItemHandler(itemService, jwtSecret, uploadService)
+	userHandler := handler.NewUserHandler(userService, jwtSecret, uploadSvc)
+	itemHandler := handler.NewItemHandler(itemService, jwtSecret, uploadSvc)
 	messageHandler := handler.NewMessageHandler(messageService, jwtSecret)
 
 	app := fiber.New()
+
+	// Enable CORS for frontend development
+	app.Use(cors.New(cors.Config{
+		AllowOrigins:     "*", // set to your frontend origin in production
+		AllowHeaders:     "Origin, Content-Type, Accept, Authorization",
+		AllowMethods:     "GET,POST,PUT,PATCH,DELETE,OPTIONS",
+		AllowCredentials: true,
+	}))
 
 	app.Use(func(c *fiber.Ctx) error {
 		if c.Path() != "/Register" && c.Path() != "/Login" {
@@ -100,6 +144,9 @@ func main() {
 	})
 
 	//Endpoint ###########################################################################
+
+	// Health check
+	app.Get("/health", func(c *fiber.Ctx) error { return c.SendString("ok") })
 
 	// Endpoint for test
 	app.Get("/GetUsers", userHandler.GetUsers)
@@ -177,4 +224,20 @@ func initTimeZone() {
 	}
 
 	time.Local = ict
+}
+
+func ensureDatabase(user, pass, host string, port int, dbName string) error {
+	// Connect without a DB to create it if missing
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/?parseTime=true&timeout=5s", user, pass, host, port)
+	sqlDB, err := sql.Open("mysql", dsn)
+	if err != nil {
+		return err
+	}
+	defer sqlDB.Close()
+
+	if err := sqlDB.Ping(); err != nil {
+		return err
+	}
+	_, err = sqlDB.Exec("CREATE DATABASE IF NOT EXISTS `" + dbName + "` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci")
+	return err
 }

@@ -9,11 +9,13 @@ import (
 )
 
 type uploadService struct {
-	client *minio.Client
+	client        *minio.Client
+	bucket        string
+	publicBaseURL *string
 }
 
-func NewUploadService(client *minio.Client) UploadService {
-	return &uploadService{client: client}
+func NewUploadService(client *minio.Client, bucket string, publicBaseURL *string) UploadService {
+	return &uploadService{client: client, bucket: bucket, publicBaseURL: publicBaseURL}
 }
 
 func (s *uploadService) UploadFile(file *multipart.FileHeader) (*string, error) {
@@ -27,13 +29,20 @@ func (s *uploadService) UploadFile(file *multipart.FileHeader) (*string, error) 
 
 	fileName := file.Filename
 
-	_, err = s.client.PutObject(ctx, "needful", fileName, buffer, file.Size, minio.PutObjectOptions{
+	_, err = s.client.PutObject(ctx, s.bucket, fileName, buffer, file.Size, minio.PutObjectOptions{
 		ContentType: "application/octet-stream",
 	})
 	if err != nil {
 		return nil, err
 	}
 
-	fileURL := fmt.Sprintf("https://minio.bocchikitsunei.com/needful/%s", fileName)
-	return &fileURL, err
+	// Build a public URL for the uploaded object
+	var url string
+	if s.publicBaseURL != nil && *s.publicBaseURL != "" {
+		url = fmt.Sprintf("%s/%s/%s", *s.publicBaseURL, s.bucket, fileName)
+	} else {
+		// Fallback: relative path; frontends can prefix with API/static host if proxied
+		url = fmt.Sprintf("/%s/%s", s.bucket, fileName)
+	}
+	return &url, err
 }
