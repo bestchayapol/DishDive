@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:dishdive/Utils/color_use.dart';
 // Commented out for static data example

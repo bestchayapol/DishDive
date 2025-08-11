@@ -1,4 +1,3 @@
-// import 'package:dio/dio.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:dishdive/Utils/color_use.dart';
@@ -55,8 +54,6 @@ class _FirstHomePageState extends State<FirstHomePage>
       final parsedJson = response.data; // Directly get the parsed data
       setState(() {
         // Update the username and email variables with the parsed user data
-        username = parsedJson['username'];
-        email = parsedJson['email'];
         img = parsedJson['user_pic'];
         firstname = parsedJson['firstname'];
         lastname = parsedJson['lastname'];
