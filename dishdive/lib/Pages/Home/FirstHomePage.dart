@@ -1,7 +1,6 @@
 // import 'package:dio/dio.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:dishdive/Components/profile_bar.dart';
 import 'package:dishdive/Utils/color_use.dart';
 import 'package:dishdive/Pages/Profile/profile.dart';
 import 'package:dishdive/widgets/ListView.dart';

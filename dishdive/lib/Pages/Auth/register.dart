@@ -271,11 +271,9 @@ class _SignUpPageState extends State<SignUpPage> {
               padding: const EdgeInsets.symmetric(horizontal: 32.0),
               child: AddImage(
                 onImageSelected: (image) {
-                  if (image != null) {
-                    setState(() {
-                      _selectedImage = image;
-                    });
-                  }
+                  setState(() {
+                    _selectedImage = image;
+                  });
                 },
                 textfill: 'Add profile picture +',
               ),

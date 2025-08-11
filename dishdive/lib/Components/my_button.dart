@@ -10,47 +10,66 @@ class MyButton extends StatelessWidget {
   final Color textColor;
   final double fontSize;
   final double borderRadius;
+  final Widget? icon; // <-- Add this
+  final Color? borderColor; // <-- Add this
 
   const MyButton({
-    super.key,
+    Key? key,
     required this.text,
-    required this.onTap,
+    this.onTap,
     this.width,
-    this.height = 65,
+    this.height = 70,
     this.backgroundColor = colorUse.activeButton,
     this.textColor = Colors.white,
-    this.fontSize = 32,
-    this.borderRadius = 10,
-  });
+    this.fontSize = 18,
+    this.borderRadius = 8,
+    this.icon,
+    this.borderColor,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: width ?? double.infinity,
-        height: height,
-        decoration: BoxDecoration(
-          color: backgroundColor,
-          borderRadius: BorderRadius.circular(borderRadius),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.08),
-              blurRadius: 4,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
-        child: Center(
-          child: Text(
-            text,
-            style: TextStyle(
-              fontWeight: FontWeight.normal,
-              fontSize: fontSize,
-              color: textColor,
-            ),
+    return SizedBox(
+      width: width ?? double.infinity,
+      height: height,
+      child: ElevatedButton(
+        onPressed: onTap,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: backgroundColor,
+          foregroundColor: textColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(borderRadius),
+            side: borderColor != null
+                ? BorderSide(color: borderColor!, width: 2)
+                : BorderSide.none,
           ),
+          elevation: 0,
         ),
+        child: icon != null
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  icon!,
+                  const SizedBox(width: 8),
+                  Text(
+                    text,
+                    style: TextStyle(
+                      color: textColor,
+                      fontSize: fontSize,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                ],
+              )
+            : Text(
+                text,
+                style: TextStyle(
+                  color: textColor,
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
       ),
     );
   }

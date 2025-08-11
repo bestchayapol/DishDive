@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:dishdive/Utils/color_use.dart';
 import 'package:dishdive/Utils/text_use.dart';
 
 class Eula extends StatelessWidget {
