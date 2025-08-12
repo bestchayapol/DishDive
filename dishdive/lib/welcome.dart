@@ -3,6 +3,7 @@ import 'package:dishdive/Pages/Auth/login.dart';
 import 'package:dishdive/Pages/Auth/register.dart';
 import 'package:dishdive/Utils/color_use.dart';
 import 'package:dishdive/components/my_button.dart';
+import 'package:dishdive/widgets/BackgroundCircle.dart';
 
 class Welcome extends StatelessWidget {
   final VoidCallback onFinished;
@@ -15,26 +16,30 @@ class Welcome extends StatelessWidget {
       backgroundColor: colorUse.primaryColor,
       body: Column(
         children: [
-          // Black header section with logo and app name
-          Container(
-            width: MediaQuery.of(context).size.width,
-            padding: const EdgeInsets.only(top: 70, bottom: 40),
-            decoration: BoxDecoration(color: colorUse.appBarColor),
-            child: Column(
-              children: [
-                Image.asset("assets/Logo.png"),
-                const SizedBox(height: 40),
-                Text(
-                  'DishDive',
-                  style: TextStyle(
-                    fontFamily: 'InriaSans',
-                    fontSize: 64,
-                    fontWeight: FontWeight.bold,
-                    color: colorUse.activeButton,
-                  ),
+          // Curved header section with logo and app name
+          Stack(
+            children: [
+              BackgroundCircle(height: 360), // Adjust height as needed
+              Container(
+                width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.only(top: 70, bottom: 40),
+                child: Column(
+                  children: [
+                    Image.asset("assets/Logo.png"),
+                    const SizedBox(height: 40),
+                    Text(
+                      'DishDive',
+                      style: TextStyle(
+                        fontFamily: 'InriaSans',
+                        fontSize: 64,
+                        fontWeight: FontWeight.bold,
+                        color: colorUse.activeButton,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
           const SizedBox(height: 70),
           // Subtitle

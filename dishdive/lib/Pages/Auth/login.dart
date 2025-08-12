@@ -6,6 +6,7 @@ import 'package:dishdive/pages/home.dart';
 // import 'package:dishdive/provider/token_provider.dart';
 // import 'package:provider/provider.dart';
 import 'package:dishdive/Utils/color_use.dart';
+import 'package:dishdive/widgets/BackgroundCircle.dart';
 import 'package:dishdive/pages/Auth/register.dart';
 
 class LoginPage extends StatefulWidget {
@@ -43,23 +44,27 @@ class _LoginPageState extends State<LoginPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Curved header with logo and app name
-            Container(
-              width: MediaQuery.of(context).size.width,
-              padding: const EdgeInsets.only(top: 80, bottom: 40),
-              decoration: BoxDecoration(color: colorUse.appBarColor),
-              child: Column(
-                children: [
-                  Text(
-                    'DishDive',
-                    style: TextStyle(
-                      fontSize: 64,
-                      fontWeight: FontWeight.bold,
-                      color: colorUse.activeButton,
-                    ),
+            // Curved header with app name
+            Stack(
+              children: [
+                BackgroundCircle(height: 220), // Adjust height as needed
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: const EdgeInsets.only(top: 80, bottom: 40),
+                  child: Column(
+                    children: [
+                      Text(
+                        'DishDive',
+                        style: TextStyle(
+                          fontSize: 64,
+                          fontWeight: FontWeight.bold,
+                          color: colorUse.activeButton,
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             const SizedBox(height: 60),
             // Login title
