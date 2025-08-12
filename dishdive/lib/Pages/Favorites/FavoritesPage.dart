@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dishdive/Utils/color_use.dart';
+import 'package:dishdive/widgets/list_favorites.dart';
 
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({super.key});
@@ -62,20 +63,7 @@ class FavoritesPage extends StatelessWidget {
             ),
           ),
           // Favorite cards (grey rectangles as placeholders)
-          Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.all(16),
-              itemCount: 4,
-              itemBuilder: (context, index) => Container(
-                margin: const EdgeInsets.only(bottom: 18),
-                height: 110,
-                decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: BorderRadius.circular(16),
-                ),
-              ),
-            ),
-          ),
+          Expanded(child: ListFavoritesWidget()),
         ],
       ),
     );

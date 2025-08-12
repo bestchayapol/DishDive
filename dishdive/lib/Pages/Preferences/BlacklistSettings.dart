@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dishdive/Utils/color_use.dart';
+import 'package:dishdive/widgets/list_favorites.dart';
 // Commented out for static data example
 // import 'package:dio/dio.dart';
 // import 'package:provider/provider.dart';;
@@ -34,6 +35,7 @@ class _SetBlackState extends State<SetBlack> {
         ),
         centerTitle: true,
       ),
+      body: Column(children: [Expanded(child: ListFavoritesWidget())]),
     );
   }
 }

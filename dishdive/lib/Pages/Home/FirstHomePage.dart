@@ -138,7 +138,7 @@ class _FirstHomePageState extends State<FirstHomePage>
                 Tab(
                   child: Container(
                     padding: const EdgeInsets.symmetric(
-                      vertical: 8,
+                      vertical: 4,
                       horizontal: 24,
                     ),
                     child: const Text('List View'),
@@ -147,7 +147,7 @@ class _FirstHomePageState extends State<FirstHomePage>
                 Tab(
                   child: Container(
                     padding: const EdgeInsets.symmetric(
-                      vertical: 8,
+                      vertical: 4,
                       horizontal: 24,
                     ),
                     child: const Text('Map View'),
@@ -163,12 +163,14 @@ class _FirstHomePageState extends State<FirstHomePage>
               labelColor: Colors.white,
               unselectedLabelColor: colorUse.activeButton,
               labelStyle: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
+                fontFamily: 'InriaSans',
+                fontWeight: FontWeight.normal,
+                fontSize: 28,
               ),
               unselectedLabelStyle: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
+                fontFamily: 'InriaSans',
+                fontWeight: FontWeight.normal,
+                fontSize: 28,
               ),
               dividerColor: Colors.transparent,
             ),

@@ -22,7 +22,7 @@ class ListViewWidget extends StatelessWidget {
           height: 100,
           decoration: BoxDecoration(
             color: Colors.grey[300],
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(10),
           ),
         ),
       ),

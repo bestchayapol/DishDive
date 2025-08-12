@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:dishdive/Utils/color_use.dart';
 import 'package:dishdive/Pages/Profile/profile.dart';
+import 'package:dishdive/widgets/list_dishes.dart';
 import 'package:dishdive/provider/token_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -126,27 +127,7 @@ class _RestaurantPageState extends State<RestaurantPage>
             ),
           ),
           // Vertical grid of grey rectangles as placeholders for menu cards
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              child: GridView.builder(
-                itemCount: 6,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 18,
-                  crossAxisSpacing: 12,
-                  childAspectRatio: 0.95,
-                ),
-                itemBuilder: (context, index) => Container(
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  margin: const EdgeInsets.symmetric(vertical: 4),
-                ),
-              ),
-            ),
-          ),
+          Expanded(child: ListDishesGrid()),
         ],
       ),
     );

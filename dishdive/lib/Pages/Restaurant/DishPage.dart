@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:dishdive/Utils/color_use.dart';
+import 'package:dishdive/components/my_button.dart';
+import 'package:dishdive/Pages/Restaurant/ReviewPage.dart';
 import 'package:dishdive/Pages/Profile/profile.dart';
 import 'package:dishdive/provider/token_provider.dart';
 import 'package:provider/provider.dart';
@@ -77,7 +79,7 @@ class _DishPageState extends State<DishPage>
                   icon: const Icon(Icons.arrow_back, color: Colors.white),
                   onPressed: () => Navigator.pop(context),
                 ),
-                const SizedBox(width: 8),
+                const Spacer(),
                 // Profile icon (right)
                 GestureDetector(
                   onTap: () {
@@ -98,6 +100,39 @@ class _DishPageState extends State<DishPage>
               ],
             ),
           ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                margin: const EdgeInsets.symmetric(vertical: 4),
+              ),
+            ),
+          ),
+          const SizedBox(height: 15),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 80.0,
+              vertical: 10.0,
+            ),
+            child: MyButton(
+              text: "Write Review",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const ReviewPage()),
+                );
+              },
+              backgroundColor: colorUse.activeButton,
+              textColor: Colors.white,
+              fontSize: 32,
+              borderRadius: 10,
+            ),
+          ),
+          const SizedBox(height: 40),
         ],
       ),
     );

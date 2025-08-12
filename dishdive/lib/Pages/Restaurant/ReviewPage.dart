@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:dishdive/Utils/color_use.dart';
 import 'package:dishdive/Pages/Profile/profile.dart';
+import 'package:dishdive/components/my_button.dart';
 import 'package:dishdive/provider/token_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -55,6 +56,8 @@ class _ReviewPageState extends State<ReviewPage>
     }
   }
 
+  final TextEditingController _reviewController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,7 +81,18 @@ class _ReviewPageState extends State<ReviewPage>
                   icon: const Icon(Icons.arrow_back, color: Colors.white),
                   onPressed: () => Navigator.pop(context),
                 ),
-                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    "Review",
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontFamily: 'InriaSans',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 32,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
                 // Profile icon (right)
                 GestureDetector(
                   onTap: () {
@@ -97,6 +111,101 @@ class _ReviewPageState extends State<ReviewPage>
                   ),
                 ),
               ],
+            ),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 12,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    // Dish card
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      padding: const EdgeInsets.all(12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: Image.network(
+                              // Placeholder image
+                              "https://images.unsplash.com/photo-1504674900247-0877df9cc836",
+                              height: 120,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          const Text(
+                            "Beef stew",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    // Review input
+                    TextField(
+                      controller: _reviewController,
+                      maxLines: 5,
+                      style: const TextStyle(color: Colors.black),
+                      decoration: InputDecoration(
+                        hintText: "Write your review",
+                        filled: true,
+                        fillColor: Colors.grey[200],
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide.none,
+                        ),
+                        hintStyle: const TextStyle(color: Colors.black54),
+                        contentPadding: const EdgeInsets.all(16),
+                      ),
+                    ),
+                    const SizedBox(height: 300),
+                    // Submit button
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 80.0,
+                        vertical: 10.0,
+                      ),
+                      child: MyButton(
+                        text: "Submit",
+                        onTap: () {
+                          // Handle review submission logic here
+                          // if (_reviewController.text.isNotEmpty) {
+                          //   print(
+                          //     "Review submitted: ${_reviewController.text}",
+                          //   );
+                          //   _reviewController.clear();
+                          // } else {
+                          //   ScaffoldMessenger.of(context).showSnackBar(
+                          //     const SnackBar(
+                          //       content: Text("Please write a review."),
+                          //     ),
+                          //   );
+                          // }
+                        },
+                        backgroundColor: colorUse.activeButton,
+                        textColor: Colors.white,
+                        fontSize: 32,
+                        borderRadius: 10,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ],
