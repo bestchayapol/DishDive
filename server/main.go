@@ -40,9 +40,9 @@ func main() {
 	dbName := viper.GetString("db.database")
 
 	// Prefer IPv4 for localhost to avoid ::1 issues on Windows
-	if strings.EqualFold(dbHost, "localhost") {
-		dbHost = "127.0.0.1"
-	}
+	// if strings.EqualFold(dbHost, "localhost") {
+	// 	dbHost = "127.0.0.1"
+	// }
 
 	// Ensure DB exists
 	if err := ensureDatabase(dbUser, dbPass, dbHost, dbPort, dbName); err != nil {
