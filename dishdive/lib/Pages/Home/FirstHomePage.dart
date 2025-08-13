@@ -4,6 +4,7 @@ import 'package:dishdive/Utils/color_use.dart';
 import 'package:dishdive/Pages/Profile/profile.dart';
 import 'package:dishdive/widgets/ListView.dart';
 import 'package:dishdive/widgets/MapView.dart';
+import 'package:dishdive/widgets/modal_filter.dart';
 import 'package:dishdive/components/my_textfield.dart';
 import 'package:dishdive/components/integrate_model.dart' as components;
 import 'package:dishdive/provider/token_provider.dart';
@@ -65,6 +66,10 @@ class _FirstHomePageState extends State<FirstHomePage>
     }
   }
 
+  void _showFilterModal() {
+    showDialog(context: context, builder: (context) => const FilterModal());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,7 +91,6 @@ class _FirstHomePageState extends State<FirstHomePage>
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    // Placeholder for profile image (grey sphere)
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -118,13 +122,35 @@ class _FirstHomePageState extends State<FirstHomePage>
                 ),
                 const SizedBox(height: 18),
                 // Search bar
-                MyTextField(
-                  hintText: "Search dish",
-                  obscureText: false,
-                  controller: TextEditingController(),
-                  border: true,
-                  // Optionally, you can add a prefix icon if your MyTextField supports it:
-                  iconData: Icons.search,
+                Row(
+                  children: [
+                    Expanded(
+                      child: MyTextField(
+                        hintText: "Search dish",
+                        obscureText: false,
+                        controller: TextEditingController(),
+                        border: true,
+                        iconData: Icons.search,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    GestureDetector(
+                      onTap: _showFilterModal,
+                      child: Container(
+                        width: 44,
+                        height: 44,
+                        decoration: BoxDecoration(
+                          color: colorUse.activeButton,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Icon(
+                          Icons.filter_alt,
+                          color: Colors.white,
+                          size: 28,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

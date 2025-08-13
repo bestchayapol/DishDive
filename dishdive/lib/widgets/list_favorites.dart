@@ -57,7 +57,7 @@ class _ListFavoritesWidgetState extends State<ListFavoritesWidget> {
                 width: 320,
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFFFF6E3),
+                  color: colorUse.secondaryColor,
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(10),
                     bottomRight: Radius.circular(10),
@@ -73,7 +73,6 @@ class _ListFavoritesWidgetState extends State<ListFavoritesWidget> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const SizedBox(height: 24),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
