@@ -121,7 +121,7 @@ class _RestaurantPageState extends State<RestaurantPage>
               "Menu",
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 18,
+                fontSize: 22,
                 fontWeight: FontWeight.w600,
               ),
             ),

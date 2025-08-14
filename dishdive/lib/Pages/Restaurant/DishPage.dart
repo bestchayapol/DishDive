@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:dishdive/Utils/color_use.dart';
-import 'package:dishdive/components/my_button.dart';
+import 'package:dishdive/Components/my_button.dart';
+import 'package:dishdive/Components/Cards/card_details.dart';
 import 'package:dishdive/Pages/Restaurant/ReviewPage.dart';
 import 'package:dishdive/Pages/Profile/profile.dart';
 import 'package:dishdive/provider/token_provider.dart';
@@ -101,17 +102,28 @@ class _DishPageState extends State<DishPage>
             ),
           ),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                margin: const EdgeInsets.symmetric(vertical: 4),
-              ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            child: CardDetails(
+              imagePath: "assets/Logo.png",
+              dishName: "Fried rice",
+              cuisine: "Thai",
+              taste: "Salty",
+              ratingPercent: 92,
+              positiveReviews: 2355,
+              totalReviews: 2560,
+              keywords: [
+                {"label": "Salty", "count": 111},
+                {"label": "Budget", "count": 36},
+                {"label": "Perfect", "count": 166},
+                {"label": "Big portion", "count": 129},
+                {"label": "Good rice", "count": 82},
+                {"label": "Not enough meat", "count": 63},
+                {"label": "Hangover food", "count": 57},
+              ],
             ),
           ),
+        ),
           const SizedBox(height: 15),
           Padding(
             padding: const EdgeInsets.symmetric(

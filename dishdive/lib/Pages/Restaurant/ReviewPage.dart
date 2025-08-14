@@ -126,7 +126,7 @@ class _ReviewPageState extends State<ReviewPage>
                     // Dish card
                     Container(
                       decoration: BoxDecoration(
-                        color: Colors.grey[200],
+                        color: colorUse.secondaryColor,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       padding: const EdgeInsets.all(12),
@@ -164,7 +164,7 @@ class _ReviewPageState extends State<ReviewPage>
                       decoration: InputDecoration(
                         hintText: "Write your review",
                         filled: true,
-                        fillColor: Colors.grey[200],
+                        fillColor: colorUse.secondaryColor,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                           borderSide: BorderSide.none,
