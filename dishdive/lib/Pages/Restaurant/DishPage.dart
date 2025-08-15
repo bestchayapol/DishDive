@@ -102,28 +102,28 @@ class _DishPageState extends State<DishPage>
             ),
           ),
           Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            child: CardDetails(
-              imagePath: "assets/Logo.png",
-              dishName: "Fried rice",
-              cuisine: "Thai",
-              taste: "Salty",
-              ratingPercent: 92,
-              positiveReviews: 2355,
-              totalReviews: 2560,
-              keywords: [
-                {"label": "Salty", "count": 111},
-                {"label": "Budget", "count": 36},
-                {"label": "Perfect", "count": 166},
-                {"label": "Big portion", "count": 129},
-                {"label": "Good rice", "count": 82},
-                {"label": "Not enough meat", "count": 63},
-                {"label": "Hangover food", "count": 57},
-              ],
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              child: CardDetails(
+                imagePath: "assets/Logo.png",
+                dishName: "Fried rice",
+                cuisine: "Thai",
+                taste: "Salty",
+                ratingPercent: 92,
+                positiveReviews: 2355,
+                totalReviews: 2560,
+                keywords: [
+                  {"label": "Salty", "count": 111, "type": "taste"},
+                  {"label": "Budget", "count": 36, "type": "cost"},
+                  {"label": "Perfect", "count": 166, "type": "general"},
+                  {"label": "Big portion", "count": 129, "type": "general"},
+                  {"label": "Good rice", "count": 82, "type": "general"},
+                  {"label": "Not enough meat", "count": 63, "type": "general"},
+                  {"label": "Hangover food", "count": 57, "type": "general"},
+                ],
+              ),
             ),
           ),
-        ),
           const SizedBox(height: 15),
           Padding(
             padding: const EdgeInsets.symmetric(

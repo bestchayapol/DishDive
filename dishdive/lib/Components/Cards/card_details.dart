@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dishdive/Utils/color_use.dart';
+import 'package:dishdive/Widgets/keywords_section.dart';
 
-class CardDetails extends StatelessWidget {
+class CardDetails extends StatefulWidget {
   final String imagePath;
   final String dishName;
   final String cuisine;
@@ -22,6 +23,13 @@ class CardDetails extends StatelessWidget {
     required this.totalReviews,
     required this.keywords,
   });
+
+  @override
+  State<CardDetails> createState() => _CardDetailsState();
+}
+
+class _CardDetailsState extends State<CardDetails> {
+  bool isFavorite = false;
 
   void _showKeywordModal(BuildContext context, String label, int count) {
     showDialog(
@@ -49,6 +57,17 @@ class CardDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Categorize keywords
+    final tasteKeywords = widget.keywords
+        .where((kw) => kw['type'] == 'taste')
+        .toList();
+    final costKeywords = widget.keywords
+        .where((kw) => kw['type'] == 'cost')
+        .toList();
+    final generalKeywords = widget.keywords
+        .where((kw) => kw['type'] != 'taste' && kw['type'] != 'cost')
+        .toList();
+
     return Container(
       decoration: BoxDecoration(
         color: colorUse.secondaryColor,
@@ -69,27 +88,43 @@ class CardDetails extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
-                  imagePath,
-                  height: 120,
+                child: Container(
+                  height: 180,
                   width: double.infinity,
-                  fit: BoxFit.cover,
+                  color: Colors.grey[400],
                 ),
               ),
               Positioned(
                 top: 8,
                 right: 8,
-                child: Icon(
-                  Icons.favorite,
-                  color: Colors.white,
-                  size: 28,
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      isFavorite = !isFavorite;
+                    });
+                  },
+                  child: Container(
+                    width: 36,
+                    height: 36,
+                    decoration: const BoxDecoration(
+                      color: Colors.black,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      Icons.favorite,
+                      color: isFavorite
+                          ? colorUse.sentimentColor
+                          : Colors.white,
+                      size: 24,
+                    ),
+                  ),
                 ),
               ),
             ],
           ),
           const SizedBox(height: 8),
           Text(
-            dishName,
+            widget.dishName,
             style: const TextStyle(
               fontFamily: 'InriaSans',
               fontWeight: FontWeight.bold,
@@ -98,18 +133,33 @@ class CardDetails extends StatelessWidget {
             ),
           ),
           Text(
-            '$cuisine, $taste',
-            style: const TextStyle(
-              fontSize: 16,
-              color: Colors.black87,
-            ),
+            '${widget.cuisine}, ${widget.taste}',
+            style: const TextStyle(fontSize: 20, color: Colors.black87),
           ),
           const SizedBox(height: 8),
-          Text(
-            'Ratings: $positiveReviews positive reviews from $totalReviews',
-            style: const TextStyle(
-              fontSize: 15,
-              color: Colors.black,
+          RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: 'Ratings: ',
+                  style: const TextStyle(
+                    fontFamily: 'InriaSans',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22,
+                    color: Colors.black,
+                  ),
+                ),
+                TextSpan(
+                  text:
+                      '${widget.positiveReviews} positive reviews from ${widget.totalReviews}',
+                  style: const TextStyle(
+                    fontFamily: 'InriaSans',
+                    fontWeight: FontWeight.normal,
+                    fontSize: 18,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
             ),
           ),
           const SizedBox(height: 4),
@@ -123,7 +173,7 @@ class CardDetails extends StatelessWidget {
             child: Stack(
               children: [
                 FractionallySizedBox(
-                  widthFactor: ratingPercent / 100,
+                  widthFactor: widget.ratingPercent / 100,
                   child: Container(
                     decoration: BoxDecoration(
                       color: colorUse.sentimentColor,
@@ -133,11 +183,11 @@ class CardDetails extends StatelessWidget {
                 ),
                 Center(
                   child: Text(
-                    '$ratingPercent%',
+                    '${widget.ratingPercent}%',
                     style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                      fontSize: 16,
+                      fontSize: 18,
                     ),
                   ),
                 ),
@@ -164,34 +214,17 @@ class CardDetails extends StatelessWidget {
             'Top Keywords',
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 17,
+              fontSize: 22,
               color: Colors.black,
             ),
           ),
           const SizedBox(height: 6),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: keywords.map((kw) {
-              return GestureDetector(
-                onTap: () => _showKeywordModal(context, kw['label'], kw['count']),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  decoration: BoxDecoration(
-                    color: colorUse.accent,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Text(
-                    '${kw['label']} (${kw['count']})',
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                    ),
-                  ),
-                ),
-              );
-            }).toList(),
+          // Taste keywords
+          KeywordsSection(
+            tasteKeywords: tasteKeywords,
+            costKeywords: costKeywords,
+            generalKeywords: generalKeywords,
+            onKeywordTap: _showKeywordModal,
           ),
         ],
       ),

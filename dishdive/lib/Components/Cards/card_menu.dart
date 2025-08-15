@@ -43,42 +43,50 @@ class _MenuCardState extends State<MenuCard> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Stack(
-            children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(16),
-                  topRight: Radius.circular(16),
-                ),
-                child: Image.asset(
-                  widget.imagePath,
-                  height: 90,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Positioned(
-                top: 8,
-                right: 8,
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      isFavorite = !isFavorite;
-                    });
-                  },
-                  child: Icon(
-                    Icons.favorite,
-                    color: isFavorite
-                        ? colorUse.sentimentColor
-                        : Colors.white,
-                    size: 28,
+          // Image/Grey square inside card with padding
+          Padding(
+            padding: const EdgeInsets.only(top: 12, left: 12, right: 12),
+            child: Stack(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Container(
+                    height: 100,
+                    width: double.infinity,
+                    color: Colors.grey[400],
                   ),
                 ),
-              ),
-            ],
+                Positioned(
+                  top: 8,
+                  right: 8,
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isFavorite = !isFavorite;
+                      });
+                    },
+                    child: Container(
+                      width: 32,
+                      height: 32,
+                      decoration: const BoxDecoration(
+                        color: Colors.black,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        Icons.favorite,
+                        color: isFavorite
+                            ? colorUse.sentimentColor
+                            : Colors.white,
+                        size: 20,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Text(
               widget.dishName,
               style: const TextStyle(
@@ -89,66 +97,61 @@ class _MenuCardState extends State<MenuCard> {
               ),
             ),
           ),
+          // Stretched sentiment bar
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: Row(
-              children: [
-                Container(
-                  width: 90,
-                  height: 24,
-                  decoration: BoxDecoration(
-                    color: colorUse.sentimentColor,
-                    borderRadius: BorderRadius.circular(6),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Container(
+              width: double.infinity,
+              height: 28,
+              decoration: BoxDecoration(
+                color: colorUse.sentimentColor,
+                borderRadius: BorderRadius.circular(6),
+              ),
+              child: Stack(
+                children: [
+                  FractionallySizedBox(
+                    widthFactor: widget.ratingPercent / 100,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: colorUse.sentimentColor,
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                    ),
                   ),
-                  child: Stack(
-                    children: [
-                      FractionallySizedBox(
-                        widthFactor: widget.ratingPercent / 100,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: colorUse.sentimentColor,
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                        ),
+                  Center(
+                    child: Text(
+                      "${widget.ratingPercent}%",
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
                       ),
-                      Center(
-                        child: Text(
-                          "${widget.ratingPercent}%",
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        right: 0,
-                        top: 0,
-                        bottom: 0,
-                        child: Container(
-                          width: 18,
-                          decoration: BoxDecoration(
-                            color: Colors.black,
-                            borderRadius: const BorderRadius.only(
-                              topRight: Radius.circular(6),
-                              bottomRight: Radius.circular(6),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
-              ],
+                  Positioned(
+                    right: 0,
+                    top: 0,
+                    bottom: 0,
+                    child: Container(
+                      width: 32,
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: const BorderRadius.only(
+                          topRight: Radius.circular(6),
+                          bottomRight: Radius.circular(6),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Text(
               "${widget.cuisine}, ${widget.taste}",
-              style: const TextStyle(
-                fontSize: 15,
-                color: Colors.black,
-              ),
+              style: const TextStyle(fontSize: 16, color: Colors.black),
             ),
           ),
         ],

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:dishdive/Utils/color_use.dart';
 import 'package:dishdive/Pages/Profile/profile.dart';
 import 'package:dishdive/components/my_button.dart';
+import 'package:dishdive/Components/Cards/card_reviews.dart';
 import 'package:dishdive/provider/token_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -124,56 +125,8 @@ class _ReviewPageState extends State<ReviewPage>
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     // Dish card
-                    Container(
-                      decoration: BoxDecoration(
-                        color: colorUse.secondaryColor,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      padding: const EdgeInsets.all(12),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Image.network(
-                              // Placeholder image
-                              "https://images.unsplash.com/photo-1504674900247-0877df9cc836",
-                              height: 120,
-                              width: double.infinity,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          const Text(
-                            "Beef stew",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    // Review input
-                    TextField(
-                      controller: _reviewController,
-                      maxLines: 5,
-                      style: const TextStyle(color: Colors.black),
-                      decoration: InputDecoration(
-                        hintText: "Write your review",
-                        filled: true,
-                        fillColor: colorUse.secondaryColor,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide.none,
-                        ),
-                        hintStyle: const TextStyle(color: Colors.black54),
-                        contentPadding: const EdgeInsets.all(16),
-                      ),
-                    ),
-                    const SizedBox(height: 300),
+                    CardReviews(reviewController: _reviewController),
+                    const SizedBox(height: 240),
                     // Submit button
                     Padding(
                       padding: const EdgeInsets.symmetric(

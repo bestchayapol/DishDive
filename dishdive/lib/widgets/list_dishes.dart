@@ -45,7 +45,7 @@ class ListDishesGrid extends StatelessWidget {
         crossAxisCount: 2,
         mainAxisSpacing: 18,
         crossAxisSpacing: 12,
-        childAspectRatio: 0.95,
+        childAspectRatio: 0.8,
       ),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       itemBuilder: (context, index) => GestureDetector(
