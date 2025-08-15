@@ -1,0 +1,8 @@
+﻿minio:
+  host: localhost
+  port: 9000
+  secure: false
+  accessKey: 'OtjjvxP2np3NJbVaudp1'
+  secretKey: '4pOXxgZzFluCXxAPYmTwc.MV0RU7vRiS-NF4FmTq'
+  bucket: 'dishdive'
+  publicBaseURL: http://localhost:9000
