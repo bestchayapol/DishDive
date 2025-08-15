@@ -4,6 +4,8 @@ go 1.24.6
 
 require github.com/gofiber/contrib/jwt v1.1.2
 
+require github.com/joho/godotenv v1.5.1
+
 require (
 	filippo.io/edwards25519 v1.1.0 // indirect
 	github.com/MicahParks/keyfunc/v2 v2.1.0 // indirect
@@ -12,7 +14,7 @@ require (
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/fsnotify/fsnotify v1.8.0 // indirect
 	github.com/go-ini/ini v1.67.0 // indirect
-	github.com/go-sql-driver/mysql v1.8.1 
+	github.com/go-sql-driver/mysql v1.8.1
 	github.com/go-viper/mapstructure/v2 v2.2.1 // indirect
 	github.com/goccy/go-json v0.10.5 // indirect
 	github.com/gofiber/fiber/v2 v2.52.6

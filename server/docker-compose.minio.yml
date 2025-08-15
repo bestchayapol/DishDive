@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  minio:
+    image: minio/minio:latest
+    container_name: dishdive-minio
+    restart: unless-stopped
+    ports:
+      - "9000:9000"   # S3 API
+      - "9001:9001"   # MinIO Console
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+    volumes:
+      - ./.data/minio/data:/data
+      - ./.data/minio/config:/root/.minio
+    command: server /data --console-address ":9001"
+
+  mc:
+    image: minio/mc:latest
+    container_name: dishdive-minio-mc
+    depends_on:
+      - minio
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+      MINIO_BUCKET: ${MINIO_BUCKET:-dishdive}
+    entrypoint: >
+      /bin/sh -c "
+      mc alias set local http://minio:9000 $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD &&
+      mc mb -p local/$MINIO_BUCKET || true &&
+      # Make bucket objects publicly readable (optional)
+      mc anonymous set download local/$MINIO_BUCKET || true &&
+      echo 'MinIO is ready with bucket:' $MINIO_BUCKET
+      "
+    restart: "no"

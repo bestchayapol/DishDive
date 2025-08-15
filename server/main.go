@@ -26,6 +26,7 @@ import (
 	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"github.com/joho/godotenv"
 )
 
 const jwtSecret = "DishDiveSecret"
@@ -86,6 +87,8 @@ func main() {
 		log.Fatalln(err)
 	}
 	fmt.Println("Minio connected")
+	// fmt.Println("AccessKey:", minioAccessKey)
+	// fmt.Println("SecretKey:", minioSecretKey)
 
 	// Ensure the bucket exists
 	{
@@ -122,13 +125,19 @@ func main() {
 
 	app := fiber.New()
 
-	// Enable CORS for frontend development
-	app.Use(cors.New(cors.Config{
-		AllowOrigins:     "*", // set to your frontend origin in production
-		AllowHeaders:     "Origin, Content-Type, Accept, Authorization",
-		AllowMethods:     "GET,POST,PUT,PATCH,DELETE,OPTIONS",
-		AllowCredentials: true,
-	}))
+	// Read allowed origin from config (optional), default to localhost:3000
+    frontendOrigin := viper.GetString("app.frontendOrigin")
+    if frontendOrigin == "" {
+        frontendOrigin = "http://localhost:3000"
+    }
+
+	// Enable CORS for frontend development (credentials allowed with explicit origin)
+    app.Use(cors.New(cors.Config{
+        AllowOrigins:     frontendOrigin, // e.g., http://localhost:3000
+        AllowHeaders:     "Origin, Content-Type, Accept, Authorization",
+        AllowMethods:     "GET,POST,PUT,PATCH,DELETE,OPTIONS",
+        AllowCredentials: true,
+    }))
 
 	app.Use(func(c *fiber.Ctx) error {
 		if c.Path() != "/Register" && c.Path() != "/Login" {
@@ -210,6 +219,9 @@ func initConfig() {
 	viper.AddConfigPath(".")
 	viper.AutomaticEnv()
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
+
+	// Load .env for local dev
+	_ = godotenv.Load(".env")	
 
 	err := viper.ReadInConfig()
 	if err != nil {
