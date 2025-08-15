@@ -19,14 +19,14 @@ import (
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/credentials"
 
-	_"github.com/go-sql-driver/mysql"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 
+	"github.com/joho/godotenv"
 	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"github.com/joho/godotenv"
 )
 
 const jwtSecret = "DishDiveSecret"
@@ -73,7 +73,13 @@ func main() {
 		panic("Failed to AutoMigrate Messages")
 	}
 
-	minioEndpoint := viper.GetString("minio.host") + ":" + viper.GetString("minio.port")
+	// Build MinIO endpoint, prefer IPv4 to avoid ::1 quirks
+	minioHost := viper.GetString("minio.host")
+	if strings.EqualFold(minioHost, "localhost") {
+		minioHost = "127.0.0.1"
+	}
+	minioPort := viper.GetInt("minio.port")
+	minioEndpoint := fmt.Sprintf("%s:%d", minioHost, minioPort)
 	minioAccessKey := viper.GetString("minio.accessKey")
 	minioSecretKey := viper.GetString("minio.secretKey")
 	minioSecure := viper.GetBool("minio.secure")
@@ -126,18 +132,18 @@ func main() {
 	app := fiber.New()
 
 	// Read allowed origin from config (optional), default to localhost:3000
-    frontendOrigin := viper.GetString("app.frontendOrigin")
-    if frontendOrigin == "" {
-        frontendOrigin = "http://localhost:3000"
-    }
+	frontendOrigin := viper.GetString("app.frontendOrigin")
+	if frontendOrigin == "" {
+		frontendOrigin = "http://localhost:3000"
+	}
 
 	// Enable CORS for frontend development (credentials allowed with explicit origin)
-    app.Use(cors.New(cors.Config{
-        AllowOrigins:     frontendOrigin, // e.g., http://localhost:3000
-        AllowHeaders:     "Origin, Content-Type, Accept, Authorization",
-        AllowMethods:     "GET,POST,PUT,PATCH,DELETE,OPTIONS",
-        AllowCredentials: true,
-    }))
+	app.Use(cors.New(cors.Config{
+		AllowOrigins:     frontendOrigin, // e.g., http://localhost:3000
+		AllowHeaders:     "Origin, Content-Type, Accept, Authorization",
+		AllowMethods:     "GET,POST,PUT,PATCH,DELETE,OPTIONS",
+		AllowCredentials: true,
+	}))
 
 	app.Use(func(c *fiber.Ctx) error {
 		if c.Path() != "/Register" && c.Path() != "/Login" {
@@ -221,7 +227,13 @@ func initConfig() {
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 
 	// Load .env for local dev
-	_ = godotenv.Load(".env")	
+	_ = godotenv.Load(".env")
+
+	// Bind specific env vars used by docker-compose / MinIO to config keys
+	// Allows using MINIO_ROOT_USER / MINIO_ROOT_PASSWORD / MINIO_BUCKET without changing config.yaml
+	_ = viper.BindEnv("minio.accessKey", "MINIO_ROOT_USER")
+	_ = viper.BindEnv("minio.secretKey", "MINIO_ROOT_PASSWORD")
+	_ = viper.BindEnv("minio.bucket", "MINIO_BUCKET")
 
 	err := viper.ReadInConfig()
 	if err != nil {
