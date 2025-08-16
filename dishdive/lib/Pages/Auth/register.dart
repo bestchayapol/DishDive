@@ -28,17 +28,13 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   File? _selectedImage;
   //text controllers
-  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController usernameController = TextEditingController();
-  final TextEditingController fnameController = TextEditingController();
-  final TextEditingController lnameController = TextEditingController();
-  final TextEditingController phoneNumController = TextEditingController();
   final TextEditingController confirmPwController = TextEditingController();
 
   Future<void> signUp() async {
     // Validate the form fields
-    if (fnameController.text.isEmpty ||
+    if (usernameController.text.isEmpty ||
         passwordController.text.isEmpty ||
         confirmPwController.text.isEmpty ||
         usernameController.text.isEmpty) {
@@ -59,8 +55,7 @@ class _SignUpPageState extends State<SignUpPage> {
     final dio = Dio();
     var payload = FormData.fromMap({
       "password": passwordController.text,
-      "firstname": fnameController.text,
-      "lastname": lnameController.text,
+      "username": usernameController.text,
       'file': await MultipartFile.fromFile(
         _selectedImage!.path,
         filename: _selectedImage!.path.split('/').last,
@@ -79,8 +74,7 @@ class _SignUpPageState extends State<SignUpPage> {
           const SnackBar(content: Text('Registration successful')),
         );
         // Clear the form fields
-        fnameController.clear();
-        lnameController.clear();
+        usernameController.clear();
         passwordController.clear();
         confirmPwController.clear();
 
@@ -161,14 +155,14 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
             const SizedBox(height: 10),
 
-            // First name
+            // Username
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    "First name",
+                    "Username",
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -177,35 +171,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   const SizedBox(height: 6),
                   MyTextField(
-                    hintText: 'Your first name',
+                    hintText: 'Your username',
                     obscureText: false,
-                    controller: fnameController,
-                    border: true,
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 10),
-
-            // Last name
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Last name",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  MyTextField(
-                    hintText: 'Your last name',
-                    obscureText: false,
-                    controller: lnameController,
+                    controller: usernameController,
                     border: true,
                   ),
                 ],

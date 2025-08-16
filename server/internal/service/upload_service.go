@@ -37,12 +37,12 @@ func (s *uploadService) UploadFile(file *multipart.FileHeader) (*string, error) 
 	}
 
 	// Build a public URL for the uploaded object
-	var url string
+	var imageLink string
 	if s.publicBaseURL != nil && *s.publicBaseURL != "" {
-		url = fmt.Sprintf("%s/%s/%s", *s.publicBaseURL, s.bucket, fileName)
+		imageLink = fmt.Sprintf("%s/%s/%s", *s.publicBaseURL, s.bucket, fileName)
 	} else {
 		// Fallback: relative path; frontends can prefix with API/static host if proxied
-		url = fmt.Sprintf("/%s/%s", s.bucket, fileName)
+		imageLink = fmt.Sprintf("/%s/%s", s.bucket, fileName)
 	}
-	return &url, err
+	return &imageLink, err
 }

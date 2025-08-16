@@ -89,7 +89,7 @@ func (r userRepositoryDB) CreateUser(user *entities.User) error {
 
 func (r userRepositoryDB) GetUserByUsername(username string) (*entities.User, error) {
 	var user entities.User
-	result := r.db.Where("username = ?", username).First(&user)
+	result := r.db.Where("user_name = ?", username).First(&user)
 	if result.Error != nil {
 		return nil, result.Error
 	}

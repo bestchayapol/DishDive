@@ -23,8 +23,7 @@ class EditProfile extends StatefulWidget {
 
 class _EditProfileState extends State<EditProfile> {
   File? _selectedImage;
-  final _firstNameController = TextEditingController();
-  final _lastNameController = TextEditingController();
+  final _userNameController = TextEditingController();
 
   @override
   void initState() {
@@ -49,8 +48,7 @@ class _EditProfileState extends State<EditProfile> {
     if (response.statusCode == 200) {
       final parsedJson = response.data; // Directly get the parsed data
       setState(() {
-        _firstNameController.text = parsedJson['firstname'] ?? '';
-        _lastNameController.text = parsedJson['lastname'] ?? '';
+        _userNameController.text = parsedJson['username'] ?? '';
       });
     } else {
       throw Exception('Failed to load user data');
@@ -61,10 +59,7 @@ class _EditProfileState extends State<EditProfile> {
     Dio dio = Dio();
     final token = Provider.of<TokenProvider>(context, listen: false).token;
     final userId = Provider.of<TokenProvider>(context, listen: false).userId;
-    final data = {
-      "firstname": _firstNameController.text,
-      "lastname": _lastNameController.text,
-    };
+    final data = {"username": _userNameController.text};
 
     final response = await dio.patch(
       'http://10.0.2.2:5428/PatchEditUserProfileByUserId/$userId',
@@ -121,14 +116,14 @@ class _EditProfileState extends State<EditProfile> {
         child: Column(
           children: [
             const SizedBox(height: 10),
-            // First name
+            // Username
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    "First name",
+                    "Username",
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -137,41 +132,15 @@ class _EditProfileState extends State<EditProfile> {
                   ),
                   const SizedBox(height: 6),
                   MyTextField(
-                    hintText: 'Your first name',
+                    hintText: 'Your username',
                     obscureText: false,
-                    controller: _firstNameController,
+                    controller: _userNameController,
                     border: true,
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 10),
-
-            // Last name
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Last name",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  MyTextField(
-                    hintText: 'Your last name',
-                    obscureText: false,
-                    controller: _lastNameController,
-                    border: true,
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 40),
 
             // Add profile picture
             Padding(

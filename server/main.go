@@ -109,15 +109,11 @@ func main() {
 	storageHandler := handler.NewStorageHandler(uploadSvc)
 
 	userRepositoryDB := repository.NewUserRepositoryDB(db)
-	itemRepositoryDB := repository.NewItemRepositoryDB(db)
-	messageRepositoryDB := repository.NewMessageRepositoryDB(db)
 
 	userService := service.NewUserService(userRepositoryDB, jwtSecret)
-	itemService := service.NewItemService(itemRepositoryDB)
-	messageService := service.NewMessageService(messageRepositoryDB)
+
 	userHandler := handler.NewUserHandler(userService, jwtSecret, uploadSvc)
-	itemHandler := handler.NewItemHandler(itemService, jwtSecret, uploadSvc)
-	messageHandler := handler.NewMessageHandler(messageService, jwtSecret)
+
 
 	app := fiber.New()
 
@@ -158,14 +154,6 @@ func main() {
 	app.Get("/GetUserByUserId/:UserID", userHandler.GetUserByUserId)
 	app.Get("/GetUserByToken", userHandler.GetUserByToken) //#
 
-	app.Get("/GetItems", itemHandler.GetItems)
-	app.Get("/GetItemByItemId/:ItemID", itemHandler.GetItemByItemId)
-	app.Get("/GetItemByUserID/:UserID", itemHandler.GetItemByUserId)
-
-	app.Get("/GetMessages", messageHandler.GetMessages)
-	app.Get("/GetMessageByUserId/:UserID", messageHandler.GetMessageByUserId)
-	app.Get("/GetMessageByMsgId/:MsgID", messageHandler.GetMessageByMsgId)
-
 	app.Post("/upload", storageHandler.UploadFile)
 
 	//////////////////////////////////////////////////////////////////////////////////////
@@ -178,29 +166,6 @@ func main() {
 	app.Get("/GetProfileOfCurrentUserByUserId/:UserID", userHandler.GetProfileOfCurrentUserByUserId)
 	app.Get("/GetEditUserProfileByUserId/:UserID", userHandler.GetEditUserProfileByUserId)
 	app.Patch("/PatchEditUserProfileByUserId/:UserID", userHandler.PatchEditUserProfileByUserId)
-
-	app.Get("/GetItemDetailsByItemId/:ItemID", itemHandler.GetItemDetailsByItemId)
-
-	app.Get("/GetItemsOfCurrentUser", itemHandler.GetItemsOfCurrentUser)               //#
-	app.Get("/GetDonateItemsOfCurrentUser", itemHandler.GetDonateItemsOfCurrentUser)   //#
-	app.Get("/GetReceiveItemsOfCurrentUser", itemHandler.GetReceiveItemsOfCurrentUser) //#
-
-	app.Post("/PostAddItem", itemHandler.PostAddItem) //#
-
-	app.Delete("/DeleteItemByItemId/:ItemID", itemHandler.DeleteItemByItemId)
-
-	app.Get("/GetMarketPlace", itemHandler.GetMarketPlace)               //#
-	app.Get("/GetDonateMarketPlace", itemHandler.GetDonateMarketPlace)   //#
-	app.Get("/GetReceiveMarketPlace", itemHandler.GetReceiveMarketPlace) //#
-
-	app.Put("/PutAsk/:ItemID/:AskByUserID", itemHandler.PutAskByItemIdAndPostAskMessage)
-
-	app.Get("/GetMessagePageOfCurrentUser", messageHandler.GetMessagePageOfCurrentUser)                              //#
-	app.Get("/GetConversationOfCurrentUserByOtherId/:OtherID", messageHandler.GetConversationOfCurrentUserByOtherID) //#
-	app.Post("/PostMessage/:ReceiverID", messageHandler.PostMessage)
-
-	app.Put("/PutTransactionReady/:ItemID", itemHandler.PutTransactionReady)       //#
-	app.Put("/PutCompleteTransaction/:ItemID", itemHandler.PutCompleteTransaction) //#
 
 	//#####################################################################################
 

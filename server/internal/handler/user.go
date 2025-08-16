@@ -31,14 +31,11 @@ func (h *userHandler) GetUsers(c *fiber.Ctx) error {
 
 	for _, user := range users {
 		usersResponse = append(usersResponse, dtos.UserDataResponse{
-			UserID:    user.UserID,
-			Username:  user.Username,
-			Password:  user.Password,
-			Email:     user.Email,
-			Firstname: user.Firstname,
-			Lastname:  user.Lastname,
-			PhoneNum:  user.PhoneNum,
-			UserPic:   user.UserPic,
+			UserID:      user.UserID,
+			Username:   user.Username,
+
+			ImageLink:   user.ImageLink,
+			PasswordHash: user.PasswordHash,
 		})
 	}
 	return c.JSON(usersResponse)
@@ -53,14 +50,10 @@ func (h *userHandler) GetUserByUserId(c *fiber.Ctx) error {
 	}
 
 	userResponse := dtos.UserByUserIdDataResponse{
-		UserID:    user.UserID,
-		Username:  user.Username,
-		Password:  user.Password,
-		Email:     user.Email,
-		Firstname: user.Firstname,
-		Lastname:  user.Lastname,
-		PhoneNum:  user.PhoneNum,
-		UserPic:   user.UserPic,
+		UserID:      user.UserID,
+		Username:   user.Username,
+		ImageLink:   user.ImageLink,
+		PasswordHash: user.PasswordHash,
 	}
 
 	return c.JSON(userResponse)
@@ -87,14 +80,10 @@ func (h *userHandler) GetUserByToken(c *fiber.Ctx) error {
 	}
 
 	userResponse := dtos.UserByTokenDataResponse{
-		UserID:    user.UserID,
-		Username:  user.Username,
-		Password:  user.Password,
-		Email:     user.Email,
-		Firstname: user.Firstname,
-		Lastname:  user.Lastname,
-		PhoneNum:  user.PhoneNum,
-		UserPic:   user.UserPic,
+		UserID:      user.UserID,
+		Username:   user.Username,
+		ImageLink:   user.ImageLink,
+		PasswordHash: user.PasswordHash,
 	}
 
 	return c.JSON(userResponse)
@@ -123,14 +112,10 @@ func (h *userHandler) GetCurrentUser(c *fiber.Ctx) error {
 	}
 
 	userResponse := dtos.CurrentUserResponse{
-		UserID:    user.UserID,
-		Username:  user.Username,
-		Password:  user.Password,
-		Email:     user.Email,
-		Firstname: user.Firstname,
-		Lastname:  user.Lastname,
-		PhoneNum:  user.PhoneNum,
-		UserPic:   user.UserPic,
+		UserID:      user.UserID,
+		Username:   user.Username,
+		ImageLink:   user.ImageLink,
+		PasswordHash: user.PasswordHash,
 	}
 
 	return c.JSON(userResponse)
@@ -145,13 +130,9 @@ func (h *userHandler) GetProfileOfCurrentUserByUserId(c *fiber.Ctx) error {
 	}
 
 	userResponse := dtos.ProfileOfCurrentUserByUserIdResponse{
-		UserID:    user.UserID,
-		Username:  user.Username,
-		Email:     user.Email,
-		Firstname: user.Firstname,
-		Lastname:  user.Lastname,
-		PhoneNum:  user.PhoneNum,
-		UserPic:   user.UserPic,
+		UserID:      user.UserID,
+		Username:   user.Username,
+		ImageLink:   user.ImageLink,
 	}
 
 	return c.JSON(userResponse)
@@ -166,12 +147,9 @@ func (h *userHandler) GetEditUserProfileByUserId(c *fiber.Ctx) error {
 	}
 
 	userResponse := dtos.EditUserProfileByUserIdResponse{
-		UserID:    user.UserID,
-		Username:  user.Username,
-		Email:     user.Email,
-		Firstname: user.Firstname,
-		Lastname:  user.Lastname,
-		PhoneNum:  user.PhoneNum,
+		UserID:      user.UserID,
+		Username:   user.Username,
+		ImageLink:   user.ImageLink,
 	}
 
 	return c.JSON(userResponse)
@@ -192,10 +170,7 @@ func (h *userHandler) PatchEditUserProfileByUserId(c *fiber.Ctx) error {
 
 	userResponse := dtos.EditUserProfileByUserIdRequest{
 		Username:  user.Username,
-		Email:     user.Email,
-		Firstname: user.Firstname,
-		Lastname:  user.Lastname,
-		PhoneNum:  user.PhoneNum,
+		ImageLink: user.ImageLink,
 	}
 
 	return c.JSON(userResponse)
@@ -220,10 +195,10 @@ func (h *userHandler) Register(c *fiber.Ctx) error {
 	}
 
 	// Set the uploaded file URL in the registration request
-	request.UserPic = fileURL
+	request.ImageLink = fileURL
 
-	// Check if user_pic field is empty or nil
-	if request.UserPic == nil {
+	// Check if image_link field is empty or nil
+	if request.ImageLink == nil {
 		return fiber.NewError(fiber.StatusBadRequest, "User picture is required")
 	}
 
@@ -241,7 +216,7 @@ func (h *userHandler) Login(c *fiber.Ctx) error {
 		return fiber.NewError(fiber.StatusBadRequest, err.Error())
 	}
 
-	if request.Username == nil || request.Password == nil {
+	if request.Username == nil || request.PasswordHash == "" {
 		return fiber.NewError(fiber.StatusBadRequest, "Username and Password are required")
 	}
 

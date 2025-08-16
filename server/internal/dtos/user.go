@@ -1,102 +1,72 @@
 package dtos
 
 type UserDataResponse struct {
-	UserID    *uint   `json:"user_id" validate:"required"`
-	Username  *string `json:"username" validate:"required"`
-	Password  *string `json:"password" validate:"required"`
-	Email     *string `json:"email" validate:"required"`
-	Firstname *string `json:"firstname" validate:"required"`
-	Lastname  *string `json:"lastname" validate:"required"`
-	PhoneNum  *string `json:"phone_num" validate:"required"`
-	UserPic   *string `json:"user_pic" validate:"required"`
+	UserID       uint    `json:"user_id"`
+	Username     *string `json:"username"`
+	ImageLink    *string `json:"image_link,omitempty"`
+	PasswordHash string  `json:"password_hash"`
 }
 
 type UserByUserIdDataResponse struct {
-	UserID    *uint   `json:"user_id" validate:"required"`
-	Username  *string `json:"username" validate:"required"`
-	Password  *string `json:"password" validate:"required"`
-	Email     *string `json:"email" validate:"required"`
-	Firstname *string `json:"firstname" validate:"required"`
-	Lastname  *string `json:"lastname" validate:"required"`
-	PhoneNum  *string `json:"phone_num" validate:"required"`
-	UserPic   *string `json:"user_pic" validate:"required"`
+	UserID       uint    `json:"user_id"`
+	Username     *string `json:"username"`
+	ImageLink    *string `json:"image_link,omitempty"`
+	PasswordHash string  `json:"password_hash"`
 }
 
 type UserByTokenDataResponse struct {
-	UserID    *uint   `json:"user_id" validate:"required"`
-	Username  *string `json:"username" validate:"required"`
-	Password  *string `json:"password" validate:"required"`
-	Email     *string `json:"email" validate:"required"`
-	Firstname *string `json:"firstname" validate:"required"`
-	Lastname  *string `json:"lastname" validate:"required"`
-	PhoneNum  *string `json:"phone_num" validate:"required"`
-	UserPic   *string `json:"user_pic" validate:"required"`
+	UserID       uint    `json:"user_id"`
+	Username     *string `json:"username"`
+	ImageLink    *string `json:"image_link,omitempty"`
+	PasswordHash string  `json:"password_hash"`
 }
 
 //////////////////////////////////////////////////////////////////////////////
 
 type CurrentUserResponse struct {
-	UserID    *uint   `json:"user_id" validate:"required"`
-	Username  *string `json:"username" validate:"required"`
-	Password  *string `json:"password" validate:"required"`
-	Email     *string `json:"email" validate:"required"`
-	Firstname *string `json:"firstname" validate:"required"`
-	Lastname  *string `json:"lastname" validate:"required"`
-	PhoneNum  *string `json:"phone_num" validate:"required"`
-	UserPic   *string `json:"user_pic" validate:"required"`
+	UserID       uint    `json:"user_id"`
+	Username     *string `json:"username"`
+	ImageLink    *string `json:"image_link,omitempty"`
+	PasswordHash string  `json:"password_hash"`
 }
 
 type ProfileOfCurrentUserByUserIdResponse struct {
-	UserID    *uint   `json:"user_id" validate:"required"`
-	Username  *string `json:"username" validate:"required"`
-	Email     *string `json:"email" validate:"required"`
-	Firstname *string `json:"firstname" validate:"required"`
-	Lastname  *string `json:"lastname" validate:"required"`
-	PhoneNum  *string `json:"phone_num" validate:"required"`
-	UserPic   *string `json:"user_pic" validate:"required"`
+	UserID    uint    `json:"user_id"`
+	Username  *string `json:"username"`
+	ImageLink *string `json:"image_link,omitempty"`
 }
 
 type EditUserProfileByUserIdResponse struct {
-	UserID    *uint   `json:"user_id" validate:"required"`
-	Username  *string `json:"username" validate:"required"`
-	Email     *string `json:"email" validate:"required"`
-	Firstname *string `json:"firstname" validate:"required"`
-	Lastname  *string `json:"lastname" validate:"required"`
-	PhoneNum  *string `json:"phone_num" validate:"required"`
+	UserID    uint    `json:"user_id"`
+	Username  *string `json:"username"`
+	ImageLink *string `json:"image_link,omitempty"`
 }
 
 type EditUserProfileByUserIdRequest struct {
-	Username  *string `json:"username" validate:"required"`
-	Email     *string `json:"email" validate:"required"`
-	Firstname *string `json:"firstname" validate:"required"`
-	Lastname  *string `json:"lastname" validate:"required"`
-	PhoneNum  *string `json:"phone_num" validate:"required"`
+	Username *string `json:"username"`
+	ImageLink *string `json:"image_link,omitempty"`
 }
 
 type RegisterRequest struct {
-	Username  *string `json:"username" validate:"required"`
-	Password  *string `json:"password" validate:"required"`
-	Email     *string `json:"email" validate:"required"`
-	Firstname *string `json:"firstname" validate:"required"`
-	Lastname  *string `json:"lastname" validate:"required"`
-	PhoneNum  *string `json:"phone_num" validate:"required"`
-	UserPic   *string `json:"user_pic" form:"userPic" validate:"required"`
+	Username     *string  `json:"user_name"`
+	ImageLink    *string `json:"image_link,omitempty"`
+	PasswordHash string  `json:"password_hash"`
 }
 
 type LoginRequest struct {
-	Username *string `json:"username" validate:"required"`
-	Password *string `json:"password" validate:"required"`
+	Username     *string `json:"user_name"`
+	PasswordHash string `json:"password_hash"`
 }
 
 type UserResponse struct {
-	UserID   *uint   `json:"user_id" validate:"required"`
-	Username *string `json:"username" validate:"required"`
-	UserPic  *string `json:"user_pic" validate:"required"`
-	Token    *string `json:"token,omitempty"`
+	UserID    uint    `json:"user_id"`
+	Username  *string  `json:"user_name"`
+	ImageLink *string `json:"image_link,omitempty"`
+	Token     *string `json:"token,omitempty"`
 }
 
 type LoginResponse struct {
-	UserID   *uint   `json:"user_id" validate:"required"`
-	Username *string `json:"username" validate:"required"`
+	UserID   uint    `json:"user_id"`
+	Username *string  `json:"user_name"`
 	Token    *string `json:"token,omitempty"`
 }
