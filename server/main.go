@@ -54,23 +54,13 @@ func main() {
 	log.Println(dsn)
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
-	if err != nil {
-		log.Fatalf("Failed to connect database: %v", err)
-	}
 
-	err = db.AutoMigrate(&entities.User{})
-	if err != nil {
-		panic("Failed to AutoMigrate User")
-	}
-
-	err = db.AutoMigrate(&entities.Item{})
-	if err != nil {
-		panic("Failed to AutoMigrate Item")
-	}
-
-	err = db.AutoMigrate(&entities.Message{})
-	if err != nil {
-		panic("Failed to AutoMigrate Messages")
+	if err := db.AutoMigrate(
+		&entities.User{},
+		&entities.Restaurant{},
+		&entities.Dish{},
+	); err != nil {
+		log.Fatalf("AutoMigrate failed: %v", err)
 	}
 
 	// Build MinIO endpoint, prefer IPv4 to avoid ::1 quirks
