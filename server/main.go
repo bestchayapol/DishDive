@@ -34,6 +34,7 @@ const jwtSecret = "DishDiveSecret"
 func main() {
 	initTimeZone()
 	initConfig()
+
 	dbUser := viper.GetString("db.username")
 	dbPass := viper.GetString("db.password")
 	dbHost := viper.GetString("db.host")
@@ -75,6 +76,11 @@ func main() {
 	minioSecure := viper.GetBool("minio.secure")
 	bucket := viper.GetString("minio.bucket")
 
+	 // Debug (safe): show which endpoint/bucket and key length
+    log.Printf("MinIO endpoint=%s secure=%v bucket=%q ak.len=%d",
+        minioEndpoint, minioSecure, bucket, len(minioAccessKey))
+
+
 	minioClient, err := minio.New(minioEndpoint, &minio.Options{
 		Creds:  credentials.NewStaticV4(minioAccessKey, minioSecretKey, ""),
 		Secure: minioSecure,
@@ -99,6 +105,7 @@ func main() {
 			}
 		}
 	}
+
 	// Configure public URL for uploaded objects (optional)
 	var publicBaseURLPtr *string
 	if v := viper.GetString("minio.publicBaseURL"); v != "" {
@@ -171,18 +178,18 @@ func main() {
 
 	log.Printf("DishDive running at port:  %v", viper.GetInt("app.port"))
 	app.Listen(fmt.Sprintf(":%v", viper.GetInt("app.port")))
-
+ 
 }
 
 func initConfig() {
+		// Load .env for local dev
+	_ = godotenv.Load(".env")
+
 	viper.SetConfigName("config")
 	viper.SetConfigType("yaml")
 	viper.AddConfigPath(".")
 	viper.AutomaticEnv()
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
-
-	// Load .env for local dev
-	_ = godotenv.Load(".env")
 
 	// Bind specific env vars used by docker-compose / MinIO to config keys
 	// Allows using MINIO_ROOT_USER / MINIO_ROOT_PASSWORD / MINIO_BUCKET without changing config.yaml
