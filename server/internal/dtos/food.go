@@ -5,11 +5,14 @@ type RestaurantListItemResponse struct {
 	ResName   string  `json:"res_name"`
 	ImageLink *string `json:"image_link,omitempty"`
 	Cuisine   *string `json:"cuisine,omitempty"`
-	// Distance  float64 `json:"distance,omitempty"` 
+	Locations    []RestaurantLocationResponse `json:"locations"` // Distance from user, if calculated
 }
 
 type SearchRestaurantsByDishRequest struct {
 	DishName string `json:"dish_name"`
+	Latitude float64 `json:"latitude,omitempty"` // User location for distance filtering
+	Longitude float64 `json:"longitude,omitempty"`
+	Radius   float64 `json:"radius,omitempty"` // Search radius in km
 }
 
 type SearchRestaurantsByDishResponse struct {
@@ -17,7 +20,17 @@ type SearchRestaurantsByDishResponse struct {
 	ResName   string  `json:"res_name"`
 	ImageLink *string `json:"image_link,omitempty"`
 	Cuisine   *string `json:"cuisine,omitempty"`
-	// Distance  float64 `json:"distance,omitempty"` 
+	Location     RestaurantLocationResponse `json:"location"` // The matched branch/location
+	Distance     float64 `json:"distance,omitempty"` // Distance from user, if calculated
+}
+
+type RestaurantLocationResponse struct {
+	RLID         uint    `json:"rl_id"`
+	LocationName string  `json:"location_name"`
+	Address      string  `json:"address,omitempty"`
+	Latitude     float64 `json:"latitude"`
+	Longitude    float64 `json:"longitude"`
+	Distance     float64 `json:"distance,omitempty"` // Distance from user, if calculated
 }
 
 type FavoriteDishResponse struct {

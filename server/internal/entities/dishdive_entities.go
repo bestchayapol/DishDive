@@ -17,6 +17,15 @@ type Restaurant struct {
     TotalRev       int     `gorm:"column:total_rev;not null" json:"total_rev"`
 }
 
+type RestaurantLocation struct {
+    RLID        uint    `gorm:"column:rl_id;primaryKey;autoIncrement" json:"rl_id"`
+    ResID       uint    `gorm:"column:res_id;not null;index" json:"res_id"`
+    LocationName string  `gorm:"column:location_name;size:255;not null" json:"location_name"`
+    Address     string  `gorm:"column:address;size:255" json:"address,omitempty"`
+    Latitude    float64 `gorm:"column:latitude" json:"latitude"`
+    Longitude   float64 `gorm:"column:longitude" json:"longitude"`
+}
+
 type Dish struct {
     DishID        uint    `gorm:"column:dish_id;primaryKey;autoIncrement" json:"dish_id"`
     ResID         uint    `gorm:"column:res_id;not null;index" json:"res_id"`
