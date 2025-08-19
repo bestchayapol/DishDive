@@ -20,4 +20,11 @@ type FoodRepository interface {
 	AddFavoriteDish(userID uint, dishID uint) error
 	RemoveFavoriteDish(userID uint, dishID uint) error
 	IsFavoriteDish(userID uint, dishID uint) (bool, error)
+
+	// RestaurantLocation-related
+	GetLocationsByRestaurant(resID uint) ([]entities.RestaurantLocation, error)
+	AddOrUpdateLocation(location *entities.RestaurantLocation) error
+
+	// Dish-keyword mapping
+	GetKeywordsByDish(dishID uint) ([]entities.Keyword, error)
 }

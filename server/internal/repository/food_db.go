@@ -9,6 +9,21 @@ type foodRepositoryDB struct {
 	db *gorm.DB
 }
 
+// RestaurantLocation methods
+func (r *foodRepositoryDB) GetLocationsByRestaurant(resID uint) ([]entities.RestaurantLocation, error) {
+	var locations []entities.RestaurantLocation
+	result := r.db.Where("res_id = ?", resID).Find(&locations)
+	return locations, result.Error
+}
+
+func (r *foodRepositoryDB) AddOrUpdateLocation(location *entities.RestaurantLocation) error {
+	// If RLID is zero, create new; else update existing
+	if location.RLID == 0 {
+		return r.db.Create(location).Error
+	}
+	return r.db.Save(location).Error
+}
+
 func NewFoodRepositoryDB(db *gorm.DB) FoodRepository {
 	return &foodRepositoryDB{db: db}
 }
@@ -89,4 +104,12 @@ func (r *foodRepositoryDB) IsFavoriteDish(userID uint, dishID uint) (bool, error
 		return false, result.Error
 	}
 	return true, nil
+}
+
+// Get keywords for a dish (from dish_keyword join table)
+func (r *foodRepositoryDB) GetKeywordsByDish(dishID uint) ([]entities.Keyword, error) {
+	var keywords []entities.Keyword
+	result := r.db.Joins("JOIN dish_keyword ON dish_keyword.keyword_id = keyword.keyword_id").
+		Where("dish_keyword.dish_id = ?", dishID).Find(&keywords)
+	return keywords, result.Error
 }
