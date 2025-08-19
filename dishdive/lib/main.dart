@@ -5,6 +5,7 @@ import 'package:dishdive/provider/token_provider.dart';
 import 'package:dishdive/welcome.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:geolocator/geolocator.dart';
 
 void main() {
   runApp(
@@ -45,11 +46,40 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
+  Position? _currentPosition;
+
   @override
   void initState() {
     super.initState();
     Provider.of<WelcomeProvider>(context, listen: false).checkWelcomeStatus();
   }
+
+  Future<void> _getLocation() async {
+    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) return;
+
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) return;
+    }
+    if (permission == LocationPermission.deniedForever) return;
+
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    setState(() {
+      _currentPosition = position;
+    });
+
+    // Send location to backend
+    // Example using Dio:
+    // Dio dio = Dio();
+    // await dio.post('http://your-backend-url/location', data: {
+    //   'latitude': position.latitude,
+    //   'longitude': position.longitude,
+    // });
+  }
+
 
   @override
   Widget build(BuildContext context) {

@@ -49,7 +49,24 @@ func (h *FoodHandler) GetRestaurantMenu(w http.ResponseWriter, r *http.Request) 
 		http.Error(w, "Invalid res_id parameter", http.StatusBadRequest)
 		return
 	}
-	resp, err := h.foodService.GetRestaurantMenu(resID)
+	userLatStr := r.URL.Query().Get("user_lat")
+	userLngStr := r.URL.Query().Get("user_lng")
+	if resIDStr == "" || userLatStr == "" || userLngStr == "" {
+		http.Error(w, "Missing res_id or user location parameters", http.StatusBadRequest)
+		return
+	}
+	var userLat, userLng float64
+	_, err = fmt.Sscanf(userLatStr, "%f", &userLat)
+	if err != nil {
+		http.Error(w, "Invalid user_lat parameter", http.StatusBadRequest)
+		return
+	}
+	_, err = fmt.Sscanf(userLngStr, "%f", &userLng)
+	if err != nil {
+		http.Error(w, "Invalid user_lng parameter", http.StatusBadRequest)
+		return
+	}
+	resp, err := h.foodService.GetLocationsByRestaurant(resID, userLat, userLng)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

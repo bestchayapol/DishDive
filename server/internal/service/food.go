@@ -13,6 +13,6 @@ type FoodService interface {
 	RemoveFavorite(req dtos.RemoveFavoriteRequest) (dtos.RemoveFavoriteResponse, error)
 
 	// RestaurantLocation-related
-	GetLocationsByRestaurant(resID uint) ([]dtos.RestaurantLocationResponse, error)
+	GetLocationsByRestaurant(resID uint, userLat, userLng float64) ([]dtos.RestaurantLocationResponse, error)
 	AddOrUpdateLocation(location dtos.RestaurantLocationResponse) error
 }
