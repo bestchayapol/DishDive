@@ -46,7 +46,7 @@ func calculateDistance(lat1, lng1, lat2, lng2 float64) float64 {
 func (s *foodService) AddOrUpdateLocation(location dtos.RestaurantLocationResponse) error {
 	loc := &entities.RestaurantLocation{
 		RLID:         location.RLID,
-		ResID:        0, // Fill as needed
+		ResID:        location.ResID,
 		LocationName: location.LocationName,
 		Address:      location.Address,
 		Latitude:     location.Latitude,

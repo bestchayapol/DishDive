@@ -26,6 +26,7 @@ type SearchRestaurantsByDishResponse struct {
 
 type RestaurantLocationResponse struct {
 	RLID         uint    `json:"rl_id"`
+	ResID        uint    `json:"res_id"`
 	LocationName string  `json:"location_name"`
 	Address      string  `json:"address,omitempty"`
 	Latitude     float64 `json:"latitude"`

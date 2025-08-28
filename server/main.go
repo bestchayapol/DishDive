@@ -76,11 +76,14 @@ func main() {
 	storageHandler := handler.NewStorageHandler(uploadSer)
 
 	userRepositoryDB := repository.NewUserRepositoryDB(db)
+	foodRepositoryDB := repository.NewFoodRepositoryDB(db)
 
 	userService := service.NewUserService(userRepositoryDB, jwtSecret)
+	foodService := service.NewFoodService(foodRepositoryDB)
 	uploadService := service.NewUploadService(minioClient)
 
 	userHandler := handler.NewUserHandler(userService, jwtSecret, uploadService)
+	foodHandler := handler.NewFoodHandler(foodService)
 
 	app := fiber.New()
 

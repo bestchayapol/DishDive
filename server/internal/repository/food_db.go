@@ -9,6 +9,10 @@ type foodRepositoryDB struct {
 	db *gorm.DB
 }
 
+func NewFoodRepositoryDB(db *gorm.DB) FoodRepository {
+	return &foodRepositoryDB{db: db}
+}
+
 // RestaurantLocation methods
 func (r *foodRepositoryDB) GetLocationsByRestaurant(resID uint) ([]entities.RestaurantLocation, error) {
 	var locations []entities.RestaurantLocation
@@ -24,9 +28,6 @@ func (r *foodRepositoryDB) AddOrUpdateLocation(location *entities.RestaurantLoca
 	return r.db.Save(location).Error
 }
 
-func NewFoodRepositoryDB(db *gorm.DB) FoodRepository {
-	return &foodRepositoryDB{db: db}
-}
 
 // Restaurant methods
 func (r *foodRepositoryDB) GetAllRestaurants() ([]entities.Restaurant, error) {
