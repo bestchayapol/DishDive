@@ -1,0 +1,101 @@
+res_id,dish_name,cuisine,restriction,positive_score,negative_score,total_score
+1,"Grilled Chicken","American","",12,3,15
+2,"Sweet and Sour Pork","Chinese","",8,2,10
+3,"Spaghetti Carbonara","Italian","",20,5,25
+4,"Salmon Sushi","Japanese","",15,7,22
+5,"Pad Thai","Thai","",10,1,11
+6,"Croissant","French","",17,4,21
+7,"Chicken Enchilada","Mexican","",9,6,15
+8,"Vegetable Stir Fry","English","",13,2,15
+9,"Lamb Kebab","Middle Eastern","Halal",11,3,14
+10,"Vegan Burger","Others","Vegan",16,5,21
+1,"BBQ Ribs","American","",14,2,16
+2,"Kung Pao Chicken","Chinese","",13,3,16
+3,"Margherita Pizza","Italian","",18,4,22
+4,"Tempura","Japanese","",12,1,13
+5,"Green Curry","Thai","",10,2,12
+6,"Quiche","French","",9,1,10
+7,"Taco","Mexican","",8,2,10
+8,"Vegetable Curry","English","",17,3,20
+9,"Chicken Shawarma","Middle Eastern","Halal",16,2,18
+10,"Vegan Pad Thai","Others","Vegan",15,1,16
+1,"Cheeseburger","American","",14,2,16
+2,"Egg Fried Rice","Chinese","",13,2,15
+3,"Lasagna","Italian","",12,1,13
+4,"Miso Soup","Japanese","",11,2,13
+5,"Tom Yum Soup","Thai","",10,3,13
+6,"Baguette","French","",9,1,10
+7,"Burrito","Mexican","",8,2,10
+8,"Vegetable Pizza","English","",17,3,20
+9,"Falafel","Middle Eastern","Halal",16,2,18
+10,"Vegan Sushi","Others","Vegan",15,1,16
+1,"Steak","American","",14,2,16
+2,"Mapo Tofu","Chinese","",13,2,15
+3,"Risotto","Italian","",12,1,13
+4,"Sashimi","Japanese","",11,2,13
+5,"Massaman Curry","Thai","",10,3,13
+6,"Souffle","French","",9,1,10
+7,"Quesadilla","Mexican","",8,2,10
+8,"Vegetable Soup","English","",17,3,20
+9,"Hummus","Middle Eastern","Halal",16,2,18
+10,"Vegan Tacos","Others","Vegan",15,1,16
+1,"Fried Chicken","American","",14,2,16
+2,"Spring Rolls","Chinese","",13,2,15
+3,"Gnocchi","Italian","",12,1,13
+4,"Ramen","Japanese","",11,2,13
+5,"Red Curry","Thai","",10,3,13
+6,"Ratatouille","French","",9,1,10
+7,"Nachos","Mexican","",8,2,10
+8,"Vegetable Lasagna","English","",17,3,20
+9,"Tabbouleh","Middle Eastern","Halal",16,2,18
+10,"Vegan Pizza","Others","Vegan",15,1,16
+1,"Pulled Pork","American","",14,2,16
+2,"Dim Sum","Chinese","",13,2,15
+3,"Fettuccine Alfredo","Italian","",12,1,13
+4,"Okonomiyaki","Japanese","",11,2,13
+5,"Yellow Curry","Thai","",10,3,13
+6,"Crepes","French","",9,1,10
+7,"Tostada","Mexican","",8,2,10
+8,"Vegetable Risotto","English","",17,3,20
+9,"Kofta","Middle Eastern","Halal",16,2,18
+10,"Vegan Curry","Others","Vegan",15,1,16
+1,"Meatloaf","American","",14,2,16
+2,"Chow Mein","Chinese","",13,2,15
+3,"Penne Arrabiata","Italian","",12,1,13
+4,"Tonkatsu","Japanese","",11,2,13
+5,"Panang Curry","Thai","",10,3,13
+6,"French Onion Soup","French","",9,1,10
+7,"Chilaquiles","Mexican","",8,2,10
+8,"Vegetable Stew","English","",17,3,20
+9,"Baklava","Middle Eastern","Halal",16,2,18
+10,"Vegan Stew","Others","Vegan",15,1,16
+1,"Buffalo Wings","American","",14,2,16
+2,"Hot Pot","Chinese","",13,2,15
+3,"Pizza Margherita","Italian","",12,1,13
+4,"Unagi Don","Japanese","",11,2,13
+5,"Green Papaya Salad","Thai","",10,3,13
+6,"Duck Confit","French","",9,1,10
+7,"Tamale","Mexican","",8,2,10
+8,"Vegetable Burger","English","",17,3,20
+9,"Muhammara","Middle Eastern","Halal",16,2,18
+10,"Vegan Soup","Others","Vegan",15,1,16
+1,"Pork Chop","American","",14,2,16
+2,"Char Siu","Chinese","",13,2,15
+3,"Cannelloni","Italian","",12,1,13
+4,"Gyoza","Japanese","",11,2,13
+5,"Jungle Curry","Thai","",10,3,13
+6,"Cassoulet","French","",9,1,10
+7,"Empanada","Mexican","",8,2,10
+8,"Vegetable Sushi","English","",17,3,20
+9,"Fattoush","Middle Eastern","Halal",16,2,18
+10,"Vegan Risotto","Others","Vegan",15,1,16
+1,"Chicken Pot Pie","American","",14,2,16
+2,"Eggplant Stir Fry","Chinese","",13,2,15
+3,"Tiramisu","Italian","",12,1,13
+4,"Chawanmushi","Japanese","",11,2,13
+5,"Som Tum","Thai","",10,3,13
+6,"Bouillabaisse","French","",9,1,10
+7,"Sopes","Mexican","",8,2,10
+8,"Vegetable Tempura","English","",17,3,20
+9,"Kibbeh","Middle Eastern","Halal",16,2,18
+10,"Vegan Stir Fry","Others","Vegan",15,1,16

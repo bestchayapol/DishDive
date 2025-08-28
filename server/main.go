@@ -35,11 +35,11 @@ func main() {
 	initTimeZone()
 	initConfig()
 
-	dbUser := viper.GetString("db.username")
-	dbPass := viper.GetString("db.password")
-	dbHost := viper.GetString("db.host")
-	dbPort := viper.GetInt("db.port")
-	dbName := viper.GetString("db.database")
+	dbUser := viper.GetString("database.user")
+	dbPass := viper.GetString("database.password")
+	dbHost := viper.GetString("database.host")
+	dbPort := viper.GetInt("database.port")
+	dbName := viper.GetString("database.name")
 
 	// Prefer IPv4 for localhost to avoid ::1 issues on Windows
 	// if strings.EqualFold(dbHost, "localhost") {
@@ -76,10 +76,9 @@ func main() {
 	minioSecure := viper.GetBool("minio.secure")
 	bucket := viper.GetString("minio.bucket")
 
-	 // Debug (safe): show which endpoint/bucket and key length
-    log.Printf("MinIO endpoint=%s secure=%v bucket=%q ak.len=%d",
-        minioEndpoint, minioSecure, bucket, len(minioAccessKey))
-
+	// Debug (safe): show which endpoint/bucket and key length
+	log.Printf("MinIO endpoint=%s secure=%v bucket=%q ak.len=%d",
+		minioEndpoint, minioSecure, bucket, len(minioAccessKey))
 
 	minioClient, err := minio.New(minioEndpoint, &minio.Options{
 		Creds:  credentials.NewStaticV4(minioAccessKey, minioSecretKey, ""),
@@ -120,7 +119,6 @@ func main() {
 	userService := service.NewUserService(userRepositoryDB, jwtSecret)
 
 	userHandler := handler.NewUserHandler(userService, jwtSecret, uploadSvc)
-
 
 	app := fiber.New()
 
@@ -178,11 +176,11 @@ func main() {
 
 	log.Printf("DishDive running at port:  %v", viper.GetInt("app.port"))
 	app.Listen(fmt.Sprintf(":%v", viper.GetInt("app.port")))
- 
+
 }
 
 func initConfig() {
-		// Load .env for local dev
+	// Load .env for local dev
 	_ = godotenv.Load(".env")
 
 	viper.SetConfigName("config")

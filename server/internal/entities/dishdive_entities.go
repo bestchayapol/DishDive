@@ -47,6 +47,7 @@ type Keyword struct {
     KeywordID uint   `gorm:"column:keyword_id;primaryKey;autoIncrement" json:"keyword_id"`
     Keyword   string `gorm:"column:keyword;size:100;not null" json:"keyword"`
     Category  string `gorm:"column:category;size:100" json:"category,omitempty"`
+    Sentiment string `gorm:"column:sentiment;size:100;not null" json:"sentiment"`
 }
 
 type KeywordAlias struct {
@@ -77,13 +78,6 @@ type PreferenceBlacklist struct {
 }
 
 
-type WebReview struct {
-    WebRevID uint   `gorm:"column:web_rev_id;primaryKey;autoIncrement" json:"web_rev_id"`
-    ResName  string `gorm:"column:res_name;size:255;not null" json:"res_name"`
-    WebRev   string `gorm:"column:web_rev;type:text;not null" json:"web_rev"`
-    IsJunk   bool   `gorm:"column:is_junk;not null" json:"is_junk"`
-}
-
 type UserReview struct {
     UserRevID uint   `gorm:"column:user_rev_id;primaryKey;autoIncrement" json:"user_rev_id"`
     UserID    uint   `gorm:"column:user_id;not null;index" json:"user_id"`
@@ -91,26 +85,4 @@ type UserReview struct {
     ResID     uint   `gorm:"column:res_id;not null;index" json:"res_id"`
     UserRev   string `gorm:"column:user_rev;type:text;not null" json:"user_rev"`
 }
-
-
-type ReviewExtract struct {
-    RevExtID    uint   `gorm:"column:rev_ext_id;primaryKey;autoIncrement" json:"rev_ext_id"`
-    SourceType  string `gorm:"column:source_type;size:50;not null" json:"source_type"`
-    SourceID    uint   `gorm:"column:source_id;not null;index" json:"source_id"`
-    DataExtract string `gorm:"column:data_extract;type:json;not null" json:"data_extract"`
-}
-
-
-type DishSentiment struct {
-    FinalRevID  uint   `gorm:"column:final_rev_id;primaryKey;autoIncrement" json:"final_rev_id"`
-    SourceType  string `gorm:"column:source_type;size:50;not null" json:"source_type"`
-    SourceID    uint   `gorm:"column:source_id;not null;index" json:"source_id"`
-    DishID      uint   `gorm:"column:dish_id;not null;index" json:"dish_id"`
-    ResID       uint   `gorm:"column:res_id;not null;index" json:"res_id"`
-    Cuisine     string `gorm:"column:cuisine;size:100" json:"cuisine,omitempty"`
-    Restriction string `gorm:"column:restriction;size:100" json:"restriction,omitempty"`
-    Sentiment   string `gorm:"column:sentiment;size:50;not null" json:"sentiment"`
-    Keyword     string `gorm:"column:keyword;size:100" json:"keyword,omitempty"`
-}
-
 
