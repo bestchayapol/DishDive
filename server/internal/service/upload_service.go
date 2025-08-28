@@ -1,48 +1,42 @@
 package service
 
 import (
-	"context"
-	"fmt"
-	"mime/multipart"
+    "context"
+    "fmt"
+    "github.com/spf13/viper"
+    "mime/multipart"
 
-	"github.com/minio/minio-go/v7"
+    "github.com/minio/minio-go/v7"
 )
 
 type uploadService struct {
-	client        *minio.Client
-	bucket        string
-	publicBaseURL *string
+    client *minio.Client
 }
 
-func NewUploadService(client *minio.Client, bucket string, publicBaseURL *string) UploadService {
-	return &uploadService{client: client, bucket: bucket, publicBaseURL: publicBaseURL}
+func NewUploadService(client *minio.Client) UploadService {
+    return &uploadService{client: client}
 }
 
 func (s *uploadService) UploadFile(file *multipart.FileHeader) (*string, error) {
-	ctx := context.Background()
-	buffer, err := file.Open()
-	if err != nil {
-		return nil, err
-	}
+    ctx := context.Background()
+    buffer, err := file.Open()
+    if err != nil {
+        return nil, err
+    }
 
-	defer buffer.Close()
+    defer buffer.Close()
 
-	fileName := file.Filename
+    fileName := file.Filename
 
-	_, err = s.client.PutObject(ctx, s.bucket, fileName, buffer, file.Size, minio.PutObjectOptions{
-		ContentType: "application/octet-stream",
-	})
-	if err != nil {
-		return nil, err
-	}
+    bucketName := viper.GetString("minio.bucket")
 
-	// Build a public URL for the uploaded object
-	var imageLink string
-	if s.publicBaseURL != nil && *s.publicBaseURL != "" {
-		imageLink = fmt.Sprintf("%s/%s/%s", *s.publicBaseURL, s.bucket, fileName)
-	} else {
-		// Fallback: relative path; frontends can prefix with API/static host if proxied
-		imageLink = fmt.Sprintf("/%s/%s", s.bucket, fileName)
-	}
-	return &imageLink, err
+    _, err = s.client.PutObject(ctx, bucketName, fileName, buffer, file.Size, minio.PutObjectOptions{
+        ContentType: file.Header.Get("Content-Type"),
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    fileURL := fmt.Sprintf("%s/%s/%s", viper.GetString("minio.publicURL"), bucketName, fileName)
+    return &fileURL, err
 }

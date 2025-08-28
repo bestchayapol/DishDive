@@ -41,11 +41,16 @@ func main() {
 	// AutoMigrate all entities
 	err = db.AutoMigrate(
 		&entities.User{},
-
-		//&entities.Bill{},
-		//&entities.BillSplit{},
-		//&entities.PaymentRequest{},
-		//&entities.SCBAccessToken{},
+		&entities.Restaurant{},
+		&entities.RestaurantLocation{},
+		&entities.Dish{},
+		&entities.DishAlias{},
+		&entities.Keyword{},
+		&entities.KeywordAlias{},
+		&entities.Favorite{},
+		&entities.DishKeyword{},
+		&entities.PreferenceBlacklist{},
+		&entities.UserReview{},
 	)
 	if err != nil {
 		panic("❌ Failed to AutoMigrate entities: " + err.Error())
