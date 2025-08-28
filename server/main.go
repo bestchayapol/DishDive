@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	jwtware "github.com/gofiber/contrib/jwt"
+	// jwtware "github.com/gofiber/contrib/jwt"
 	"github.com/gofiber/fiber/v2"
 	"github.com/minio/minio-go/v7"
 	"gorm.io/driver/postgres"
@@ -51,6 +51,10 @@ func main() {
 		&entities.DishKeyword{},
 		&entities.PreferenceBlacklist{},
 		&entities.UserReview{},
+		&entities.ReviewDish{},
+		&entities.ReviewDishKeyword{},
+		&entities.WebReview{},
+		&entities.ReviewExtract{},
 	)
 	if err != nil {
 		panic("❌ Failed to AutoMigrate entities: " + err.Error())
@@ -80,18 +84,18 @@ func main() {
 
 	app := fiber.New()
 
-	app.Use(func(c *fiber.Ctx) error {
-		if c.Path() != "/Register" && c.Path() != "/Login" {
-			jwtMiddleware := jwtware.New(jwtware.Config{
-				SigningKey: jwtware.SigningKey{Key: []byte(jwtSecret)},
-				ErrorHandler: func(c *fiber.Ctx, err error) error {
-					return fiber.ErrUnauthorized
-				},
-			})
-			return jwtMiddleware(c)
-		}
-		return c.Next()
-	})
+	// app.Use(func(c *fiber.Ctx) error {
+	// 	if c.Path() != "/Register" && c.Path() != "/Login" {
+	// 		jwtMiddleware := jwtware.New(jwtware.Config{
+	// 			SigningKey: jwtware.SigningKey{Key: []byte(jwtSecret)},
+	// 			ErrorHandler: func(c *fiber.Ctx, err error) error {
+	// 				return fiber.ErrUnauthorized
+	// 			},
+	// 		})
+	// 		return jwtMiddleware(c)
+	// 	}
+	// 	return c.Next()
+	// })
 
 	//Endpoint ###########################################################################
 
