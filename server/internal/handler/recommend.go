@@ -1,144 +1,125 @@
 package handler
 
 import (
-    "encoding/json"
-    "fmt"
-    "net/http"
-    "github.com/bestchayapol/DishDive/internal/service"
-    "github.com/bestchayapol/DishDive/internal/dtos"
+	"strconv"
+
+	"github.com/bestchayapol/DishDive/internal/dtos"
+	"github.com/bestchayapol/DishDive/internal/service"
+	"github.com/gofiber/fiber/v2"
 )
 
 type RecommendHandler struct {
-    recommendService service.RecommendService
+	recommendService service.RecommendService
 }
 
 func NewRecommendHandler(recommendService service.RecommendService) *RecommendHandler {
-    return &RecommendHandler{recommendService: recommendService}
+	return &RecommendHandler{recommendService: recommendService}
 }
 
 // Get preference keywords
-func (h *RecommendHandler) GetPreferenceKeywords(w http.ResponseWriter, r *http.Request) {
-    userIDStr := r.URL.Query().Get("user_id")
-    var userID uint
-    _, err := fmt.Sscanf(userIDStr, "%d", &userID)
-    if err != nil {
-        http.Error(w, "Invalid user_id parameter", http.StatusBadRequest)
-        return
-    }
-    resp, err := h.recommendService.GetPreferenceKeywords(userID)
-    if err != nil {
-        http.Error(w, err.Error(), http.StatusInternalServerError)
-        return
-    }
-    json.NewEncoder(w).Encode(resp)
+func (h *RecommendHandler) GetPreferenceKeywords(c *fiber.Ctx) error {
+	userID, err := strconv.Atoi(c.Params("userID"))
+	if err != nil {
+		return err
+	}
+
+	resp, err := h.recommendService.GetPreferenceKeywords(uint(userID))
+	if err != nil {
+		return err
+	}
+	return c.JSON(resp)
 }
 
 // Set preference
-func (h *RecommendHandler) SetPreference(w http.ResponseWriter, r *http.Request) {
-    var req dtos.SetPreferenceRequest
-    if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-        http.Error(w, "Invalid request", http.StatusBadRequest)
-        return
-    }
-    userIDStr := r.URL.Query().Get("user_id")
-    var userID uint
-    _, err := fmt.Sscanf(userIDStr, "%d", &userID)
-    if err != nil {
-        http.Error(w, "Invalid user_id parameter", http.StatusBadRequest)
-        return
-    }
-    err = h.recommendService.SetPreference(userID, req)
-    if err != nil {
-        http.Error(w, err.Error(), http.StatusInternalServerError)
-        return
-    }
-    w.WriteHeader(http.StatusOK)
+func (h *RecommendHandler) SetPreference(c *fiber.Ctx) error {
+	userID, err := strconv.Atoi(c.Params("userID"))
+	if err != nil {
+		return err
+	}
+
+	var req dtos.SetPreferenceRequest
+	if err := c.BodyParser(&req); err != nil {
+		return err
+	}
+
+	err = h.recommendService.SetPreference(uint(userID), req)
+	if err != nil {
+		return err
+	}
+	return c.SendStatus(fiber.StatusOK)
 }
 
 // Get blacklist keywords
-func (h *RecommendHandler) GetBlacklistKeywords(w http.ResponseWriter, r *http.Request) {
-    userIDStr := r.URL.Query().Get("user_id")
-    var userID uint
-    _, err := fmt.Sscanf(userIDStr, "%d", &userID)
-    if err != nil {
-        http.Error(w, "Invalid user_id parameter", http.StatusBadRequest)
-        return
-    }
-    resp, err := h.recommendService.GetBlacklistKeywords(userID)
-    if err != nil {
-        http.Error(w, err.Error(), http.StatusInternalServerError)
-        return
-    }
-    json.NewEncoder(w).Encode(resp)
+func (h *RecommendHandler) GetBlacklistKeywords(c *fiber.Ctx) error {
+	userID, err := strconv.Atoi(c.Params("userID"))
+	if err != nil {
+		return err
+	}
+
+	resp, err := h.recommendService.GetBlacklistKeywords(uint(userID))
+	if err != nil {
+		return err
+	}
+	return c.JSON(resp)
 }
 
 // Set blacklist
-func (h *RecommendHandler) SetBlacklist(w http.ResponseWriter, r *http.Request) {
-    var req dtos.SetBlacklistRequest
-    if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-        http.Error(w, "Invalid request", http.StatusBadRequest)
-        return
-    }
-    userIDStr := r.URL.Query().Get("user_id")
-    var userID uint
-    _, err := fmt.Sscanf(userIDStr, "%d", &userID)
-    if err != nil {
-        http.Error(w, "Invalid user_id parameter", http.StatusBadRequest)
-        return
-    }
-    err = h.recommendService.SetBlacklist(userID, req)
-    if err != nil {
-        http.Error(w, err.Error(), http.StatusInternalServerError)
-        return
-    }
-    w.WriteHeader(http.StatusOK)
+func (h *RecommendHandler) SetBlacklist(c *fiber.Ctx) error {
+	userID, err := strconv.Atoi(c.Params("userID"))
+	if err != nil {
+		return err
+	}
+
+	var req dtos.SetBlacklistRequest
+	if err := c.BodyParser(&req); err != nil {
+		return err
+	}
+
+	err = h.recommendService.SetBlacklist(uint(userID), req)
+	if err != nil {
+		return err
+	}
+	return c.SendStatus(fiber.StatusOK)
 }
 
 // Get dish review page
-func (h *RecommendHandler) GetDishReviewPage(w http.ResponseWriter, r *http.Request) {
-    dishIDStr := r.URL.Query().Get("dish_id")
-    var dishID uint
-    _, err := fmt.Sscanf(dishIDStr, "%d", &dishID)
-    if err != nil {
-        http.Error(w, "Invalid dish_id parameter", http.StatusBadRequest)
-        return
-    }
-    resp, err := h.recommendService.GetDishReviewPage(dishID)
-    if err != nil {
-        http.Error(w, err.Error(), http.StatusInternalServerError)
-        return
-    }
-    json.NewEncoder(w).Encode(resp)
+func (h *RecommendHandler) GetDishReviewPage(c *fiber.Ctx) error {
+	dishID, err := strconv.Atoi(c.Params("dishID"))
+	if err != nil {
+		return err
+	}
+
+	resp, err := h.recommendService.GetDishReviewPage(uint(dishID))
+	if err != nil {
+		return err
+	}
+	return c.JSON(resp)
 }
 
 // Submit review
-func (h *RecommendHandler) SubmitReview(w http.ResponseWriter, r *http.Request) {
-    var req dtos.SubmitReviewRequest
-    if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-        http.Error(w, "Invalid request", http.StatusBadRequest)
-        return
-    }
-    resp, err := h.recommendService.SubmitReview(req)
-    if err != nil {
-        http.Error(w, err.Error(), http.StatusInternalServerError)
-        return
-    }
-    json.NewEncoder(w).Encode(resp)
+func (h *RecommendHandler) SubmitReview(c *fiber.Ctx) error {
+	var req dtos.SubmitReviewRequest
+	if err := c.BodyParser(&req); err != nil {
+		return err
+	}
+
+	resp, err := h.recommendService.SubmitReview(req)
+	if err != nil {
+		return err
+	}
+	return c.JSON(resp)
 }
 
 // Get recommended dishes
-func (h *RecommendHandler) GetRecommendedDishes(w http.ResponseWriter, r *http.Request) {
-    userIDStr := r.URL.Query().Get("user_id")
-    var userID uint
-    _, err := fmt.Sscanf(userIDStr, "%d", &userID)
-    if err != nil {
-        http.Error(w, "Invalid user_id parameter", http.StatusBadRequest)
-        return
-    }
-    resp, err := h.recommendService.GetRecommendedDishes(userID)
-    if err != nil {
-        http.Error(w, err.Error(), http.StatusInternalServerError)
-        return
-    }
-    json.NewEncoder(w).Encode(resp)
+func (h *RecommendHandler) GetRecommendedDishes(c *fiber.Ctx) error {
+	userID, err := strconv.Atoi(c.Params("userID"))
+	if err != nil {
+		return err
+	}
+
+	resp, err := h.recommendService.GetRecommendedDishes(uint(userID))
+	if err != nil {
+		return err
+	}
+	return c.JSON(resp)
 }

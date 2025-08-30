@@ -7,9 +7,11 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"strconv"
 
 	"github.com/bestchayapol/DishDive/internal/dtos"
 	"github.com/bestchayapol/DishDive/internal/service"
+	"github.com/gofiber/fiber/v2"
 )
 
 type FoodHandler struct {
@@ -21,105 +23,88 @@ func NewFoodHandler(foodService service.FoodService) *FoodHandler {
 }
 
 // Search restaurants by dish
-func (h *FoodHandler) SearchRestaurantsByDish(w http.ResponseWriter, r *http.Request) {
+func (h *FoodHandler) SearchRestaurantsByDish(c *fiber.Ctx) error {
 	var req dtos.SearchRestaurantsByDishRequest
-	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		http.Error(w, "Invalid request", http.StatusBadRequest)
-		return
+	if err := c.BodyParser(&req); err != nil {
+		return err
 	}
 	resp, err := h.foodService.SearchRestaurantsByDish(req)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
+		return err
 	}
-	json.NewEncoder(w).Encode(resp)
+	return c.JSON(resp)
 }
 
 // Get restaurant menu
-func (h *FoodHandler) GetRestaurantMenu(w http.ResponseWriter, r *http.Request) {
-	// Get resID from query param
-	resIDStr := r.URL.Query().Get("res_id")
-	if resIDStr == "" {
-		http.Error(w, "Missing res_id parameter", http.StatusBadRequest)
-		return
-	}
-	var resID uint
-	_, err := fmt.Sscanf(resIDStr, "%d", &resID)
+func (h *FoodHandler) GetRestaurantMenu(c *fiber.Ctx) error {
+	// Get resID from path parameter
+	resID, err := strconv.Atoi(c.Params("resID"))
 	if err != nil {
-		http.Error(w, "Invalid res_id parameter", http.StatusBadRequest)
-		return
+		return err
 	}
-	userLatStr := r.URL.Query().Get("user_lat")
-	userLngStr := r.URL.Query().Get("user_lng")
-	if resIDStr == "" || userLatStr == "" || userLngStr == "" {
-		http.Error(w, "Missing res_id or user location parameters", http.StatusBadRequest)
-		return
+
+	// Get user location from query params (these are optional location data)
+	userLatStr := c.Query("user_lat")
+	userLngStr := c.Query("user_lng")
+	if userLatStr == "" || userLngStr == "" {
+		return err
 	}
-	var userLat, userLng float64
-	_, err = fmt.Sscanf(userLatStr, "%f", &userLat)
+
+	userLat, err := strconv.ParseFloat(userLatStr, 64)
 	if err != nil {
-		http.Error(w, "Invalid user_lat parameter", http.StatusBadRequest)
-		return
+		return err
 	}
-	_, err = fmt.Sscanf(userLngStr, "%f", &userLng)
+	userLng, err := strconv.ParseFloat(userLngStr, 64)
 	if err != nil {
-		http.Error(w, "Invalid user_lng parameter", http.StatusBadRequest)
-		return
+		return err
 	}
-	resp, err := h.foodService.GetLocationsByRestaurant(resID, userLat, userLng)
+
+	resp, err := h.foodService.GetLocationsByRestaurant(uint(resID), userLat, userLng)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
+		return err
 	}
-	json.NewEncoder(w).Encode(resp)
+	return c.JSON(resp)
 }
 
 // Get favorite dishes
-func (h *FoodHandler) GetFavoriteDishes(w http.ResponseWriter, r *http.Request) {
-	// Get userID from query param (or context/session in real app)
-	userIDStr := r.URL.Query().Get("user_id")
-	if userIDStr == "" {
-		http.Error(w, "Missing user_id parameter", http.StatusBadRequest)
-		return
-	}
-	var userID uint
-	_, err := fmt.Sscanf(userIDStr, "%d", &userID)
+func (h *FoodHandler) GetFavoriteDishes(c *fiber.Ctx) error {
+	// Get userID from path parameter
+	userID, err := strconv.Atoi(c.Params("userID"))
 	if err != nil {
-		http.Error(w, "Invalid user_id parameter", http.StatusBadRequest)
-		return
+		return err
 	}
-	resp, err := h.foodService.GetFavoriteDishes(userID)
+
+	resp, err := h.foodService.GetFavoriteDishes(uint(userID))
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
+		return err
 	}
-	json.NewEncoder(w).Encode(resp)
+	return c.JSON(resp)
 }
 
 // Add or update restaurant location using geocoding API
-func (h *FoodHandler) AddOrUpdateLocation(w http.ResponseWriter, r *http.Request) {
+func (h *FoodHandler) AddOrUpdateLocation(c *fiber.Ctx) error {
 	var req dtos.RestaurantLocationResponse
-	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		http.Error(w, "Invalid request", http.StatusBadRequest)
-		return
+	if err := c.BodyParser(&req); err != nil {
+		return err
 	}
+
 	// Geocoding logic
 	apiKey := os.Getenv("AIzaSyC3PQZPBjTMBOQIkIQaZrEIVuqgMCDm1G8") // Or load from config
 	if req.Address != "" {
 		lat, lng, err := CallGeocodingAPI(req.Address, apiKey)
 		if err != nil {
-			http.Error(w, "Geocoding failed: "+err.Error(), http.StatusBadRequest)
-			return
+			return err
 		}
 		req.Latitude = lat
 		req.Longitude = lng
 	}
+
 	err := h.foodService.AddOrUpdateLocation(req)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
+		return err
 	}
-	w.WriteHeader(http.StatusOK)
+
+	return c.SendStatus(fiber.StatusOK)
 }
 
 // Example function to call Google Geocoding API (pseudo-code)
