@@ -9,7 +9,7 @@ type User struct {
 
 type Restaurant struct {
 	ResID          uint    `gorm:"column:res_id;primaryKey;autoIncrement" json:"res_id"`
-	ResName        string  `gorm:"column:res_name;size:255;not null" json:"res_name"`
+	ResName        string  `gorm:"column:res_name;size:255;not null;unique" json:"res_name"`
 	ResCuisine     *string `gorm:"column:res_cuisine;size:100" json:"res_cuisine,omitempty"`
 	ResRestriction *string `gorm:"column:res_restriction;size:100" json:"res_restriction,omitempty"`
 	MenuSize       int     `gorm:"column:menu_size;not null" json:"menu_size"`
@@ -47,7 +47,6 @@ type Keyword struct {
 	KeywordID uint   `gorm:"column:keyword_id;primaryKey;autoIncrement" json:"keyword_id"`
 	Keyword   string `gorm:"column:keyword;size:100;not null" json:"keyword"`
 	Category  string `gorm:"column:category;size:100" json:"category,omitempty"`
-	Sentiment string `gorm:"column:sentiment;size:100;not null" json:"sentiment"`
 }
 
 type KeywordAlias struct {

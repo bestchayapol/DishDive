@@ -182,20 +182,20 @@ func (h *userHandler) Register(c *fiber.Ctx) error {
 		return fiber.NewError(fiber.StatusBadRequest, err.Error())
 	}
 
-	// // Check if a file is uploaded
-	// file, err := c.FormFile("file")
-	// if err != nil {
-	// 	return fiber.NewError(fiber.StatusBadRequest, "File not found")
-	// }
+	// Check if a file is uploaded
+	file, err := c.FormFile("file")
+	if err != nil {
+		return err
+	}
 
-	// // Call upload service to upload the file
-	// fileURL, err := h.uploadSer.UploadFile(file)
-	// if err != nil {
-	// 	return fiber.NewError(fiber.StatusInternalServerError, "Failed to upload file")
-	// }
+	// Call upload service to upload the file
+	fileURL, err := h.uploadSer.UploadFile(file)
+	if err != nil {
+		return err
+	}
 
-	// // Set the uploaded file URL in the registration request
-	// request.ImageLink = fileURL
+	// Set the uploaded file URL in the registration request
+	request.ImageLink = fileURL
 
 	// Check if image_link field is empty or nil
 	if request.ImageLink == nil {

@@ -76,14 +76,14 @@ func main() {
 	storageHandler := handler.NewStorageHandler(uploadSer)
 
 	userRepositoryDB := repository.NewUserRepositoryDB(db)
-	foodRepositoryDB := repository.NewFoodRepositoryDB(db)
+	// foodRepositoryDB := repository.NewFoodRepositoryDB(db)
 
 	userService := service.NewUserService(userRepositoryDB, jwtSecret)
-	foodService := service.NewFoodService(foodRepositoryDB)
+	// foodService := service.NewFoodService(foodRepositoryDB)
 	uploadService := service.NewUploadService(minioClient)
 
 	userHandler := handler.NewUserHandler(userService, jwtSecret, uploadService)
-	foodHandler := handler.NewFoodHandler(foodService)
+	// foodHandler := handler.NewFoodHandler(foodService)
 
 	app := fiber.New()
 
@@ -122,7 +122,7 @@ func main() {
 
 	//#####################################################################################
 
-	log.Printf("FairNest running at port:  %v", viper.GetInt("app.port"))
+	log.Printf("DishDive running at port:  %v", viper.GetInt("app.port"))
 	app.Listen(fmt.Sprintf(":%v", viper.GetInt("app.port")))
 
 }

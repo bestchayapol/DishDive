@@ -85,9 +85,8 @@ func (r *foodRepositoryDB) GetFavoriteDishesByUser(userID uint) ([]entities.Dish
 }
 
 func (r *foodRepositoryDB) AddFavoriteDish(userID uint, dishID uint) error {
-	fav := entities.Favorite{UserID: userID, DishID: dishID}
-	result := r.db.Create(&fav)
-	return result.Error
+    favorite := entities.Favorite{UserID: userID, DishID: dishID}
+    return r.db.Create(&favorite).Error
 }
 
 func (r *foodRepositoryDB) RemoveFavoriteDish(userID uint, dishID uint) error {

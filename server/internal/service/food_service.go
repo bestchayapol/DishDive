@@ -96,24 +96,31 @@ func (s *foodService) GetRestaurantList() ([]dtos.RestaurantListItemResponse, er
 	return resp, nil
 }
 
-func (s *foodService) GetRestaurantMenu(resID uint) ([]dtos.RestaurantMenuItemResponse, error) {
-	dishes, err := s.foodRepo.GetDishesByRestaurant(resID)
-	if err != nil {
-		return nil, err
-	}
-	var resp []dtos.RestaurantMenuItemResponse
-	for _, d := range dishes {
-		resp = append(resp, dtos.RestaurantMenuItemResponse{
-			DishID:          d.DishID,
-			DishName:        d.DishName,
-			ImageLink:       nil, // Fill as needed
-			SentimentScore:  d.TotalScore,
-			Cuisine:         d.Cuisine,
-			ProminentFlavor: nil,   // Fill as needed
-			IsFavorite:      false, // Fill as needed
-		})
-	}
-	return resp, nil
+func (s *foodService) GetRestaurantMenuWithUserData(resID uint, userID uint) ([]dtos.RestaurantMenuItemResponse, error) {
+    dishes, err := s.foodRepo.GetDishesByRestaurant(resID)
+    if err != nil {
+        return nil, err
+    }
+    var resp []dtos.RestaurantMenuItemResponse
+    for _, d := range dishes {
+        isFav, _ := s.foodRepo.IsFavoriteDish(userID, d.DishID)
+        // Calculate percentage score
+        var percentage float64
+        if d.PositiveScore+d.NegativeScore > 0 {
+            percentage = float64(d.PositiveScore) / float64(d.PositiveScore+d.NegativeScore) * 100
+        }
+        
+        resp = append(resp, dtos.RestaurantMenuItemResponse{
+            DishID:          d.DishID,
+            DishName:        d.DishName,
+            ImageLink:       nil, // Fill as needed
+            SentimentScore:  percentage,
+            Cuisine:         d.Cuisine,
+            ProminentFlavor: nil, // Fill as needed
+            IsFavorite:      isFav,
+        })
+    }
+    return resp, nil
 }
 
 func (s *foodService) GetDishDetail(dishID uint, userID uint) (dtos.DishDetailResponse, error) {
@@ -153,7 +160,10 @@ func (s *foodService) GetFavoriteDishes(userID uint) ([]dtos.FavoriteDishRespons
 	return resp, nil
 }
 
-func (s *foodService) RemoveFavorite(req dtos.RemoveFavoriteRequest) (dtos.RemoveFavoriteResponse, error) {
-	err := s.foodRepo.RemoveFavoriteDish(0, req.DishID) // Fill userID as needed
-	return dtos.RemoveFavoriteResponse{Success: err == nil}, err
+func (s *foodService) AddFavorite(userID uint, dishID uint) error {
+    return s.foodRepo.AddFavoriteDish(userID, dishID)
+}
+
+func (s *foodService) RemoveFavorite(userID uint, dishID uint) error {
+    return s.foodRepo.RemoveFavoriteDish(userID, dishID)
 }
