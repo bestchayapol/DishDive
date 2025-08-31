@@ -78,10 +78,10 @@ func (r *foodRepositoryDB) GetDishesByRestaurant(resID uint) ([]entities.Dish, e
 
 // Favorite methods
 func (r *foodRepositoryDB) GetFavoriteDishesByUser(userID uint) ([]entities.Dish, error) {
-	var dishes []entities.Dish
-	result := r.db.Joins("JOIN favorite ON favorite.dish_id = dish.dish_id").
-		Where("favorite.user_id = ?", userID).Find(&dishes)
-	return dishes, result.Error
+    var dishes []entities.Dish
+    result := r.db.Joins("JOIN favorites ON favorites.dish_id = dishes.dish_id").
+        Where("favorites.user_id = ?", userID).Find(&dishes)
+    return dishes, result.Error
 }
 
 func (r *foodRepositoryDB) AddFavoriteDish(userID uint, dishID uint) error {
