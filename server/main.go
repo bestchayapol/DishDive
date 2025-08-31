@@ -72,18 +72,20 @@ func main() {
 	}
 	log.Println("✅ FairNest Minio connected")
 
-	uploadSer := service.NewUploadService(minioClient)
-	storageHandler := handler.NewStorageHandler(uploadSer)
+	uploadService := service.NewUploadService(minioClient)
+	storageHandler := handler.NewStorageHandler(uploadService)
 
 	userRepositoryDB := repository.NewUserRepositoryDB(db)
-	// foodRepositoryDB := repository.NewFoodRepositoryDB(db)
+	foodRepositoryDB := repository.NewFoodRepositoryDB(db)
+	recommendRepositoryDB := repository.NewRecommendRepositoryDB(db)
 
 	userService := service.NewUserService(userRepositoryDB, jwtSecret)
-	// foodService := service.NewFoodService(foodRepositoryDB)
-	uploadService := service.NewUploadService(minioClient)
+	foodService := service.NewFoodService(foodRepositoryDB)
+	recommendService := service.NewRecommendService(foodRepositoryDB, recommendRepositoryDB)
 
 	userHandler := handler.NewUserHandler(userService, jwtSecret, uploadService)
-	// foodHandler := handler.NewFoodHandler(foodService)
+	foodHandler := handler.NewFoodHandler(foodService)
+	recommendHandler := handler.NewRecommendHandler(recommendService)
 
 	app := fiber.New()
 
@@ -119,6 +121,28 @@ func main() {
 	app.Get("/GetProfileOfCurrentUserByUserId/:UserID", userHandler.GetProfileOfCurrentUserByUserId)
 	app.Get("/GetEditUserProfileByUserId/:UserID", userHandler.GetEditUserProfileByUserId)
 	app.Patch("/PatchEditUserProfileByUserId/:UserID", userHandler.PatchEditUserProfileByUserId)
+
+	//##################################################################################### 
+	// Food endpoints
+	app.Post("/SearchRestaurantsByDish", foodHandler.SearchRestaurantsByDish)
+	app.Get("/GetRestaurantList", foodHandler.GetRestaurantList)
+	app.Get("/GetRestaurantLocations/:resID", foodHandler.GetRestaurantLocations) // requires ?user_lat=&user_lng=
+	app.Get("/GetRestaurantMenu/:resID", foodHandler.GetRestaurantMenuWithUserData) // requires ?userID=
+	app.Get("/GetDishDetail/:dishID", foodHandler.GetDishDetail) // requires ?userID=
+	app.Get("/GetFavoriteDishes/:userID", foodHandler.GetFavoriteDishes)
+	app.Post("/AddFavorite", foodHandler.AddFavorite)
+	app.Delete("/RemoveFavorite", foodHandler.RemoveFavorite)
+	app.Post("/AddOrUpdateLocation", foodHandler.AddOrUpdateLocation)
+
+	//##################################################################################### 
+	// Recommend endpoints
+	app.Get("/GetPreferenceKeywords/:userID", recommendHandler.GetPreferenceKeywords)
+	app.Post("/SetPreference/:userID", recommendHandler.SetPreference)
+	app.Get("/GetBlacklistKeywords/:userID", recommendHandler.GetBlacklistKeywords)
+	app.Post("/SetBlacklist/:userID", recommendHandler.SetBlacklist)
+	app.Get("/GetDishReviewPage/:dishID", recommendHandler.GetDishReviewPage)
+	app.Post("/SubmitReview", recommendHandler.SubmitReview)
+	app.Get("/GetRecommendedDishes/:userID", recommendHandler.GetRecommendedDishes)
 
 	//#####################################################################################
 
