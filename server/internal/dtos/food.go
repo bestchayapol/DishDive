@@ -52,13 +52,14 @@ type RemoveFavoriteResponse struct {
 }
 
 type RestaurantMenuItemResponse struct {
-	DishID          uint    `json:"dish_id"`
-	DishName        string  `json:"dish_name"`
-	ImageLink       *string `json:"image_link,omitempty"`
-	SentimentScore  float64 `json:"sentiment_score"`
-	Cuisine         *string `json:"cuisine,omitempty"`
-	ProminentFlavor *string `json:"prominent_flavor,omitempty"`
-	IsFavorite      bool    `json:"is_favorite"`
+    DishID          uint    `json:"dish_id"`
+    DishName        string  `json:"dish_name"`
+    ImageLink       *string `json:"image_link,omitempty"`
+    SentimentScore  float64 `json:"sentiment_score"`
+    Cuisine         *string `json:"cuisine,omitempty"`
+    ProminentFlavor *string `json:"prominent_flavor,omitempty"`
+    IsFavorite      bool    `json:"is_favorite"`
+    RecommendScore  float64 `json:"recommend_score"`
 }
 
 type DishDetailResponse struct {

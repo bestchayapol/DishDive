@@ -98,76 +98,104 @@ func (s *recommendService) SubmitReview(req dtos.SubmitReviewRequest) (dtos.Subm
 	return dtos.SubmitReviewResponse{Success: err == nil}, err
 }
 
-func (s *recommendService) GetRecommendedDishes(userID uint) ([]dtos.FavoriteDishResponse, error) {
-	// 1. Get all dishes sorted by sentiment score
-	dishes, err := s.foodRepo.GetAllDishes()
-	if err != nil {
-		return nil, err
-	}
-	// 2. Get user preferences and blacklist
-	preferredKeywords, _ := s.recommendRepo.GetPreferencesByUser(userID)
-	blacklistedKeywords, _ := s.recommendRepo.GetBlacklistByUser(userID)
-	// 3. Get user's favorites
-	favoriteDishes, _ := s.foodRepo.GetFavoriteDishesByUser(userID)
-	favoriteMap := make(map[uint]bool)
-	for _, fav := range favoriteDishes {
-		favoriteMap[fav.DishID] = true
-	}
-	// 4. Get dish-keyword mappings
-	// For simplicity, assume a method GetKeywordsByDish(dishID uint) ([]entities.Keyword, error) exists in foodRepo
-	type scoredDish struct {
-		dish  entities.Dish
-		score float64
-	}
-	var scoredDishes []scoredDish
-	for _, dish := range dishes {
-		score := dish.TotalScore
-		// Check keywords
-		keywords, _ := s.foodRepo.GetKeywordsByDish(dish.DishID)
-		for _, kw := range keywords {
-			for _, pref := range preferredKeywords {
-				if kw.KeywordID == pref.KeywordID {
-					score += 10
-				}
-			}
-			for _, bl := range blacklistedKeywords {
-				if kw.KeywordID == bl.KeywordID {
-					score = 0
-				}
-			}
-		}
-		// Sentiment score settings (using preference/blacklist thresholds)
-		for _, pref := range preferredKeywords {
-			if dish.TotalScore > pref.Preference {
-				score += 10
-			}
-		}
-		for _, bl := range blacklistedKeywords {
-			if dish.TotalScore < bl.Blacklist {
-				score = 0
-			}
-		}
-		// Favorites boost
-		if favoriteMap[dish.DishID] {
-			score *= 2
-		}
-		scoredDishes = append(scoredDishes, scoredDish{dish: dish, score: score})
-	}
-	// 5. Sort by score
-	sort.Slice(scoredDishes, func(i, j int) bool {
-		return scoredDishes[i].score > scoredDishes[j].score
-	})
-	// 6. Build response
-	var resp []dtos.FavoriteDishResponse
-	for _, sd := range scoredDishes {
-		resp = append(resp, dtos.FavoriteDishResponse{
-			DishID:          sd.dish.DishID,
-			DishName:        sd.dish.DishName,
-			ImageLink:       nil, // Fill as needed
-			SentimentScore:  sd.dish.TotalScore,
-			Cuisine:         sd.dish.Cuisine,
-			ProminentFlavor: nil, // Fill as needed
-		})
-	}
-	return resp, nil
+func (s *recommendService) GetRecommendedDishes(userID uint, resID *uint) ([]dtos.RestaurantMenuItemResponse, error) {
+    // 1. Get dishes - either from specific restaurant or all dishes
+    var dishes []entities.Dish
+    var err error
+    if resID != nil {
+        dishes, err = s.foodRepo.GetDishesByRestaurant(*resID)
+    } else {
+        dishes, err = s.foodRepo.GetAllDishes()
+    }
+    if err != nil {
+        return nil, err
+    }
+
+    // 2. Get user preferences and blacklist
+    preferredKeywords, _ := s.recommendRepo.GetPreferencesByUser(userID)
+    blacklistedKeywords, _ := s.recommendRepo.GetBlacklistByUser(userID)
+
+    // 3. Get user's favorites
+    favoriteDishes, _ := s.foodRepo.GetFavoriteDishesByUser(userID)
+    favoriteMap := make(map[uint]bool)
+    for _, fav := range favoriteDishes {
+        favoriteMap[fav.DishID] = true
+    }
+
+    // 4. Calculate scores for each dish
+    type scoredDish struct {
+        dish  entities.Dish
+        score float64
+        isFav bool
+    }
+
+    var scoredDishes []scoredDish
+    for _, dish := range dishes {
+        score := dish.TotalScore
+        isFav := favoriteMap[dish.DishID]
+
+        // Get dish keywords and apply preference/blacklist logic
+        keywords, _ := s.foodRepo.GetKeywordsByDish(dish.DishID)
+        for _, kw := range keywords {
+            // Apply preferences
+            for _, pref := range preferredKeywords {
+                if kw.KeywordID == pref.KeywordID {
+                    score += 10
+                }
+            }
+            // Apply blacklist (set score to 0 if blacklisted)
+            for _, bl := range blacklistedKeywords {
+                if kw.KeywordID == bl.KeywordID {
+                    score = 0
+                }
+            }
+        }
+
+        // Apply sentiment score thresholds
+        for _, pref := range preferredKeywords {
+            if dish.TotalScore > pref.Preference {
+                score += 10
+            }
+        }
+        for _, bl := range blacklistedKeywords {
+            if dish.TotalScore < bl.Blacklist {
+                score = 0
+            }
+        }
+
+        // Favorites boost
+        if isFav {
+            score *= 1.5
+        }
+
+        scoredDishes = append(scoredDishes, scoredDish{dish: dish, score: score, isFav: isFav})
+    }
+
+    // 5. Sort by recommendation score
+    sort.Slice(scoredDishes, func(i, j int) bool {
+        return scoredDishes[i].score > scoredDishes[j].score
+    })
+
+    // 6. Build response
+    var resp []dtos.RestaurantMenuItemResponse
+    for _, sd := range scoredDishes {
+        // Calculate percentage score for display
+        var percentage float64
+        if sd.dish.PositiveScore+sd.dish.NegativeScore > 0 {
+            percentage = float64(sd.dish.PositiveScore) / float64(sd.dish.PositiveScore+sd.dish.NegativeScore) * 100
+        }
+
+        resp = append(resp, dtos.RestaurantMenuItemResponse{
+            DishID:          sd.dish.DishID,
+            DishName:        sd.dish.DishName,
+            ImageLink:       nil, // Fill as needed
+            SentimentScore:  percentage,
+            Cuisine:         sd.dish.Cuisine,
+            ProminentFlavor: nil, // Fill as needed
+            IsFavorite:      sd.isFav,
+            RecommendScore:  sd.score,
+        })
+    }
+
+    return resp, nil
 }

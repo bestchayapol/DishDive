@@ -126,13 +126,12 @@ func main() {
 	// Food endpoints
 	app.Post("/SearchRestaurantsByDish", foodHandler.SearchRestaurantsByDish)
 	app.Get("/GetRestaurantList", foodHandler.GetRestaurantList)
-	app.Get("/GetRestaurantLocations/:resID", foodHandler.GetRestaurantLocations) // requires ?user_lat=&user_lng=
-	app.Get("/GetRestaurantMenu/:resID", foodHandler.GetRestaurantMenuWithUserData) // requires ?userID=
+	app.Get("/GetRestaurantLocations/:resID", foodHandler.GetRestaurantLocations) // requires ?user_lat=&user_lng= ; untested// requires ?userID=
 	app.Get("/GetDishDetail/:dishID", foodHandler.GetDishDetail) // requires ?userID=
 	app.Get("/GetFavoriteDishes/:userID", foodHandler.GetFavoriteDishes)
 	app.Post("/AddFavorite", foodHandler.AddFavorite)
 	app.Delete("/RemoveFavorite", foodHandler.RemoveFavorite)
-	app.Post("/AddOrUpdateLocation", foodHandler.AddOrUpdateLocation)
+	app.Post("/AddOrUpdateLocation", foodHandler.AddOrUpdateLocation) // untested
 
 	//##################################################################################### 
 	// Recommend endpoints

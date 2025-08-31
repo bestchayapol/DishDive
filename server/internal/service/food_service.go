@@ -12,6 +12,11 @@ type foodService struct {
 	foodRepo repository.FoodRepository
 }
 
+// Update constructor to match new interface
+func NewFoodService(foodRepo repository.FoodRepository) *foodService {
+	return &foodService{foodRepo: foodRepo}
+}
+
 // RestaurantLocation methods
 // GetLocationsByRestaurant now takes userLat, userLng for distance calculation
 func (s *foodService) GetLocationsByRestaurant(resID uint, userLat, userLng float64) ([]dtos.RestaurantLocationResponse, error) {
@@ -55,10 +60,7 @@ func (s *foodService) AddOrUpdateLocation(location dtos.RestaurantLocationRespon
 	return s.foodRepo.AddOrUpdateLocation(loc)
 }
 
-// Update constructor to match new interface
-func NewFoodService(foodRepo repository.FoodRepository) *foodService {
-	return &foodService{foodRepo: foodRepo}
-}
+
 
 func (s *foodService) SearchRestaurantsByDish(req dtos.SearchRestaurantsByDishRequest) ([]dtos.SearchRestaurantsByDishResponse, error) {
 	restaurants, err := s.foodRepo.SearchRestaurantsByDish(req.DishName, req.Latitude, req.Longitude, req.Radius)
@@ -94,33 +96,6 @@ func (s *foodService) GetRestaurantList() ([]dtos.RestaurantListItemResponse, er
 		})
 	}
 	return resp, nil
-}
-
-func (s *foodService) GetRestaurantMenuWithUserData(resID uint, userID uint) ([]dtos.RestaurantMenuItemResponse, error) {
-    dishes, err := s.foodRepo.GetDishesByRestaurant(resID)
-    if err != nil {
-        return nil, err
-    }
-    var resp []dtos.RestaurantMenuItemResponse
-    for _, d := range dishes {
-        isFav, _ := s.foodRepo.IsFavoriteDish(userID, d.DishID)
-        // Calculate percentage score
-        var percentage float64
-        if d.PositiveScore+d.NegativeScore > 0 {
-            percentage = float64(d.PositiveScore) / float64(d.PositiveScore+d.NegativeScore) * 100
-        }
-        
-        resp = append(resp, dtos.RestaurantMenuItemResponse{
-            DishID:          d.DishID,
-            DishName:        d.DishName,
-            ImageLink:       nil, // Fill as needed
-            SentimentScore:  percentage,
-            Cuisine:         d.Cuisine,
-            ProminentFlavor: nil, // Fill as needed
-            IsFavorite:      isFav,
-        })
-    }
-    return resp, nil
 }
 
 func (s *foodService) GetDishDetail(dishID uint, userID uint) (dtos.DishDetailResponse, error) {

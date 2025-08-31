@@ -112,14 +112,25 @@ func (h *RecommendHandler) SubmitReview(c *fiber.Ctx) error {
 
 // Get recommended dishes
 func (h *RecommendHandler) GetRecommendedDishes(c *fiber.Ctx) error {
-	userID, err := strconv.Atoi(c.Params("userID"))
-	if err != nil {
-		return err
-	}
+    userID, err := strconv.Atoi(c.Params("userID"))
+    if err != nil {
+        return err
+    }
+    
+    resIDParam := c.Query("resID")
+    var resID *uint
+    if resIDParam != "" {
+        resIDInt, err := strconv.Atoi(resIDParam)
+        if err != nil {
+            return err
+        }
+        resIDUint := uint(resIDInt)
+        resID = &resIDUint
+    }
 
-	resp, err := h.recommendService.GetRecommendedDishes(uint(userID))
-	if err != nil {
-		return err
-	}
-	return c.JSON(resp)
+    resp, err := h.recommendService.GetRecommendedDishes(uint(userID), resID)
+    if err != nil {
+        return err
+    }
+    return c.JSON(resp)
 }

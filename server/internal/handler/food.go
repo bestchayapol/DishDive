@@ -73,24 +73,6 @@ func (h *FoodHandler) GetRestaurantLocations(c *fiber.Ctx) error {
     return c.JSON(resp)
 }
 
-// Get restaurant menu
-func (h *FoodHandler) GetRestaurantMenuWithUserData(c *fiber.Ctx) error {
-    resID, err := strconv.Atoi(c.Params("resID"))
-    if err != nil {
-        return err
-    }
-    
-    userID, err := strconv.Atoi(c.Query("userID"))
-    if err != nil {
-        return err
-    }
-
-    resp, err := h.foodService.GetRestaurantMenuWithUserData(uint(resID), uint(userID))
-    if err != nil {
-        return err
-    }
-    return c.JSON(resp)
-}
 
 func (h *FoodHandler) GetDishDetail(c *fiber.Ctx) error {
     dishID, err := strconv.Atoi(c.Params("dishID"))
