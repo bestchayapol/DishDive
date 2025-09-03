@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:dishdive/Utils/color_use.dart';
+import 'package:dishdive/Utils/api_config.dart';
 import 'package:dishdive/Components/Settings/settings_template.dart';
 import 'package:dishdive/Components/Settings/settings_sentiment.dart';
 import 'package:dishdive/Components/Settings/settings_cuisine.dart';
 import 'package:dishdive/Components/Settings/settings_flavor.dart';
 import 'package:dishdive/Components/Settings/settings_cost.dart';
 import 'package:dishdive/Components/Settings/settings_restrictions.dart';
-// Commented out for static data example
-// import 'package:dio/dio.dart';
-// import 'package:provider/provider.dart';;
+import 'package:dishdive/provider/token_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:dio/dio.dart';
 
 class SetBlack extends StatefulWidget {
   const SetBlack({super.key});
@@ -18,30 +19,189 @@ class SetBlack extends StatefulWidget {
 }
 
 class _SetBlackState extends State<SetBlack> {
-  int sentimentValue = 55;
+  bool isLoading = true;
+  final Dio dio = Dio();
+  late TokenProvider tokenProvider;
 
-  final List<String> cuisines = [
-    "Thai",
-    "Indian",
-    "Japanese",
-    "Chinese",
-    "French",
-    "Italian",
-  ];
-  Set<String> selectedCuisines = {};
+  // Sentiment values (0.0 to 1.0)
+  double sentimentThreshold = 0.25; // 25% - lower threshold for blacklist
+  int sentimentValue = 25; // For UI display
 
-  final List<String> flavors = ["Sweet", "Salty", "Sour", "Spicy", "Oily"];
-  Set<String> zeroToMedium = {};
-  Set<String> mediumToHigh = {};
+  // Available keywords from backend
+  List<Map<String, dynamic>> allKeywords = [];
+  
+  // Selected keywords by category
+  Map<String, Set<String>> selectedKeywords = {
+    'cuisine': {},
+    'restriction': {},
+    'flavor': {},
+    'cost': {},
+  };
 
-  final List<String> costs = ["Cheap", "Moderate", "Expensive"];
-  Set<String> selectedCosts = {};
+  // Available options by category
+  Map<String, List<String>> availableOptions = {
+    'cuisine': [],
+    'restriction': [],
+    'flavor': ["Sweet", "Salty", "Sour", "Spicy", "Oily"], // Static options
+    'cost': ["Cheap", "Moderate", "Expensive"], // Static options
+  };
 
-  final List<String> restrictions = ["Halal", "Vegan"];
-  Set<String> selectedRestrictions = {};
+  @override
+  void initState() {
+    super.initState();
+    _initializeData();
+  }
+
+  Future<void> _initializeData() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      tokenProvider = Provider.of<TokenProvider>(context, listen: false);
+      await loadUserSettings();
+    } catch (e) {
+      print('Error initializing blacklist data: $e');
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  Future<void> loadUserSettings() async {
+    try {
+      final token = tokenProvider.token;
+      final userId = tokenProvider.userId;
+      
+      if (token == null || userId == null) return;
+
+      final response = await dio.get(
+        ApiConfig.getUserSettingsEndpoint(userId),
+        options: Options(headers: ApiConfig.authHeaders(token)),
+      );
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data = response.data;
+        final List<dynamic> keywords = data['keywords'] ?? [];
+
+        setState(() {
+          allKeywords = keywords.cast<Map<String, dynamic>>();
+          
+          // Clear previous selections
+          selectedKeywords.forEach((key, value) => value.clear());
+          availableOptions['cuisine']!.clear();
+          availableOptions['restriction']!.clear();
+
+          // Process keywords
+          for (var keyword in allKeywords) {
+            String name = keyword['keyword'] ?? '';
+            String category = keyword['category'] ?? '';
+            bool isBlacklisted = keyword['is_blacklisted'] ?? false;
+            double blacklistValue = keyword['blacklist_value']?.toDouble() ?? 0.0;
+
+            // Add to available options if not already present
+            if (category == 'cuisine' && !availableOptions['cuisine']!.contains(name)) {
+              availableOptions['cuisine']!.add(name);
+            } else if (category == 'restriction' && !availableOptions['restriction']!.contains(name)) {
+              availableOptions['restriction']!.add(name);
+            }
+
+            // Add to selected if blacklisted
+            if (isBlacklisted && selectedKeywords.containsKey(category)) {
+              selectedKeywords[category]!.add(name);
+            }
+
+            // Update sentiment threshold (use the first one found, or max if multiple)
+            if (blacklistValue > sentimentThreshold) {
+              sentimentThreshold = blacklistValue;
+              sentimentValue = (blacklistValue * 100).round();
+            }
+          }
+        });
+      }
+    } catch (e) {
+      print('Error loading user settings: $e');
+    }
+  }
+
+  Future<void> saveBlacklist() async {
+    try {
+      final token = tokenProvider.token;
+      final userId = tokenProvider.userId;
+      
+      if (token == null || userId == null) return;
+
+      // Convert current selections to API format
+      List<Map<String, dynamic>> settingsUpdates = [];
+
+      for (var keyword in allKeywords) {
+        int keywordId = keyword['keyword_id'] ?? 0;
+        String name = keyword['keyword'] ?? '';
+        String category = keyword['category'] ?? '';
+        
+        bool isSelected = selectedKeywords[category]?.contains(name) ?? false;
+        double blacklistValue = isSelected ? sentimentThreshold : 0.0;
+
+        settingsUpdates.add({
+          'keyword_id': keywordId,
+          'preference_value': 0.0, // Not setting preferences in blacklist
+          'blacklist_value': blacklistValue,
+        });
+      }
+
+      final requestData = {
+        'settings': settingsUpdates,
+      };
+
+      final response = await dio.post(
+        ApiConfig.updateUserSettingsEndpoint(userId),
+        data: requestData,
+        options: Options(headers: ApiConfig.authHeaders(token)),
+      );
+
+      if (response.statusCode == 200) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Blacklist saved successfully')),
+        );
+      }
+    } catch (e) {
+      print('Error saving blacklist: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Failed to save blacklist')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (isLoading) {
+      return Scaffold(
+        backgroundColor: colorUse.backgroundColor,
+        appBar: AppBar(
+          backgroundColor: colorUse.appBarColor,
+          elevation: 0,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.pop(context),
+          ),
+          title: const Text(
+            "Set Blacklist",
+            style: TextStyle(
+              fontFamily: 'InriaSans',
+              fontWeight: FontWeight.bold,
+              fontSize: 32,
+              color: Colors.white,
+            ),
+          ),
+          centerTitle: true,
+        ),
+        body: const Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: colorUse.backgroundColor,
       appBar: AppBar(
@@ -61,6 +221,13 @@ class _SetBlackState extends State<SetBlack> {
           ),
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.save, color: Colors.white),
+            onPressed: saveBlacklist,
+            tooltip: 'Save Blacklist',
+          ),
+        ],
       ),
       body: Column(
         children: [
@@ -73,29 +240,29 @@ class _SetBlackState extends State<SetBlack> {
                     title: "Sentiment ratio",
                     child: SentimentSetting(
                       value: sentimentValue,
-                      onIncrement: () => setState(
-                        () =>
-                            sentimentValue = (sentimentValue + 1).clamp(0, 100),
-                      ),
-                      onDecrement: () => setState(
-                        () =>
-                            sentimentValue = (sentimentValue - 1).clamp(0, 100),
-                      ),
+                      onIncrement: () => setState(() {
+                        sentimentValue = (sentimentValue + 1).clamp(0, 100);
+                        sentimentThreshold = sentimentValue / 100.0;
+                      }),
+                      onDecrement: () => setState(() {
+                        sentimentValue = (sentimentValue - 1).clamp(0, 100);
+                        sentimentThreshold = sentimentValue / 100.0;
+                      }),
                       isBlacklist: true,
                     ),
                   ),
                   SettingsDropdown(
                     title: "Cuisine type",
                     child: CuisineSetting(
-                      cuisines: cuisines,
-                      selectedCuisines: selectedCuisines,
+                      cuisines: availableOptions['cuisine']!,
+                      selectedCuisines: selectedKeywords['cuisine']!,
                       isBlacklist: true,
                       onToggle: (cuisine) {
                         setState(() {
-                          if (selectedCuisines.contains(cuisine)) {
-                            selectedCuisines.remove(cuisine);
+                          if (selectedKeywords['cuisine']!.contains(cuisine)) {
+                            selectedKeywords['cuisine']!.remove(cuisine);
                           } else {
-                            selectedCuisines.add(cuisine);
+                            selectedKeywords['cuisine']!.add(cuisine);
                           }
                         });
                       },
@@ -104,24 +271,16 @@ class _SetBlackState extends State<SetBlack> {
                   SettingsDropdown(
                     title: "Flavors",
                     child: FlavorSetting(
-                      flavors: flavors,
-                      zeroToMedium: zeroToMedium,
-                      mediumToHigh: mediumToHigh,
+                      flavors: availableOptions['flavor']!,
+                      zeroToMedium: selectedKeywords['flavor']!,
+                      mediumToHigh: <String>{}, // Not used in blacklist
                       isBlacklist: true,
                       onToggle: (flavor, isHigh) {
                         setState(() {
-                          if (isHigh) {
-                            if (mediumToHigh.contains(flavor)) {
-                              mediumToHigh.remove(flavor);
-                            } else {
-                              mediumToHigh.add(flavor);
-                            }
+                          if (selectedKeywords['flavor']!.contains(flavor)) {
+                            selectedKeywords['flavor']!.remove(flavor);
                           } else {
-                            if (zeroToMedium.contains(flavor)) {
-                              zeroToMedium.remove(flavor);
-                            } else {
-                              zeroToMedium.add(flavor);
-                            }
+                            selectedKeywords['flavor']!.add(flavor);
                           }
                         });
                       },
@@ -130,15 +289,15 @@ class _SetBlackState extends State<SetBlack> {
                   SettingsDropdown(
                     title: "Cost",
                     child: CostSetting(
-                      costs: costs,
-                      selectedCosts: selectedCosts,
+                      costs: availableOptions['cost']!,
+                      selectedCosts: selectedKeywords['cost']!,
                       isBlacklist: true,
                       onToggle: (cost) {
                         setState(() {
-                          if (selectedCosts.contains(cost)) {
-                            selectedCosts.remove(cost);
+                          if (selectedKeywords['cost']!.contains(cost)) {
+                            selectedKeywords['cost']!.remove(cost);
                           } else {
-                            selectedCosts.add(cost);
+                            selectedKeywords['cost']!.add(cost);
                           }
                         });
                       },
@@ -147,15 +306,15 @@ class _SetBlackState extends State<SetBlack> {
                   SettingsDropdown(
                     title: "Restrictions",
                     child: RestrictionSetting(
-                      restrictions: restrictions,
-                      selectedRestrictions: selectedRestrictions,
+                      restrictions: availableOptions['restriction']!,
+                      selectedRestrictions: selectedKeywords['restriction']!,
                       isBlacklist: true,
                       onToggle: (restriction) {
                         setState(() {
-                          if (selectedRestrictions.contains(restriction)) {
-                            selectedRestrictions.remove(restriction);
+                          if (selectedKeywords['restriction']!.contains(restriction)) {
+                            selectedKeywords['restriction']!.remove(restriction);
                           } else {
-                            selectedRestrictions.add(restriction);
+                            selectedKeywords['restriction']!.add(restriction);
                           }
                         });
                       },

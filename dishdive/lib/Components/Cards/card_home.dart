@@ -36,12 +36,46 @@ class RestaurantCard extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.grey[400],
                 borderRadius: BorderRadius.circular(10),
-                image: imageUrl.isNotEmpty
-                    ? DecorationImage(
-                        image: NetworkImage(imageUrl),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: imageUrl.isNotEmpty
+                    ? Image.network(
+                        imageUrl,
+                        width: 90,
+                        height: 90,
                         fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            color: Colors.grey[400],
+                            child: const Icon(
+                              Icons.restaurant,
+                              color: Colors.white,
+                              size: 30,
+                            ),
+                          );
+                        },
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return Container(
+                            color: Colors.grey[400],
+                            child: const Center(
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                              ),
+                            ),
+                          );
+                        },
                       )
-                    : null,
+                    : Container(
+                        color: Colors.grey[400],
+                        child: const Icon(
+                          Icons.restaurant,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                      ),
               ),
             ),
             // Info

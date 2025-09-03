@@ -1,12 +1,12 @@
 package handler
 
 import (
-	"encoding/json"
-	"fmt"
-	"io/ioutil"
-	"net/http"
-	"net/url"
-	"os"
+	// "encoding/json"
+	// "fmt"
+	// "io/ioutil"
+	// "net/http"
+	// "net/url"
+	// "os"
 	"strconv"
 
 	"github.com/bestchayapol/DishDive/internal/dtos"
@@ -141,62 +141,62 @@ func (h *FoodHandler) RemoveFavorite(c *fiber.Ctx) error {
 }
 
 // Add or update restaurant location using geocoding API
-func (h *FoodHandler) AddOrUpdateLocation(c *fiber.Ctx) error {
-	var req dtos.RestaurantLocationResponse
-	if err := c.BodyParser(&req); err != nil {
-		return err
-	}
+// func (h *FoodHandler) AddOrUpdateLocation(c *fiber.Ctx) error {
+// 	var req dtos.RestaurantLocationResponse
+// 	if err := c.BodyParser(&req); err != nil {
+// 		return err
+// 	}
 
-	// Geocoding logic
-	apiKey := os.Getenv("AIzaSyC3PQZPBjTMBOQIkIQaZrEIVuqgMCDm1G8") // Or load from config
-	if req.Address != "" {
-		lat, lng, err := CallGeocodingAPI(req.Address, apiKey)
-		if err != nil {
-			return err
-		}
-		req.Latitude = lat
-		req.Longitude = lng
-	}
+// 	// Geocoding logic
+// 	apiKey := os.Getenv("AIzaSyC3PQZPBjTMBOQIkIQaZrEIVuqgMCDm1G8") // Or load from config
+// 	if req.Address != "" {
+// 		lat, lng, err := CallGeocodingAPI(req.Address, apiKey)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		req.Latitude = lat
+// 		req.Longitude = lng
+// 	}
 
-	err := h.foodService.AddOrUpdateLocation(req)
-	if err != nil {
-		return err
-	}
+// 	err := h.foodService.AddOrUpdateLocation(req)
+// 	if err != nil {
+// 		return err
+// 	}
 
-	return c.SendStatus(fiber.StatusOK)
-}
+// 	return c.SendStatus(fiber.StatusOK)
+// }
 
 // Example function to call Google Geocoding API (pseudo-code)
-func CallGeocodingAPI(address, apiKey string) (float64, float64, error) {
-	endpoint := "https://maps.googleapis.com/maps/api/geocode/json"
-	u := fmt.Sprintf("%s?address=%s&key=%s", endpoint, url.QueryEscape(address), apiKey)
-	resp, err := http.Get(u)
-	if err != nil {
-		return 0, 0, err
-	}
-	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return 0, 0, err
-	}
-	var result struct {
-		Results []struct {
-			Geometry struct {
-				Location struct {
-					Lat float64 `json:"lat"`
-					Lng float64 `json:"lng"`
-				} `json:"location"`
-			} `json:"geometry"`
-		} `json:"results"`
-		Status string `json:"status"`
-	}
-	if err := json.Unmarshal(body, &result); err != nil {
-		return 0, 0, err
-	}
-	if result.Status != "OK" || len(result.Results) == 0 {
-		return 0, 0, fmt.Errorf("no results found for address")
-	}
-	lat := result.Results[0].Geometry.Location.Lat
-	lng := result.Results[0].Geometry.Location.Lng
-	return lat, lng, nil
-}
+// func CallGeocodingAPI(address, apiKey string) (float64, float64, error) {
+// 	endpoint := "https://maps.googleapis.com/maps/api/geocode/json"
+// 	u := fmt.Sprintf("%s?address=%s&key=%s", endpoint, url.QueryEscape(address), apiKey)
+// 	resp, err := http.Get(u)
+// 	if err != nil {
+// 		return 0, 0, err
+// 	}
+// 	defer resp.Body.Close()
+// 	body, err := ioutil.ReadAll(resp.Body)
+// 	if err != nil {
+// 		return 0, 0, err
+// 	}
+// 	var result struct {
+// 		Results []struct {
+// 			Geometry struct {
+// 				Location struct {
+// 					Lat float64 `json:"lat"`
+// 					Lng float64 `json:"lng"`
+// 				} `json:"location"`
+// 			} `json:"geometry"`
+// 		} `json:"results"`
+// 		Status string `json:"status"`
+// 	}
+// 	if err := json.Unmarshal(body, &result); err != nil {
+// 		return 0, 0, err
+// 	}
+// 	if result.Status != "OK" || len(result.Results) == 0 {
+// 		return 0, 0, fmt.Errorf("no results found for address")
+// 	}
+// 	lat := result.Results[0].Geometry.Location.Lat
+// 	lng := result.Results[0].Geometry.Location.Lng
+// 	return lat, lng, nil
+// }

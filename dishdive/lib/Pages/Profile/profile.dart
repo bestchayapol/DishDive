@@ -6,6 +6,7 @@ import 'package:dishdive/Pages/Preferences/PreferencesSettings.dart';
 import 'package:dishdive/Pages/Preferences/BlacklistSettings.dart';
 import 'package:dishdive/Pages/Profile/edit_profile.dart';
 import 'package:dishdive/Utils/color_use.dart';
+import 'package:dishdive/Utils/api_config.dart';
 import 'package:dishdive/widgets/BackgroundCircle.dart';
 import 'package:provider/provider.dart';
 import 'package:dishdive/provider/token_provider.dart';
@@ -27,7 +28,7 @@ class _ProfileState extends State<Profile> {
   }
 
   void logout() {
-    Provider.of<TokenProvider>(context, listen: false).setToken("", 0);
+    Provider.of<TokenProvider>(context, listen: false).clearToken();
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => const LoginOrRegister()),
@@ -40,13 +41,8 @@ class _ProfileState extends State<Profile> {
 
     Dio dio = Dio();
     final response = await dio.get(
-      'http://10.0.2.2:5428/GetProfileOfCurrentUserByUserId/$userId',
-      options: Options(
-        headers: {
-          'Authorization': 'Bearer $token',
-          'Content-Type': 'application/json',
-        },
-      ),
+      ApiConfig.getProfileOfCurrentUserByUserIdEndpoint(userId!),
+      options: Options(headers: ApiConfig.authHeaders(token!)),
     );
 
     if (response.statusCode == 200) {
@@ -166,7 +162,7 @@ class _ProfileState extends State<Profile> {
           child: FutureBuilder<Map<String, dynamic>>(
             future: _userData,
             builder: (context, snapshot) {
-              String? profilePic = snapshot.data?['user_pic'];
+              String? profilePic = snapshot.data?['image_link'];
               return Stack(
                 alignment: Alignment.bottomRight,
                 children: [

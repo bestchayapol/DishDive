@@ -60,8 +60,6 @@ func (s *foodService) AddOrUpdateLocation(location dtos.RestaurantLocationRespon
 	return s.foodRepo.AddOrUpdateLocation(loc)
 }
 
-
-
 func (s *foodService) SearchRestaurantsByDish(req dtos.SearchRestaurantsByDishRequest) ([]dtos.SearchRestaurantsByDishResponse, error) {
 	restaurants, err := s.foodRepo.SearchRestaurantsByDish(req.DishName, req.Latitude, req.Longitude, req.Radius)
 	if err != nil {
@@ -69,10 +67,19 @@ func (s *foodService) SearchRestaurantsByDish(req dtos.SearchRestaurantsByDishRe
 	}
 	var resp []dtos.SearchRestaurantsByDishResponse
 	for _, r := range restaurants {
+		// Get cuisine image
+		var imageLink *string
+		if r.ResCuisine != nil {
+			imageURL, err := s.foodRepo.GetCuisineImageByCuisine(*r.ResCuisine)
+			if err == nil && imageURL != "" {
+				imageLink = &imageURL
+			}
+		}
+
 		resp = append(resp, dtos.SearchRestaurantsByDishResponse{
 			ResID:     r.ResID,
 			ResName:   r.ResName,
-			ImageLink: nil, // Fill as needed
+			ImageLink: imageLink,
 			Cuisine:   r.ResCuisine,
 			// Location and Distance can be filled if you have that logic
 		})
@@ -87,12 +94,20 @@ func (s *foodService) GetRestaurantList() ([]dtos.RestaurantListItemResponse, er
 	}
 	var resp []dtos.RestaurantListItemResponse
 	for _, r := range restaurants {
+		// Get cuisine image
+		var imageLink *string
+		if r.ResCuisine != nil {
+			imageURL, err := s.foodRepo.GetCuisineImageByCuisine(*r.ResCuisine)
+			if err == nil && imageURL != "" {
+				imageLink = &imageURL
+			}
+		}
+
 		resp = append(resp, dtos.RestaurantListItemResponse{
 			ResID:     r.ResID,
 			ResName:   r.ResName,
-			ImageLink: nil, // Fill as needed
+			ImageLink: imageLink,
 			Cuisine:   r.ResCuisine,
-			// Locations can be filled if you have that logic
 		})
 	}
 	return resp, nil
@@ -103,11 +118,21 @@ func (s *foodService) GetDishDetail(dishID uint, userID uint) (dtos.DishDetailRe
 	if err != nil {
 		return dtos.DishDetailResponse{}, err
 	}
+
+	// Get cuisine image
+	var imageLink *string
+	if dish.Cuisine != nil {
+		imageURL, err := s.foodRepo.GetCuisineImageByCuisine(*dish.Cuisine)
+		if err == nil && imageURL != "" {
+			imageLink = &imageURL
+		}
+	}
+
 	isFav, _ := s.foodRepo.IsFavoriteDish(userID, dishID)
 	return dtos.DishDetailResponse{
 		DishID:          dish.DishID,
 		DishName:        dish.DishName,
-		ImageLink:       nil, // Fill as needed
+		ImageLink:       imageLink,
 		SentimentScore:  dish.TotalScore,
 		Cuisine:         dish.Cuisine,
 		ProminentFlavor: nil,                   // Fill as needed
@@ -123,10 +148,19 @@ func (s *foodService) GetFavoriteDishes(userID uint) ([]dtos.FavoriteDishRespons
 	}
 	var resp []dtos.FavoriteDishResponse
 	for _, d := range dishes {
+		// Get cuisine image
+		var imageLink *string
+		if d.Cuisine != nil {
+			imageURL, err := s.foodRepo.GetCuisineImageByCuisine(*d.Cuisine)
+			if err == nil && imageURL != "" {
+				imageLink = &imageURL
+			}
+		}
+
 		resp = append(resp, dtos.FavoriteDishResponse{
 			DishID:          d.DishID,
 			DishName:        d.DishName,
-			ImageLink:       nil, // Fill as needed
+			ImageLink:       imageLink,
 			SentimentScore:  d.TotalScore,
 			Cuisine:         d.Cuisine,
 			ProminentFlavor: nil, // Fill as needed
@@ -136,9 +170,9 @@ func (s *foodService) GetFavoriteDishes(userID uint) ([]dtos.FavoriteDishRespons
 }
 
 func (s *foodService) AddFavorite(userID uint, dishID uint) error {
-    return s.foodRepo.AddFavoriteDish(userID, dishID)
+	return s.foodRepo.AddFavoriteDish(userID, dishID)
 }
 
 func (s *foodService) RemoveFavorite(userID uint, dishID uint) error {
-    return s.foodRepo.RemoveFavoriteDish(userID, dishID)
+	return s.foodRepo.RemoveFavoriteDish(userID, dishID)
 }

@@ -3,36 +3,34 @@ import 'package:dishdive/Pages/Restaurant/RestaurantPage.dart';
 import 'package:dishdive/Components/Cards/card_home.dart';
 
 class ListViewWidget extends StatelessWidget {
-  const ListViewWidget({super.key});
+  final List<Map<String, dynamic>> restaurants;
+  final bool isLoading;
+
+  const ListViewWidget({
+    super.key,
+    required this.restaurants,
+    this.isLoading = false,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final restaurants = [
-      {
-        "name": "Alfredo's Seafood",
-        "cuisine": "French",
-        "distance": "1.1 km away",
-        "imageUrl": "",
-      },
-      {
-        "name": "Nayeon BBQ",
-        "cuisine": "Korean",
-        "distance": "1.2 km away",
-        "imageUrl": "",
-      },
-      {
-        "name": "Heng Heng Noodles",
-        "cuisine": "Chinese",
-        "distance": "1.5 km away",
-        "imageUrl": "",
-      },
-      {
-        "name": "Jake & Jaew Kitchen",
-        "cuisine": "Mixed",
-        "distance": "1.8 km away",
-        "imageUrl": "",
-      },
-    ];
+    if (isLoading) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+
+    if (restaurants.isEmpty) {
+      return const Center(
+        child: Text(
+          'No restaurants found',
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.white,
+          ),
+        ),
+      );
+    }
 
     return ListView.builder(
       padding: const EdgeInsets.all(16),

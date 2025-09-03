@@ -52,6 +52,7 @@ class _MainAppState extends State<MainApp> {
   void initState() {
     super.initState();
     Provider.of<WelcomeProvider>(context, listen: false).checkWelcomeStatus();
+    Provider.of<TokenProvider>(context, listen: false).loadToken();
   }
 
   Future<void> _getLocation() async {
@@ -97,7 +98,7 @@ class _MainAppState extends State<MainApp> {
                 welcomeProvider.setWelcomeShown();
               },
             )
-          : tokenProvider.token == null
+          : !tokenProvider.isAuthenticated
           ? const LoginOrRegister()
           : const FirstHomePage(),
     );

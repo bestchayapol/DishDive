@@ -1,16 +1,12 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:dishdive/Utils/color_use.dart';
-// Commented out for static data example
-// import 'package:dio/dio.dart';
-// import 'package:provider/provider.dart';
+import 'package:dishdive/Utils/api_config.dart';
 import 'package:dishdive/components/my_button.dart';
 import 'package:dishdive/components/my_textfield.dart';
 import 'package:dishdive/widgets/add_image.dart';
-import 'package:dishdive/Pages/Profile/profile.dart';
 import 'package:dishdive/provider/token_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -34,60 +30,93 @@ class _EditProfileState extends State<EditProfile> {
   Future<void> fetchUserData() async {
     final token = Provider.of<TokenProvider>(context, listen: false).token;
     final userId = Provider.of<TokenProvider>(context, listen: false).userId;
-    Dio dio = Dio();
-    final response = await dio.get(
-      'http://10.0.2.2:5428/GetEditUserProfileByUserId/$userId',
-      options: Options(
-        headers: {
-          'Authorization': 'Bearer $token',
-          'Content-Type': 'application/json', // Adjust content type as needed
-        },
-      ),
-    );
+    
+    if (token == null || userId == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Authentication error. Please login again.')),
+      );
+      return;
+    }
 
-    if (response.statusCode == 200) {
-      final parsedJson = response.data; // Directly get the parsed data
-      setState(() {
-        _userNameController.text = parsedJson['username'] ?? '';
-      });
-    } else {
-      throw Exception('Failed to load user data');
+    try {
+      Dio dio = Dio();
+      final response = await dio.get(
+        ApiConfig.getEditUserProfileByUserIdEndpoint(userId),
+        options: Options(headers: ApiConfig.authHeaders(token)),
+      );
+
+      if (response.statusCode == 200) {
+        final parsedJson = response.data;
+        setState(() {
+          _userNameController.text = parsedJson['username'] ?? '';
+        });
+      } else {
+        throw Exception('Failed to load user data');
+      }
+    } catch (e) {
+      print('Error fetching user data: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Failed to load user data')),
+      );
     }
   }
 
   Future<void> updateUserProfile() async {
-    Dio dio = Dio();
     final token = Provider.of<TokenProvider>(context, listen: false).token;
     final userId = Provider.of<TokenProvider>(context, listen: false).userId;
-    final data = {"username": _userNameController.text};
-
-    final response = await dio.patch(
-      'http://10.0.2.2:5428/PatchEditUserProfileByUserId/$userId',
-      data: json.encode(data),
-      options: Options(
-        headers: {
-          'Authorization': 'Bearer $token',
-          'Content-Type': 'application/json', // Adjust content type as needed
-        },
-      ),
-    );
-
-    if (response.statusCode == 200) {
+    
+    if (token == null || userId == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Profile updated successfully')),
+        const SnackBar(content: Text('Authentication error. Please login again.')),
       );
-    } else {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Failed to update profile')));
+      return;
     }
 
-    // Static response for testing
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Profile updated successfully (static data)'),
-      ),
-    );
+    try {
+      Dio dio = Dio();
+      FormData formData = FormData();
+      
+      // Add username to form data
+      formData.fields.add(MapEntry('username', _userNameController.text));
+      
+      // Add image if selected
+      if (_selectedImage != null) {
+        String fileName = _selectedImage!.path.split('/').last;
+        formData.files.add(MapEntry(
+          'image',
+          await MultipartFile.fromFile(_selectedImage!.path, filename: fileName),
+        ));
+      }
+
+      final response = await dio.patch(
+        ApiConfig.patchEditUserProfileByUserIdEndpoint(userId),
+        data: formData,
+        options: Options(headers: ApiConfig.authHeaders(token)),
+      );
+
+      if (response.statusCode == 200) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Profile updated successfully')),
+        );
+        // Navigate back to profile page
+        Navigator.pop(context);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Failed to update profile')),
+        );
+      }
+    } catch (e) {
+      print('Error updating profile: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Error updating profile. Please try again.')),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    _userNameController.dispose();
+    super.dispose();
   }
 
   @override

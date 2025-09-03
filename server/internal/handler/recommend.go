@@ -16,70 +16,36 @@ func NewRecommendHandler(recommendService service.RecommendService) *RecommendHa
 	return &RecommendHandler{recommendService: recommendService}
 }
 
-// Get preference keywords
-func (h *RecommendHandler) GetPreferenceKeywords(c *fiber.Ctx) error {
+// New unified settings endpoints
+func (h *RecommendHandler) GetUserSettings(c *fiber.Ctx) error {
 	userID, err := strconv.Atoi(c.Params("userID"))
 	if err != nil {
-		return err
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid user ID"})
 	}
 
-	resp, err := h.recommendService.GetPreferenceKeywords(uint(userID))
+	resp, err := h.recommendService.GetUserSettings(uint(userID))
 	if err != nil {
-		return err
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
 	}
 	return c.JSON(resp)
 }
 
-// Set preference
-func (h *RecommendHandler) SetPreference(c *fiber.Ctx) error {
+func (h *RecommendHandler) UpdateUserSettings(c *fiber.Ctx) error {
 	userID, err := strconv.Atoi(c.Params("userID"))
 	if err != nil {
-		return err
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid user ID"})
 	}
 
-	var req dtos.SetPreferenceRequest
+	var req dtos.BulkUpdateSettingsRequest
 	if err := c.BodyParser(&req); err != nil {
-		return err
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid request body"})
 	}
 
-	err = h.recommendService.SetPreference(uint(userID), req)
+	err = h.recommendService.UpdateUserSettings(uint(userID), req)
 	if err != nil {
-		return err
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
 	}
-	return c.SendStatus(fiber.StatusOK)
-}
-
-// Get blacklist keywords
-func (h *RecommendHandler) GetBlacklistKeywords(c *fiber.Ctx) error {
-	userID, err := strconv.Atoi(c.Params("userID"))
-	if err != nil {
-		return err
-	}
-
-	resp, err := h.recommendService.GetBlacklistKeywords(uint(userID))
-	if err != nil {
-		return err
-	}
-	return c.JSON(resp)
-}
-
-// Set blacklist
-func (h *RecommendHandler) SetBlacklist(c *fiber.Ctx) error {
-	userID, err := strconv.Atoi(c.Params("userID"))
-	if err != nil {
-		return err
-	}
-
-	var req dtos.SetBlacklistRequest
-	if err := c.BodyParser(&req); err != nil {
-		return err
-	}
-
-	err = h.recommendService.SetBlacklist(uint(userID), req)
-	if err != nil {
-		return err
-	}
-	return c.SendStatus(fiber.StatusOK)
+	return c.JSON(fiber.Map{"success": true})
 }
 
 // Get dish review page
@@ -112,25 +78,25 @@ func (h *RecommendHandler) SubmitReview(c *fiber.Ctx) error {
 
 // Get recommended dishes
 func (h *RecommendHandler) GetRecommendedDishes(c *fiber.Ctx) error {
-    userID, err := strconv.Atoi(c.Params("userID"))
-    if err != nil {
-        return err
-    }
-    
-    resIDParam := c.Query("resID")
-    var resID *uint
-    if resIDParam != "" {
-        resIDInt, err := strconv.Atoi(resIDParam)
-        if err != nil {
-            return err
-        }
-        resIDUint := uint(resIDInt)
-        resID = &resIDUint
-    }
+	userID, err := strconv.Atoi(c.Params("userID"))
+	if err != nil {
+		return err
+	}
 
-    resp, err := h.recommendService.GetRecommendedDishes(uint(userID), resID)
-    if err != nil {
-        return err
-    }
-    return c.JSON(resp)
+	resIDParam := c.Query("resID")
+	var resID *uint
+	if resIDParam != "" {
+		resIDInt, err := strconv.Atoi(resIDParam)
+		if err != nil {
+			return err
+		}
+		resIDUint := uint(resIDInt)
+		resID = &resIDUint
+	}
+
+	resp, err := h.recommendService.GetRecommendedDishes(uint(userID), resID)
+	if err != nil {
+		return err
+	}
+	return c.JSON(resp)
 }

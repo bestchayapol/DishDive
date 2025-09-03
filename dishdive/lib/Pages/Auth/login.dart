@@ -1,10 +1,10 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:dishdive/components/my_button.dart';
 import 'package:dishdive/components/my_textfield.dart';
-import 'package:dishdive/pages/home.dart';
-// import 'package:dishdive/provider/token_provider.dart';
-// import 'package:provider/provider.dart';
+import 'package:dishdive/Pages/home.dart';
+import 'package:dishdive/provider/token_provider.dart';
+import 'package:dishdive/services/auth_service.dart';
+import 'package:provider/provider.dart';
 import 'package:dishdive/Utils/color_use.dart';
 import 'package:dishdive/widgets/BackgroundCircle.dart';
 import 'package:dishdive/pages/Auth/register.dart';
@@ -21,7 +21,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final Dio dio = Dio();
+  final AuthService _authService = AuthService();
 
   @override
   void dispose() {
@@ -30,11 +30,68 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  void _navigateToFirstHomePage(String token) {
-    Navigator.push(
+  void _navigateToFirstHomePage(String token, int userId) {
+    // Store token and user ID in provider
+    Provider.of<TokenProvider>(context, listen: false).setToken(token, userId);
+    
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => const Home()),
     );
+  }
+
+  Future<void> login() async {
+    // Validate the form fields
+    if (usernameController.text.isEmpty || passwordController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please fill in all fields')),
+      );
+      return;
+    }
+
+    // Show loading indicator
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => const Center(child: CircularProgressIndicator()),
+    );
+
+    try {
+      final result = await _authService.login(
+        usernameController.text,
+        passwordController.text,
+      );
+
+      // Hide loading indicator
+      Navigator.of(context).pop();
+
+      if (result['success']) {
+        final responseData = result['data'];
+        final String token = responseData['token'] ?? '';
+        final int userId = responseData['user_id'] ?? 0;
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(result['message'])),
+        );
+
+        // Clear the form fields
+        usernameController.clear();
+        passwordController.clear();
+
+        // Navigate to home page with token and user ID
+        _navigateToFirstHomePage(token, userId);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(result['message'])),
+        );
+      }
+    } catch (e) {
+      // Hide loading indicator
+      Navigator.of(context).pop();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('An unexpected error occurred')),
+      );
+    }
   }
 
   @override
@@ -82,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32.0),
               child: MyTextField(
-                hintText: 'Email or User Name',
+                hintText: 'Username',
                 obscureText: false,
                 controller: usernameController,
                 iconData: Icons.person_outline,
@@ -110,10 +167,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               child: MyButton(
                 text: "Sign in",
-                onTap: () {
-                  String fakeToken = "test123";
-                  _navigateToFirstHomePage(fakeToken);
-                },
+                onTap: login,
                 backgroundColor: colorUse.activeButton,
                 textColor: Colors.white,
                 fontSize: 32,

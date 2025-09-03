@@ -5,11 +5,10 @@ import (
 )
 
 type RecommendRepository interface {
-	// Preference/Blacklist
-	GetPreferencesByUser(userID uint) ([]entities.PreferenceBlacklist, error)
-	SetPreference(userID, keywordID uint, threshold float64) error
-	GetBlacklistByUser(userID uint) ([]entities.PreferenceBlacklist, error)
-	SetBlacklist(userID, keywordID uint, threshold float64) error
+	// Unified Settings (New approach)
+	GetUserSettings(userID uint) ([]entities.PreferenceBlacklist, error)
+	GetAllKeywordsWithUserSettings(userID uint) ([]entities.PreferenceBlacklist, error)
+	BulkUpdateUserSettings(userID uint, settings []entities.PreferenceBlacklist) error
 
 	// Reviews
 	GetDishReviewPage(dishID uint) (*entities.Dish, *entities.Restaurant, error)

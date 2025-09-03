@@ -28,7 +28,6 @@ func (r *foodRepositoryDB) AddOrUpdateLocation(location *entities.RestaurantLoca
 	return r.db.Save(location).Error
 }
 
-
 // Restaurant methods
 func (r *foodRepositoryDB) GetAllRestaurants() ([]entities.Restaurant, error) {
 	var restaurants []entities.Restaurant
@@ -78,15 +77,15 @@ func (r *foodRepositoryDB) GetDishesByRestaurant(resID uint) ([]entities.Dish, e
 
 // Favorite methods
 func (r *foodRepositoryDB) GetFavoriteDishesByUser(userID uint) ([]entities.Dish, error) {
-    var dishes []entities.Dish
-    result := r.db.Joins("JOIN favorites ON favorites.dish_id = dishes.dish_id").
-        Where("favorites.user_id = ?", userID).Find(&dishes)
-    return dishes, result.Error
+	var dishes []entities.Dish
+	result := r.db.Joins("JOIN favorites ON favorites.dish_id = dishes.dish_id").
+		Where("favorites.user_id = ?", userID).Find(&dishes)
+	return dishes, result.Error
 }
 
 func (r *foodRepositoryDB) AddFavoriteDish(userID uint, dishID uint) error {
-    favorite := entities.Favorite{UserID: userID, DishID: dishID}
-    return r.db.Create(&favorite).Error
+	favorite := entities.Favorite{UserID: userID, DishID: dishID}
+	return r.db.Create(&favorite).Error
 }
 
 func (r *foodRepositoryDB) RemoveFavoriteDish(userID uint, dishID uint) error {
@@ -112,4 +111,21 @@ func (r *foodRepositoryDB) GetKeywordsByDish(dishID uint) ([]entities.Keyword, e
 	result := r.db.Joins("JOIN dish_keyword ON dish_keyword.keyword_id = keyword.keyword_id").
 		Where("dish_keyword.dish_id = ?", dishID).Find(&keywords)
 	return keywords, result.Error
+}
+
+// Get cuisine image URL by cuisine name
+func (r *foodRepositoryDB) GetCuisineImageByCuisine(cuisine string) (string, error) {
+	var cuisineImage entities.CuisineImage
+	result := r.db.Joins("JOIN keyword ON keyword.keyword_id = cuisine_image.keyword_id").
+		Where("LOWER(keyword.keyword) = LOWER(?)", cuisine).
+		First(&cuisineImage)
+
+	if result.Error != nil {
+		if result.Error == gorm.ErrRecordNotFound {
+			return "", nil // Return empty string if no image found
+		}
+		return "", result.Error
+	}
+
+	return cuisineImage.CuisineImageURL, nil
 }

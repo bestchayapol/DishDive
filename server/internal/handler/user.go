@@ -31,10 +31,10 @@ func (h *userHandler) GetUsers(c *fiber.Ctx) error {
 
 	for _, user := range users {
 		usersResponse = append(usersResponse, dtos.UserDataResponse{
-			UserID:      user.UserID,
-			Username:   user.Username,
+			UserID:   user.UserID,
+			Username: user.Username,
 
-			ImageLink:   user.ImageLink,
+			ImageLink:    user.ImageLink,
 			PasswordHash: user.PasswordHash,
 		})
 	}
@@ -50,9 +50,9 @@ func (h *userHandler) GetUserByUserId(c *fiber.Ctx) error {
 	}
 
 	userResponse := dtos.UserByUserIdDataResponse{
-		UserID:      user.UserID,
-		Username:   user.Username,
-		ImageLink:   user.ImageLink,
+		UserID:       user.UserID,
+		Username:     user.Username,
+		ImageLink:    user.ImageLink,
 		PasswordHash: user.PasswordHash,
 	}
 
@@ -80,9 +80,9 @@ func (h *userHandler) GetUserByToken(c *fiber.Ctx) error {
 	}
 
 	userResponse := dtos.UserByTokenDataResponse{
-		UserID:      user.UserID,
-		Username:   user.Username,
-		ImageLink:   user.ImageLink,
+		UserID:       user.UserID,
+		Username:     user.Username,
+		ImageLink:    user.ImageLink,
 		PasswordHash: user.PasswordHash,
 	}
 
@@ -112,9 +112,9 @@ func (h *userHandler) GetCurrentUser(c *fiber.Ctx) error {
 	}
 
 	userResponse := dtos.CurrentUserResponse{
-		UserID:      user.UserID,
-		Username:   user.Username,
-		ImageLink:   user.ImageLink,
+		UserID:       user.UserID,
+		Username:     user.Username,
+		ImageLink:    user.ImageLink,
 		PasswordHash: user.PasswordHash,
 	}
 
@@ -130,9 +130,9 @@ func (h *userHandler) GetProfileOfCurrentUserByUserId(c *fiber.Ctx) error {
 	}
 
 	userResponse := dtos.ProfileOfCurrentUserByUserIdResponse{
-		UserID:      user.UserID,
-		Username:   user.Username,
-		ImageLink:   user.ImageLink,
+		UserID:    user.UserID,
+		Username:  user.Username,
+		ImageLink: user.ImageLink,
 	}
 
 	return c.JSON(userResponse)
@@ -147,9 +147,9 @@ func (h *userHandler) GetEditUserProfileByUserId(c *fiber.Ctx) error {
 	}
 
 	userResponse := dtos.EditUserProfileByUserIdResponse{
-		UserID:      user.UserID,
-		Username:   user.Username,
-		ImageLink:   user.ImageLink,
+		UserID:    user.UserID,
+		Username:  user.Username,
+		ImageLink: user.ImageLink,
 	}
 
 	return c.JSON(userResponse)
@@ -177,29 +177,35 @@ func (h *userHandler) PatchEditUserProfileByUserId(c *fiber.Ctx) error {
 }
 
 func (h *userHandler) Register(c *fiber.Ctx) error {
-	var request dtos.RegisterRequest
-	if err := c.BodyParser(&request); err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, err.Error())
+	// Parse multipart form data directly instead of JSON
+	username := c.FormValue("user_name")
+	password := c.FormValue("password_hash")
+
+	// Validate required fields
+	if username == "" {
+		return fiber.NewError(fiber.StatusBadRequest, "Username is required")
+	}
+	if password == "" {
+		return fiber.NewError(fiber.StatusBadRequest, "Password is required")
 	}
 
 	// Check if a file is uploaded
 	file, err := c.FormFile("file")
 	if err != nil {
-		return err
+		return fiber.NewError(fiber.StatusBadRequest, "Profile picture is required")
 	}
 
 	// Call upload service to upload the file
 	fileURL, err := h.uploadSer.UploadFile(file)
 	if err != nil {
-		return err
+		return fiber.NewError(fiber.StatusInternalServerError, "Failed to upload profile picture")
 	}
 
-	// Set the uploaded file URL in the registration request
-	request.ImageLink = fileURL
-
-	// Check if image_link field is empty or nil
-	if request.ImageLink == nil {
-		return fiber.NewError(fiber.StatusBadRequest, "User picture is required")
+	// Create the register request
+	request := dtos.RegisterRequest{
+		Username:     &username,
+		ImageLink:    fileURL,
+		PasswordHash: password,
 	}
 
 	response, err := h.userSer.Register(request)

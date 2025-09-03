@@ -1,12 +1,11 @@
 import 'dart:io';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:dishdive/pages/Auth/login.dart';
 import 'package:dishdive/components/my_button.dart';
 import 'package:dishdive/components/my_textfield.dart';
 import 'package:dishdive/widgets/add_image.dart';
 import 'package:dishdive/Utils/color_use.dart';
+import 'package:dishdive/services/auth_service.dart';
 
 // CHANGES:
 // - Removed unused controllers and fields
@@ -31,13 +30,13 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController confirmPwController = TextEditingController();
+  final AuthService _authService = AuthService();
 
   Future<void> signUp() async {
     // Validate the form fields
     if (usernameController.text.isEmpty ||
         passwordController.text.isEmpty ||
-        confirmPwController.text.isEmpty ||
-        usernameController.text.isEmpty) {
+        confirmPwController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please fill in all fields')),
       );
@@ -51,48 +50,58 @@ class _SignUpPageState extends State<SignUpPage> {
       return;
     }
 
-    // Send the POST request to the registration endpoint
-    final dio = Dio();
-    var payload = FormData.fromMap({
-      "password": passwordController.text,
-      "username": usernameController.text,
-      'file': await MultipartFile.fromFile(
-        _selectedImage!.path,
-        filename: _selectedImage!.path.split('/').last,
-      ),
-    });
+    if (_selectedImage == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please select a profile picture')),
+      );
+      return;
+    }
+
+    // Show loading indicator
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => const Center(child: CircularProgressIndicator()),
+    );
 
     try {
-      final response = await dio.post(
-        'http://10.0.2.2:5428/Register',
-        data: payload,
-        options: Options(headers: {'Content-Type': 'application/json'}),
+      final result = await _authService.register(
+        usernameController.text,
+        passwordController.text,
+        _selectedImage!,
       );
-      if (response.statusCode == 201) {
-        // Registration successful
+
+      // Hide loading indicator
+      Navigator.of(context).pop();
+
+      if (result['success']) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Registration successful')),
+          SnackBar(content: Text(result['message'])),
         );
+
         // Clear the form fields
         usernameController.clear();
         passwordController.clear();
         confirmPwController.clear();
+        setState(() {
+          _selectedImage = null;
+        });
 
-        //navigate to LoginPage()
-        Navigator.push(
+        // Navigate to LoginPage
+        Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const LoginPage()),
         );
       } else {
-        // Registration failed
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: ${response.statusCode}')),
+          SnackBar(content: Text(result['message'])),
         );
       }
     } catch (e) {
-      // Network error or other exception
+      // Hide loading indicator
+      Navigator.of(context).pop();
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Error: Failed to connect to server')),
+        const SnackBar(content: Text('An unexpected error occurred')),
       );
     }
   }
@@ -236,13 +245,49 @@ class _SignUpPageState extends State<SignUpPage> {
             // Add profile picture
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32.0),
-              child: AddImage(
-                onImageSelected: (image) {
-                  setState(() {
-                    _selectedImage = image;
-                  });
-                },
-                textfill: 'Add profile picture +',
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Profile Picture",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Center(
+                    child: AddImage(
+                      onImageSelected: (image) {
+                        setState(() {
+                          _selectedImage = image;
+                        });
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Profile picture selected!'),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+                      },
+                      textfill: _selectedImage != null ? 'Change picture' : 'Add profile picture +',
+                    ),
+                  ),
+                  if (_selectedImage != null)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Center(
+                        child: Text(
+                          '✓ Image selected',
+                          style: TextStyle(
+                            color: colorUse.activeButton,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
               ),
             ),
             const SizedBox(height: 20),

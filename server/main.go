@@ -7,14 +7,15 @@ import (
 	"github.com/minio/minio-go/v7"
 	"gorm.io/driver/postgres"
 
+	"log"
+	"strings"
+	"time"
+
 	"github.com/bestchayapol/DishDive/internal/entities"
 	"github.com/bestchayapol/DishDive/internal/handler"
 	"github.com/bestchayapol/DishDive/internal/repository"
 	"github.com/bestchayapol/DishDive/internal/service"
 	"github.com/minio/minio-go/v7/pkg/credentials"
-	"log"
-	"strings"
-	"time"
 
 	"github.com/spf13/viper"
 	"gorm.io/gorm"
@@ -55,6 +56,7 @@ func main() {
 		&entities.ReviewDishKeyword{},
 		&entities.WebReview{},
 		&entities.ReviewExtract{},
+		&entities.CuisineImage{},
 	)
 	if err != nil {
 		panic("❌ Failed to AutoMigrate entities: " + err.Error())
@@ -122,23 +124,24 @@ func main() {
 	app.Get("/GetEditUserProfileByUserId/:UserID", userHandler.GetEditUserProfileByUserId)
 	app.Patch("/PatchEditUserProfileByUserId/:UserID", userHandler.PatchEditUserProfileByUserId)
 
-	//##################################################################################### 
+	//#####################################################################################
 	// Food endpoints
 	app.Post("/SearchRestaurantsByDish", foodHandler.SearchRestaurantsByDish)
 	app.Get("/GetRestaurantList", foodHandler.GetRestaurantList)
 	app.Get("/GetRestaurantLocations/:resID", foodHandler.GetRestaurantLocations) // requires ?user_lat=&user_lng= ; untested// requires ?userID=
-	app.Get("/GetDishDetail/:dishID", foodHandler.GetDishDetail) // requires ?userID=
+	app.Get("/GetDishDetail/:dishID", foodHandler.GetDishDetail)                  // requires ?userID=
 	app.Get("/GetFavoriteDishes/:userID", foodHandler.GetFavoriteDishes)
 	app.Post("/AddFavorite", foodHandler.AddFavorite)
 	app.Delete("/RemoveFavorite", foodHandler.RemoveFavorite)
-	app.Post("/AddOrUpdateLocation", foodHandler.AddOrUpdateLocation) // untested
+	// app.Post("/AddOrUpdateLocation", foodHandler.AddOrUpdateLocation)
 
-	//##################################################################################### 
+	//#####################################################################################
 	// Recommend endpoints
-	app.Get("/GetPreferenceKeywords/:userID", recommendHandler.GetPreferenceKeywords)
-	app.Post("/SetPreference/:userID", recommendHandler.SetPreference)
-	app.Get("/GetBlacklistKeywords/:userID", recommendHandler.GetBlacklistKeywords)
-	app.Post("/SetBlacklist/:userID", recommendHandler.SetBlacklist)
+	// New unified settings endpoints
+	app.Get("/GetUserSettings/:userID", recommendHandler.GetUserSettings)
+	app.Post("/UpdateUserSettings/:userID", recommendHandler.UpdateUserSettings)
+
+	// Review and recommendation endpoints
 	app.Get("/GetDishReviewPage/:dishID", recommendHandler.GetDishReviewPage)
 	app.Post("/SubmitReview", recommendHandler.SubmitReview)
 	app.Get("/GetRecommendedDishes/:userID", recommendHandler.GetRecommendedDishes)

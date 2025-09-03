@@ -1,6 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:dishdive/Utils/color_use.dart';
+import 'package:dishdive/Utils/api_config.dart';
 import 'package:dishdive/Components/Cards/card_favorites.dart';
+import 'package:dishdive/provider/token_provider.dart';
+import 'package:provider/provider.dart';
 
 class ListFavoritesWidget extends StatefulWidget {
   const ListFavoritesWidget({super.key});
@@ -10,15 +14,96 @@ class ListFavoritesWidget extends StatefulWidget {
 }
 
 class _ListFavoritesWidgetState extends State<ListFavoritesWidget> {
-  // Example data
-  final List<Map<String, dynamic>> favorites = [
-    {"name": "Grilled fish set", "percent": 83, "tags": "Japanese, Salty"},
-    {"name": "Beef stew", "percent": 75, "tags": "French, Salty"},
-    {"name": "Grilled squid", "percent": 90, "tags": "Thai, Salty"},
-    {"name": "Thai sweet pork", "percent": 80, "tags": "Thai, Sweet"},
-  ];
-
+  List<Map<String, dynamic>> favorites = [];
+  bool isLoading = true;
   int? pendingDeleteIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchFavorites();
+  }
+
+  // Public method to refresh favorites
+  void refreshFavorites() {
+    fetchFavorites();
+  }
+
+  Future<void> fetchFavorites() async {
+    final token = Provider.of<TokenProvider>(context, listen: false).token;
+    final userId = Provider.of<TokenProvider>(context, listen: false).userId;
+    
+    if (token == null || userId == null) {
+      setState(() {
+        isLoading = false;
+      });
+      return;
+    }
+
+    try {
+      Dio dio = Dio();
+      final response = await dio.get(
+        ApiConfig.getFavoriteDishesEndpoint(userId),
+        options: Options(headers: ApiConfig.authHeaders(token)),
+      );
+
+      if (response.statusCode == 200) {
+        final List<dynamic> favoritesData = response.data;
+        setState(() {
+          favorites = favoritesData.map((dish) => {
+            'dish_id': dish['dish_id'],
+            'name': dish['dish_name'] ?? 'Unknown Dish',
+            'percent': (dish['sentiment_score'] ?? 0.0).round(),
+            'tags': dish['cuisine'] ?? 'Unknown',
+            'imageUrl': dish['image_link'] ?? '',
+            'prominentFlavor': dish['prominent_flavor'],
+          }).toList();
+          isLoading = false;
+        });
+      }
+    } catch (e) {
+      print('Error fetching favorites: $e');
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  Future<void> removeFavorite(int dishId) async {
+    final token = Provider.of<TokenProvider>(context, listen: false).token;
+    final userId = Provider.of<TokenProvider>(context, listen: false).userId;
+    
+    if (token == null || userId == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Authentication error. Please login again.')),
+      );
+      return;
+    }
+
+    try {
+      Dio dio = Dio();
+      final response = await dio.delete(
+        ApiConfig.removeFavoriteEndpoint,
+        data: {
+          'user_id': userId,
+          'dish_id': dishId,
+        },
+        options: Options(headers: ApiConfig.authHeaders(token)),
+      );
+
+      if (response.statusCode == 200) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Removed from favorites')),
+        );
+        fetchFavorites(); // Refresh the list
+      }
+    } catch (e) {
+      print('Error removing favorite: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Failed to remove from favorites')),
+      );
+    }
+  }
 
   void _showDeleteDialog(int index) {
     setState(() {
@@ -77,12 +162,13 @@ class _ListFavoritesWidgetState extends State<ListFavoritesWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         ElevatedButton(
-                          onPressed: () {
+                          onPressed: () async {
+                            Navigator.of(context).pop();
+                            final dishId = favorites[index]['dish_id'];
+                            await removeFavorite(dishId);
                             setState(() {
-                              favorites.removeAt(index);
                               pendingDeleteIndex = null;
                             });
-                            Navigator.of(context).pop();
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: colorUse.activeButton,
@@ -136,6 +222,25 @@ class _ListFavoritesWidgetState extends State<ListFavoritesWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isLoading) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+
+    if (favorites.isEmpty) {
+      return const Center(
+        child: Text(
+          'No favorite dishes yet',
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.white,
+            fontFamily: 'InriaSans',
+          ),
+        ),
+      );
+    }
+
     return ListView.builder(
       padding: const EdgeInsets.all(10),
       itemCount: favorites.length,
@@ -145,6 +250,7 @@ class _ListFavoritesWidgetState extends State<ListFavoritesWidget> {
           name: fav["name"],
           percent: fav["percent"],
           tags: fav["tags"],
+          imageUrl: fav["imageUrl"],
           onDelete: () => _showDeleteDialog(index),
         );
       },

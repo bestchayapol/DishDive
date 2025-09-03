@@ -28,12 +28,71 @@ class _AddImageState extends State<AddImage> {
 
   Future<void> _pickImage() async {
     final picker = ImagePicker();
-    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
-    if (image != null) {
-      setState(() {
-        _imageFile = File(image.path);
-      });
-      widget.onImageSelected(_imageFile!);
+    
+    // Show dialog to choose between camera and gallery
+    final ImageSource? source = await showDialog<ImageSource>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Select Image Source'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.photo_library),
+              title: const Text('Gallery'),
+              onTap: () => Navigator.pop(context, ImageSource.gallery),
+            ),
+            ListTile(
+              leading: const Icon(Icons.camera_alt),
+              title: const Text('Camera'),
+              onTap: () => Navigator.pop(context, ImageSource.camera),
+            ),
+          ],
+        ),
+      ),
+    );
+
+    if (source != null) {
+      try {
+        final XFile? image = await picker.pickImage(
+          source: source,
+          maxWidth: 1024,
+          maxHeight: 1024,
+          imageQuality: 85,
+        );
+        
+        if (image != null) {
+          final File imageFile = File(image.path);
+          
+          // Check file size (limit to 5MB)
+          final int fileSizeInBytes = await imageFile.length();
+          const int maxSizeInBytes = 5 * 1024 * 1024; // 5MB
+          
+          if (fileSizeInBytes > maxSizeInBytes) {
+            if (mounted) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Image size must be less than 5MB'),
+                ),
+              );
+            }
+            return;
+          }
+          
+          setState(() {
+            _imageFile = imageFile;
+          });
+          widget.onImageSelected(_imageFile!);
+        }
+      } catch (e) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Failed to pick image. Please try again.'),
+            ),
+          );
+        }
+      }
     }
   }
 

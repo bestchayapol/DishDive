@@ -5,6 +5,7 @@ class FavoriteCard extends StatelessWidget {
   final String name;
   final int percent;
   final String tags;
+  final String? imageUrl;
   final VoidCallback onDelete;
 
   const FavoriteCard({
@@ -12,6 +13,7 @@ class FavoriteCard extends StatelessWidget {
     required this.name,
     required this.percent,
     required this.tags,
+    this.imageUrl,
     required this.onDelete,
   });
 
@@ -34,7 +36,20 @@ class FavoriteCard extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.grey[400],
               borderRadius: BorderRadius.circular(10),
+              image: imageUrl != null && imageUrl!.isNotEmpty
+                  ? DecorationImage(
+                      image: NetworkImage(imageUrl!),
+                      fit: BoxFit.cover,
+                    )
+                  : null,
             ),
+            child: imageUrl == null || imageUrl!.isEmpty
+                ? const Icon(
+                    Icons.restaurant,
+                    color: Colors.white,
+                    size: 30,
+                  )
+                : null,
           ),
           // Dish info
           Expanded(

@@ -47,6 +47,7 @@ type Keyword struct {
 	KeywordID uint   `gorm:"column:keyword_id;primaryKey;autoIncrement" json:"keyword_id"`
 	Keyword   string `gorm:"column:keyword;size:100;not null" json:"keyword"`
 	Category  string `gorm:"column:category;size:100" json:"category,omitempty"`
+	Sentiment string `gorm:"column:sentiment;size:50" json:"sentiment,omitempty"`
 }
 
 type KeywordAlias struct {
@@ -58,6 +59,11 @@ type KeywordAlias struct {
 type Favorite struct {
 	UserID uint `gorm:"column:user_id;not null;index" json:"user_id"`
 	DishID uint `gorm:"column:dish_id;not null;index" json:"dish_id"`
+}
+
+type CuisineImage struct {
+	KeywordID       uint   `gorm:"column:keyword_id;primaryKey;not null" json:"keyword_id"`
+	CuisineImageURL string `gorm:"column:cuisine_image_url;size:255;not null" json:"cuisine_image_url"`
 }
 
 type DishKeyword struct {
