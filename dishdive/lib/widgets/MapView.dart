@@ -3,7 +3,14 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:dishdive/Pages/Restaurant/RestaurantPage.dart';
 
 class MapViewWidget extends StatefulWidget {
-  const MapViewWidget({super.key});
+  final List<Map<String, dynamic>> restaurants;
+  final bool isLoading;
+
+  const MapViewWidget({
+    super.key,
+    required this.restaurants,
+    this.isLoading = false,
+  });
 
   @override
   State<MapViewWidget> createState() => _MapViewWidgetState();
@@ -12,25 +19,26 @@ class MapViewWidget extends StatefulWidget {
 class _MapViewWidgetState extends State<MapViewWidget> {
   late GoogleMapController mapController;
 
-  // Example restaurant data with coordinates
-  final List<Map<String, dynamic>> restaurants = [
-    {"name": "Alfredo's Seafood", "lat": 13.7563, "lng": 100.5018},
-    {"name": "Nayeon BBQ", "lat": 13.7570, "lng": 100.5025},
-    // Add more restaurants here...
-  ];
-
   Set<Marker> getMarkers(BuildContext context) {
-    return restaurants.map((r) {
+    return widget.restaurants.map((r) {
       return Marker(
-        markerId: MarkerId(r["name"]),
-        position: LatLng(r["lat"], r["lng"]),
-        icon: BitmapDescriptor.defaultMarker, // Use a generic asset
+        markerId: MarkerId(r["name"] ?? "restaurant"),
+        position: LatLng(
+          (r["lat"] ?? 13.7563).toDouble(), 
+          (r["lng"] ?? 100.5018).toDouble()
+        ),
+        icon: BitmapDescriptor.defaultMarker,
         infoWindow: InfoWindow(
-          title: r["name"],
+          title: r["name"] ?? "Restaurant",
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const RestaurantPage()),
+              MaterialPageRoute(
+                builder: (_) => RestaurantPage(
+                  restaurantId: r["id"],
+                  restaurantName: r["name"],
+                ),
+              ),
             );
           },
         ),
@@ -40,9 +48,32 @@ class _MapViewWidgetState extends State<MapViewWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.isLoading) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+
+    if (widget.restaurants.isEmpty) {
+      return const Center(
+        child: Text(
+          'No restaurants found',
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.white,
+          ),
+        ),
+      );
+    }
+
+    // Get initial position from first restaurant or default to Bangkok
+    final firstRestaurant = widget.restaurants.isNotEmpty ? widget.restaurants.first : null;
+    final initialLat = firstRestaurant?["lat"]?.toDouble() ?? 13.7563;
+    final initialLng = firstRestaurant?["lng"]?.toDouble() ?? 100.5018;
+
     return GoogleMap(
       initialCameraPosition: CameraPosition(
-        target: LatLng(13.7563, 100.5018), // Center on first restaurant
+        target: LatLng(initialLat, initialLng),
         zoom: 14,
       ),
       markers: getMarkers(context),

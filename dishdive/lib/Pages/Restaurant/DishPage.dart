@@ -9,7 +9,14 @@ import 'package:dishdive/provider/token_provider.dart';
 import 'package:provider/provider.dart';
 
 class DishPage extends StatefulWidget {
-  const DishPage({super.key});
+  final int dishId;
+  final String dishName;
+
+  const DishPage({
+    super.key,
+    required this.dishId,
+    required this.dishName,
+  });
 
   @override
   State<DishPage> createState() => _DishPageState();

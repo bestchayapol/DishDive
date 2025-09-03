@@ -27,6 +27,7 @@ type FoodRepository interface {
 
 	// Dish-keyword mapping
 	GetKeywordsByDish(dishID uint) ([]entities.Keyword, error)
+	GetProminentFlavorByDish(dishID uint) (*string, error)
 
 	// Image-related
 	GetCuisineImageByCuisine(cuisine string) (string, error)

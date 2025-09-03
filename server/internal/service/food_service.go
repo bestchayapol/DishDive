@@ -113,6 +113,47 @@ func (s *foodService) GetRestaurantList() ([]dtos.RestaurantListItemResponse, er
 	return resp, nil
 }
 
+func (s *foodService) GetRestaurantMenu(resID uint, userID uint) ([]dtos.RestaurantMenuItemResponse, error) {
+	dishes, err := s.foodRepo.GetDishesByRestaurant(resID)
+	if err != nil {
+		return nil, err
+	}
+
+	var resp []dtos.RestaurantMenuItemResponse
+	for _, dish := range dishes {
+		// Get cuisine image
+		var imageLink *string
+		if dish.Cuisine != nil {
+			imageURL, err := s.foodRepo.GetCuisineImageByCuisine(*dish.Cuisine)
+			if err == nil && imageURL != "" {
+				imageLink = &imageURL
+			}
+		}
+
+		// Get prominent flavor
+		prominentFlavor, err := s.foodRepo.GetProminentFlavorByDish(dish.DishID)
+		if err != nil {
+			prominentFlavor = nil // Set to nil if error
+		}
+
+		// Check if favorite
+		isFav, _ := s.foodRepo.IsFavoriteDish(userID, dish.DishID)
+
+		resp = append(resp, dtos.RestaurantMenuItemResponse{
+			DishID:          dish.DishID,
+			DishName:        dish.DishName,
+			ImageLink:       imageLink,
+			SentimentScore:  dish.TotalScore,
+			Cuisine:         dish.Cuisine,
+			ProminentFlavor: prominentFlavor,
+			IsFavorite:      isFav,
+			RecommendScore:  0.0, // TODO: Calculate if needed for restaurant menu
+		})
+	}
+
+	return resp, nil
+}
+
 func (s *foodService) GetDishDetail(dishID uint, userID uint) (dtos.DishDetailResponse, error) {
 	dish, err := s.foodRepo.GetDishByID(dishID)
 	if err != nil {

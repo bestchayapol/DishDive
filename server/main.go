@@ -128,6 +128,7 @@ func main() {
 	// Food endpoints
 	app.Post("/SearchRestaurantsByDish", foodHandler.SearchRestaurantsByDish)
 	app.Get("/GetRestaurantList", foodHandler.GetRestaurantList)
+	app.Get("/GetRestaurantMenu/:resID", foodHandler.GetRestaurantMenu)           // requires ?userID=
 	app.Get("/GetRestaurantLocations/:resID", foodHandler.GetRestaurantLocations) // requires ?user_lat=&user_lng= ; untested// requires ?userID=
 	app.Get("/GetDishDetail/:dishID", foodHandler.GetDishDetail)                  // requires ?userID=
 	app.Get("/GetFavoriteDishes/:userID", foodHandler.GetFavoriteDishes)

@@ -113,6 +113,36 @@ func (r *foodRepositoryDB) GetKeywordsByDish(dishID uint) ([]entities.Keyword, e
 	return keywords, result.Error
 }
 
+// Get prominent flavor for a dish (highest frequency flavor keyword)
+func (r *foodRepositoryDB) GetProminentFlavorByDish(dishID uint) (*string, error) {
+	var result struct {
+		Keyword string `json:"keyword"`
+	}
+
+	query := `
+		SELECT k.keyword
+		FROM keyword k
+		JOIN dish_keyword dk ON k.keyword_id = dk.keyword_id
+		WHERE dk.dish_id = ? AND LOWER(k.category) = 'flavor'
+		ORDER BY dk.frequency DESC
+		LIMIT 1
+	`
+
+	err := r.db.Raw(query, dishID).Scan(&result).Error
+	if err != nil {
+		if err == gorm.ErrRecordNotFound {
+			return nil, nil // No flavor found
+		}
+		return nil, err
+	}
+
+	if result.Keyword == "" {
+		return nil, nil
+	}
+
+	return &result.Keyword, nil
+}
+
 // Get cuisine image URL by cuisine name
 func (r *foodRepositoryDB) GetCuisineImageByCuisine(cuisine string) (string, error) {
 	var cuisineImage entities.CuisineImage

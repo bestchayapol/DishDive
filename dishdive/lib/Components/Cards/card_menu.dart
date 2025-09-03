@@ -2,19 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:dishdive/Utils/color_use.dart';
 
 class MenuCard extends StatefulWidget {
+  final int dishId;
   final String imagePath;
   final String dishName;
   final String cuisine;
   final String taste;
   final int ratingPercent;
+  final bool isFavorite;
+  final Function(bool)? onFavoriteToggle;
 
   const MenuCard({
     super.key,
+    required this.dishId,
     required this.imagePath,
     required this.dishName,
     required this.cuisine,
     required this.taste,
     required this.ratingPercent,
+    this.isFavorite = false,
+    this.onFavoriteToggle,
   });
 
   @override
@@ -22,7 +28,21 @@ class MenuCard extends StatefulWidget {
 }
 
 class _MenuCardState extends State<MenuCard> {
-  bool isFavorite = false;
+  late bool isFavorite;
+
+  @override
+  void initState() {
+    super.initState();
+    isFavorite = widget.isFavorite;
+  }
+
+  @override
+  void didUpdateWidget(MenuCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.isFavorite != widget.isFavorite) {
+      isFavorite = widget.isFavorite;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +74,63 @@ class _MenuCardState extends State<MenuCard> {
                     height: 100,
                     width: double.infinity,
                     color: Colors.grey[400],
+                    child: widget.imagePath.startsWith('http')
+                        ? Image.network(
+                            widget.imagePath,
+                            height: 100,
+                            width: double.infinity,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Container(
+                                height: 100,
+                                width: double.infinity,
+                                color: Colors.grey[400],
+                                child: Icon(
+                                  Icons.restaurant,
+                                  color: Colors.grey[600],
+                                  size: 40,
+                                ),
+                              );
+                            },
+                            loadingBuilder: (context, child, loadingProgress) {
+                              if (loadingProgress == null) return child;
+                              return Container(
+                                height: 100,
+                                width: double.infinity,
+                                color: Colors.grey[400],
+                                child: Center(
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    valueColor: AlwaysStoppedAnimation<Color>(Colors.grey[600]!),
+                                  ),
+                                ),
+                              );
+                            },
+                          )
+                        : widget.imagePath.isNotEmpty
+                            ? Image.asset(
+                                widget.imagePath,
+                                height: 100,
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) {
+                                  return Container(
+                                    height: 100,
+                                    width: double.infinity,
+                                    color: Colors.grey[400],
+                                    child: Icon(
+                                      Icons.restaurant,
+                                      color: Colors.grey[600],
+                                      size: 40,
+                                    ),
+                                  );
+                                },
+                              )
+                            : Icon(
+                                Icons.restaurant,
+                                color: Colors.grey[600],
+                                size: 40,
+                              ),
                   ),
                 ),
                 Positioned(
@@ -64,6 +141,7 @@ class _MenuCardState extends State<MenuCard> {
                       setState(() {
                         isFavorite = !isFavorite;
                       });
+                      widget.onFavoriteToggle?.call(isFavorite);
                     },
                     child: Container(
                       width: 32,

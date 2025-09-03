@@ -26,6 +26,7 @@ class ApiConfig {
   // ================== Food Endpoints ==================
   static const String searchRestaurantsByDishEndpoint = '$baseUrl/SearchRestaurantsByDish';
   static const String getRestaurantListEndpoint = '$baseUrl/GetRestaurantList';
+  static String getRestaurantMenuEndpoint(int resId) => '$baseUrl/GetRestaurantMenu/$resId';
   static String getRestaurantLocationsEndpoint(int resId) => '$baseUrl/GetRestaurantLocations/$resId';
   static String getDishDetailEndpoint(int dishId) => '$baseUrl/GetDishDetail/$dishId';
   static String getFavoriteDishesEndpoint(int userId) => '$baseUrl/GetFavoriteDishes/$userId';

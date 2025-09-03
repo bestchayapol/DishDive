@@ -8,7 +8,14 @@ import 'package:dishdive/provider/token_provider.dart';
 import 'package:provider/provider.dart';
 
 class RestaurantPage extends StatefulWidget {
-  const RestaurantPage({super.key});
+  final int restaurantId;
+  final String restaurantName;
+
+  const RestaurantPage({
+    super.key,
+    required this.restaurantId,
+    required this.restaurantName,
+  });
 
   @override
   State<RestaurantPage> createState() => _RestaurantPageState();
@@ -82,7 +89,7 @@ class _RestaurantPageState extends State<RestaurantPage>
                 // Restaurant name (centered)
                 Expanded(
                   child: Text(
-                    "Restaurant Name",
+                    widget.restaurantName,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontFamily: 'InriaSans',
@@ -156,8 +163,12 @@ class _RestaurantPageState extends State<RestaurantPage>
               ),
             ),
           ),
-          // Vertical grid of grey rectangles as placeholders for menu cards
-          Expanded(child: ListDishesGrid()),
+          Expanded(
+            child: ListDishesGrid(
+              restaurantId: widget.restaurantId,
+              restaurantName: widget.restaurantName,
+            ),
+          ),
         ],
       ),
     );

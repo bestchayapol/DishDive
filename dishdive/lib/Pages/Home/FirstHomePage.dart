@@ -91,13 +91,21 @@ class _FirstHomePageState extends State<FirstHomePage>
       if (response.statusCode == 200) {
         final List<dynamic> restaurantData = response.data;
         setState(() {
-          restaurants = restaurantData.map((restaurant) => {
-            'id': restaurant['res_id'],
-            'name': restaurant['res_name'] ?? 'Unknown Restaurant',
-            'cuisine': restaurant['cuisine'] ?? 'Mixed',
-            'distance': '${(restaurant['locations'] as List).isNotEmpty ? '0.5' : '0.0'} km away', // Placeholder since distance calculation needs user location
-            'imageUrl': restaurant['image_link'] ?? '',
-            'locations': restaurant['locations'] ?? [],
+          restaurants = restaurantData.map((restaurant) {
+            final locations = restaurant['locations'] as List? ?? [];
+            final firstLocation = locations.isNotEmpty ? locations.first : null;
+            
+            return {
+              'id': restaurant['res_id'],
+              'name': restaurant['res_name'] ?? 'Unknown Restaurant',
+              'cuisine': restaurant['cuisine'] ?? 'Mixed',
+              'distance': '${locations.isNotEmpty ? '0.5' : '0.0'} km away', // Placeholder since distance calculation needs user location
+              'imageUrl': restaurant['image_link'] ?? '',
+              'locations': locations,
+              // Extract coordinates from first location for map display
+              'lat': firstLocation?['latitude']?.toDouble(),
+              'lng': firstLocation?['longitude']?.toDouble(),
+            };
           }).toList();
           isLoadingRestaurants = false;
         });
@@ -137,13 +145,21 @@ class _FirstHomePageState extends State<FirstHomePage>
       if (response.statusCode == 200) {
         final List<dynamic> searchResults = response.data;
         setState(() {
-          restaurants = searchResults.map((restaurant) => {
-            'id': restaurant['res_id'],
-            'name': restaurant['res_name'] ?? 'Unknown Restaurant',
-            'cuisine': restaurant['cuisine'] ?? 'Mixed',
-            'distance': '${restaurant['distance']?.toStringAsFixed(1) ?? '0.0'} km away',
-            'imageUrl': restaurant['image_link'] ?? '',
-            'location': restaurant['location'] ?? {},
+          restaurants = searchResults.map((restaurant) {
+            final location = restaurant['location'] ?? {};
+            
+            return {
+              'id': restaurant['res_id'],
+              'name': restaurant['res_name'] ?? 'Unknown Restaurant',
+              'cuisine': restaurant['cuisine'] ?? 'Mixed',
+              'distance': '${restaurant['distance']?.toStringAsFixed(1) ?? '0.0'} km away',
+              'imageUrl': restaurant['image_link'] ?? '',
+              'location': location,
+              'locations': [location], // Convert single location to array format for consistency
+              // Extract coordinates for map display
+              'lat': location['latitude']?.toDouble(),
+              'lng': location['longitude']?.toDouble(),
+            };
           }).toList();
           isSearching = false;
         });
@@ -335,7 +351,10 @@ class _FirstHomePageState extends State<FirstHomePage>
                   restaurants: restaurants,
                   isLoading: isLoadingRestaurants || isSearching,
                 ),
-                const MapViewWidget(),
+                MapViewWidget(
+                  restaurants: restaurants,
+                  isLoading: isLoadingRestaurants || isSearching,
+                ),
               ],
             ),
           ),

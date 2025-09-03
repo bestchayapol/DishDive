@@ -45,7 +45,12 @@ class ListViewWidget extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const RestaurantPage()),
+              MaterialPageRoute(
+                builder: (_) => RestaurantPage(
+                  restaurantId: r["id"],
+                  restaurantName: r["name"]!,
+                ),
+              ),
             );
           },
         );
