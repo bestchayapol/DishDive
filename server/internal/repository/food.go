@@ -4,6 +4,13 @@ import (
 	"github.com/bestchayapol/DishDive/internal/entities"
 )
 
+// Custom struct for dish keywords with frequency data
+type DishKeywordWithFrequency struct {
+	Keyword   string `json:"keyword"`
+	Category  string `json:"category"`
+	Frequency int    `json:"frequency"`
+}
+
 type FoodRepository interface {
 	// Restaurant-related
 	GetAllRestaurants() ([]entities.Restaurant, error)
@@ -28,6 +35,8 @@ type FoodRepository interface {
 	// Dish-keyword mapping
 	GetKeywordsByDish(dishID uint) ([]entities.Keyword, error)
 	GetProminentFlavorByDish(dishID uint) (*string, error)
+	GetTopKeywordsByDishWithFrequency(dishID uint) ([]DishKeywordWithFrequency, error)
+	GetReviewCountsByDish(dishID uint) (positiveReviews int, totalReviews int, err error)
 
 	// Image-related
 	GetCuisineImageByCuisine(cuisine string) (string, error)

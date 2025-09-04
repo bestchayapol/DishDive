@@ -1,4 +1,4 @@
-// This is a basic Flutter widget test.
+// This is a basic Flutter widget test for DishDive app.
 //
 // To perform an interaction with a widget in your test, use the WidgetTester
 // utility in the flutter_test package. For example, you can send tap and scroll
@@ -7,24 +7,44 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:provider/provider.dart';
 
 import 'package:dishdive/main.dart';
+import 'package:dishdive/provider/token_provider.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('DishDive app initializes correctly', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context) => TokenProvider()),
+          ChangeNotifierProvider(create: (context) => WelcomeProvider()),
+        ],
+        child: const MainApp(),
+      ),
+    );
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Wait for the app to settle
+    await tester.pumpAndSettle();
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Verify that the app loads without crashing
+    // Since the app shows different screens based on authentication state,
+    // we just verify that a MaterialApp is rendered
+    expect(find.byType(MaterialApp), findsOneWidget);
+  });
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  testWidgets('TokenProvider initializes correctly', (WidgetTester tester) async {
+    // Test that TokenProvider can be created without errors
+    final tokenProvider = TokenProvider();
+    expect(tokenProvider.isAuthenticated, false);
+    expect(tokenProvider.token, null);
+    expect(tokenProvider.userId, null);
+  });
+
+  testWidgets('WelcomeProvider initializes correctly', (WidgetTester tester) async {
+    // Test that WelcomeProvider can be created without errors
+    final welcomeProvider = WelcomeProvider();
+    expect(welcomeProvider.isWelcomeShown, false);
   });
 }

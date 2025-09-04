@@ -3,6 +3,7 @@ import 'package:dishdive/Utils/color_use.dart';
 import 'package:dishdive/Widgets/keywords_section.dart';
 
 class CardDetails extends StatefulWidget {
+  final int dishId;
   final String imagePath;
   final String dishName;
   final String cuisine;
@@ -11,9 +12,12 @@ class CardDetails extends StatefulWidget {
   final int positiveReviews;
   final int totalReviews;
   final List<Map<String, dynamic>> keywords;
+  final bool isFavorite;
+  final VoidCallback? onFavoriteToggle;
 
   const CardDetails({
     super.key,
+    required this.dishId,
     required this.imagePath,
     required this.dishName,
     required this.cuisine,
@@ -22,6 +26,8 @@ class CardDetails extends StatefulWidget {
     required this.positiveReviews,
     required this.totalReviews,
     required this.keywords,
+    this.isFavorite = false,
+    this.onFavoriteToggle,
   });
 
   @override
@@ -29,7 +35,21 @@ class CardDetails extends StatefulWidget {
 }
 
 class _CardDetailsState extends State<CardDetails> {
-  bool isFavorite = false;
+  late bool isFavorite;
+
+  @override
+  void initState() {
+    super.initState();
+    isFavorite = widget.isFavorite;
+  }
+
+  @override
+  void didUpdateWidget(CardDetails oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.isFavorite != widget.isFavorite) {
+      isFavorite = widget.isFavorite;
+    }
+  }
 
   void _showKeywordModal(BuildContext context, String label, int count) {
     showDialog(
@@ -92,6 +112,63 @@ class _CardDetailsState extends State<CardDetails> {
                   height: 180,
                   width: double.infinity,
                   color: Colors.grey[400],
+                  child: widget.imagePath.startsWith('http')
+                      ? Image.network(
+                          widget.imagePath,
+                          height: 180,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Container(
+                              height: 180,
+                              width: double.infinity,
+                              color: Colors.grey[400],
+                              child: Icon(
+                                Icons.restaurant,
+                                color: Colors.grey[600],
+                                size: 60,
+                              ),
+                            );
+                          },
+                          loadingBuilder: (context, child, loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return Container(
+                              height: 180,
+                              width: double.infinity,
+                              color: Colors.grey[400],
+                              child: Center(
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  valueColor: AlwaysStoppedAnimation<Color>(Colors.grey[600]!),
+                                ),
+                              ),
+                            );
+                          },
+                        )
+                      : widget.imagePath.isNotEmpty
+                          ? Image.asset(
+                              widget.imagePath,
+                              height: 180,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) {
+                                return Container(
+                                  height: 180,
+                                  width: double.infinity,
+                                  color: Colors.grey[400],
+                                  child: Icon(
+                                    Icons.restaurant,
+                                    color: Colors.grey[600],
+                                    size: 60,
+                                  ),
+                                );
+                              },
+                            )
+                          : Icon(
+                              Icons.restaurant,
+                              color: Colors.grey[600],
+                              size: 60,
+                            ),
                 ),
               ),
               Positioned(
@@ -102,6 +179,7 @@ class _CardDetailsState extends State<CardDetails> {
                     setState(() {
                       isFavorite = !isFavorite;
                     });
+                    widget.onFavoriteToggle?.call();
                   },
                   child: Container(
                     width: 36,

@@ -204,6 +204,7 @@ class _ListDishesGridState extends State<ListDishesGrid> {
                 builder: (_) => DishPage(
                   dishId: dish.dishId,
                   dishName: dish.dishName,
+                  restaurantId: widget.restaurantId,
                 ),
               ),
             );

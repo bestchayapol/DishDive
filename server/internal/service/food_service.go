@@ -1,7 +1,9 @@
 package service
 
 import (
+	"fmt"
 	"math"
+	"strings"
 
 	"github.com/bestchayapol/DishDive/internal/dtos"
 	"github.com/bestchayapol/DishDive/internal/entities"
@@ -169,15 +171,56 @@ func (s *foodService) GetDishDetail(dishID uint, userID uint) (dtos.DishDetailRe
 		}
 	}
 
+	// Get prominent flavor
+	prominentFlavor, err := s.foodRepo.GetProminentFlavorByDish(dishID)
+	if err != nil {
+		prominentFlavor = nil
+	}
+
+	// Get review counts
+	positiveReviews, totalReviews, err := s.foodRepo.GetReviewCountsByDish(dishID)
+	if err != nil {
+		positiveReviews, totalReviews = 0, 0
+	}
+
+	// Get top keywords by category
+	keywords, err := s.foodRepo.GetTopKeywordsByDishWithFrequency(dishID)
+	topKeywords := make(map[string][]string)
+	if err == nil {
+		flavorKeywords := []string{}
+		costKeywords := []string{}
+		generalKeywords := []string{}
+
+		for _, kw := range keywords {
+			keywordWithCount := kw.Keyword + " (" + fmt.Sprintf("%d", kw.Frequency) + ")"
+			switch strings.ToLower(kw.Category) {
+			case "flavor", "taste":
+				flavorKeywords = append(flavorKeywords, keywordWithCount)
+			case "cost", "price":
+				costKeywords = append(costKeywords, keywordWithCount)
+			default:
+				generalKeywords = append(generalKeywords, keywordWithCount)
+			}
+		}
+
+		topKeywords["flavor"] = flavorKeywords
+		topKeywords["cost"] = costKeywords
+		topKeywords["general"] = generalKeywords
+	}
+
+	// Check if favorite
 	isFav, _ := s.foodRepo.IsFavoriteDish(userID, dishID)
+
 	return dtos.DishDetailResponse{
 		DishID:          dish.DishID,
 		DishName:        dish.DishName,
 		ImageLink:       imageLink,
 		SentimentScore:  dish.TotalScore,
+		PositiveReviews: positiveReviews,
+		TotalReviews:    totalReviews,
 		Cuisine:         dish.Cuisine,
-		ProminentFlavor: nil,                   // Fill as needed
-		TopKeywords:     map[string][]string{}, // Fill as needed
+		ProminentFlavor: prominentFlavor,
+		TopKeywords:     topKeywords,
 		IsFavorite:      isFav,
 	}, nil
 }

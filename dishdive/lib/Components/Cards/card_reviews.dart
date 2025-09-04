@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:dishdive/Utils/color_use.dart';
+import 'package:dishdive/models/review_models.dart';
 
 class CardReviews extends StatelessWidget {
   final TextEditingController reviewController;
+  final DishReviewPageResponse dishData;
 
-  const CardReviews({super.key, required this.reviewController});
+  const CardReviews({
+    super.key, 
+    required this.reviewController,
+    required this.dishData,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +26,7 @@ class CardReviews extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Grey rectangle instead of image
+              // Dish image or grey placeholder
               Container(
                 height: 180,
                 width: double.infinity,
@@ -28,14 +34,55 @@ class CardReviews extends StatelessWidget {
                   color: Colors.grey[400],
                   borderRadius: BorderRadius.circular(12),
                 ),
+                child: dishData.imageLink != null && dishData.imageLink!.isNotEmpty
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Image.network(
+                          dishData.imageLink!,
+                          width: double.infinity,
+                          height: 180,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Container(
+                              color: Colors.grey[400],
+                              child: const Icon(
+                                Icons.broken_image,
+                                color: Colors.white,
+                                size: 50,
+                              ),
+                            );
+                          },
+                        ),
+                      )
+                    : Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey[400],
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: const Center(
+                          child: Icon(
+                            Icons.restaurant,
+                            color: Colors.white,
+                            size: 50,
+                          ),
+                        ),
+                      ),
               ),
               const SizedBox(height: 8),
-              const Text(
-                "Fried rice",
-                style: TextStyle(
+              Text(
+                dishData.dishName,
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                   color: Colors.black,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                dishData.resName,
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: Colors.grey,
                 ),
               ),
             ],
