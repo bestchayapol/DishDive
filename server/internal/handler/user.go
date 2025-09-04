@@ -2,6 +2,7 @@ package handler
 
 import (
 	"errors"
+	"fmt"
 	"strconv"
 	"strings"
 
@@ -157,18 +158,53 @@ func (h *userHandler) GetEditUserProfileByUserId(c *fiber.Ctx) error {
 
 func (h *userHandler) PatchEditUserProfileByUserId(c *fiber.Ctx) error {
 	userIDReceive, err := strconv.Atoi(c.Params("UserID"))
-
-	var req dtos.EditUserProfileByUserIdRequest
-	if err := c.BodyParser(&req); err != nil {
-		return err
+	if err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, "Invalid user ID")
 	}
+
+	// Handle both form data (with potential file upload) and JSON
+	username := c.FormValue("user_name")
+
+	fmt.Printf("DEBUG: Received username: '%s'\n", username)
+
+	var imageURL *string
+
+	// Check if a file is uploaded
+	file, err := c.FormFile("file")
+	if err == nil && file != nil {
+		fmt.Printf("DEBUG: File uploaded: %s\n", file.Filename)
+		// File uploaded, use upload service
+		uploadedURL, uploadErr := h.uploadSer.UploadFile(file)
+		if uploadErr != nil {
+			return fiber.NewError(fiber.StatusInternalServerError, "Failed to upload image")
+		}
+		imageURL = uploadedURL
+		fmt.Printf("DEBUG: Image URL generated: %s\n", *imageURL)
+	} else {
+		fmt.Printf("DEBUG: No file uploaded\n")
+	}
+
+	// Allow username-only updates (remove the validation that blocks empty imageURL)
+	// Create request object - only include fields that are provided
+	req := dtos.EditUserProfileByUserIdRequest{}
+	if username != "" {
+		req.Username = &username
+		fmt.Printf("DEBUG: Setting username in request\n")
+	}
+	if imageURL != nil {
+		req.ImageLink = imageURL
+		fmt.Printf("DEBUG: Setting image URL in request\n")
+	}
+
+	fmt.Printf("DEBUG: About to call service layer\n")
 
 	user, err := h.userSer.PatchEditUserProfileByUserId(userIDReceive, req)
 	if err != nil {
 		return err
 	}
 
-	userResponse := dtos.EditUserProfileByUserIdRequest{
+	userResponse := dtos.EditUserProfileByUserIdResponse{
+		UserID:    user.UserID,
 		Username:  user.Username,
 		ImageLink: user.ImageLink,
 	}

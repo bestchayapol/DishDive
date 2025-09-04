@@ -7,6 +7,10 @@ type User struct {
 	PasswordHash string  `gorm:"column:password_hash;size:255;not null" json:"password_hash"`
 }
 
+func (User) TableName() string {
+	return "users"
+}
+
 type Restaurant struct {
 	ResID          uint    `gorm:"column:res_id;primaryKey;autoIncrement" json:"res_id"`
 	ResName        string  `gorm:"column:res_name;size:255;not null;unique" json:"res_name"`
@@ -17,6 +21,10 @@ type Restaurant struct {
 	TotalRev       int     `gorm:"column:total_rev;not null" json:"total_rev"`
 }
 
+func (Restaurant) TableName() string {
+	return "restaurants"
+}
+
 type RestaurantLocation struct {
 	RLID         uint    `gorm:"column:rl_id;primaryKey;autoIncrement" json:"rl_id"`
 	ResID        uint    `gorm:"column:res_id;not null;index" json:"res_id"`
@@ -24,6 +32,10 @@ type RestaurantLocation struct {
 	Address      string  `gorm:"column:address;size:255" json:"address,omitempty"`
 	Latitude     float64 `gorm:"column:latitude" json:"latitude"`
 	Longitude    float64 `gorm:"column:longitude" json:"longitude"`
+}
+
+func (RestaurantLocation) TableName() string {
+	return "restaurant_locations"
 }
 
 type Dish struct {
@@ -37,10 +49,18 @@ type Dish struct {
 	TotalScore    float64 `gorm:"column:total_score;not null" json:"total_score"`
 }
 
+func (Dish) TableName() string {
+	return "dishes"
+}
+
 type DishAlias struct {
 	DAID    uint   `gorm:"column:da_id;primaryKey;autoIncrement" json:"da_id"`
 	DishID  uint   `gorm:"column:dish_id;not null;index" json:"dish_id"`
 	AltName string `gorm:"column:alt_name;size:255;not null" json:"alt_name"`
+}
+
+func (DishAlias) TableName() string {
+	return "dish_aliases"
 }
 
 type Keyword struct {
@@ -50,10 +70,18 @@ type Keyword struct {
 	Sentiment string `gorm:"column:sentiment;size:50" json:"sentiment,omitempty"`
 }
 
+func (Keyword) TableName() string {
+	return "keywords"
+}
+
 type KeywordAlias struct {
 	KAID      uint   `gorm:"column:ka_id;primaryKey;autoIncrement" json:"ka_id"`
 	KeywordID uint   `gorm:"column:keyword_id;not null;index" json:"keyword_id"`
 	AltWord   string `gorm:"column:alt_word;size:100;not null" json:"alt_word"`
+}
+
+func (KeywordAlias) TableName() string {
+	return "keyword_aliases"
 }
 
 type Favorite struct {
@@ -61,9 +89,17 @@ type Favorite struct {
 	DishID uint `gorm:"column:dish_id;not null;index" json:"dish_id"`
 }
 
+func (Favorite) TableName() string {
+	return "favorites"
+}
+
 type CuisineImage struct {
 	KeywordID       uint   `gorm:"column:keyword_id;primaryKey;not null" json:"keyword_id"`
-	CuisineImageURL string `gorm:"column:cuisine_image_url;size:255;not null" json:"cuisine_image_url"`
+	CuisineImageURL string `gorm:"column:cuisine_image_url;size:255" json:"cuisine_image_url"`
+}
+
+func (CuisineImage) TableName() string {
+	return "cuisine_images"
 }
 
 type DishKeyword struct {
@@ -72,11 +108,19 @@ type DishKeyword struct {
 	Frequency uint `gorm:"column:frequency;not null" json:"frequency"`
 }
 
+func (DishKeyword) TableName() string {
+	return "dish_keywords"
+}
+
 type PreferenceBlacklist struct {
 	UserID     uint    `gorm:"column:user_id;not null;index" json:"user_id"`
 	KeywordID  uint    `gorm:"column:keyword_id;not null;index" json:"keyword_id"`
 	Preference float64 `gorm:"column:preference" json:"preference,omitempty"`
 	Blacklist  float64 `gorm:"column:blacklist" json:"blacklist,omitempty"`
+}
+
+func (PreferenceBlacklist) TableName() string {
+	return "preference_blacklists"
 }
 
 type UserReview struct {
@@ -87,10 +131,18 @@ type UserReview struct {
 	UserRev   string `gorm:"column:user_rev;type:text;not null" json:"user_rev"`
 }
 
+func (UserReview) TableName() string {
+	return "user_reviews"
+}
+
 type WebReview struct {
 	WebRevID uint   `gorm:"column:web_rev_id;primaryKey;autoIncrement" json:"web_rev_id"`
 	ResName  string `gorm:"column:res_name;not null;index" json:"res_name"`
 	WebRev   string `gorm:"column:web_rev;not null" json:"web_rev"`
+}
+
+func (WebReview) TableName() string {
+	return "web_reviews"
 }
 
 type ReviewExtract struct {
@@ -100,6 +152,10 @@ type ReviewExtract struct {
 	DataExtract string `gorm:"column:data_extract;type:json;not null" json:"data_extract"`
 }
 
+func (ReviewExtract) TableName() string {
+	return "review_extracts"
+}
+
 type ReviewDish struct {
 	RDID     uint `gorm:"column:review_dish_id;primaryKey;autoIncrement" json:"review_dish_id"`
 	DishID   uint `gorm:"column:dish_id;not null;index" json:"dish_id"`
@@ -107,8 +163,16 @@ type ReviewDish struct {
 	SourceID uint `gorm:"column:source_id;not null;index" json:"source_id"`
 }
 
+func (ReviewDish) TableName() string {
+	return "review_dishes"
+}
+
 type ReviewDishKeyword struct {
 	RDKID     uint `gorm:"column:review_dish_keyword_id;primaryKey;autoIncrement" json:"review_dish_keyword_id"`
 	RDID      uint `gorm:"column:review_dish_id;not null;index" json:"review_dish_id"`
 	KeywordID uint `gorm:"column:keyword_id;not null;index" json:"keyword_id"`
+}
+
+func (ReviewDishKeyword) TableName() string {
+	return "review_dish_keywords"
 }

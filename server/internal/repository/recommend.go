@@ -16,4 +16,5 @@ type RecommendRepository interface {
 
 	// Keyword lookup
 	GetKeywordByID(keywordID uint) (entities.Keyword, error)
+	GetKeywordsByCategory(categories []string) ([]entities.Keyword, error)
 }

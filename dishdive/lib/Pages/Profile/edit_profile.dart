@@ -76,14 +76,14 @@ class _EditProfileState extends State<EditProfile> {
       Dio dio = Dio();
       FormData formData = FormData();
       
-      // Add username to form data
-      formData.fields.add(MapEntry('username', _userNameController.text));
+      // Add username to form data (backend expects 'user_name')
+      formData.fields.add(MapEntry('user_name', _userNameController.text));
       
-      // Add image if selected
+      // Add image if selected (backend expects 'file')
       if (_selectedImage != null) {
         String fileName = _selectedImage!.path.split('/').last;
         formData.files.add(MapEntry(
-          'image',
+          'file',
           await MultipartFile.fromFile(_selectedImage!.path, filename: fileName),
         ));
       }

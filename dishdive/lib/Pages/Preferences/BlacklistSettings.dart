@@ -23,9 +23,9 @@ class _SetBlackState extends State<SetBlack> {
   final Dio dio = Dio();
   late TokenProvider tokenProvider;
 
-  // Sentiment values (0.0 to 1.0)
-  double sentimentThreshold = 0.25; // 25% - lower threshold for blacklist
-  int sentimentValue = 25; // For UI display
+  // Sentiment values (0.0 to 1.0) - should be loaded from "sentiment" keyword
+  double sentimentThreshold = 0.0; // Will be loaded from backend
+  int sentimentValue = 0; // Will be loaded from backend
 
   // Available keywords from backend
   List<Map<String, dynamic>> allKeywords = [];
@@ -100,11 +100,15 @@ class _SetBlackState extends State<SetBlack> {
             bool isBlacklisted = keyword['is_blacklisted'] ?? false;
             double blacklistValue = keyword['blacklist_value']?.toDouble() ?? 0.0;
 
-            // Add to available options if not already present
+            // Add to available options dynamically
             if (category == 'cuisine' && !availableOptions['cuisine']!.contains(name)) {
               availableOptions['cuisine']!.add(name);
             } else if (category == 'restriction' && !availableOptions['restriction']!.contains(name)) {
               availableOptions['restriction']!.add(name);
+            } else if (category == 'flavor' && !availableOptions['flavor']!.contains(name)) {
+              availableOptions['flavor']!.add(name);
+            } else if (category == 'cost' && !availableOptions['cost']!.contains(name)) {
+              availableOptions['cost']!.add(name);
             }
 
             // Add to selected if blacklisted
@@ -117,6 +121,14 @@ class _SetBlackState extends State<SetBlack> {
               sentimentThreshold = blacklistValue;
               sentimentValue = (blacklistValue * 100).round();
             }
+          }
+          
+          // Ensure static options exist even if not in database (fallback)
+          if (availableOptions['flavor']!.isEmpty) {
+            availableOptions['flavor']!.addAll(["Sweet", "Salty", "Sour", "Spicy", "Oily"]);
+          }
+          if (availableOptions['cost']!.isEmpty) {
+            availableOptions['cost']!.addAll(["Cheap", "Moderate", "Expensive"]);
           }
         });
       }
@@ -272,10 +284,9 @@ class _SetBlackState extends State<SetBlack> {
                     title: "Flavors",
                     child: FlavorSetting(
                       flavors: availableOptions['flavor']!,
-                      zeroToMedium: selectedKeywords['flavor']!,
-                      mediumToHigh: <String>{}, // Not used in blacklist
+                      selectedFlavors: selectedKeywords['flavor']!,
                       isBlacklist: true,
-                      onToggle: (flavor, isHigh) {
+                      onToggle: (flavor) {  // Fixed: removed isHigh parameter
                         setState(() {
                           if (selectedKeywords['flavor']!.contains(flavor)) {
                             selectedKeywords['flavor']!.remove(flavor);

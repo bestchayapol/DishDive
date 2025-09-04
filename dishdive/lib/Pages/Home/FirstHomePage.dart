@@ -8,6 +8,7 @@ import 'package:dishdive/widgets/MapView.dart';
 import 'package:dishdive/widgets/modal_filter.dart';
 import 'package:dishdive/components/my_textfield.dart';
 import 'package:dishdive/provider/token_provider.dart';
+import 'dart:async';
 import 'package:provider/provider.dart';
 
 class FirstHomePage extends StatefulWidget {
@@ -27,6 +28,9 @@ class _FirstHomePageState extends State<FirstHomePage>
   List<Map<String, dynamic>> restaurants = [];
   bool isLoadingRestaurants = false;
   bool isSearching = false;
+  
+  // Debounce timer for search
+  Timer? _debounceTimer;
 
   @override
   void initState() {
@@ -35,10 +39,8 @@ class _FirstHomePageState extends State<FirstHomePage>
     fetchRestaurants();
     _tabController = TabController(length: 2, vsync: this);
     
-    // Add listener to search controller
-    _searchController.addListener(() {
-      _onSearchChanged(_searchController.text);
-    });
+    // Add listener to search controller with proper debouncing
+    _searchController.addListener(_onSearchTextChanged);
   }
 
   Future<void> fetchUserData() async {
@@ -172,12 +174,13 @@ class _FirstHomePageState extends State<FirstHomePage>
     }
   }
 
-  void _onSearchChanged(String value) {
-    // Add debouncing to avoid too many API calls
-    Future.delayed(const Duration(milliseconds: 500), () {
-      if (_searchController.text == value) {
-        searchRestaurantsByDish(value);
-      }
+  void _onSearchTextChanged() {
+    // Cancel previous timer
+    _debounceTimer?.cancel();
+    
+    // Create new timer with debouncing
+    _debounceTimer = Timer(const Duration(milliseconds: 500), () {
+      searchRestaurantsByDish(_searchController.text);
     });
   }
 
@@ -185,6 +188,7 @@ class _FirstHomePageState extends State<FirstHomePage>
   void dispose() {
     _tabController.dispose();
     _searchController.dispose();
+    _debounceTimer?.cancel(); // Cancel timer on dispose
     super.dispose();
   }
 

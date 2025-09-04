@@ -23,9 +23,9 @@ class _SetPrefState extends State<SetPref> {
   final Dio dio = Dio();
   late TokenProvider tokenProvider;
 
-  // Sentiment values (0.0 to 1.0)
-  double sentimentThreshold = 0.75; // 75%
-  int sentimentValue = 75; // For UI display
+  // Sentiment values (0.0 to 1.0) - should be loaded from "sentiment" keyword
+  double sentimentThreshold = 0.0; // Will be loaded from backend
+  int sentimentValue = 0; // Will be loaded from backend
 
   // Available keywords from backend
   List<Map<String, dynamic>> allKeywords = [];
@@ -100,23 +100,36 @@ class _SetPrefState extends State<SetPref> {
             bool isPreferred = keyword['is_preferred'] ?? false;
             double preferenceValue = keyword['preference_value']?.toDouble() ?? 0.0;
 
-            // Add to available options if not already present
+            // Handle sentiment keyword specifically (system category)
+            if (category == 'system' && name.toLowerCase() == 'sentiment') {
+              sentimentThreshold = preferenceValue;
+              sentimentValue = (preferenceValue * 100).round();
+              continue; // Skip adding sentiment to regular categories
+            }
+
+            // Add to available options dynamically
             if (category == 'cuisine' && !availableOptions['cuisine']!.contains(name)) {
               availableOptions['cuisine']!.add(name);
             } else if (category == 'restriction' && !availableOptions['restriction']!.contains(name)) {
               availableOptions['restriction']!.add(name);
+            } else if (category == 'flavor' && !availableOptions['flavor']!.contains(name)) {
+              availableOptions['flavor']!.add(name);
+            } else if (category == 'cost' && !availableOptions['cost']!.contains(name)) {
+              availableOptions['cost']!.add(name);
             }
 
-            // Add to selected if preferred
+            // Add to selected if preferred (only for non-system keywords)
             if (isPreferred && selectedKeywords.containsKey(category)) {
               selectedKeywords[category]!.add(name);
             }
-
-            // Update sentiment threshold (use the first one found, or max if multiple)
-            if (preferenceValue > sentimentThreshold) {
-              sentimentThreshold = preferenceValue;
-              sentimentValue = (preferenceValue * 100).round();
-            }
+          }
+          
+          // Ensure static options exist even if not in database (fallback)
+          if (availableOptions['flavor']!.isEmpty) {
+            availableOptions['flavor']!.addAll(["Sweet", "Salty", "Sour", "Spicy", "Oily"]);
+          }
+          if (availableOptions['cost']!.isEmpty) {
+            availableOptions['cost']!.addAll(["Cheap", "Moderate", "Expensive"]);
           }
         });
       }
@@ -140,8 +153,16 @@ class _SetPrefState extends State<SetPref> {
         String name = keyword['keyword'] ?? '';
         String category = keyword['category'] ?? '';
         
-        bool isSelected = selectedKeywords[category]?.contains(name) ?? false;
-        double preferenceValue = isSelected ? sentimentThreshold : 0.0;
+        double preferenceValue;
+        
+        // Handle sentiment keyword specifically
+        if (category == 'system' && name.toLowerCase() == 'sentiment') {
+          preferenceValue = sentimentThreshold;
+        } else {
+          // Handle regular categories
+          bool isSelected = selectedKeywords[category]?.contains(name) ?? false;
+          preferenceValue = isSelected ? 1.0 : 0.0; // Use 1.0 for selected, 0.0 for not selected
+        }
 
         settingsUpdates.add({
           'keyword_id': keywordId,
@@ -272,10 +293,9 @@ class _SetPrefState extends State<SetPref> {
                     title: "Flavors",
                     child: FlavorSetting(
                       flavors: availableOptions['flavor']!,
-                      zeroToMedium: selectedKeywords['flavor']!,
-                      mediumToHigh: <String>{}, // Not used in preferences
+                      selectedFlavors: selectedKeywords['flavor']!,
                       isBlacklist: false,
-                      onToggle: (flavor, isHigh) {
+                      onToggle: (flavor) {  // Fixed: removed isHigh parameter
                         setState(() {
                           if (selectedKeywords['flavor']!.contains(flavor)) {
                             selectedKeywords['flavor']!.remove(flavor);

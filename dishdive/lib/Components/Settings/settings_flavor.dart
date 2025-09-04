@@ -3,95 +3,45 @@ import 'package:dishdive/Utils/color_use.dart';
 
 class FlavorSetting extends StatelessWidget {
   final List<String> flavors;
-  final Set<String> zeroToMedium;
-  final Set<String> mediumToHigh;
-  final void Function(String, bool) onToggle;
+  final Set<String> selectedFlavors;
+  final void Function(String) onToggle;  // Changed to single parameter
   final bool isBlacklist;
 
   const FlavorSetting({
     super.key,
     required this.flavors,
-    required this.zeroToMedium,
-    required this.mediumToHigh,
+    required this.selectedFlavors,
     required this.onToggle,
     this.isBlacklist = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> rows = [
-      Row(
-        children: const [
-          SizedBox(width: 80),
-          Expanded(
-            child: Center(
-              child: Text(
-                "Zero to medium",
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
-              ),
-            ),
+    return Column(
+      children: flavors.map((flavor) {
+        final selected = selectedFlavors.contains(flavor);
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 6.0),
+          child: _FlavorBox(
+            label: flavor,
+            selected: selected,
+            isBlacklist: isBlacklist,
+            onTap: () => onToggle(flavor),  // Now matches the signature
           ),
-          Expanded(
-            child: Center(
-              child: Text(
-                "Medium to high",
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
-              ),
-            ),
-          ),
-        ],
-      ),
-      const SizedBox(height: 8),
-    ];
-
-    for (final flavor in flavors) {
-      rows.add(
-        Row(
-          children: [
-            SizedBox(
-              width: 80,
-              child: Text(
-                flavor,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-            Expanded(
-              child: Center(
-                child: _FlavorBox(
-                  selected: zeroToMedium.contains(flavor),
-                  isBlacklist: isBlacklist,
-                  onTap: () => onToggle(flavor, false),
-                ),
-              ),
-            ),
-            Expanded(
-              child: Center(
-                child: _FlavorBox(
-                  selected: mediumToHigh.contains(flavor),
-                  isBlacklist: isBlacklist,
-                  onTap: () => onToggle(flavor, true),
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-      rows.add(const SizedBox(height: 10));
-    }
-
-    return Column(children: rows);
+        );
+      }).toList(),
+    );
   }
 }
 
 class _FlavorBox extends StatelessWidget {
+  final String label;
   final bool selected;
   final bool isBlacklist;
   final VoidCallback onTap;
 
   const _FlavorBox({
+    required this.label,
     required this.selected,
     required this.isBlacklist,
     required this.onTap,
@@ -114,18 +64,31 @@ class _FlavorBox extends StatelessWidget {
       icon = null;
     }
 
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 28,
-        height: 28,
-        decoration: BoxDecoration(
-          color: boxColor,
-          border: Border.all(color: Colors.black, width: 2),
-          borderRadius: BorderRadius.circular(6),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 18,
+            color: Colors.black,
+            fontWeight: FontWeight.w500,
+          ),
         ),
-        child: icon,
-      ),
+        GestureDetector(
+          onTap: onTap,
+          child: Container(
+            width: 28,
+            height: 28,
+            decoration: BoxDecoration(
+              color: boxColor,
+              border: Border.all(color: Colors.black, width: 2),
+              borderRadius: BorderRadius.circular(6),
+            ),
+            child: icon,
+          ),
+        ),
+      ],
     );
   }
 }

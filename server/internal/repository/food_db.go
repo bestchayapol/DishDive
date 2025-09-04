@@ -108,8 +108,8 @@ func (r *foodRepositoryDB) IsFavoriteDish(userID uint, dishID uint) (bool, error
 // Get keywords for a dish (from dish_keyword join table)
 func (r *foodRepositoryDB) GetKeywordsByDish(dishID uint) ([]entities.Keyword, error) {
 	var keywords []entities.Keyword
-	result := r.db.Joins("JOIN dish_keyword ON dish_keyword.keyword_id = keyword.keyword_id").
-		Where("dish_keyword.dish_id = ?", dishID).Find(&keywords)
+	result := r.db.Joins("JOIN dish_keywords ON dish_keywords.keyword_id = keywords.keyword_id").
+		Where("dish_keywords.dish_id = ?", dishID).Find(&keywords)
 	return keywords, result.Error
 }
 
@@ -121,8 +121,8 @@ func (r *foodRepositoryDB) GetProminentFlavorByDish(dishID uint) (*string, error
 
 	query := `
 		SELECT k.keyword
-		FROM keyword k
-		JOIN dish_keyword dk ON k.keyword_id = dk.keyword_id
+		FROM keywords k
+		JOIN dish_keywords dk ON k.keyword_id = dk.keyword_id
 		WHERE dk.dish_id = ? AND LOWER(k.category) = 'flavor'
 		ORDER BY dk.frequency DESC
 		LIMIT 1
@@ -146,8 +146,8 @@ func (r *foodRepositoryDB) GetProminentFlavorByDish(dishID uint) (*string, error
 // Get cuisine image URL by cuisine name
 func (r *foodRepositoryDB) GetCuisineImageByCuisine(cuisine string) (string, error) {
 	var cuisineImage entities.CuisineImage
-	result := r.db.Joins("JOIN keyword ON keyword.keyword_id = cuisine_image.keyword_id").
-		Where("LOWER(keyword.keyword) = LOWER(?)", cuisine).
+	result := r.db.Joins("JOIN keywords ON keywords.keyword_id = cuisine_images.keyword_id").
+		Where("LOWER(keywords.keyword) = LOWER(?)", cuisine).
 		First(&cuisineImage)
 
 	if result.Error != nil {
@@ -166,8 +166,8 @@ func (r *foodRepositoryDB) GetTopKeywordsByDishWithFrequency(dishID uint) ([]Dis
 
 	err := r.db.Raw(`
 		SELECT k.keyword, k.category, dk.frequency 
-		FROM keyword k 
-		JOIN dish_keyword dk ON k.keyword_id = dk.keyword_id 
+		FROM keywords k 
+		JOIN dish_keywords dk ON k.keyword_id = dk.keyword_id 
 		WHERE dk.dish_id = ? 
 		ORDER BY dk.frequency DESC
 	`, dishID).Scan(&results).Error

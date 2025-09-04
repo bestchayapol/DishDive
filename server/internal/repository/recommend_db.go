@@ -31,8 +31,8 @@ func (r *recommendRepositoryDB) GetAllKeywordsWithUserSettings(userID uint) ([]e
 			? as user_id,
 			COALESCE(pb.preference, 0) as preference,
 			COALESCE(pb.blacklist, 0) as blacklist
-		FROM keyword k
-		LEFT JOIN preference_blacklist pb ON k.keyword_id = pb.keyword_id AND pb.user_id = ?
+		FROM keywords k
+		LEFT JOIN preference_blacklists pb ON k.keyword_id = pb.keyword_id AND pb.user_id = ?
 		ORDER BY k.category, k.keyword
 	`
 
@@ -130,4 +130,11 @@ func (r *recommendRepositoryDB) GetKeywordByID(keywordID uint) (entities.Keyword
 	var kw entities.Keyword
 	result := r.db.Where("keyword_id = ?", keywordID).First(&kw)
 	return kw, result.Error
+}
+
+// Get keywords by category
+func (r *recommendRepositoryDB) GetKeywordsByCategory(categories []string) ([]entities.Keyword, error) {
+	var keywords []entities.Keyword
+	result := r.db.Where("category IN ?", categories).Find(&keywords)
+	return keywords, result.Error
 }

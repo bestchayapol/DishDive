@@ -81,7 +81,7 @@ func main() {
 	foodRepositoryDB := repository.NewFoodRepositoryDB(db)
 	recommendRepositoryDB := repository.NewRecommendRepositoryDB(db)
 
-	userService := service.NewUserService(userRepositoryDB, jwtSecret)
+	userService := service.NewUserService(userRepositoryDB, recommendRepositoryDB, jwtSecret)
 	foodService := service.NewFoodService(foodRepositoryDB)
 	recommendService := service.NewRecommendService(foodRepositoryDB, recommendRepositoryDB)
 

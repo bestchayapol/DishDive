@@ -15,14 +15,16 @@ import (
 )
 
 type userService struct {
-	userRepo  repository.UserRepository
-	jwtSecret string
+	userRepo      repository.UserRepository
+	recommendRepo repository.RecommendRepository
+	jwtSecret     string
 }
 
-func NewUserService(userRepo repository.UserRepository, jwtSecret string) userService {
+func NewUserService(userRepo repository.UserRepository, recommendRepo repository.RecommendRepository, jwtSecret string) userService {
 	return userService{
-		userRepo:  userRepo,
-		jwtSecret: jwtSecret,
+		userRepo:      userRepo,
+		recommendRepo: recommendRepo,
+		jwtSecret:     jwtSecret,
 	}
 }
 
@@ -96,9 +98,9 @@ func (s userService) GetEditUserProfileByUserId(userid int) (*entities.User, err
 
 func (s userService) PatchEditUserProfileByUserId(userid int, req dtos.EditUserProfileByUserIdRequest) (*entities.User, error) {
 	user := &entities.User{
-		UserID:      uint(userid),
-		Username:   req.Username,
-		ImageLink:   req.ImageLink,
+		UserID:    uint(userid),
+		Username:  req.Username,
+		ImageLink: req.ImageLink,
 	}
 
 	err := s.userRepo.PatchEditUserProfileByUserId(user)
@@ -107,7 +109,14 @@ func (s userService) PatchEditUserProfileByUserId(userid int, req dtos.EditUserP
 		return nil, err
 	}
 
-	return user, nil
+	// Fetch the updated user data from database to return current values
+	updatedUser, err := s.userRepo.GetUserByUserId(userid)
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+
+	return updatedUser, nil
 }
 
 func (s userService) Register(request dtos.RegisterRequest) (*dtos.UserResponse, error) {
@@ -127,12 +136,18 @@ func (s userService) Register(request dtos.RegisterRequest) (*dtos.UserResponse,
 		return nil, err
 	}
 
+	// Initialize default preferences for the new user
+	err = s.initializeUserPreferences(user.UserID)
+	if err != nil {
+		log.Printf("Warning: Failed to initialize preferences for user %d: %v", user.UserID, err)
+		// Don't fail registration if preference initialization fails
+	}
+
 	return &dtos.UserResponse{
 		UserID:    user.UserID,
 		Username:  user.Username,
 		ImageLink: user.ImageLink,
 	}, nil
-
 }
 
 func (s userService) Login(request dtos.LoginRequest, jwtSecret string) (*dtos.LoginResponse, error) {
@@ -162,8 +177,33 @@ func (s userService) Login(request dtos.LoginRequest, jwtSecret string) (*dtos.L
 	}
 
 	return &dtos.LoginResponse{
-		UserID:    user.UserID,
-		Username:  user.Username,
-		Token:     &jwtToken,
+		UserID:   user.UserID,
+		Username: user.Username,
+		Token:    &jwtToken,
 	}, nil
+}
+
+// Initialize default preferences for a new user
+func (s userService) initializeUserPreferences(userID uint) error {
+	// Only initialize essential/static keywords: flavor, cost, and system (sentiment)
+	staticCategories := []string{"flavor", "cost", "system"}
+
+	staticKeywords, err := s.recommendRepo.GetKeywordsByCategory(staticCategories)
+	if err != nil {
+		return err
+	}
+
+	// Create preference_blacklist entries only for static keywords
+	var defaultSettings []entities.PreferenceBlacklist
+	for _, keyword := range staticKeywords {
+		defaultSettings = append(defaultSettings, entities.PreferenceBlacklist{
+			UserID:     userID,
+			KeywordID:  keyword.KeywordID,
+			Preference: 0, // Default: no preference
+			Blacklist:  0, // Default: not blacklisted
+		})
+	}
+
+	// Bulk insert only the essential settings
+	return s.recommendRepo.BulkUpdateUserSettings(userID, defaultSettings)
 }
