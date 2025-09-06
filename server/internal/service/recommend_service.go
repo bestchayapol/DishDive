@@ -1,6 +1,7 @@
 package service
 
 import (
+	"fmt"
 	"sort"
 
 	"github.com/bestchayapol/DishDive/internal/dtos"
@@ -229,7 +230,10 @@ func (s *recommendService) GetRecommendedDishes(userID uint, resID *uint) ([]dto
 
 		// Get dish keywords and apply preference/blacklist logic
 		keywords, _ := s.foodRepo.GetKeywordsByDish(dish.DishID)
-		
+
+		// Debug log: Keywords fetched for the dish
+		fmt.Printf("DishID: %d, Keywords: %v\n", dish.DishID, keywords)
+
 		// First check blacklist - if ANY keyword is blacklisted, skip dish entirely
 		for _, kw := range keywords {
 			if _, exists := blacklistMap[kw.KeywordID]; exists {
@@ -251,19 +255,24 @@ func (s *recommendService) GetRecommendedDishes(userID uint, resID *uint) ([]dto
 		// Apply preference boosts (+10 per preferred keyword)
 		for _, kw := range keywords {
 			if _, exists := preferenceMap[kw.KeywordID]; exists {
-				score += 10
+				score += 20
+				// Debug log: Preference boost applied
+				fmt.Printf("DishID: %d, Keyword: %s, Boost: +10\n", dish.DishID, kw.Keyword)
 			}
 		}
 
 		// Apply sentiment preference boost
 		if sentimentPreference > 0 && sentimentPercentage > (sentimentPreference * 100) {
-			score += 10
+			score += 20
 		}
 
-		// Favorites boost (x2)
+		// Favorites boost (x3)
 		if isFav {
-			score *= 2.0
+			score *= 3.0
 		}
+
+		// Debug log: Final score for the dish
+		// fmt.Printf("DishID: %d, Final Score: %.2f\n", dish.DishID, score)
 
 		scoredDishes = append(scoredDishes, scoredDish{
 			dish: dish, 
