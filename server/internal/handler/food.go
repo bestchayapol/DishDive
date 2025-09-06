@@ -15,11 +15,15 @@ import (
 )
 
 type FoodHandler struct {
-	foodService service.FoodService
+	foodService      service.FoodService
+	recommendService service.RecommendService
 }
 
-func NewFoodHandler(foodService service.FoodService) *FoodHandler {
-	return &FoodHandler{foodService: foodService}
+func NewFoodHandler(foodService service.FoodService, recommendService service.RecommendService) *FoodHandler {
+	return &FoodHandler{
+		foodService:      foodService,
+		recommendService: recommendService,
+	}
 }
 
 // Search restaurants by dish
@@ -86,7 +90,9 @@ func (h *FoodHandler) GetRestaurantMenu(c *fiber.Ctx) error {
 		return err
 	}
 
-	resp, err := h.foodService.GetRestaurantMenu(uint(resID), uint(userID))
+	// Use the recommend service to get dishes with recommendation algorithm applied
+	resIDPtr := uint(resID)
+	resp, err := h.recommendService.GetRecommendedDishes(uint(userID), &resIDPtr)
 	if err != nil {
 		return err
 	}

@@ -29,7 +29,7 @@ class _SetPrefState extends State<SetPref> {
 
   // Available keywords from backend
   List<Map<String, dynamic>> allKeywords = [];
-  
+
   // Selected keywords by category
   Map<String, Set<String>> selectedKeywords = {
     'cuisine': {},
@@ -73,7 +73,7 @@ class _SetPrefState extends State<SetPref> {
     try {
       final token = tokenProvider.token;
       final userId = tokenProvider.userId;
-      
+
       if (token == null || userId == null) return;
 
       final response = await dio.get(
@@ -87,7 +87,7 @@ class _SetPrefState extends State<SetPref> {
 
         setState(() {
           allKeywords = keywords.cast<Map<String, dynamic>>();
-          
+
           // Clear previous selections
           selectedKeywords.forEach((key, value) => value.clear());
           availableOptions['cuisine']!.clear();
@@ -98,7 +98,8 @@ class _SetPrefState extends State<SetPref> {
             String name = keyword['keyword'] ?? '';
             String category = keyword['category'] ?? '';
             bool isPreferred = keyword['is_preferred'] ?? false;
-            double preferenceValue = keyword['preference_value']?.toDouble() ?? 0.0;
+            double preferenceValue =
+                keyword['preference_value']?.toDouble() ?? 0.0;
 
             // Handle sentiment keyword specifically (system category)
             if (category == 'system' && name.toLowerCase() == 'sentiment') {
@@ -107,29 +108,38 @@ class _SetPrefState extends State<SetPref> {
               continue; // Skip adding sentiment to regular categories
             }
 
-            // Add to available options dynamically
-            if (category == 'cuisine' && !availableOptions['cuisine']!.contains(name)) {
+            // Add to available options dynamically (only for cuisine and restriction)
+            if (category == 'cuisine' &&
+                !availableOptions['cuisine']!.contains(name)) {
               availableOptions['cuisine']!.add(name);
-            } else if (category == 'restriction' && !availableOptions['restriction']!.contains(name)) {
+            } else if (category == 'restriction' &&
+                !availableOptions['restriction']!.contains(name)) {
               availableOptions['restriction']!.add(name);
-            } else if (category == 'flavor' && !availableOptions['flavor']!.contains(name)) {
-              availableOptions['flavor']!.add(name);
-            } else if (category == 'cost' && !availableOptions['cost']!.contains(name)) {
-              availableOptions['cost']!.add(name);
             }
+            // Don't add flavor and cost keywords from backend - keep them static
 
             // Add to selected if preferred (only for non-system keywords)
             if (isPreferred && selectedKeywords.containsKey(category)) {
               selectedKeywords[category]!.add(name);
             }
           }
-          
+
           // Ensure static options exist even if not in database (fallback)
           if (availableOptions['flavor']!.isEmpty) {
-            availableOptions['flavor']!.addAll(["Sweet", "Salty", "Sour", "Spicy", "Oily"]);
+            availableOptions['flavor']!.addAll([
+              "Sweet",
+              "Salty",
+              "Sour",
+              "Spicy",
+              "Oily",
+            ]);
           }
           if (availableOptions['cost']!.isEmpty) {
-            availableOptions['cost']!.addAll(["Cheap", "Moderate", "Expensive"]);
+            availableOptions['cost']!.addAll([
+              "Cheap",
+              "Moderate",
+              "Expensive",
+            ]);
           }
         });
       }
@@ -142,7 +152,7 @@ class _SetPrefState extends State<SetPref> {
     try {
       final token = tokenProvider.token;
       final userId = tokenProvider.userId;
-      
+
       if (token == null || userId == null) return;
 
       // Convert current selections to API format
@@ -152,28 +162,30 @@ class _SetPrefState extends State<SetPref> {
         int keywordId = keyword['keyword_id'] ?? 0;
         String name = keyword['keyword'] ?? '';
         String category = keyword['category'] ?? '';
-        
+
+        // Get current blacklist value to preserve it
+        double currentBlacklist = keyword['blacklist_value']?.toDouble() ?? 0.0;
         double preferenceValue;
-        
+
         // Handle sentiment keyword specifically
         if (category == 'system' && name.toLowerCase() == 'sentiment') {
           preferenceValue = sentimentThreshold;
         } else {
           // Handle regular categories
           bool isSelected = selectedKeywords[category]?.contains(name) ?? false;
-          preferenceValue = isSelected ? 1.0 : 0.0; // Use 1.0 for selected, 0.0 for not selected
+          preferenceValue = isSelected
+              ? 1.0
+              : 0.0; // Use 1.0 for selected, 0.0 for not selected
         }
 
         settingsUpdates.add({
           'keyword_id': keywordId,
           'preference_value': preferenceValue,
-          'blacklist_value': 0.0, // Not setting blacklist in preferences
+          'blacklist_value': currentBlacklist, // Preserve existing blacklist
         });
       }
 
-      final requestData = {
-        'settings': settingsUpdates,
-      };
+      final requestData = {'settings': settingsUpdates};
 
       final response = await dio.post(
         ApiConfig.updateUserSettingsEndpoint(userId),
@@ -217,9 +229,7 @@ class _SetPrefState extends State<SetPref> {
           ),
           centerTitle: true,
         ),
-        body: const Center(
-          child: CircularProgressIndicator(),
-        ),
+        body: const Center(child: CircularProgressIndicator()),
       );
     }
 
@@ -295,7 +305,8 @@ class _SetPrefState extends State<SetPref> {
                       flavors: availableOptions['flavor']!,
                       selectedFlavors: selectedKeywords['flavor']!,
                       isBlacklist: false,
-                      onToggle: (flavor) {  // Fixed: removed isHigh parameter
+                      onToggle: (flavor) {
+                        // Fixed: removed isHigh parameter
                         setState(() {
                           if (selectedKeywords['flavor']!.contains(flavor)) {
                             selectedKeywords['flavor']!.remove(flavor);
@@ -331,8 +342,12 @@ class _SetPrefState extends State<SetPref> {
                       isBlacklist: false,
                       onToggle: (restriction) {
                         setState(() {
-                          if (selectedKeywords['restriction']!.contains(restriction)) {
-                            selectedKeywords['restriction']!.remove(restriction);
+                          if (selectedKeywords['restriction']!.contains(
+                            restriction,
+                          )) {
+                            selectedKeywords['restriction']!.remove(
+                              restriction,
+                            );
                           } else {
                             selectedKeywords['restriction']!.add(restriction);
                           }

@@ -29,7 +29,7 @@ class _SetBlackState extends State<SetBlack> {
 
   // Available keywords from backend
   List<Map<String, dynamic>> allKeywords = [];
-  
+
   // Selected keywords by category
   Map<String, Set<String>> selectedKeywords = {
     'cuisine': {},
@@ -73,7 +73,7 @@ class _SetBlackState extends State<SetBlack> {
     try {
       final token = tokenProvider.token;
       final userId = tokenProvider.userId;
-      
+
       if (token == null || userId == null) return;
 
       final response = await dio.get(
@@ -87,7 +87,7 @@ class _SetBlackState extends State<SetBlack> {
 
         setState(() {
           allKeywords = keywords.cast<Map<String, dynamic>>();
-          
+
           // Clear previous selections
           selectedKeywords.forEach((key, value) => value.clear());
           availableOptions['cuisine']!.clear();
@@ -98,37 +98,48 @@ class _SetBlackState extends State<SetBlack> {
             String name = keyword['keyword'] ?? '';
             String category = keyword['category'] ?? '';
             bool isBlacklisted = keyword['is_blacklisted'] ?? false;
-            double blacklistValue = keyword['blacklist_value']?.toDouble() ?? 0.0;
+            double blacklistValue =
+                keyword['blacklist_value']?.toDouble() ?? 0.0;
 
-            // Add to available options dynamically
-            if (category == 'cuisine' && !availableOptions['cuisine']!.contains(name)) {
-              availableOptions['cuisine']!.add(name);
-            } else if (category == 'restriction' && !availableOptions['restriction']!.contains(name)) {
-              availableOptions['restriction']!.add(name);
-            } else if (category == 'flavor' && !availableOptions['flavor']!.contains(name)) {
-              availableOptions['flavor']!.add(name);
-            } else if (category == 'cost' && !availableOptions['cost']!.contains(name)) {
-              availableOptions['cost']!.add(name);
+            // Handle sentiment keyword specifically (system category)
+            if (category == 'system' && name.toLowerCase() == 'sentiment') {
+              sentimentThreshold = blacklistValue;
+              sentimentValue = (blacklistValue * 100).round();
+              continue; // Skip adding sentiment to regular categories
             }
 
-            // Add to selected if blacklisted
+            // Add to available options dynamically (only for cuisine and restriction)
+            if (category == 'cuisine' &&
+                !availableOptions['cuisine']!.contains(name)) {
+              availableOptions['cuisine']!.add(name);
+            } else if (category == 'restriction' &&
+                !availableOptions['restriction']!.contains(name)) {
+              availableOptions['restriction']!.add(name);
+            }
+            // Don't add flavor and cost keywords from backend - keep them static
+
+            // Add to selected if blacklisted (only for non-system keywords)
             if (isBlacklisted && selectedKeywords.containsKey(category)) {
               selectedKeywords[category]!.add(name);
             }
-
-            // Update sentiment threshold (use the first one found, or max if multiple)
-            if (blacklistValue > sentimentThreshold) {
-              sentimentThreshold = blacklistValue;
-              sentimentValue = (blacklistValue * 100).round();
-            }
           }
-          
+
           // Ensure static options exist even if not in database (fallback)
           if (availableOptions['flavor']!.isEmpty) {
-            availableOptions['flavor']!.addAll(["Sweet", "Salty", "Sour", "Spicy", "Oily"]);
+            availableOptions['flavor']!.addAll([
+              "Sweet",
+              "Salty",
+              "Sour",
+              "Spicy",
+              "Oily",
+            ]);
           }
           if (availableOptions['cost']!.isEmpty) {
-            availableOptions['cost']!.addAll(["Cheap", "Moderate", "Expensive"]);
+            availableOptions['cost']!.addAll([
+              "Cheap",
+              "Moderate",
+              "Expensive",
+            ]);
           }
         });
       }
@@ -141,7 +152,7 @@ class _SetBlackState extends State<SetBlack> {
     try {
       final token = tokenProvider.token;
       final userId = tokenProvider.userId;
-      
+
       if (token == null || userId == null) return;
 
       // Convert current selections to API format
@@ -151,20 +162,29 @@ class _SetBlackState extends State<SetBlack> {
         int keywordId = keyword['keyword_id'] ?? 0;
         String name = keyword['keyword'] ?? '';
         String category = keyword['category'] ?? '';
-        
-        bool isSelected = selectedKeywords[category]?.contains(name) ?? false;
-        double blacklistValue = isSelected ? sentimentThreshold : 0.0;
+
+        // Get current preference value to preserve it
+        double currentPreference =
+            keyword['preference_value']?.toDouble() ?? 0.0;
+        double blacklistValue;
+
+        // Handle sentiment keyword specifically
+        if (category == 'system' && name.toLowerCase() == 'sentiment') {
+          blacklistValue = sentimentThreshold;
+        } else {
+          // Handle regular categories - binary blacklist (1.0 = blacklisted, 0.0 = not blacklisted)
+          bool isSelected = selectedKeywords[category]?.contains(name) ?? false;
+          blacklistValue = isSelected ? 1.0 : 0.0;
+        }
 
         settingsUpdates.add({
           'keyword_id': keywordId,
-          'preference_value': 0.0, // Not setting preferences in blacklist
+          'preference_value': currentPreference, // Preserve existing preference
           'blacklist_value': blacklistValue,
         });
       }
 
-      final requestData = {
-        'settings': settingsUpdates,
-      };
+      final requestData = {'settings': settingsUpdates};
 
       final response = await dio.post(
         ApiConfig.updateUserSettingsEndpoint(userId),
@@ -179,9 +199,9 @@ class _SetBlackState extends State<SetBlack> {
       }
     } catch (e) {
       print('Error saving blacklist: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Failed to save blacklist')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Failed to save blacklist')));
     }
   }
 
@@ -208,9 +228,7 @@ class _SetBlackState extends State<SetBlack> {
           ),
           centerTitle: true,
         ),
-        body: const Center(
-          child: CircularProgressIndicator(),
-        ),
+        body: const Center(child: CircularProgressIndicator()),
       );
     }
 
@@ -286,7 +304,8 @@ class _SetBlackState extends State<SetBlack> {
                       flavors: availableOptions['flavor']!,
                       selectedFlavors: selectedKeywords['flavor']!,
                       isBlacklist: true,
-                      onToggle: (flavor) {  // Fixed: removed isHigh parameter
+                      onToggle: (flavor) {
+                        // Fixed: removed isHigh parameter
                         setState(() {
                           if (selectedKeywords['flavor']!.contains(flavor)) {
                             selectedKeywords['flavor']!.remove(flavor);
@@ -322,8 +341,12 @@ class _SetBlackState extends State<SetBlack> {
                       isBlacklist: true,
                       onToggle: (restriction) {
                         setState(() {
-                          if (selectedKeywords['restriction']!.contains(restriction)) {
-                            selectedKeywords['restriction']!.remove(restriction);
+                          if (selectedKeywords['restriction']!.contains(
+                            restriction,
+                          )) {
+                            selectedKeywords['restriction']!.remove(
+                              restriction,
+                            );
                           } else {
                             selectedKeywords['restriction']!.add(restriction);
                           }

@@ -28,11 +28,11 @@ func (r *recommendRepositoryDB) GetAllKeywordsWithUserSettings(userID uint) ([]e
 	query := `
 		SELECT 
 			k.keyword_id,
-			? as user_id,
+			$1::integer as user_id,
 			COALESCE(pb.preference, 0) as preference,
 			COALESCE(pb.blacklist, 0) as blacklist
 		FROM keywords k
-		LEFT JOIN preference_blacklists pb ON k.keyword_id = pb.keyword_id AND pb.user_id = ?
+		LEFT JOIN preference_blacklists pb ON k.keyword_id = pb.keyword_id AND pb.user_id = $2::integer
 		ORDER BY k.category, k.keyword
 	`
 
@@ -42,64 +42,39 @@ func (r *recommendRepositoryDB) GetAllKeywordsWithUserSettings(userID uint) ([]e
 
 // Bulk update user preferences and blacklist
 func (r *recommendRepositoryDB) BulkUpdateUserSettings(userID uint, settings []entities.PreferenceBlacklist) error {
-	// Use transaction for bulk update
+	// Use transaction for bulk upsert
 	return r.db.Transaction(func(tx *gorm.DB) error {
 		for _, setting := range settings {
 			setting.UserID = userID
-			if err := tx.Save(&setting).Error; err != nil {
+			
+			// First, try to find existing record
+			var existing entities.PreferenceBlacklist
+			err := tx.Where("user_id = ? AND keyword_id = ?", setting.UserID, setting.KeywordID).
+				First(&existing).Error
+			
+			if err == gorm.ErrRecordNotFound {
+				// Record doesn't exist, create it
+				if err := tx.Create(&setting).Error; err != nil {
+					return err
+				}
+			} else if err != nil {
+				// Some other database error occurred
 				return err
+			} else {
+				// Record exists, update it using explicit WHERE conditions
+				updateResult := tx.Model(&entities.PreferenceBlacklist{}).
+					Where("user_id = ? AND keyword_id = ?", setting.UserID, setting.KeywordID).
+					Updates(map[string]interface{}{
+						"preference": setting.Preference,
+						"blacklist":  setting.Blacklist,
+					})
+				if updateResult.Error != nil {
+					return updateResult.Error
+				}
 			}
 		}
 		return nil
 	})
-}
-
-// Set preference for a keyword (backwards compatibility)
-func (r *recommendRepositoryDB) SetPreference(userID, keywordID uint, threshold float64) error {
-	// First check if record exists
-	var existing entities.PreferenceBlacklist
-	err := r.db.Where("user_id = ? AND keyword_id = ?", userID, keywordID).First(&existing).Error
-
-	if err == gorm.ErrRecordNotFound {
-		// Create new record
-		pref := entities.PreferenceBlacklist{
-			UserID:     userID,
-			KeywordID:  keywordID,
-			Preference: threshold,
-			Blacklist:  0,
-		}
-		return r.db.Create(&pref).Error
-	} else if err != nil {
-		return err
-	} else {
-		// Update existing record
-		existing.Preference = threshold
-		return r.db.Save(&existing).Error
-	}
-}
-
-// Set blacklist for a keyword (backwards compatibility)
-func (r *recommendRepositoryDB) SetBlacklist(userID, keywordID uint, threshold float64) error {
-	// First check if record exists
-	var existing entities.PreferenceBlacklist
-	err := r.db.Where("user_id = ? AND keyword_id = ?", userID, keywordID).First(&existing).Error
-
-	if err == gorm.ErrRecordNotFound {
-		// Create new record
-		bl := entities.PreferenceBlacklist{
-			UserID:     userID,
-			KeywordID:  keywordID,
-			Preference: 0,
-			Blacklist:  threshold,
-		}
-		return r.db.Create(&bl).Error
-	} else if err != nil {
-		return err
-	} else {
-		// Update existing record
-		existing.Blacklist = threshold
-		return r.db.Save(&existing).Error
-	}
 }
 
 // Reviews

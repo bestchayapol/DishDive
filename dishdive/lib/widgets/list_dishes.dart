@@ -92,6 +92,10 @@ class _ListDishesGridState extends State<ListDishesGrid> {
             prominentFlavor: _dishes[index].prominentFlavor,
             isFavorite: !currentStatus,
             recommendScore: _dishes[index].recommendScore,
+            positiveReviews:
+                _dishes[index].positiveReviews, // Added missing parameter
+            totalReviews:
+                _dishes[index].totalReviews, // Added missing parameter
           );
         }
       });

@@ -86,7 +86,7 @@ func main() {
 	recommendService := service.NewRecommendService(foodRepositoryDB, recommendRepositoryDB)
 
 	userHandler := handler.NewUserHandler(userService, jwtSecret, uploadService)
-	foodHandler := handler.NewFoodHandler(foodService)
+	foodHandler := handler.NewFoodHandler(foodService, recommendService)
 	recommendHandler := handler.NewRecommendHandler(recommendService)
 
 	app := fiber.New()

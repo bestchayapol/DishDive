@@ -136,13 +136,6 @@ func (s userService) Register(request dtos.RegisterRequest) (*dtos.UserResponse,
 		return nil, err
 	}
 
-	// Initialize default preferences for the new user
-	err = s.initializeUserPreferences(user.UserID)
-	if err != nil {
-		log.Printf("Warning: Failed to initialize preferences for user %d: %v", user.UserID, err)
-		// Don't fail registration if preference initialization fails
-	}
-
 	return &dtos.UserResponse{
 		UserID:    user.UserID,
 		Username:  user.Username,
@@ -165,6 +158,13 @@ func (s userService) Login(request dtos.LoginRequest, jwtSecret string) (*dtos.L
 		return nil, fiber.NewError(fiber.StatusBadRequest, "invalid credentials")
 	}
 
+	// Initialize user preferences if they don't exist (happens on every login)
+	err = s.ensureUserPreferencesExist(user.UserID)
+	if err != nil {
+		log.Printf("Warning: Failed to ensure preferences exist for user %d: %v", user.UserID, err)
+		// Don't fail login if preference initialization fails
+	}
+
 	// Generate JWT token
 	claims := jwt.RegisteredClaims{
 		Issuer: strconv.Itoa(int(user.UserID)),
@@ -183,27 +183,80 @@ func (s userService) Login(request dtos.LoginRequest, jwtSecret string) (*dtos.L
 	}, nil
 }
 
-// Initialize default preferences for a new user
-func (s userService) initializeUserPreferences(userID uint) error {
-	// Only initialize essential/static keywords: flavor, cost, and system (sentiment)
-	staticCategories := []string{"flavor", "cost", "system"}
-
-	staticKeywords, err := s.recommendRepo.GetKeywordsByCategory(staticCategories)
+// Ensure user has all required preference settings (called on every login)
+func (s userService) ensureUserPreferencesExist(userID uint) error {
+	// Check if user already has preference settings
+	existingSettings, err := s.recommendRepo.GetUserSettings(userID)
 	if err != nil {
 		return err
 	}
 
-	// Create preference_blacklist entries only for static keywords
-	var defaultSettings []entities.PreferenceBlacklist
-	for _, keyword := range staticKeywords {
-		defaultSettings = append(defaultSettings, entities.PreferenceBlacklist{
-			UserID:     userID,
-			KeywordID:  keyword.KeywordID,
-			Preference: 0, // Default: no preference
-			Blacklist:  0, // Default: not blacklisted
-		})
+	// Create a map of existing settings for quick lookup
+	existingMap := make(map[uint]bool)
+	for _, setting := range existingSettings {
+		existingMap[setting.KeywordID] = true
 	}
 
-	// Bulk insert only the essential settings
-	return s.recommendRepo.BulkUpdateUserSettings(userID, defaultSettings)
+	log.Printf("User %d has %d existing preference settings", userID, len(existingSettings))
+	
+	var newSettings []entities.PreferenceBlacklist
+	
+	// 1. Get ALL keywords to filter from
+	allKeywords, err := s.recommendRepo.GetKeywordsByCategory([]string{"flavor", "cost", "system", "cuisine", "restriction"})
+	if err != nil {
+		return err
+	}
+	
+	// 2. Define the specific static keywords we want to initialize
+	staticFlavorKeywords := []string{"Sweet", "Salty", "Sour", "Spicy", "Oily"}
+	staticCostKeywords := []string{"Cheap", "Moderate", "Expensive"}
+	
+	// 3. Process keywords and add missing ones
+	for _, keyword := range allKeywords {
+		shouldInitialize := false
+		
+		switch keyword.Category {
+		case "flavor":
+			// Only initialize the 5 specific flavor keywords
+			for _, staticFlavor := range staticFlavorKeywords {
+				if keyword.Keyword == staticFlavor {
+					shouldInitialize = true
+					break
+				}
+			}
+		case "cost":
+			// Only initialize the 3 specific cost keywords
+			for _, staticCost := range staticCostKeywords {
+				if keyword.Keyword == staticCost {
+					shouldInitialize = true
+					break
+				}
+			}
+		case "system":
+			// Initialize all system keywords (just sentiment)
+			shouldInitialize = true
+		case "cuisine", "restriction":
+			// Initialize all cuisine and restriction keywords (dynamic categories)
+			shouldInitialize = true
+		}
+		
+		// Only add to newSettings if it should be initialized AND doesn't already exist
+		if shouldInitialize && !existingMap[keyword.KeywordID] {
+			newSettings = append(newSettings, entities.PreferenceBlacklist{
+				UserID:     userID,
+				KeywordID:  keyword.KeywordID,
+				Preference: 0, // Default: no preference
+				Blacklist:  0, // Default: not blacklisted
+			})
+		}
+	}
+
+	// 4. Only bulk insert if there are new settings to add
+	if len(newSettings) > 0 {
+		log.Printf("Initializing %d new preference settings for user %d", len(newSettings), userID)
+		return s.recommendRepo.BulkUpdateUserSettings(userID, newSettings)
+	} else {
+		log.Printf("User %d already has all required preference settings", userID)
+		return nil
+	}
 }

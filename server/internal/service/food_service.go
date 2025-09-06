@@ -3,6 +3,7 @@ package service
 import (
 	"fmt"
 	"math"
+	"sort"
 	"strings"
 
 	"github.com/bestchayapol/DishDive/internal/dtos"
@@ -115,55 +116,6 @@ func (s *foodService) GetRestaurantList() ([]dtos.RestaurantListItemResponse, er
 	return resp, nil
 }
 
-func (s *foodService) GetRestaurantMenu(resID uint, userID uint) ([]dtos.RestaurantMenuItemResponse, error) {
-	dishes, err := s.foodRepo.GetDishesByRestaurant(resID)
-	if err != nil {
-		return nil, err
-	}
-
-	var resp []dtos.RestaurantMenuItemResponse
-	for _, dish := range dishes {
-		// Get cuisine image
-		var imageLink *string
-		if dish.Cuisine != nil {
-			imageURL, err := s.foodRepo.GetCuisineImageByCuisine(*dish.Cuisine)
-			if err == nil && imageURL != "" {
-				imageLink = &imageURL
-			}
-		}
-
-		// Get prominent flavor
-		prominentFlavor, err := s.foodRepo.GetProminentFlavorByDish(dish.DishID)
-		if err != nil {
-			prominentFlavor = nil // Set to nil if error
-		}
-
-		// Get review counts
-		positiveReviews, totalReviews, err := s.foodRepo.GetReviewCountsByDish(dish.DishID)
-		if err != nil {
-			positiveReviews, totalReviews = 0, 0
-		}
-
-		// Check if favorite
-		isFav, _ := s.foodRepo.IsFavoriteDish(userID, dish.DishID)
-
-		resp = append(resp, dtos.RestaurantMenuItemResponse{
-			DishID:          dish.DishID,
-			DishName:        dish.DishName,
-			ImageLink:       imageLink,
-			SentimentScore:  dish.TotalScore,
-			PositiveReviews: positiveReviews,
-			TotalReviews:    totalReviews,
-			Cuisine:         dish.Cuisine,
-			ProminentFlavor: prominentFlavor,
-			IsFavorite:      isFav,
-			RecommendScore:  0.0, // TODO: Calculate if needed for restaurant menu
-		})
-	}
-
-	return resp, nil
-}
-
 func (s *foodService) GetDishDetail(dishID uint, userID uint) (dtos.DishDetailResponse, error) {
 	dish, err := s.foodRepo.GetDishByID(dishID)
 	if err != nil {
@@ -189,6 +141,12 @@ func (s *foodService) GetDishDetail(dishID uint, userID uint) (dtos.DishDetailRe
 	positiveReviews, totalReviews, err := s.foodRepo.GetReviewCountsByDish(dishID)
 	if err != nil {
 		positiveReviews, totalReviews = 0, 0
+	}
+
+	// Calculate sentiment score: positive score / total score
+	var sentimentScore float64 = 0
+	if totalReviews > 0 {
+		sentimentScore = float64(positiveReviews) / float64(totalReviews) * 100 // Convert to percentage
 	}
 
 	// Get top keywords by category
@@ -223,7 +181,7 @@ func (s *foodService) GetDishDetail(dishID uint, userID uint) (dtos.DishDetailRe
 		DishID:          dish.DishID,
 		DishName:        dish.DishName,
 		ImageLink:       imageLink,
-		SentimentScore:  dish.TotalScore,
+		SentimentScore:  sentimentScore,
 		PositiveReviews: positiveReviews,
 		TotalReviews:    totalReviews,
 		Cuisine:         dish.Cuisine,
@@ -261,17 +219,29 @@ func (s *foodService) GetFavoriteDishes(userID uint) ([]dtos.FavoriteDishRespons
 			positiveReviews, totalReviews = 0, 0
 		}
 
+		// Calculate sentiment score: positive score / total score
+		var sentimentScore float64 = 0
+		if totalReviews > 0 {
+			sentimentScore = float64(positiveReviews) / float64(totalReviews) * 100 // Convert to percentage
+		}
+
 		resp = append(resp, dtos.FavoriteDishResponse{
 			DishID:          d.DishID,
 			DishName:        d.DishName,
 			ImageLink:       imageLink,
-			SentimentScore:  d.TotalScore,
+			SentimentScore:  sentimentScore,
 			PositiveReviews: positiveReviews,
 			TotalReviews:    totalReviews,
 			Cuisine:         d.Cuisine,
 			ProminentFlavor: prominentFlavor,
 		})
 	}
+
+	// Sort favorites by sentiment score in descending order as well
+	sort.Slice(resp, func(i, j int) bool {
+		return resp[i].SentimentScore > resp[j].SentimentScore
+	})
+
 	return resp, nil
 }
 
