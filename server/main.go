@@ -72,7 +72,7 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	log.Println("✅ FairNest Minio connected")
+	log.Println("✅ DishDive Minio connected")
 
 	uploadService := service.NewUploadService(minioClient)
 	storageHandler := handler.NewStorageHandler(uploadService)

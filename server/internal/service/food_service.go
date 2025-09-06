@@ -138,6 +138,12 @@ func (s *foodService) GetRestaurantMenu(resID uint, userID uint) ([]dtos.Restaur
 			prominentFlavor = nil // Set to nil if error
 		}
 
+		// Get review counts
+		positiveReviews, totalReviews, err := s.foodRepo.GetReviewCountsByDish(dish.DishID)
+		if err != nil {
+			positiveReviews, totalReviews = 0, 0
+		}
+
 		// Check if favorite
 		isFav, _ := s.foodRepo.IsFavoriteDish(userID, dish.DishID)
 
@@ -146,6 +152,8 @@ func (s *foodService) GetRestaurantMenu(resID uint, userID uint) ([]dtos.Restaur
 			DishName:        dish.DishName,
 			ImageLink:       imageLink,
 			SentimentScore:  dish.TotalScore,
+			PositiveReviews: positiveReviews,
+			TotalReviews:    totalReviews,
 			Cuisine:         dish.Cuisine,
 			ProminentFlavor: prominentFlavor,
 			IsFavorite:      isFav,
@@ -241,13 +249,27 @@ func (s *foodService) GetFavoriteDishes(userID uint) ([]dtos.FavoriteDishRespons
 			}
 		}
 
+		// Get prominent flavor
+		prominentFlavor, err := s.foodRepo.GetProminentFlavorByDish(d.DishID)
+		if err != nil {
+			prominentFlavor = nil
+		}
+
+		// Get review counts
+		positiveReviews, totalReviews, err := s.foodRepo.GetReviewCountsByDish(d.DishID)
+		if err != nil {
+			positiveReviews, totalReviews = 0, 0
+		}
+
 		resp = append(resp, dtos.FavoriteDishResponse{
 			DishID:          d.DishID,
 			DishName:        d.DishName,
 			ImageLink:       imageLink,
 			SentimentScore:  d.TotalScore,
+			PositiveReviews: positiveReviews,
+			TotalReviews:    totalReviews,
 			Cuisine:         d.Cuisine,
-			ProminentFlavor: nil, // Fill as needed
+			ProminentFlavor: prominentFlavor,
 		})
 	}
 	return resp, nil

@@ -175,25 +175,23 @@ func (r *foodRepositoryDB) GetTopKeywordsByDishWithFrequency(dishID uint) ([]Dis
 	return results, err
 }
 
-// Get review counts for a dish (using dish sentiment data since Review entity may not exist)
+// Get review counts for a dish (using actual database values)
 func (r *foodRepositoryDB) GetReviewCountsByDish(dishID uint) (positiveReviews int, totalReviews int, err error) {
-	// Get the dish to access its scores
+	// Get the dish to access its scores from the database
 	var dish entities.Dish
 	err = r.db.Where("dish_id = ?", dishID).First(&dish).Error
 	if err != nil {
 		return 0, 0, err
 	}
 
-	// Calculate based on the dish's total_score and positive_score
-	// Assuming total_score represents total reviews and positive_score represents positive reviews
-	totalReviews = int(dish.TotalScore)
-	positiveReviews = int(dish.TotalScore * 0.8) // Rough estimation, adjust as needed
+	// Use the actual positive and negative scores from the database
+	positiveReviews = dish.PositiveScore
+	negativeReviews := dish.NegativeScore
+	totalReviews = positiveReviews + negativeReviews
 
-	// If we have both positive and total scores in the dish entity, use those
-	// For now, let's create a reasonable approximation
+	// Ensure we have valid data
 	if totalReviews == 0 {
-		totalReviews = 100   // Default for demo
-		positiveReviews = 80 // Default 80% positive
+		return 0, 0, nil // Return 0 if no reviews
 	}
 
 	return positiveReviews, totalReviews, nil

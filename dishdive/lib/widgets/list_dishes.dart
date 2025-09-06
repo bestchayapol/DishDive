@@ -51,7 +51,7 @@ class _ListDishesGridState extends State<ListDishesGrid> {
         userId,
         token,
       );
-      
+
       setState(() {
         _dishes = dishes;
         _isLoading = false;
@@ -99,7 +99,11 @@ class _ListDishesGridState extends State<ListDishesGrid> {
       // Show error message
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(currentStatus ? 'Failed to remove favorite' : 'Failed to add favorite'),
+          content: Text(
+            currentStatus
+                ? 'Failed to remove favorite'
+                : 'Failed to add favorite',
+          ),
           backgroundColor: Colors.red,
         ),
       );
@@ -109,9 +113,7 @@ class _ListDishesGridState extends State<ListDishesGrid> {
   @override
   Widget build(BuildContext context) {
     if (_isLoading) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+      return const Center(child: CircularProgressIndicator());
     }
 
     if (_error != null) {
@@ -119,11 +121,7 @@ class _ListDishesGridState extends State<ListDishesGrid> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.error_outline,
-              size: 64,
-              color: Colors.grey[400],
-            ),
+            Icon(Icons.error_outline, size: 64, color: Colors.grey[400]),
             const SizedBox(height: 16),
             Text(
               'Failed to load menu',
@@ -136,10 +134,7 @@ class _ListDishesGridState extends State<ListDishesGrid> {
             const SizedBox(height: 8),
             Text(
               _error!,
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey[500],
-              ),
+              style: TextStyle(fontSize: 14, color: Colors.grey[500]),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
@@ -157,11 +152,7 @@ class _ListDishesGridState extends State<ListDishesGrid> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.restaurant_menu,
-              size: 64,
-              color: Colors.grey[400],
-            ),
+            Icon(Icons.restaurant_menu, size: 64, color: Colors.grey[400]),
             const SizedBox(height: 16),
             Text(
               'No dishes available',
@@ -174,10 +165,7 @@ class _ListDishesGridState extends State<ListDishesGrid> {
             const SizedBox(height: 8),
             Text(
               'This restaurant hasn\'t added any dishes yet.',
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey[500],
-              ),
+              style: TextStyle(fontSize: 14, color: Colors.grey[500]),
               textAlign: TextAlign.center,
             ),
           ],
@@ -191,7 +179,7 @@ class _ListDishesGridState extends State<ListDishesGrid> {
         crossAxisCount: 2,
         mainAxisSpacing: 18,
         crossAxisSpacing: 12,
-        childAspectRatio: 0.8,
+        childAspectRatio: 0.7,
       ),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       itemBuilder: (context, index) {
@@ -217,7 +205,8 @@ class _ListDishesGridState extends State<ListDishesGrid> {
             taste: dish.tasteDisplay,
             ratingPercent: dish.ratingPercent,
             isFavorite: dish.isFavorite,
-            onFavoriteToggle: (newStatus) => _toggleFavorite(dish.dishId, dish.isFavorite),
+            onFavoriteToggle: (newStatus) =>
+                _toggleFavorite(dish.dishId, dish.isFavorite),
           ),
         );
       },

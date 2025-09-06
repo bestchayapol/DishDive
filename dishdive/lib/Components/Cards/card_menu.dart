@@ -71,7 +71,7 @@ class _MenuCardState extends State<MenuCard> {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(12),
                   child: Container(
-                    height: 100,
+                    height: 110,
                     width: double.infinity,
                     color: Colors.grey[400],
                     child: widget.imagePath.startsWith('http')
@@ -101,36 +101,38 @@ class _MenuCardState extends State<MenuCard> {
                                 child: Center(
                                   child: CircularProgressIndicator(
                                     strokeWidth: 2,
-                                    valueColor: AlwaysStoppedAnimation<Color>(Colors.grey[600]!),
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      Colors.grey[600]!,
+                                    ),
                                   ),
                                 ),
                               );
                             },
                           )
                         : widget.imagePath.isNotEmpty
-                            ? Image.asset(
-                                widget.imagePath,
+                        ? Image.asset(
+                            widget.imagePath,
+                            height: 100,
+                            width: double.infinity,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Container(
                                 height: 100,
                                 width: double.infinity,
-                                fit: BoxFit.cover,
-                                errorBuilder: (context, error, stackTrace) {
-                                  return Container(
-                                    height: 100,
-                                    width: double.infinity,
-                                    color: Colors.grey[400],
-                                    child: Icon(
-                                      Icons.restaurant,
-                                      color: Colors.grey[600],
-                                      size: 40,
-                                    ),
-                                  );
-                                },
-                              )
-                            : Icon(
-                                Icons.restaurant,
-                                color: Colors.grey[600],
-                                size: 40,
-                              ),
+                                color: Colors.grey[400],
+                                child: Icon(
+                                  Icons.restaurant,
+                                  color: Colors.grey[600],
+                                  size: 40,
+                                ),
+                              );
+                            },
+                          )
+                        : Icon(
+                            Icons.restaurant,
+                            color: Colors.grey[600],
+                            size: 40,
+                          ),
                   ),
                 ),
                 Positioned(
@@ -165,13 +167,18 @@ class _MenuCardState extends State<MenuCard> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Text(
-              widget.dishName,
-              style: const TextStyle(
-                fontFamily: 'InriaSans',
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-                color: Colors.black,
+            child: SizedBox(
+              height: 50, // Fixed height to accommodate up to 2 lines
+              child: Text(
+                widget.dishName,
+                style: const TextStyle(
+                  fontFamily: 'InriaSans',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: Colors.black,
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ),

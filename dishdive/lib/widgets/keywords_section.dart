@@ -50,41 +50,35 @@ class KeywordsSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Taste and Cost in one row
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Taste
-            if (tasteKeywords.isNotEmpty) ...[
-              const Text(
-                'Taste:',
-                style: TextStyle(
-                  fontWeight: FontWeight.normal,
-                  fontSize: 18,
-                  color: Colors.black,
-                ),
-              ),
-              const SizedBox(width: 4),
-              buildKeywordChips(context, tasteKeywords),
-            ],
-            const SizedBox(width: 16),
-            // Cost
-            if (costKeywords.isNotEmpty) ...[
-              const Text(
-                'Cost:',
-                style: TextStyle(
-                  fontWeight: FontWeight.normal,
-                  fontSize: 18,
-                  color: Colors.black,
-                ),
-              ),
-              const SizedBox(width: 4),
-              buildKeywordChips(context, costKeywords),
-            ],
-          ],
-        ),
-        const SizedBox(height: 12),
-        // General
+        // Cost section
+        if (costKeywords.isNotEmpty) ...[
+          const Text(
+            'Cost:',
+            style: TextStyle(
+              fontWeight: FontWeight.normal,
+              fontSize: 18,
+              color: Colors.black,
+            ),
+          ),
+          const SizedBox(height: 4),
+          buildKeywordChips(context, costKeywords),
+          const SizedBox(height: 12),
+        ],
+        // Taste section
+        if (tasteKeywords.isNotEmpty) ...[
+          const Text(
+            'Taste:',
+            style: TextStyle(
+              fontWeight: FontWeight.normal,
+              fontSize: 18,
+              color: Colors.black,
+            ),
+          ),
+          const SizedBox(height: 4),
+          buildKeywordChips(context, tasteKeywords),
+          const SizedBox(height: 12),
+        ],
+        // General section
         if (generalKeywords.isNotEmpty) ...[
           const Text(
             'General:',

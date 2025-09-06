@@ -18,6 +18,13 @@ class _ListFavoritesWidgetState extends State<ListFavoritesWidget> {
   bool isLoading = true;
   int? pendingDeleteIndex;
 
+  int _toPercentFromParts({num? positive, num? total, num? score}) {
+    if (positive != null && total != null && total > 0) {
+      return ((positive / total) * 100).round().clamp(0, 100);
+    }
+    return 0; // Default to 0 if no valid data
+  }
+
   @override
   void initState() {
     super.initState();
@@ -32,7 +39,7 @@ class _ListFavoritesWidgetState extends State<ListFavoritesWidget> {
   Future<void> fetchFavorites() async {
     final token = Provider.of<TokenProvider>(context, listen: false).token;
     final userId = Provider.of<TokenProvider>(context, listen: false).userId;
-    
+
     if (token == null || userId == null) {
       setState(() {
         isLoading = false;
@@ -50,14 +57,22 @@ class _ListFavoritesWidgetState extends State<ListFavoritesWidget> {
       if (response.statusCode == 200) {
         final List<dynamic> favoritesData = response.data;
         setState(() {
-          favorites = favoritesData.map((dish) => {
-            'dish_id': dish['dish_id'],
-            'name': dish['dish_name'] ?? 'Unknown Dish',
-            'percent': (dish['sentiment_score'] ?? 0.0).round(),
-            'tags': dish['cuisine'] ?? 'Unknown',
-            'imageUrl': dish['image_link'] ?? '',
-            'prominentFlavor': dish['prominent_flavor'],
-          }).toList();
+          favorites = favoritesData
+              .map(
+                (dish) => {
+                  'dish_id': dish['dish_id'],
+                  'name': dish['dish_name'] ?? 'Unknown Dish',
+                  'percent': _toPercentFromParts(
+                    positive: dish['positive_reviews'],
+                    total: dish['total_reviews'],
+                    score: dish['sentiment_score'],
+                  ),
+                  'tags': dish['cuisine'] ?? 'Unknown',
+                  'imageUrl': dish['image_link'] ?? '',
+                  'prominentFlavor': dish['prominent_flavor'],
+                },
+              )
+              .toList();
           isLoading = false;
         });
       }
@@ -72,10 +87,12 @@ class _ListFavoritesWidgetState extends State<ListFavoritesWidget> {
   Future<void> removeFavorite(int dishId) async {
     final token = Provider.of<TokenProvider>(context, listen: false).token;
     final userId = Provider.of<TokenProvider>(context, listen: false).userId;
-    
+
     if (token == null || userId == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Authentication error. Please login again.')),
+        const SnackBar(
+          content: Text('Authentication error. Please login again.'),
+        ),
       );
       return;
     }
@@ -84,17 +101,14 @@ class _ListFavoritesWidgetState extends State<ListFavoritesWidget> {
       Dio dio = Dio();
       final response = await dio.delete(
         ApiConfig.removeFavoriteEndpoint,
-        data: {
-          'user_id': userId,
-          'dish_id': dishId,
-        },
+        data: {'user_id': userId, 'dish_id': dishId},
         options: Options(headers: ApiConfig.authHeaders(token)),
       );
 
       if (response.statusCode == 200) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Removed from favorites')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('Removed from favorites')));
         fetchFavorites(); // Refresh the list
       }
     } catch (e) {
@@ -223,9 +237,7 @@ class _ListFavoritesWidgetState extends State<ListFavoritesWidget> {
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+      return const Center(child: CircularProgressIndicator());
     }
 
     if (favorites.isEmpty) {

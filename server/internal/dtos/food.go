@@ -39,6 +39,8 @@ type FavoriteDishResponse struct {
 	DishName        string  `json:"dish_name"`
 	ImageLink       *string `json:"image_link,omitempty"`
 	SentimentScore  float64 `json:"sentiment_score"`
+	PositiveReviews int     `json:"positive_reviews"`
+	TotalReviews    int     `json:"total_reviews"`
 	Cuisine         *string `json:"cuisine,omitempty"`
 	ProminentFlavor *string `json:"prominent_flavor,omitempty"`
 }
@@ -56,6 +58,8 @@ type RestaurantMenuItemResponse struct {
 	DishName        string  `json:"dish_name"`
 	ImageLink       *string `json:"image_link,omitempty"`
 	SentimentScore  float64 `json:"sentiment_score"`
+	PositiveReviews int     `json:"positive_reviews"`
+	TotalReviews    int     `json:"total_reviews"`
 	Cuisine         *string `json:"cuisine,omitempty"`
 	ProminentFlavor *string `json:"prominent_flavor,omitempty"`
 	IsFavorite      bool    `json:"is_favorite"`

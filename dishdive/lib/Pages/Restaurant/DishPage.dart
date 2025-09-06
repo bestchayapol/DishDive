@@ -63,7 +63,7 @@ class _DishPageState extends State<DishPage>
         userId,
         token,
       );
-      
+
       setState(() {
         _dishDetail = dishDetail;
         _isLoading = false;
@@ -79,7 +79,7 @@ class _DishPageState extends State<DishPage>
 
   Future<void> _toggleFavorite() async {
     if (_dishDetail == null) return;
-    
+
     final tokenProvider = Provider.of<TokenProvider>(context, listen: false);
     final token = tokenProvider.token;
     final userId = tokenProvider.userId;
@@ -88,9 +88,17 @@ class _DishPageState extends State<DishPage>
 
     bool success;
     if (_dishDetail!.isFavorite) {
-      success = await _restaurantService.removeFavorite(userId, widget.dishId, token);
+      success = await _restaurantService.removeFavorite(
+        userId,
+        widget.dishId,
+        token,
+      );
     } else {
-      success = await _restaurantService.addFavorite(userId, widget.dishId, token);
+      success = await _restaurantService.addFavorite(
+        userId,
+        widget.dishId,
+        token,
+      );
     }
 
     if (success) {
@@ -112,7 +120,11 @@ class _DishPageState extends State<DishPage>
       // Show error message
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(_dishDetail!.isFavorite ? 'Failed to remove favorite' : 'Failed to add favorite'),
+          content: Text(
+            _dishDetail!.isFavorite
+                ? 'Failed to remove favorite'
+                : 'Failed to add favorite',
+          ),
           backgroundColor: Colors.red,
         ),
       );
@@ -122,7 +134,7 @@ class _DishPageState extends State<DishPage>
   Future<void> fetchUserData() async {
     final token = Provider.of<TokenProvider>(context, listen: false).token;
     final userId = Provider.of<TokenProvider>(context, listen: false).userId;
-    
+
     if (token == null || userId == null) {
       return;
     }
@@ -187,7 +199,8 @@ class _DishPageState extends State<DishPage>
                       shape: BoxShape.circle,
                       color: Colors.grey,
                     ),
-                    child: profileImageUrl != null && profileImageUrl!.isNotEmpty
+                    child:
+                        profileImageUrl != null && profileImageUrl!.isNotEmpty
                         ? ClipOval(
                             child: Image.network(
                               profileImageUrl!,
@@ -214,9 +227,7 @@ class _DishPageState extends State<DishPage>
             ),
           ),
           // Content area
-          Expanded(
-            child: _buildContent(),
-          ),
+          Expanded(child: _buildContent()),
           // Write Review button
           const SizedBox(height: 15),
           Padding(
@@ -251,9 +262,7 @@ class _DishPageState extends State<DishPage>
 
   Widget _buildContent() {
     if (_isLoading) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+      return const Center(child: CircularProgressIndicator());
     }
 
     if (_error != null) {
@@ -261,11 +270,7 @@ class _DishPageState extends State<DishPage>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.error_outline,
-              size: 64,
-              color: Colors.grey[400],
-            ),
+            Icon(Icons.error_outline, size: 64, color: Colors.grey[400]),
             const SizedBox(height: 16),
             Text(
               'Failed to load dish details',
@@ -278,10 +283,7 @@ class _DishPageState extends State<DishPage>
             const SizedBox(height: 8),
             Text(
               _error!,
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey[500],
-              ),
+              style: TextStyle(fontSize: 14, color: Colors.grey[500]),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
@@ -299,11 +301,7 @@ class _DishPageState extends State<DishPage>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.restaurant_menu,
-              size: 64,
-              color: Colors.grey[400],
-            ),
+            Icon(Icons.restaurant_menu, size: 64, color: Colors.grey[400]),
             const SizedBox(height: 16),
             Text(
               'Dish not found',
@@ -318,7 +316,7 @@ class _DishPageState extends State<DishPage>
       );
     }
 
-    return Padding(
+    return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       child: CardDetails(
         dishId: _dishDetail!.dishId,

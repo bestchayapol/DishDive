@@ -8,6 +8,10 @@ class RestaurantMenuItem {
   final bool isFavorite;
   final double recommendScore;
 
+  // Added
+  final int positiveReviews;
+  final int totalReviews;
+
   RestaurantMenuItem({
     required this.dishId,
     required this.dishName,
@@ -17,6 +21,9 @@ class RestaurantMenuItem {
     this.prominentFlavor,
     required this.isFavorite,
     required this.recommendScore,
+    // Added (not required to avoid breaking other constructors)
+    this.positiveReviews = 0,
+    this.totalReviews = 0,
   });
 
   factory RestaurantMenuItem.fromJson(Map<String, dynamic> json) {
@@ -29,6 +36,13 @@ class RestaurantMenuItem {
       prominentFlavor: json['prominent_flavor'],
       isFavorite: json['is_favorite'] ?? false,
       recommendScore: (json['recommend_score'] ?? 0.0).toDouble(),
+      // Added
+      positiveReviews: (json['positive_reviews'] ?? 0) is num
+          ? (json['positive_reviews'] as num).toInt()
+          : 0,
+      totalReviews: (json['total_reviews'] ?? 0) is num
+          ? (json['total_reviews'] as num).toInt()
+          : 0,
     );
   }
 
@@ -42,22 +56,18 @@ class RestaurantMenuItem {
       'prominent_flavor': prominentFlavor,
       'is_favorite': isFavorite,
       'recommend_score': recommendScore,
+      // Added
+      'positive_reviews': positiveReviews,
+      'total_reviews': totalReviews,
     };
   }
 
-  // Helper method to get rating percentage from sentiment score
+  // Percent based on positive/total; fallback to sentiment_score if needed
   int get ratingPercent {
-    // Convert sentiment score (0.0-5.0) to percentage (0-100)
-    return ((sentimentScore / 5.0) * 100).round().clamp(0, 100);
+    if (totalReviews == 0) return 0;
+    return ((positiveReviews / totalReviews) * 100).round().clamp(0, 100);
   }
 
-  // Helper method to get taste/flavor display text
-  String get tasteDisplay {
-    return prominentFlavor ?? 'Mixed';
-  }
-
-  // Helper method to get cuisine display text  
-  String get cuisineDisplay {
-    return cuisine ?? 'Various';
-  }
+  String get tasteDisplay => prominentFlavor ?? 'Mixed';
+  String get cuisineDisplay => cuisine ?? 'Various';
 }

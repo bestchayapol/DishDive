@@ -101,7 +101,10 @@ class _CardDetailsState extends State<CardDetails> {
         ],
       ),
       padding: const EdgeInsets.all(12),
+      width: double.infinity,
       child: Column(
+        mainAxisSize:
+            MainAxisSize.min, // Allow column to size itself based on content
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Stack(
@@ -139,36 +142,38 @@ class _CardDetailsState extends State<CardDetails> {
                               child: Center(
                                 child: CircularProgressIndicator(
                                   strokeWidth: 2,
-                                  valueColor: AlwaysStoppedAnimation<Color>(Colors.grey[600]!),
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    Colors.grey[600]!,
+                                  ),
                                 ),
                               ),
                             );
                           },
                         )
                       : widget.imagePath.isNotEmpty
-                          ? Image.asset(
-                              widget.imagePath,
+                      ? Image.asset(
+                          widget.imagePath,
+                          height: 180,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Container(
                               height: 180,
                               width: double.infinity,
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) {
-                                return Container(
-                                  height: 180,
-                                  width: double.infinity,
-                                  color: Colors.grey[400],
-                                  child: Icon(
-                                    Icons.restaurant,
-                                    color: Colors.grey[600],
-                                    size: 60,
-                                  ),
-                                );
-                              },
-                            )
-                          : Icon(
-                              Icons.restaurant,
-                              color: Colors.grey[600],
-                              size: 60,
-                            ),
+                              color: Colors.grey[400],
+                              child: Icon(
+                                Icons.restaurant,
+                                color: Colors.grey[600],
+                                size: 60,
+                              ),
+                            );
+                          },
+                        )
+                      : Icon(
+                          Icons.restaurant,
+                          color: Colors.grey[600],
+                          size: 60,
+                        ),
                 ),
               ),
               Positioned(
