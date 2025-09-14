@@ -1,7 +1,7 @@
 import json
 import re
 import time
-from typing import List, Dict
+from typing import List, Dict, Optional
 
 # Prefilter keyword sets
 GENERIC_KWS = set([
@@ -15,7 +15,7 @@ DISH_CUES = set([
 ])
 
 
-def should_skip_review(review: str, restaurant: str | None = None) -> bool:
+def should_skip_review(review: str, restaurant: Optional[str] = None) -> bool:
     if not isinstance(review, str):
         return True
     text = review.strip()
@@ -113,7 +113,7 @@ def extract_dishes_rule_based(text: str) -> List[str]:
     return found
 
 
-def build_fallback_entries(restaurant: str, review: str) -> list[dict]:
+def build_fallback_entries(restaurant: str, review: str) -> List[Dict]:
     dishes = extract_dishes_rule_based(review) or ["เมนูรวม"]
     return [
         {
@@ -131,9 +131,9 @@ class TTLCache:
     def __init__(self, max_size: int = 1000, ttl_sec: int = 3600):
         self.max_size = max_size
         self.ttl = ttl_sec
-        self._store: dict[str, tuple[float, str]] = {}
+        self._store: Dict[str, tuple] = {}
 
-    def get(self, key: str) -> str | None:
+    def get(self, key: str) -> Optional[str]:
         now = time.time()
         v = self._store.get(key)
         if not v:

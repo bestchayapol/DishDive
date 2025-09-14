@@ -179,13 +179,19 @@ def process_rows(df: pd.DataFrame, cfg: Config, chain, db: DB, logger):
     error_log: List[dict] = []
     cache = TTLCache(max_size=cfg.ollama_cache_max, ttl_sec=cfg.ollama_cache_ttl_sec)
 
-    checkpoint_path = os.path.join(cfg.output_dir, "processed_bangkok_restaurant_reviews_checkpoint_2000.csv")
-    output_path = os.path.join(cfg.output_dir, "processed_bangkok_restaurant_reviews_2000.csv")
-    data_extract_path = os.path.join(cfg.output_dir, "processed_bangkok_restaurant_reviews_data_extract_2000.csv")
+    # Resolve output paths
+    default_output_name = "processed_reviews.csv"
+    output_path = cfg.output_csv if cfg.output_csv else os.path.join(cfg.output_dir, default_output_name)
+    checkpoint_path = os.path.join(cfg.output_dir, "processed_reviews_checkpoint.csv")
+    data_extract_path = os.path.join(cfg.output_dir, "processed_reviews_data_extract.csv")
 
+    # Ensure output directories exist
     os.makedirs(cfg.output_dir, exist_ok=True)
+    out_dirname = os.path.dirname(output_path)
+    if out_dirname:
+        os.makedirs(out_dirname, exist_ok=True)
 
-    if os.path.exists(checkpoint_path):
+    if cfg.write_checkpoint and os.path.exists(checkpoint_path):
         checkpoint_df = pd.read_csv(checkpoint_path, keep_default_na=False)
         processed_indices = set(checkpoint_df["Row Number"] - 1)
         results = checkpoint_df.to_dict(orient="records")
@@ -225,8 +231,9 @@ def process_rows(df: pd.DataFrame, cfg: Config, chain, db: DB, logger):
         elapsed = time.time() - t0
         logger.info("Batch processed in %.2fs (size=%s)", elapsed, batch_size)
 
-        # Checkpoint to CSV
-        pd.DataFrame(results).to_csv(checkpoint_path, index=False)
+        # Checkpoint to CSV (optional)
+        if cfg.write_checkpoint:
+            pd.DataFrame(results).to_csv(checkpoint_path, index=False)
         # Adjust next batch size
         if elapsed < max(1.0, 0.5 * cfg.target_batch_sec) and batch_size < batch_max:
             batch_size = min(batch_max, max(batch_size + 1, int(batch_size * 1.25)))
@@ -245,12 +252,14 @@ def process_rows(df: pd.DataFrame, cfg: Config, chain, db: DB, logger):
         except Exception as e:
             logger.warning("Failed final DB upsert: %s", e)
 
-    # final export
+    # final export (single output file)
     pd.DataFrame(results).to_csv(output_path, index=False)
-    # data_extract shaped CSV
-    _write_data_extract_csv_from_results(results, data_extract_path)
-
-    logger.info("Processing complete. Output: %s | data_extract: %s", output_path, data_extract_path)
+    # data_extract shaped CSV (optional)
+    if cfg.write_data_extract:
+        _write_data_extract_csv_from_results(results, data_extract_path)
+        logger.info("Processing complete. Output: %s | data_extract: %s", output_path, data_extract_path)
+    else:
+        logger.info("Processing complete. Output: %s", output_path)
     return results
 
 
