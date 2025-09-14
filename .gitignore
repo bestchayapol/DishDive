@@ -1,0 +1,27 @@
+# Python virtual environments
+.venv/
+venv/
+ENV/
+.env/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# VS Code settings
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Other common ignores
+*.log
+*.sqlite3
+outputs/

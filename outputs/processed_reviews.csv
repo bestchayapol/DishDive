@@ -16,12 +16,15 @@ Row Number,Restaurant Name,Review Text,Status,Extracted JSON,Error Message
 ]",
 2,ครัวประกายลาบยโส,ร้านบรรยากาศดีมากค่ะ มีซุ้มกระท่อมให้นั่ง ไม่ร้อน มีพัดลมให้บริการ พนักงานบริการไว อาหารอร่อย รสชาติดี ราคาไม่แพงมาก,Success,"[
   {
+    ""review_id"": 1,
     ""restaurant"": ""ครัวประกายลาบยโส"",
-    ""dish"": ""เมนูรวม"",
-    ""cuisine"": ""thai"",
-    ""restriction"": null,
+    ""dish"": ""ต้มยำกุ้ง"",
+    ""cuisine"": ""ไทย"",
+    ""restriction"": """",
     ""sentiment"": {
-      ""positive"": [],
+      ""positive"": [
+        ""อร่อย""
+      ],
       ""negative"": []
     }
   }
@@ -80,46 +83,19 @@ Row Number,Restaurant Name,Review Text,Status,Extracted JSON,Error Message
 7,ครัวประกายลาบยโส,"อร่อย ต้มแซ่บกระดูกอ่อน ลาบหมู แซ่บกำลังดี
 ปีกไก่ทอดหอมอร่อยกรอบ ไม่หนักเค็ม",Success,"[
   {
+    ""review_id"": 1,
     ""restaurant"": ""ครัวประกายลาบยโส"",
-    ""dish"": ""ต้มแซ่บกระดูกอ่อน"",
+    ""dish"": ""กระดูกอ่อน"",
     ""cuisine"": ""thai"",
     ""restriction"": null,
     ""sentiment"": {
-      ""positive"": [],
-      ""negative"": []
-    }
-  },
-  {
-    ""restaurant"": ""ครัวประกายลาบยโส"",
-    ""dish"": ""ปีกไก่ทอด"",
-    ""cuisine"": ""thai"",
-    ""restriction"": null,
-    ""sentiment"": {
-      ""positive"": [],
-      ""negative"": []
-    }
-  },
-  {
-    ""restaurant"": ""ครัวประกายลาบยโส"",
-    ""dish"": ""ต้มแซ่บ"",
-    ""cuisine"": ""thai"",
-    ""restriction"": null,
-    ""sentiment"": {
-      ""positive"": [],
-      ""negative"": []
-    }
-  },
-  {
-    ""restaurant"": ""ครัวประกายลาบยโส"",
-    ""dish"": ""ลาบหมู"",
-    ""cuisine"": ""thai"",
-    ""restriction"": null,
-    ""sentiment"": {
-      ""positive"": [],
+      ""positive"": [
+        ""กระดูกอ่อน""
+      ],
       ""negative"": []
     }
   }
-]",fallback: unbalanced json
+]",
 8,ครัวประกายลาบยโส,สั่งกลับบ้านก้อยเนื้อเปรี้ยว ไม่ใส่เครื่องใน + ต้มแซ่บ ก่อนเอาบิลไปพนักงานก็ถามย้ำนะ ก้อยเนื้อเปรี้ยวไม่เอาเครื่องใน กลับถึงบ้าน ได้ทั้งขม ทั้งเครื่องใน สรูปคือ กินไม่ได้ ต้องทิ้ง ผิดหวังค่ะ  ต้มแซ่บอร่อย  แถ้าได้ก้อยเปรี้ยวตามที่สั่งน่าจะอร่อย แต่ได้ขมมา จะร้อง,Success,"[
   {
     ""restaurant"": ""ครัวประกายลาบยโส"",
@@ -193,16 +169,13 @@ Row Number,Restaurant Name,Review Text,Status,Extracted JSON,Error Message
 ที่จอดรถกว้างขวาง
 อาหาร: 4",Success,"[
   {
-    ""review_id"": 1,
     ""restaurant"": ""ครัวประกายลาบยโส"",
-    ""dish"": ""อาหาร"",
-    ""cuisine"": ""Others"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
     ""restriction"": null,
     ""sentiment"": {
       ""positive"": [],
-      ""negative"": [
-        ""หวาน""
-      ]
+      ""negative"": []
     }
   }
 ]",
@@ -223,26 +196,19 @@ Row Number,Restaurant Name,Review Text,Status,Extracted JSON,Error Message
 บริการ
 รับประทานที่ร้",Success,"[
   {
-    ""restaurant"": ""ครัวประกายลาบยโส"",
-    ""dish"": ""ปากเป็ดทอด"",
-    ""cuisine"": ""thai"",
-    ""restriction"": null,
-    ""sentiment"": {
-      ""positive"": [],
-      ""negative"": []
-    }
-  },
-  {
+    ""review_id"": 1,
     ""restaurant"": ""ครัวประกายลาบยโส"",
     ""dish"": ""ส้มตำ"",
     ""cuisine"": ""thai"",
     ""restriction"": null,
     ""sentiment"": {
-      ""positive"": [],
+      ""positive"": [
+        ""รสแซ่บ""
+      ],
       ""negative"": []
     }
   }
-]",fallback: unbalanced json
+]",
 15,ครัวประกายลาบยโส,"ประทับใจร้านนี้มากๆเลยค่ะ
 อาหารอร่อย บริการสุดประทับใจ
 ตอนนี้เลือกทานร้านนี้ประจำเลยค่ะ",Success,"[
