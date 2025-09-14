@@ -1,4 +1,6 @@
 {
   "cmake.sourceDirectory": "C:/Users/famee/OneDrive/Documents/GitHub/DishDive/dishdive/windows/flutter",
-  "cmake.ignoreCMakeListsMissing": true
+  "cmake.ignoreCMakeListsMissing": true,
+  "python.defaultInterpreterPath": ".\\.venv\\Scripts\\python.exe",
+  "python.analysis.extraPaths": ["."]
 }
