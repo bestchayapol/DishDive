@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/launch.json",
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run LLM Processing",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/run_llm_processing.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "env": {
+        "INPUT_CSV": "reviews.csv",
+        "OUTPUT_DIR": "outputs",
+        "PG_WRITE_DISABLED": "1"
+      }
+    }
+  ]
+}
