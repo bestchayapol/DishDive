@@ -42,7 +42,7 @@ class Config:
     pg_port: int = _int("PGPORT", int(os.environ.get("PG_PORT", 5432)))
     pg_user: str = os.environ.get("PGUSER", os.environ.get("PG_USER", "root"))
     pg_password: str = os.environ.get("PGPASSWORD", os.environ.get("PG_PASSWORD", "tungtungtungtungsahur"))
-    pg_database: str = os.environ.get("PGDATABASE", os.environ.get("PG_DATABASE", "postgres"))
+    pg_database: str = os.environ.get("PGDATABASE", os.environ.get("PG_DATABASE", "testing"))
     pg_sslmode: str = os.environ.get("PG_SSLMODE", "disable")
     # Default to disabling DB writes unless explicitly enabled
     pg_write_disabled: bool = _bool("PG_WRITE_DISABLED", True)

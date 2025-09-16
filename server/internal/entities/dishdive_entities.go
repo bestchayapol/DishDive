@@ -137,8 +137,8 @@ func (UserReview) TableName() string {
 
 type WebReview struct {
 	WebRevID uint   `gorm:"column:web_rev_id;primaryKey;autoIncrement" json:"web_rev_id"`
-	ResName  string `gorm:"column:res_name;not null;index" json:"res_name"`
-	WebRev   string `gorm:"column:web_rev;not null" json:"web_rev"`
+	ResName  string `gorm:"column:res_name;" json:"res_name"`
+	WebRev   string `gorm:"column:web_rev;" json:"web_rev"`
 }
 
 func (WebReview) TableName() string {

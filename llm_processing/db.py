@@ -1,4 +1,5 @@
 import time
+import json
 import psycopg2
 import psycopg2.extras as pg_extras
 from psycopg2 import pool as pg_pool
@@ -116,6 +117,7 @@ class DB:
         if not self.is_available():
             return 0
         rows = []
+        skipped_filtered = 0
         for r in results:
             try:
                 if r.get("Status") != "Success":
@@ -126,8 +128,23 @@ class DB:
             data_json = r.get("Extracted JSON")
             if rn is None or data_json is None:
                 continue
-            rows.append((int(rn), source_type, str(data_json)))
+            # Filter out any dish entries where dish contains 'เมนูรวม'
+            try:
+                arr = json.loads(data_json)
+                if isinstance(arr, list):
+                    arr = [o for o in arr if not (isinstance(o, dict) and isinstance(o.get("dish"), str) and ("เมนูรวม" in o.get("dish")))]
+                else:
+                    arr = []
+            except Exception:
+                arr = []
+            if not arr:
+                skipped_filtered += 1
+                continue
+            filtered_json = json.dumps(arr, ensure_ascii=False)
+            rows.append((int(rn), source_type, filtered_json))
         if not rows:
+            if skipped_filtered:
+                self.logger.info("DB upsert skipped %s rows after filter (เมนูรวม)", skipped_filtered)
             return 0
         base = self.get_max_rev_ext_id()
         values_with_ids = [(base + i, sid, s_type, data_json) for i, (sid, s_type, data_json) in enumerate(rows, start=1)]
@@ -147,4 +164,6 @@ class DB:
                     page_size=1000,
                 )
             c.commit()
+        if skipped_filtered:
+            self.logger.info("DB upsert inserted %s rows; skipped %s filtered", len(values_with_ids), skipped_filtered)
         return len(values_with_ids)
