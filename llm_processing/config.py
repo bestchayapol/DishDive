@@ -32,7 +32,7 @@ class Config:
 
     # Processing
     batch_size: int = _int("BATCH_SIZE", 25)
-    max_workers: int = _int("MAX_WORKERS", 2)
+    max_workers: int = _int("MAX_WORKERS", 4)
     cooldown_sec: int = _int("COOLDOWN_BASE_SEC", 5)
     target_batch_sec: float = _float("TARGET_BATCH_SEC", 10.0)
     prefilter_enabled: bool = _bool("PREFILTER_ENABLED", False)

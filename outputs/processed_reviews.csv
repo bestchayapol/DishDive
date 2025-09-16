@@ -3,9 +3,36 @@ Row Number,Restaurant Name,Review Text,Status,Extracted JSON,Error Message
 ต้มขม เนื้อ ดีมาก เป็นเนื้อเป็นชิ้นไม่เศษเนื้อ
 ก้อยเนื้อย่าง แซ่บนะ",Success,"[
   {
-    ""review_id"": 1,
     ""restaurant"": ""ครัวประกายลาบยโส"",
-    ""dish"": ""ต้มขมเนื้อ"",
+    ""dish"": ""ต้มขม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [
+        ""อร่อย"",
+        ""ดีมาก"",
+        ""เป็นเนื้อเป็นชิ้น""
+      ],
+      ""negative"": []
+    }
+  },
+  {
+    ""restaurant"": ""ครัวประกายลาบยโส"",
+    ""dish"": ""ก้อยเนื้อย่าง"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [
+        ""แซ่บ""
+      ],
+      ""negative"": []
+    }
+  }
+]",
+2,ครัวประกายลาบยโส,ร้านบรรยากาศดีมากค่ะ มีซุ้มกระท่อมให้นั่ง ไม่ร้อน มีพัดลมให้บริการ พนักงานบริการไว อาหารอร่อย รสชาติดี ราคาไม่แพงมาก,Success,"[
+  {
+    ""restaurant"": ""ครัวประกายลาบยโส"",
+    ""dish"": ""เมนูรวม"",
     ""cuisine"": ""thai"",
     ""restriction"": null,
     ""sentiment"": {
@@ -13,22 +40,7 @@ Row Number,Restaurant Name,Review Text,Status,Extracted JSON,Error Message
       ""negative"": []
     }
   }
-]",
-2,ครัวประกายลาบยโส,ร้านบรรยากาศดีมากค่ะ มีซุ้มกระท่อมให้นั่ง ไม่ร้อน มีพัดลมให้บริการ พนักงานบริการไว อาหารอร่อย รสชาติดี ราคาไม่แพงมาก,Success,"[
-  {
-    ""review_id"": 1,
-    ""restaurant"": ""ครัวประกายลาบยโส"",
-    ""dish"": ""ต้มยำกุ้ง"",
-    ""cuisine"": ""ไทย"",
-    ""restriction"": """",
-    ""sentiment"": {
-      ""positive"": [
-        ""อร่อย""
-      ],
-      ""negative"": []
-    }
-  }
-]",
+]",fallback: no dishes found
 3,ครัวประกายลาบยโส,"อาหารอร่อย รสชาติดีมากๆ ราคาเหมาะสมค่ะ
 อาหารเร็วถูกใจ น้องๆบริการดีมากๆคะ มีเพลงเพราะมากๆ
 บริการ",Success,"[
@@ -42,7 +54,7 @@ Row Number,Restaurant Name,Review Text,Status,Extracted JSON,Error Message
       ""negative"": []
     }
   }
-]",
+]",fallback: no dishes found
 4,ครัวประกายลาบยโส,ร้านสะอาด บรรยากาศดี ราคากลางๆ พนักงานบริการรวดเร็วค่ะ นั่งในซุ้มไม่ร้อน มีพัดลมให้บริการ สามารถโอนชำระได้ค่ะ,Success,"[
   {
     ""restaurant"": ""ครัวประกายลาบยโส"",
@@ -54,7 +66,7 @@ Row Number,Restaurant Name,Review Text,Status,Extracted JSON,Error Message
       ""negative"": []
     }
   }
-]",
+]",fallback: no dishes found
 5,ครัวประกายลาบยโส,มีโอกาสได้ไปกินที่ร้าน เมื่อ 28/5/66 (ปกติน้องชายจะสั่งมากินกันที่บ้าน)  บรรยากาศร้านกว้างขวางที่จอดรถเยอะ ร้านมี 2 โซน คือโซนร้าน กับมีเป็นโซนซุ้ม(มีหลายซุ้มให้เลือก) สามารถจอดรถระหว่างซุ้มได้ ยิ่งมาช่วงเย็น บรรยากาศชิลๆ ที่ซุ้มก็มีพัดลม,Success,"[
   {
     ""restaurant"": ""ครัวประกายลาบยโส"",
@@ -66,78 +78,50 @@ Row Number,Restaurant Name,Review Text,Status,Extracted JSON,Error Message
       ""negative"": []
     }
   }
-]",
+]",fallback: no dishes found
 6,ครัวประกายลาบยโส,อาหารอีสานอร่อยทุกอย่าง รสชาดจัดจ้าน ส้มตำ ก้อยขม ลาบเป็ด ยำหอยนางรมอร่อย น้องพนงน่ารัก ที่นั่งเป็นซุ้มๆ ราคาไม่แพงด้วย ช่วงเย็นคนเยอะ,Success,"[
   {
-    ""review_id"": 1,
-    ""restaurant"": ""ครัวประกาย"",
-    ""dish"": ""อาหาร"",
-    ""cuisine"": ""อาหาร"",
-    ""restriction"": """",
-    ""sentiment"": {
-      ""positive"": [],
-      ""negative"": []
-    }
-  }
-]",
-7,ครัวประกายลาบยโส,"อร่อย ต้มแซ่บกระดูกอ่อน ลาบหมู แซ่บกำลังดี
-ปีกไก่ทอดหอมอร่อยกรอบ ไม่หนักเค็ม",Success,"[
-  {
-    ""review_id"": 1,
     ""restaurant"": ""ครัวประกายลาบยโส"",
-    ""dish"": ""กระดูกอ่อน"",
+    ""dish"": ""ส้มตำ"",
     ""cuisine"": ""thai"",
     ""restriction"": null,
     ""sentiment"": {
       ""positive"": [
-        ""กระดูกอ่อน""
+        ""อร่อย"",
+        ""รสชาดจัดจ้าน""
       ],
-      ""negative"": []
-    }
-  }
-]",
-8,ครัวประกายลาบยโส,สั่งกลับบ้านก้อยเนื้อเปรี้ยว ไม่ใส่เครื่องใน + ต้มแซ่บ ก่อนเอาบิลไปพนักงานก็ถามย้ำนะ ก้อยเนื้อเปรี้ยวไม่เอาเครื่องใน กลับถึงบ้าน ได้ทั้งขม ทั้งเครื่องใน สรูปคือ กินไม่ได้ ต้องทิ้ง ผิดหวังค่ะ  ต้มแซ่บอร่อย  แถ้าได้ก้อยเปรี้ยวตามที่สั่งน่าจะอร่อย แต่ได้ขมมา จะร้อง,Success,"[
-  {
-    ""restaurant"": ""ครัวประกายลาบยโส"",
-    ""dish"": ""ก้อยเนื้อ"",
-    ""cuisine"": ""thai"",
-    ""restriction"": null,
-    ""sentiment"": {
-      ""positive"": [],
       ""negative"": []
     }
   },
   {
     ""restaurant"": ""ครัวประกายลาบยโส"",
-    ""dish"": ""ต้มแซ่บ"",
+    ""dish"": ""ก้อยขม"",
     ""cuisine"": ""thai"",
     ""restriction"": null,
     ""sentiment"": {
-      ""positive"": [],
+      ""positive"": [
+        ""อร่อย"",
+        ""รสชาดจัดจ้าน""
+      ],
       ""negative"": []
     }
-  }
-]",
-9,ครัวประกายลาบยโส,"อาหารราคาถูกกว่าที่อื่นที่สำคัญอร่อยทุกเมนูค่ะ
-อาหาร: 5",Success,"[
+  },
   {
-    ""review_id"": 1,
     ""restaurant"": ""ครัวประกายลาบยโส"",
-    ""dish"": ""อาหาร"",
-    ""cuisine"": ""Others"",
+    ""dish"": ""ลาบเป็ด"",
+    ""cuisine"": ""thai"",
     ""restriction"": null,
     ""sentiment"": {
-      ""positive"": [],
+      ""positive"": [
+        ""อร่อย"",
+        ""รสชาดจัดจ้าน""
+      ],
       ""negative"": []
     }
-  }
-]",
-10,ครัวประกายลาบยโส,"ที่นี้ครัวประกายลาบยโสกับข้าวอร่อยพนักงานสุภาพบริการดีเต้ม10ให้100ค่ะ
-บริการ",Success,"[
+  },
   {
-    ""review_id"": 1,
     ""restaurant"": ""ครัวประกายลาบยโส"",
-    ""dish"": ""ข้าวอร่อย"",
+    ""dish"": ""ยำหอยนางรม"",
     ""cuisine"": ""thai"",
     ""restriction"": null,
     ""sentiment"": {
@@ -148,23 +132,118 @@ Row Number,Restaurant Name,Review Text,Status,Extracted JSON,Error Message
     }
   }
 ]",
-11,ครัวประกายลาบยโส,"อาหารรสชาติดี ทุกเมนูที่สั่งมา
-แนะนำที่นี่เลยราคาไม่แพง บรรยากาศก็ดี
-บริการ",Success,"[
+7,ครัวประกายลาบยโส,"อร่อย ต้มแซ่บกระดูกอ่อน ลาบหมู แซ่บกำลังดี
+ปีกไก่ทอดหอมอร่อยกรอบ ไม่หนักเค็ม",Success,"[
   {
-    ""review_id"": 1,
     ""restaurant"": ""ครัวประกายลาบยโส"",
-    ""dish"": ""ต้มยำกุ้ง"",
+    ""dish"": ""ต้มแซ่บกระดูกอ่อน"",
     ""cuisine"": ""thai"",
     ""restriction"": null,
     ""sentiment"": {
       ""positive"": [
-        ""รสชาติอร่อย""
+        ""อร่อย""
+      ],
+      ""negative"": []
+    }
+  },
+  {
+    ""restaurant"": ""ครัวประกายลาบยโส"",
+    ""dish"": ""ลาบหมู"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [
+        ""แซ่บกำลังดี""
+      ],
+      ""negative"": []
+    }
+  },
+  {
+    ""restaurant"": ""ครัวประกายลาบยโส"",
+    ""dish"": ""ปีกไก่ทอด"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [
+        ""หอม"",
+        ""อร่อย"",
+        ""กรอบ""
+      ],
+      ""negative"": [
+        ""ไม่หนักเค็ม""
+      ]
+    }
+  }
+]",
+8,ครัวประกายลาบยโส,สั่งกลับบ้านก้อยเนื้อเปรี้ยว ไม่ใส่เครื่องใน + ต้มแซ่บ ก่อนเอาบิลไปพนักงานก็ถามย้ำนะ ก้อยเนื้อเปรี้ยวไม่เอาเครื่องใน กลับถึงบ้าน ได้ทั้งขม ทั้งเครื่องใน สรูปคือ กินไม่ได้ ต้องทิ้ง ผิดหวังค่ะ  ต้มแซ่บอร่อย  แถ้าได้ก้อยเปรี้ยวตามที่สั่งน่าจะอร่อย แต่ได้ขมมา จะร้อง,Success,"[
+  {
+    ""restaurant"": ""ครัวประกายลาบยโส"",
+    ""dish"": ""ก้อยเนื้อเปรี้ยว"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": [
+        ""ขม"",
+        ""เครื่องใน"",
+        ""กินไม่ได้"",
+        ""ผิดหวัง""
+      ]
+    }
+  },
+  {
+    ""restaurant"": ""ครัวประกายลาบยโส"",
+    ""dish"": ""ต้มแซ่บ"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [
+        ""อร่อย""
       ],
       ""negative"": []
     }
   }
 ]",
+9,ครัวประกายลาบยโส,"อาหารราคาถูกกว่าที่อื่นที่สำคัญอร่อยทุกเมนูค่ะ
+อาหาร: 5",Success,"[
+  {
+    ""restaurant"": ""ครัวประกายลาบยโส"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+10,ครัวประกายลาบยโส,"ที่นี้ครัวประกายลาบยโสกับข้าวอร่อยพนักงานสุภาพบริการดีเต้ม10ให้100ค่ะ
+บริการ",Success,"[
+  {
+    ""restaurant"": ""ครัวประกายลาบยโส"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+11,ครัวประกายลาบยโส,"อาหารรสชาติดี ทุกเมนูที่สั่งมา
+แนะนำที่นี่เลยราคาไม่แพง บรรยากาศก็ดี
+บริการ",Success,"[
+  {
+    ""restaurant"": ""ครัวประกายลาบยโส"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
 12,ครัวประกายลาบยโส,"อาหารติดหวานไปนิด แต่แซ่บอยู่
 ที่จอดรถกว้างขวาง
 อาหาร: 4",Success,"[
@@ -178,7 +257,7 @@ Row Number,Restaurant Name,Review Text,Status,Extracted JSON,Error Message
       ""negative"": []
     }
   }
-]",
+]",fallback: no dishes found
 13,ครัวประกายลาบยโส,"ร้านอร่อยมากๆค่ะครอบครัวชอบไปกินทุกเดือนค่ะ
 อาหาร: 5",Success,"[
   {
@@ -191,19 +270,31 @@ Row Number,Restaurant Name,Review Text,Status,Extracted JSON,Error Message
       ""negative"": []
     }
   }
-]",
+]",fallback: no dishes found
 14,ครัวประกายลาบยโส,"อาหารอีสานรสแซ่บแนะนำส้มตำและปากเป็ดทอดคืออร่อยมาก
 บริการ
 รับประทานที่ร้",Success,"[
   {
-    ""review_id"": 1,
     ""restaurant"": ""ครัวประกายลาบยโส"",
     ""dish"": ""ส้มตำ"",
     ""cuisine"": ""thai"",
     ""restriction"": null,
     ""sentiment"": {
       ""positive"": [
-        ""รสแซ่บ""
+        ""แซ่บ"",
+        ""อร่อยมาก""
+      ],
+      ""negative"": []
+    }
+  },
+  {
+    ""restaurant"": ""ครัวประกายลาบยโส"",
+    ""dish"": ""ปากเป็ดทอด"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [
+        ""อร่อยมาก""
       ],
       ""negative"": []
     }
@@ -222,7 +313,7 @@ Row Number,Restaurant Name,Review Text,Status,Extracted JSON,Error Message
       ""negative"": []
     }
   }
-]",
+]",fallback: no dishes found
 16,ครัวประกายลาบยโส,ทุกอย่างโดยรวมดีมากครับ..ส่วนตัวผมติดอย่างเดียวคือเปิดเพลงเสียงดังไปหน่อยและเปิดเพลงไม่เข้าบบรรยากาศร้าน,Success,"[
   {
     ""restaurant"": ""ครัวประกายลาบยโส"",
@@ -234,7 +325,7 @@ Row Number,Restaurant Name,Review Text,Status,Extracted JSON,Error Message
       ""negative"": []
     }
   }
-]",
+]",fallback: no dishes found
 17,ครัวประกายลาบยโส,"อาหารรถชาติดืมีเพลงให้ฟัง
 อาหาร: 4",Success,"[
   {
@@ -247,7 +338,7 @@ Row Number,Restaurant Name,Review Text,Status,Extracted JSON,Error Message
       ""negative"": []
     }
   }
-]",
+]",fallback: no dishes found
 18,ครัวประกายลาบยโส,อาหารอร่อยไม่แพงครับ,Success,"[
   {
     ""restaurant"": ""ครัวประกายลาบยโส"",
@@ -259,7 +350,7 @@ Row Number,Restaurant Name,Review Text,Status,Extracted JSON,Error Message
       ""negative"": []
     }
   }
-]",
+]",fallback: no dishes found
 19,ครัวประกายลาบยโส,"อาหารอร่อย ทุกอย่าง ราคาดี คุ้มค่าเกินราคา  พนักงานบริการดีมากคะ  เจ้าของร้านใจดีสุดๆ
 อาหาร: 5",Success,"[
   {
@@ -272,7 +363,7 @@ Row Number,Restaurant Name,Review Text,Status,Extracted JSON,Error Message
       ""negative"": []
     }
   }
-]",
+]",fallback: no dishes found
 20,ครัวประกายลาบยโส,"อร่อยสะอาด มาทานบ่อยครับ ราคาไม่แพง เจ้าของร้านอธัทยาศัยและบริการดี
 อาหาร: 4",Success,"[
   {
@@ -285,4 +376,1248 @@ Row Number,Restaurant Name,Review Text,Status,Extracted JSON,Error Message
       ""negative"": []
     }
   }
+]",fallback: no dishes found
+21,ครัวประกายลาบยโส,"พนักงานบริการดี อาหารอร่อย ราคาไม่แพง
+บริการ
+รับประทานที่ร้าน",Success,"[
+  {
+    ""restaurant"": ""ครัวประกายลาบยโส"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+22,ครัวประกายลาบยโส,"อาหารอร่อยครับ บรรยากาศใช้ได้
+อาหาร: 5",Success,"[
+  {
+    ""restaurant"": ""ครัวประกายลาบยโส"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+23,ครัวประกายลาบยโส,"รีแช่ มิกเซอร์ดี บรรยากาศบ้านๆ
+ราคาต่อคน
+฿300-400",Success,"[
+  {
+    ""restaurant"": ""ครัวประกายลาบยโส"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+24,ครัวประกายลาบยโส,"อาหารแซ่บโดนใจค่ะ
+บริการ
+รับประทานที่ร้าน",Success,"[
+  {
+    ""restaurant"": ""ครัวประกายลาบยโส"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+25,ครัวประกายลาบยโส,"ถูกปาก
+อาหาร: 5
+บริการ: 5",Success,"[
+  {
+    ""restaurant"": ""ครัวประกายลาบยโส"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+26,ภิรมย์ชมนา คาเฟ่,"หาร้านอาหารเย็นจนได้มาเจอกับ
+""ร้านอาหารป่า พื้นบ้าน รสแซ่บ ถูกปากมากค่ะ""
+เป็นร้านแบบเปิดโล่ง ลมเย็นสบาย วิวทุ่งนาสีเขียวสวย",Success,"[
+  {
+    ""restaurant"": ""ภิรมย์ชมนา คาเฟ่"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+27,ภิรมย์ชมนา คาเฟ่,มาครั้งแรก คือร้านน่ารักมากกกก ร้านอยู่ริมถนน ริมนา ต้องจอดรถริมถนนนะคะ พนักงานบริการดีมาก ชอบความใส่ใจตั้งแต่เอาเมนูมาให้ 2 ชุดในกรณีที่มาตั้งแต่ 2 คนขึ้นไป ลูกค้าจะได้ช่วยกันดูเมนู มีส่วนที่เป็นมุมกาแฟ และมีห้องน้ำให้บริการด้วย,Success,"[
+  {
+    ""restaurant"": ""ภิรมย์ชมนา คาเฟ่"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+28,ภิรมย์ชมนา คาเฟ่,"แวะมาเป็นครั้งที่เท่าไหร่ ไม่ได้นับ
+เป็นร้านอาหารชานเมืองที่มาบ่อยสุดในปีหลังๆแน่ๆ น่าจะขับมา 30-40โลจากบ้านเรามั้งนะ แต่เราไม่เคยคิดว่ามันไกล/นานนะ รถไม่ติด ขับมาเรื่อยๆอเฃะ",Success,"[
+  {
+    ""restaurant"": ""ภิรมย์ชมนา คาเฟ่"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+29,ภิรมย์ชมนา คาเฟ่,บรรยากาศดี ริมทุ่งนา ลมเย็นๆ อาหารอร่อยทุกอย่าง ส้มตำแซ่บมาก ไก่ทอด คอหมูย่าง ปลากระพงทอดน้ำปลา ปลาสดมาก ทอดกรอบ ผัดผงกะหรี่อร่อย ถ่ายรูปอาหารมาไม่หมด,Success,"[
+  {
+    ""restaurant"": ""ภิรมย์ชมนา คาเฟ่"",
+    ""dish"": ""ส้มตำ"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [
+        ""แซ่บมาก""
+      ],
+      ""negative"": []
+    }
+  },
+  {
+    ""restaurant"": ""ภิรมย์ชมนา คาเฟ่"",
+    ""dish"": ""ไก่ทอด"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  },
+  {
+    ""restaurant"": ""ภิรมย์ชมนา คาเฟ่"",
+    ""dish"": ""คอหมูย่าง"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  },
+  {
+    ""restaurant"": ""ภิรมย์ชมนา คาเฟ่"",
+    ""dish"": ""ปลากระพงทอดน้ำปลา"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [
+        ""ปลาสดมาก"",
+        ""ทอดกรอบ""
+      ],
+      ""negative"": []
+    }
+  },
+  {
+    ""restaurant"": ""ภิรมย์ชมนา คาเฟ่"",
+    ""dish"": ""ผัดผงกะหรี"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [
+        ""อร่อย""
+      ],
+      ""negative"": []
+    }
+  }
 ]",
+30,ภิรมย์ชมนา คาเฟ่,ราคามิตรภาพ รสชาติถือว่ากำลังดี แต่ยังไม่สุด กินไวจนถ่ายตอนมาเสิร์ฟไม่ทัน ชอบผัดไทย  คอหมูนุ่มดี บรรยากาศริมนาชิลๆ,Success,"[
+  {
+    ""restaurant"": ""ภิรมย์ชมนา คาเฟ่"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+31,ภิรมย์ชมนา คาเฟ่,ซ้ำเป็นรอบที่ 3 แล้วววว จะบอกว่าเจอโดยบังเอิญแต่เฮ้ยยย บริการดี บรรยากาศดี อาหารอร่อยเยอะมากกกแต่ละจาน ที่สำคัญโคตรสดทั้งปลาทั้งกุ้ง ราคาคือแบบดีย์ สั่งไป 5 อย่างไม่ถึง1ใบเทา  ไปเถอะ อยากให้แมสแต่กลัวรอคิวอิอิ แต่อร่อย คุ้มกับราคาจ้าาา,Success,"[
+  {
+    ""restaurant"": ""ภิรมย์ชมนา คาเฟ่"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+32,ภิรมย์ชมนา คาเฟ่,ไปกินมาตั้งแต่วันอาทิตย์แล้วลืมลงค่ะ แบบสุ่มร้านไปตากบ้านไกลพอควร ทุกอย่างโอเครมากชอบมาก แต่โต๊ะน้อยไปหน่อย รอบหน้าจะไปกินอาหารป่านะคะ โดยรวมทัชใจค่ะ  ปล.มันอิ่มจนกินขนมใส่ไส้ไม่ไหวจริงๆ  ราคาคุ้มกับอาหารมากๆๆๆค่ะ,Success,"[
+  {
+    ""restaurant"": ""ภิรมย์ชมนา คาเฟ่"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+33,ภิรมย์ชมนา คาเฟ่,"อาหารอร่อย ถูกปาก สด สะอาด ต้มยำรสจัดเข้มข้น ส้มตำรสชาติดีเลย อร่อยทุกอย่าง
+ต้องมาจัดซ้ำ ราคาก็ถูก บรรยากาศดีค่ะ",Success,"[
+  {
+    ""restaurant"": ""ภิรมย์ชมนา คาเฟ่"",
+    ""dish"": ""ต้มยำ"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [
+        ""รสจัด"",
+        ""เข้มข้น""
+      ],
+      ""negative"": []
+    }
+  },
+  {
+    ""restaurant"": ""ภิรมย์ชมนา คาเฟ่"",
+    ""dish"": ""ส้มตำ"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [
+        ""รสชาติดี"",
+        ""อร่อย""
+      ],
+      ""negative"": []
+    }
+  }
+]",
+34,ภิรมย์ชมนา คาเฟ่,"ผัดไทเส้นเละ รสชาติเหมือนผัดซีอิ้วเส้นเล็ก ไม่มีกุ้งแห้งโรยเหมือนที่ดูรีวิวมา
+
+ตำกากหมู คือ ส้มตำใส่แคปหมูค่ะ แซ่บดี",Success,"[
+  {
+    ""restaurant"": ""ภิรมย์ชมนา คาเฟ่"",
+    ""dish"": ""ผัดไท"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": [
+        ""เส้นเละ"",
+        ""รสชาติเหมือนผัดซีอิ้วเส้นเล็ก"",
+        ""ไม่มีกุ้งแห้งโรย""
+      ]
+    }
+  },
+  {
+    ""restaurant"": ""ภิรมย์ชมนา คาเฟ่"",
+    ""dish"": ""ตำกากหมู"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [
+        ""แซ่บดี""
+      ],
+      ""negative"": []
+    }
+  }
+]",
+35,ภิรมย์ชมนา คาเฟ่,"ราคาอาหารเป็นมิตรมากกกกกกกกกกกก
+
+รสชาติรวมๆดี ปีกไก่ทอดเกลือ ทะเลผัดผงกะหรี่ อร่อยมาก",Success,"[
+  {
+    ""restaurant"": ""ภิรมย์ชมนา คาเฟ่"",
+    ""dish"": ""ปีกไก่ทอดเกลือ"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [
+        ""อร่อยมาก""
+      ],
+      ""negative"": []
+    }
+  },
+  {
+    ""restaurant"": ""ภิรมย์ชมนา คาเฟ่"",
+    ""dish"": ""ทะเลผัดผงกะหรี่"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [
+        ""อร่อยมาก""
+      ],
+      ""negative"": []
+    }
+  }
+]",
+36,Unknown,เพิ่งรู้ว่าเจ๊ต๊อกแต๊กมาเปิดร้านโซนนี้ด้วย เคยจะกินทานที่สาขาแรก แต่รอไม่ไหว ตอนนั้น นางฮ๊อตมาก บังเอิญ search เจอว่ามาเปิดสาขาที่นี่ด้วย เลยตัดสินใจมา มาถึงร้าน วันอาทิตย์ 11.00 น. คนยังมาไม่เยอะ สั่งส้มตำ 2 จาน(ธรรมดา) และที่เหลือตามภาพ,Success,"[
+  {
+    ""restaurant"": ""Unknown"",
+    ""dish"": ""ส้มตำ"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  },
+  {
+    ""restaurant"": ""Unknown"",
+    ""dish"": ""ส้มตำ"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",
+37,Unknown,เหลาแซลมอน กุ้งสด หมูยอ ปลาร้า รสชาติดีมาก หวาน เค็ม เปรี้ยว ครบทุกรส แซลมอนชิ้นหนามาก วัตถุดิบดีสดใหม่ คุ้มกับราคาสุดๆ,Success,"[
+  {
+    ""restaurant"": ""Unknown"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+38,Unknown,"ช่วงที่ เจ๊ ต็อกแต๊ก มาทำเอง ยำและส้มตำ อร่อยมาก ราคาเท่ากับสาขาแม่ ของ ต.ต. , วันไหน คุณ สอ เป็นคนตำ ก็อร่อย แต่จะติดหวานมาก ณ ล่าสุดที่ไป คุณสอ ไม่ได้ตำเองแล้ว แต่นั่งประจำแคชเชียร์ คงมีพนักงานอื่นตำแทน รสชาติอร่อย แต่เค็มมากๆ",Success,"[
+  {
+    ""restaurant"": ""Unknown"",
+    ""dish"": ""ยำ"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [
+        ""อร่อยมาก""
+      ],
+      ""negative"": []
+    }
+  },
+  {
+    ""restaurant"": ""Unknown"",
+    ""dish"": ""ส้มตำ"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [
+        ""อร่อยมาก""
+      ],
+      ""negative"": []
+    }
+  },
+  {
+    ""restaurant"": ""Unknown"",
+    ""dish"": ""ส้มตำ"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [
+        ""อร่อย""
+      ],
+      ""negative"": [
+        ""ติดหวานมาก""
+      ]
+    }
+  },
+  {
+    ""restaurant"": ""Unknown"",
+    ""dish"": ""ยำ"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [
+        ""อร่อย""
+      ],
+      ""negative"": [
+        ""เค็มมากๆ""
+      ]
+    }
+  }
+]",
+39,Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2,"- บรรยากาศร้านดี โล่งสบาย ดูสะอาด
+- โต๊ะรองรับลูกค้าจำนวนไม่เยอะ
+- ร้านมีพื้นที่รองรับรถวีลแชร์",Success,"[
+  {
+    ""restaurant"": ""Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+40,Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2,รสชาติถึงทุกอย่าง รสจัดจ้าน แต่กินบ่อยๆไม่ไหว รสชาติกับราคาไปด้วยกันได้เลย ร้านเล็กไปหน่อย แต่ในห้างแบบนี้ก็ถือว่าโอเครเลย,Success,"[
+  {
+    ""restaurant"": ""Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+41,Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2,อาหารรสชาติดี พนักงานน้อยไปหน่อย แต่อาหารออกไม่ช้า เปรี้ยวหวานนำแบบนำเลย เกือบทุกเมนู ทำให้ปูอ่องที่รสชาติเค็ม สามารถทานได้กับทุกจาน มีน้ำอัญชันมะนาวให้ฟรีด้วยค่ะ,Success,"[
+  {
+    ""restaurant"": ""Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+42,Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2,"อาหาร zaab สมชื่อ ราคาค่อนข้างแพง แต่อี่อยทุกจาน พนักงานบริการดี
+บริการ",Success,"[
+  {
+    ""restaurant"": ""Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+43,Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2,อาหารอีสานที่ปลาร้าทานง่าย ไม่เหม็น ไม่ทำรสจัดเกินไป สั่งเผ็ดปกติคนเผ็ดน้อยแบบเรายังทานได้ ยำคอหมูทอดมากี่รอบก็สั่ง อร่อย น้ำยำดี คอหมูฉ่ำๆ,Success,"[
+  {
+    ""restaurant"": ""Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+44,Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2,เมนูที่แซ่บที่ถึงใจ กิน2 สาขาเหมือนกันเลย คือ ตำเส้นเล็ก และ ตำหลวงพะบาง ถูกใจมากค่ะ ไก่ย่างต้องสั่งเอาไง้มาดับเผ็ดหมักมาถีงเครื่องมากกินเปล่าๆ ก็ดี กินกับน้ำจิ้มก็เริด ต้มแซ่บซี่โคลงหมูใบมะขามก็แซ่บเปรี้ยวถึงใจ,Success,"[
+  {
+    ""restaurant"": ""Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2"",
+    ""dish"": ""ตำเส้นเล็ก"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [
+        ""แซ่บ"",
+        ""ถึงใจ"",
+        ""ถูกใจ""
+      ],
+      ""negative"": []
+    }
+  },
+  {
+    ""restaurant"": ""Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2"",
+    ""dish"": ""ตำหลวงพะบาง"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [
+        ""แซ่บ"",
+        ""ถึงใจ"",
+        ""ถูกใจ""
+      ],
+      ""negative"": []
+    }
+  },
+  {
+    ""restaurant"": ""Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2"",
+    ""dish"": ""ไก่ย่าง"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [
+        ""ดี"",
+        ""เผ็ด"",
+        ""หมักมาถีงเครื่อง""
+      ],
+      ""negative"": []
+    }
+  },
+  {
+    ""restaurant"": ""Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2"",
+    ""dish"": ""ต้มแซ่บซี่โครงหมูใบมะขาม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [
+        ""แซ่บ"",
+        ""เปรี้ยวถึงใจ""
+      ],
+      ""negative"": []
+    }
+  }
+]",
+45,Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2,เป็นร้านอาหารอีสาน ผสมผสาน รสชาติถูกปากคนเมืองอย่างยิ่ง อาหารอร่อย ทำอาหารเร็ว สั่งแบบไหนได้แบบนั้น แต่เสียเวลาสาขานี้อาจจะต้องรอนานเพราะร้านเล็กไปหน่อย พนักงานอาจจะไม่ค่อยพอในช่วงเย็น อาหารทุกอย่างค่อนข้างจะสดใหม่ ทำมาเสิร์ฟร้อนร้อน,Success,"[
+  {
+    ""restaurant"": ""Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+46,Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2,"อร่อยบางอย่าง ส้มตำรสชาติดี และของย่างอร่อย
+อาหาร: 5",Success,"[
+  {
+    ""restaurant"": ""Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2"",
+    ""dish"": ""ส้มตำ"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [
+        ""รสชาติดี""
+      ],
+      ""negative"": []
+    }
+  },
+  {
+    ""restaurant"": ""Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2"",
+    ""dish"": ""ของย่าง"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [
+        ""อร่อย""
+      ],
+      ""negative"": []
+    }
+  }
+]",
+47,Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2,"อาหารทุกอย่างรสขาดจัดจ้าน ส่วนตัวรู้สึกว่าเค็มเกินไปนิด โดยเฉพาะเมนูยำ และส้มตำ
+ไก่ทอดหนังกรอบ เนื้อนุ่ม โรยหอมแดงเจียว อร่อยมาก
+บรรยากาศโล่งๆ โปร่งดี
+บริการดี ราคาค่อนไปทางสูงนิดหน่อยค่ะ",Success,"[
+  {
+    ""restaurant"": ""Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2"",
+    ""dish"": ""ยำ"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": [
+        ""เค็มเกินไปนิด""
+      ]
+    }
+  },
+  {
+    ""restaurant"": ""Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2"",
+    ""dish"": ""ส้มตำ"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": [
+        ""เค็มเกินไปนิด""
+      ]
+    }
+  },
+  {
+    ""restaurant"": ""Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2"",
+    ""dish"": ""ไก่ทอดหนังกรอบ"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [
+        ""เนื้อนุ่ม"",
+        ""อร่อยมาก""
+      ],
+      ""negative"": []
+    }
+  }
+]",
+48,Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2,"5/4/67
+ร้านอาหารอีสาน
+เมนูเยอะ เลือกไม่ถูกอยากลองไปหมด",Success,"[
+  {
+    ""restaurant"": ""Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+49,ร้านตะหลิว,อาหารตามสั่ง เป็นร้านแบบบ้านๆแต่รสชาติอร่อยเลยครับ สั่งกระเพราหมูกรอบกับก๋วยเตี๋ยว อร่อยทั้งคู่ ราคาไม่แพงด้วย,Success,"[
+  {
+    ""restaurant"": ""ร้านตะหลิว"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+50,ร้านตะหลิว,"รอนานนิดๆ ให้เยอะ รสชาติวัดดวง
+โตยรวมพอทานได้ เน้นอาหารจานเดียว",Success,"[
+  {
+    ""restaurant"": ""ร้านตะหลิว"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+51,ร้านตะหลิว,อาหารรสชาติใช้ได้   ราคาก็ไม่แพง  ดีที่สุดในสหกรณ์  ประเภทตามสั่ง,Success,"[
+  {
+    ""restaurant"": ""ร้านตะหลิว"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+52,ร้านตะหลิว,แม่ค้าคนเดียวไม่ทันคนรีบทำงาน ก็อรอยดีครับราคาไม่แพง,Success,"[
+  {
+    ""restaurant"": ""ร้านตะหลิว"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+53,ร้านตะหลิว,มีข้าวเนื้อทอดขาย,Success,"[
+  {
+    ""restaurant"": ""ร้านตะหลิว"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+54,ร้านตะหลิว,อร่อยๆ,Success,"[
+  {
+    ""restaurant"": ""ร้านตะหลิว"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+55,ร้านตะหลิว,เยี่ยม,Success,"[
+  {
+    ""restaurant"": ""ร้านตะหลิว"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+56,ร้านตะหลิว,อาหารอร่อย,Success,"[
+  {
+    ""restaurant"": ""ร้านตะหลิว"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+57,ร้านตะหลิว,ด้วยกัน,Success,"[
+  {
+    ""restaurant"": ""ร้านตะหลิว"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+58,โป้ง อาหารป่า,เป็นร้านอาหารป่าที่ยังปรุงรสดีแบบดั้งเดิมมากๆ อาหารถูกปาก รสชาติจัดจ้าน อร่อยทุกเมนูเลย ต้องกลับมาซ้ำอีกหลายๆครั้ง เจ้าของร้านทำเอง 2 คน ถ้าลูกค้าเยอะจะมีช้าบ้าง,Success,"[
+  {
+    ""restaurant"": ""โป้ง อาหารป่า"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+59,โป้ง อาหารป่า,"อาหารสดปลาหมึกสดและตัวใหญ่ รสชาดอร่อยค่ะ ตรงปก 
+บริการ
+รับประทานที่ร้าน",Success,"[
+  {
+    ""restaurant"": ""โป้ง อาหารป่า"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+60,โป้ง อาหารป่า,"อร่ิยแบบตายไปเลย คุ้มค่าที่นั่งรอเป็นชั่วโมงๆ
+อาหารได้เยอะ แม้ลูกค้าจะเยอะ แต่ พี่ 2 คนที่ ทำอาหารยิ้มแย้มตลอด ติดใจมากๆๆ",Success,"[
+  {
+    ""restaurant"": ""โป้ง อาหารป่า"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+61,โป้ง อาหารป่า,"อร่อยครับ ราคากลางๆครับ 
+บริการ
+รับประทานที่ร้าน",Success,"[
+  {
+    ""restaurant"": ""โป้ง อาหารป่า"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+62,โป้ง อาหารป่า,"อร่อยแบบตะโกนอ้ะ ปลาต้มยำเด็ดมาก ไม่คาว รอไม่นานด้วย
+ประเภทอาหาร
+อาหารเช",Success,"[
+  {
+    ""restaurant"": ""โป้ง อาหารป่า"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+63,โป้ง อาหารป่า,อร่อยมากคุ้มจริงๆ,Success,"[
+  {
+    ""restaurant"": ""โป้ง อาหารป่า"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+64,โป้ง อาหารป่า,"อาหารป่า รสจัดจ้าน อร่อยแนะนำ
+บริการ
+รับประทานที่ร้าน",Success,"[
+  {
+    ""restaurant"": ""โป้ง อาหารป่า"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+65,โป้ง อาหารป่า,"อาหารอร่อยมาก ราคาถูก
+บริการ
+รับประทานที่ร้าน",Success,"[
+  {
+    ""restaurant"": ""โป้ง อาหารป่า"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+66,โป้ง อาหารป่า,"อร่อย ราคาไม่แพง รสชาติเกินราคา คะ
+บริการ
+รับประทานที่ร้าน",Success,"[
+  {
+    ""restaurant"": ""โป้ง อาหารป่า"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+67,โป้ง อาหารป่า,รสไม่ต้องสืบ ขี้เมายกนิ้วให้แน่นอน,Success,"[
+  {
+    ""restaurant"": ""โป้ง อาหารป่า"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+68,โป้ง อาหารป่า,"อาอร่อยมาก
+อาหาร: 5
+บริการ:",Success,"[
+  {
+    ""restaurant"": ""โป้ง อาหารป่า"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+69,โป้ง อาหารป่า,อาหารจัดจ้านเด็ดทุกเมนู,Success,"[
+  {
+    ""restaurant"": ""โป้ง อาหารป่า"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+70,โป้ง อาหารป่า,"สุดยอดคับื
+อาหาร: 5
+บริการ:",Success,"[
+  {
+    ""restaurant"": ""โป้ง อาหารป่า"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+71,โป้ง อาหารป่า,"จัดจ้าน เร็ว
+บริการ
+รับประทานที่ร้าน",Success,"[
+  {
+    ""restaurant"": ""โป้ง อาหารป่า"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+72,กิน-ดื่ม บางบัวทอง,"ราคาอาหารไม่เเพง เด็กในร้านบริการดีมากๆ เป็นมิตรสุดๆเอาเป็นว่ามาคนเดียวก็ได้เพื่อนเพิ่ม
+ราคาต่อคน",Success,"[
+  {
+    ""restaurant"": ""กิน-ดื่ม บางบัวทอง"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+73,กิน-ดื่ม บางบัวทอง,"ราคาถูกเด็กในร้านดูแลดี โดยรวมก็โอเคเลยครับ
+ในส่วนตัวแล้วผมชอบหลายๆ โดยเฉพาะเด็กในเด็กในร้านดูแลดี กินกะผมด้วย โอ้หวานเจี๊ยบ",Success,"[
+  {
+    ""restaurant"": ""กิน-ดื่ม บางบัวทอง"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+74,กิน-ดื่ม บางบัวทอง,บรรยากาศดี ที่จอดรถกว้าง อาหารอร่อยครับแนะนำว่าควรเมาแบบมีสติจำให้ได้นะครับว่าสั่งอะไรไปบ้างเพื่อป้องกันความผิดพลาดบางทีเมาๆไปสั่งนั้นสั่งนี่แล้วลืมเดี๋ยวเงินไม่พอจ่าย 555+++,Success,"[
+  {
+    ""restaurant"": ""กิน-ดื่ม บางบัวทอง"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+75,กิน-ดื่ม บางบัวทอง,"ข้อดีพนักงานเสริฟเยอะ หน้าตาดี ดนตรีฟังสบายๆช่วงค่ำ ดึกๆมาเป็นจังหวะสนุก
+
+พอดีไม่ชอบบุหรี่เลยให้คะแนนน้อย",Success,"[
+  {
+    ""restaurant"": ""กิน-ดื่ม บางบัวทอง"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+76,กิน-ดื่ม บางบัวทอง,"พนักงานบริการดี อาหารอร่อย เพลงไพเราะเครื่องเสียงดี เป็นกันเองดีมากแนะนำเลยครับไม่ผิดหวัง
+อาหาร:",Success,"[
+  {
+    ""restaurant"": ""กิน-ดื่ม บางบัวทอง"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+77,กิน-ดื่ม บางบัวทอง,ร้านน่านั่ง ดนตรีเพราะมีโชว์ด้วย เพลงหลากหลายคละกันไป สตริง ลูกทุ่ง หมอลำ สากล ชอบๆๆๆๆๆแนะนำร้านนี้ลองมาแวะดูนะคะ เป็นอีกทางเลือกย่านเส้นไปสุพรรณบุรี,Success,"[
+  {
+    ""restaurant"": ""กิน-ดื่ม บางบัวทอง"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+78,กิน-ดื่ม บางบัวทอง,ไม่ค่อยสนใจลูกค้าผู้หญิงเลยน้าาาา เพลงก็พอได้แต่อยากให้เน้นเพลงเร็วมากกว่าเพลงช้า อาหารก็ใช้ได้ค่ะ อยากให้ลดเปรี้ยวนิดนึง,Success,"[
+  {
+    ""restaurant"": ""กิน-ดื่ม บางบัวทอง"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+79,กิน-ดื่ม บางบัวทอง,ร้าน กิน-ดื่ม  เหมาะมากสำหรับ..ผู้ที่ชอบบรรยากาศแบบมิตรภาพเป็นกันเอง..มีบทเพลงสนุกๆและไพเราะจากทีมงาน..มีพนักงานสาวสวยคอยต้อนรับดูแล..อย่างเป็นกันเอง..ทุกวัน..,Success,"[
+  {
+    ""restaurant"": ""กิน-ดื่ม บางบัวทอง"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+80,กิน-ดื่ม บางบัวทอง,กุไม่เคยไปหรอกแต่กูนอนอยู่แถวนี้กูรำคาญเสียงเพลงจากร้านมากตีหนึ่งกว่ายังไม่ปิดคนจะหลับจะนอนก็ไม่ได้นอนสัสโคตรน่ารำคาญ,Success,"[
+  {
+    ""restaurant"": ""กิน-ดื่ม บางบัวทอง"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+81,กิน-ดื่ม บางบัวทอง,อาหารรสจัด ปริมาณสมราคา เดินทางสะดวก,Success,"[
+  {
+    ""restaurant"": ""กิน-ดื่ม บางบัวทอง"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+82,กิน-ดื่ม บางบัวทอง,ไม่เว้นระยะห่างเลยแมสก็ไม่ได้ใส่บ้างเลยรู้ว่าต้องกินแต่ไม่ค่อยเซฟเลยอันตรายทุกโรคทั้งโรคติดต่อและโควิด ไม่กลัวกันเลย ละก็ลูกค้าที่เป็นหญิงนะไม่ค่อยสนใจเท่ากับพวกผู้เลยนะเอาจริงๆ,Success,"[
+  {
+    ""restaurant"": ""กิน-ดื่ม บางบัวทอง"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+83,กิน-ดื่ม บางบัวทอง,ไม่ต้องไปนั่งที่ร้านแค่นอนอยู่บนที่นอนในห้องนอนตัวเองก็สนุกกับดนตรีร้านนี้ได้ทุกคืน ไม่ต้องนอน 555,Success,"[
+  {
+    ""restaurant"": ""กิน-ดื่ม บางบัวทอง"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+84,กิน-ดื่ม บางบัวทอง,อาหารดี ราคายุติธรรมต่างชาติเพียบเหมาะกับสายไม่กลัวเมียเลิกตีสอง แนะนำสำหรับคนขี้เหงา,Success,"[
+  {
+    ""restaurant"": ""กิน-ดื่ม บางบัวทอง"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+85,กิน-ดื่ม บางบัวทอง,ยาวๆวนไป,Success,"[
+  {
+    ""restaurant"": ""กิน-ดื่ม บางบัวทอง"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+86,กิน-ดื่ม บางบัวทอง,เพลงสนุกดีค่ะ แต่ขอแนะนำทำที่ดุดบุหรี่ให้ลุกค้าด้วยค่ะ เพราะทำให้เสียบรรยากาศ,Success,"[
+  {
+    ""restaurant"": ""กิน-ดื่ม บางบัวทอง"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+87,กิน-ดื่ม บางบัวทอง,ร้านอาหาร วงดนตรีไม่ใหญ่มาก บรรยากาศโอเพ่นแอร์,Success,"[
+  {
+    ""restaurant"": ""กิน-ดื่ม บางบัวทอง"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+88,กิน-ดื่ม บางบัวทอง,"เด๊กเสริฟเปนกันเองมากคับ
+สั่งอาหารกินเองโดยไม่ถามลูกค้า",Success,"[
+  {
+    ""restaurant"": ""กิน-ดื่ม บางบัวทอง"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+89,กิน-ดื่ม บางบัวทอง,ชอบมากค่าบบริการดีมาก มีแต่คนสวยๆ,Success,"[
+  {
+    ""restaurant"": ""กิน-ดื่ม บางบัวทอง"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+90,กิน-ดื่ม บางบัวทอง,เพลงดีดนตรีไพเราะ ที่สำคัญ เด็กเสิร์ฟน่ารัก,Success,"[
+  {
+    ""restaurant"": ""กิน-ดื่ม บางบัวทอง"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+91,กิน-ดื่ม บางบัวทอง,ห.เยอะเตมร้านดีมีแต่หิวๆทั้งนั้นไม่รู้จักพอสักที,Success,"[
+  {
+    ""restaurant"": ""กิน-ดื่ม บางบัวทอง"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+92,เนโกะราเมงไทรน้อย@PARK91,กินที่ร้านดีงาม แต่พอชื้อกลับบ้าน อย่างแย่ แย่มากถึงมากที่สุด มากินที่ร้านบ่อยมาก ทำไมชื้อกลับบ้านใช้ของไม่มีคุณภาพเหมือนกินที่ร้าน เสียความรู้สึกสุดๆ,Success,"[
+  {
+    ""restaurant"": ""เนโกะราเมงไทรน้อย@PARK91"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+93,เนโกะราเมงไทรน้อย@PARK91,ราคาไม่แพง รสชาติอร่อยจัดจ้านดี ลูกค้าเยอะแต่รอไม่นาน พนักงานอัธยาศัยดี พูดจาเพราะ ร้านเปิด 12.00-21.30,Success,"[
+  {
+    ""restaurant"": ""เนโกะราเมงไทรน้อย@PARK91"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+94,เนโกะราเมงไทรน้อย@PARK91,แวะมาทานครั้งแรก อร่อยมากค่ะ ให้บริการดีมาก ยิ้มแย้มแจ่มใส สั่งอาหารรอไม่นานเลย อร่อยทุกเมนูที่สั่งมาเลยค่ะ,Success,"[
+  {
+    ""restaurant"": ""เนโกะราเมงไทรน้อย@PARK91"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+95,เนโกะราเมงไทรน้อย@PARK91,อาหารรสชาติดีค่ะ ถูกปากคนไทย หรือเรียกได้ว่าราเมนแบบ Thai style ราคาดีมาก ทางร้านเป็นแบบสั่งจ่ายและรับเองที่ counter อารมณ์แบบร้านคาเฟ่กาแฟ แต่ทำเลร้านจะร้อนมากช่วงกลางวัน แนะนำให้มาช่วงร้านเปิด ก่อนเที่ยง หรือเย็นๆไปเลยค่ะ,Success,"[
+  {
+    ""restaurant"": ""เนโกะราเมงไทรน้อย@PARK91"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+96,เนโกะราเมงไทรน้อย@PARK91,อร่อยค่ะ ราคาดี หมดทั้งโต๊ะราคา400นิดๆ สั่งของทอดเยอะไปหน่อย เราสั่งราเมงต้มยำมารสชาติเหมือนมาม่ารสต้มยำเลยค่ะ แต่เปลี่ยนเป็นเส้นราเมงแทน แต่สำหรับเราอร่อยนะ,Success,"[
+  {
+    ""restaurant"": ""เนโกะราเมงไทรน้อย@PARK91"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+97,เนโกะราเมงไทรน้อย@PARK91,"ราเมงน้ำซุปหอมอร่อย ยากิโซบะรสชาติกลมกล่อม เกี้ยวซ่ากรอบไส้อร่อย เทียบร้านดังในห้างสบายๆในราคาประหยัด ราคาต่อจานหลัก10 การบริการดี เจ้าของร้านอัธยาสัยดี ยิ้มแย้มแจ่มใส แวะมาลองชิมกันได้ไม่ผิดหวัง
+ราเมงของดีย่านบางบัวทองมาซะที",Success,"[
+  {
+    ""restaurant"": ""เนโกะราเมงไทรน้อย@PARK91"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+98,เนโกะราเมงไทรน้อย@PARK91,ร้านน่านั่งมาก อาหารก็อร่อย ราคาถูก เจ้าของร้านน่ารักมากเลยค่ะ แนะนำมาตอนเย็นๆ ค่ำๆ ลมจะดีมาก ไม่ร้อน ถ่ายรูปสวย ไฟที่ร้านสวยมากกก,Success,"[
+  {
+    ""restaurant"": ""เนโกะราเมงไทรน้อย@PARK91"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+99,เนโกะราเมงไทรน้อย@PARK91,ราเมงร้อนๆ อากาศยามเย็นกำลังสบาย ให้บรรยากาศร้านน่ารักสไตล์ญี่ปุ่น แม่ค้า แม่ครัว พนักงาน สุภาพน่ารัก บริการเป็นกันเอง ราคาเป็นมิตร ไม่ถึง100 บาท ราเมง1ชาม ชา1แก้ว ถ้ามีอาหารทานเล่นด้วยก็ 100 กว่าบาท ดีค่ะ ไปลองกัน,Success,"[
+  {
+    ""restaurant"": ""เนโกะราเมงไทรน้อย@PARK91"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found
+100,เนโกะราเมงไทรน้อย@PARK91,มากินร้านนี้ค่อนข้างบ่อย ทุกครั้งที่อยากกินราเมงจะนึกถึงและมาร้านนี้ตลอดค่ะ เพราะราคาดี รสชาติดีจริง แต่ครั้งนี้มาเจอพนักงานที่ไม่สบอารมณ์เพราะเหนื่อยหรือเปล่าไม่แน่ใจ แต่ไม่ควรใช้น้ำเสียงตะเบงทำกิริยาแบบนั้น คือเรากับแฟนมาถึงก็เลยสั่งอาหาร,Success,"[
+  {
+    ""restaurant"": ""เนโกะราเมงไทรน้อย@PARK91"",
+    ""dish"": ""เมนูรวม"",
+    ""cuisine"": ""thai"",
+    ""restriction"": null,
+    ""sentiment"": {
+      ""positive"": [],
+      ""negative"": []
+    }
+  }
+]",fallback: no dishes found

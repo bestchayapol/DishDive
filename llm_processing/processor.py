@@ -19,8 +19,7 @@ from .utils import (
 )
 from .db import DB
 
-
-def process_single_row(idx, row, chain, cache: TTLCache, prefilter_enabled: bool, logger):
+def process_single_row(idx, row, cache: TTLCache, prefilter_enabled: bool, logger):
     input_data = {
         "restaurant": str(getattr(row, "restaurant_name", "")),
         "review": str(getattr(row, "review_text", ""))
@@ -47,120 +46,9 @@ def process_single_row(idx, row, chain, cache: TTLCache, prefilter_enabled: bool
             "Error Message": "cache hit",
         }
 
-    try:
-        response = chain.invoke(input_data)
-        if isinstance(response, dict):
-            raw = response.get("text", "").strip()
-        elif isinstance(response, str):
-            raw = response.strip()
-        else:
-            raw = ""
-
-        if not raw:
-            fb = build_fallback_entries(input_data["restaurant"], input_data["review"])
-            return {
-                "Row Number": idx + 1,
-                "Restaurant Name": input_data["restaurant"],
-                "Review Text": input_data["review"],
-                "Status": "Success",
-                "Extracted JSON": json.dumps(fb, ensure_ascii=False, indent=2),
-                "Error Message": "fallback: empty output",
-            }
-
-        json_str = extract_json(raw)
-        if not json_str:
-            fb = build_fallback_entries(input_data["restaurant"], input_data["review"])
-            return {
-                "Row Number": idx + 1,
-                "Restaurant Name": input_data["restaurant"],
-                "Review Text": input_data["review"],
-                "Status": "Success",
-                "Extracted JSON": json.dumps(fb, ensure_ascii=False, indent=2),
-                "Error Message": "fallback: no json found",
-            }
-
-        if not is_balanced_json(json_str):
-            fb = build_fallback_entries(input_data["restaurant"], input_data["review"])
-            return {
-                "Row Number": idx + 1,
-                "Restaurant Name": input_data["restaurant"],
-                "Review Text": input_data["review"],
-                "Status": "Success",
-                "Extracted JSON": json.dumps(fb, ensure_ascii=False, indent=2),
-                "Error Message": "fallback: unbalanced json",
-            }
-        if has_unterminated_string(json_str):
-            fb = build_fallback_entries(input_data["restaurant"], input_data["review"])
-            return {
-                "Row Number": idx + 1,
-                "Restaurant Name": input_data["restaurant"],
-                "Review Text": input_data["review"],
-                "Status": "Success",
-                "Extracted JSON": json.dumps(fb, ensure_ascii=False, indent=2),
-                "Error Message": "fallback: unterminated string",
-            }
-
-        try:
-            try:
-                json_result = json.loads(json_str)
-            except json.JSONDecodeError:
-                fixed_json_str = fix_json_keys(json_str)
-                fixed_json_str = clean_json_string(fixed_json_str)
-                try:
-                    json_result = json.loads(fixed_json_str)
-                except Exception:
-                    json_result = ast.literal_eval(fixed_json_str)
-
-            def is_valid_entry(obj):
-                try:
-                    if not isinstance(obj, dict):
-                        return False
-                    d = obj.get("dish", None) or obj.get("เมนู", None) or obj.get("ชื่อเมนู", None)
-                except AttributeError:
-                    return False
-                return isinstance(d, str) and d.strip() != ""
-
-            if isinstance(json_result, list):
-                normalized = [o for o in json_result if isinstance(o, dict) and is_valid_entry(o)]
-            elif isinstance(json_result, dict):
-                normalized = [json_result] if is_valid_entry(json_result) else []
-            else:
-                normalized = []
-
-            if not normalized:
-                fb = build_fallback_entries(input_data["restaurant"], input_data["review"])
-                res = {
-                    "Row Number": idx + 1,
-                    "Restaurant Name": input_data["restaurant"],
-                    "Review Text": input_data["review"],
-                    "Status": "Success",
-                    "Extracted JSON": json.dumps(fb, ensure_ascii=False, indent=2),
-                    "Error Message": "",
-                }
-                cache.set(cache_key, res["Extracted JSON"])  # cache fallback too
-                return res
-
-            res = {
-                "Row Number": idx + 1,
-                "Restaurant Name": input_data["restaurant"],
-                "Review Text": input_data["review"],
-                "Status": "Success",
-                "Extracted JSON": json.dumps(normalized, ensure_ascii=False, indent=2),
-                "Error Message": "",
-            }
-            cache.set(cache_key, res["Extracted JSON"])  # cache good output
-            return res
-        except Exception as e:
-            fb = build_fallback_entries(input_data["restaurant"], input_data["review"])
-            return {
-                "Row Number": idx + 1,
-                "Restaurant Name": input_data["restaurant"],
-                "Review Text": input_data["review"],
-                "Status": "Success",
-                "Extracted JSON": json.dumps(fb, ensure_ascii=False, indent=2),
-                "Error Message": f"fallback: exception ({str(e)})",
-            }
-    except Exception as e:
+    from .utils import extract_dishes_rule_based
+    dishes = extract_dishes_rule_based(input_data["review"])
+    if not dishes:
         fb = build_fallback_entries(input_data["restaurant"], input_data["review"])
         return {
             "Row Number": idx + 1,
@@ -168,11 +56,132 @@ def process_single_row(idx, row, chain, cache: TTLCache, prefilter_enabled: bool
             "Review Text": input_data["review"],
             "Status": "Success",
             "Extracted JSON": json.dumps(fb, ensure_ascii=False, indent=2),
-            "Error Message": f"fallback: exception ({str(e)})",
+            "Error Message": "fallback: no dishes found",
         }
 
+    from .llm import gpt35_extract
+    results = []
+    try:
+        raw = gpt35_extract(input_data["restaurant"], input_data["review"])
+    except Exception as e:
+        logger.warning("OpenAI call failed for row %s: %s", idx + 1, e)
+        raw = ""
+    json_str = extract_json(raw)
+    if json_str and is_balanced_json(json_str):
+        try:
+            obj = json.loads(json_str)
+            if isinstance(obj, list):
+                for o in obj:
+                    if isinstance(o, dict):
+                        results.append(o)
+            elif isinstance(obj, dict):
+                results.append(obj)
+        except Exception as e:
+            logger.warning("JSON parse failed for row %s: %s", idx + 1, e)
+    if not results:
+        fb = build_fallback_entries(input_data["restaurant"], input_data["review"])
+        return {
+            "Row Number": idx + 1,
+            "Restaurant Name": input_data["restaurant"],
+            "Review Text": input_data["review"],
+            "Status": "Success",
+            "Extracted JSON": json.dumps(fb, ensure_ascii=False, indent=2),
+            "Error Message": "fallback: llm failed or empty output",
+        }
+    res = {
+        "Row Number": idx + 1,
+        "Restaurant Name": input_data["restaurant"],
+        "Review Text": input_data["review"],
+        "Status": "Success",
+        "Extracted JSON": json.dumps(results, ensure_ascii=False, indent=2),
+        "Error Message": "",
+    }
+    cache.set(cache_key, res["Extracted JSON"])
+    return res
+    input_data = {
+        "restaurant": str(getattr(row, "restaurant_name", "")),
+        "review": str(getattr(row, "review_text", ""))
+    }
+    if prefilter_enabled and should_skip_review(input_data["review"], input_data["restaurant"]):
+        return {
+            "Row Number": idx + 1,
+            "Restaurant Name": input_data["restaurant"],
+            "Review Text": input_data["review"],
+            "Status": "Success",
+            "Extracted JSON": "[]",
+            "Error Message": "Skipped by prefilter",
+        }
 
-def process_rows(df: pd.DataFrame, cfg: Config, chain, db: DB, logger):
+    cache_key = f"{input_data['restaurant']}||{input_data['review']}"
+    cached = cache.get(cache_key)
+    if cached is not None:
+        return {
+            "Row Number": idx + 1,
+            "Restaurant Name": input_data["restaurant"],
+            "Review Text": input_data["review"],
+            "Status": "Success",
+            "Extracted JSON": cached,
+            "Error Message": "cache hit",
+        }
+
+    # --- Hybrid pipeline: rule-based dish extraction, LLM for details ---
+    from .utils import extract_dishes_rule_based
+    dishes = extract_dishes_rule_based(input_data["review"])
+    if not dishes:
+        fb = build_fallback_entries(input_data["restaurant"], input_data["review"])
+        return {
+            "Row Number": idx + 1,
+            "Restaurant Name": input_data["restaurant"],
+            "Review Text": input_data["review"],
+            "Status": "Success",
+            "Extracted JSON": json.dumps(fb, ensure_ascii=False, indent=2),
+            "Error Message": "fallback: no dishes found",
+        }
+
+        from .llm import gpt35_extract
+        results = []
+        # Use GPT-3.5 for full extraction (single call per review)
+        try:
+            raw = gpt35_extract(input_data["restaurant"], input_data["review"])
+            json_str = extract_json(raw)
+            if json_str and is_balanced_json(json_str):
+                try:
+                    obj = json.loads(json_str)
+                    if isinstance(obj, list):
+                        for o in obj:
+                            if isinstance(o, dict):
+                                results.append(o)
+                    elif isinstance(obj, dict):
+                        results.append(obj)
+                except Exception:
+                    pass
+        except Exception:
+            pass
+    if not results:
+        fb = build_fallback_entries(input_data["restaurant"], input_data["review"])
+        return {
+            "Row Number": idx + 1,
+            "Restaurant Name": input_data["restaurant"],
+            "Review Text": input_data["review"],
+            "Status": "Success",
+            "Extracted JSON": json.dumps(fb, ensure_ascii=False, indent=2),
+            "Error Message": "fallback: llm failed for all dishes",
+        }
+    res = {
+        "Row Number": idx + 1,
+        "Restaurant Name": input_data["restaurant"],
+        "Review Text": input_data["review"],
+        "Status": "Success",
+        "Extracted JSON": json.dumps(results, ensure_ascii=False, indent=2),
+        "Error Message": "",
+    }
+    cache.set(cache_key, res["Extracted JSON"])
+    return res
+
+
+
+
+def process_rows(df: pd.DataFrame, cfg: Config, db: DB, logger):
     processed_indices = set()
     results: List[dict] = []
     buffer: List[dict] = []
@@ -207,14 +216,17 @@ def process_rows(df: pd.DataFrame, cfg: Config, chain, db: DB, logger):
     batch_max = max(batch_size, 4)
 
     logger.info("Starting processing %s restaurants...", len(rows_to_process))
+    overall_start = time.time()
     start_idx = 0
+    total_batches = 0
+    total_rows = 0
     while start_idx < len(rows_to_process):
         batch = rows_to_process[start_idx:start_idx+batch_size]
         t0 = time.time()
         with ThreadPoolExecutor(max_workers=cfg.max_workers) as executor:
             futures = [
                 executor.submit(
-                    process_single_row, idx, row, chain, cache, cfg.prefilter_enabled, logger
+                        process_single_row, idx, row, cache, cfg.prefilter_enabled, logger
                 ) for idx, row in batch
             ]
             for fut in as_completed(futures):
@@ -229,7 +241,9 @@ def process_rows(df: pd.DataFrame, cfg: Config, chain, db: DB, logger):
                         logger.warning("Failed DB upsert at checkpoint: %s", e)
 
         elapsed = time.time() - t0
-        logger.info("Batch processed in %.2fs (size=%s)", elapsed, batch_size)
+        logger.info("Batch processed in %.2fs (size=%s)", elapsed, len(batch))
+        total_batches += 1
+        total_rows += len(batch)
 
         # Checkpoint to CSV (optional)
         if cfg.write_checkpoint:
@@ -244,6 +258,14 @@ def process_rows(df: pd.DataFrame, cfg: Config, chain, db: DB, logger):
             time.sleep(cfg.cooldown_sec)
 
         start_idx += len(batch)
+
+    overall_elapsed = time.time() - overall_start
+    avg_per_row = overall_elapsed / total_rows if total_rows else 0
+    projected_100k = avg_per_row * 100000 if avg_per_row else 0
+    logger.info("=== Timing summary ===")
+    logger.info("Total time: %.2fs for %d rows", overall_elapsed, total_rows)
+    logger.info("Average per row: %.3fs", avg_per_row)
+    logger.info("Projected for 100,000 rows: %.1f hours (%.1f minutes)", projected_100k/3600, projected_100k/60)
 
     # final DB flush
     if buffer and db.writes_enabled():

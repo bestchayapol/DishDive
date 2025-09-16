@@ -3,7 +3,6 @@ import pandas as pd
 from .config import Config
 from .logging_setup import setup_logging
 from .db import DB
-from .llm import build_chain
 from .processor import process_rows
 
 
@@ -25,8 +24,7 @@ def run():
     db = DB(cfg, logger)
     db.ensure_table()
 
-    # LLM
-    llm, chain = build_chain(cfg)
+    # LLM: no chain needed for OpenAI pipeline
 
     # Input CSV
     try:
@@ -44,5 +42,4 @@ def run():
 
     # Slice rows
     df = df_full[["restaurant_name", "review_text"]].iloc[cfg.row_start:cfg.row_end].reset_index(drop=True)
-
-    process_rows(df, cfg, chain, db, logger)
+    process_rows(df, cfg, db, logger)
