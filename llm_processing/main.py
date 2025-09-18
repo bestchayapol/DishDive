@@ -9,6 +9,7 @@ from .processor import process_rows
 def run():
     cfg = Config()
     logger = setup_logging(cfg)
+    openai_model = os.environ.get("OPENAI_MODEL", "gpt-4o-mini")
     logger.info(
         "Config loaded; input_csv=%s | output_dir=%s | output_csv=%s | rows=[%s,%s) | pg_write_disabled=%s | model=%s",
         cfg.input_csv,
@@ -17,7 +18,7 @@ def run():
         cfg.row_start,
         cfg.row_end,
         cfg.pg_write_disabled,
-        cfg.ollama_model,
+        openai_model,
     )
 
     # DB init

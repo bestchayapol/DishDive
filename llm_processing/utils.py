@@ -99,9 +99,10 @@ def extract_dishes_rule_based(text: str) -> List[str]:
         return []
     t = text.strip()
     curated = [
-        "ต้มแซ่บกระดูกอ่อน", "ก้อยเนื้อย่าง", "ยำหอยนางรม", "ปากเป็ดทอด", "ต้มยำกุ้ง",
+        # Expanded curated list (longer / more specific first after sorting)
+        "ปลาหมึกนึ่งมะนาว", "หมึกนึ่งมะนาว", "แกงป่า", "ต้มแซ่บกระดูกอ่อน", "ก้อยเนื้อย่าง", "ยำหอยนางรม", "ปากเป็ดทอด", "ต้มยำกุ้ง",
         "ลาบหมู", "ลาบเป็ด", "ปีกไก่ทอด", "ข้าวผัด", "คอหมูย่าง", "ก้อยเนื้อ",
-        "ก้อยขม", "ต้มขม", "ต้มแซ่บ", "ส้มตำ",
+        "ก้อยขม", "ต้มขม", "ต้มแซ่บ", "ส้มตำ", "ปลาหมึก",
     ]
     curated = sorted(curated, key=len, reverse=True)
     found = []
@@ -114,7 +115,9 @@ def extract_dishes_rule_based(text: str) -> List[str]:
 
 
 def build_fallback_entries(restaurant: str, review: str) -> List[Dict]:
-    dishes = extract_dishes_rule_based(review) or ["เมนูรวม"]
+    dishes = extract_dishes_rule_based(review)
+    if not dishes:
+        return []
     return [
         {
             "restaurant": restaurant,
@@ -156,3 +159,46 @@ class TTLCache:
             except Exception:
                 pass
         self._store[key] = (now, value)
+
+# ---------------- Dish name validation heuristics -----------------
+
+INGREDIENT_ROOTS = set([
+    "กุ้ง","หมึก","ปลาหมึก","หมู","ไก่","เนื้อ","ปลา","ปลากะพง","ปลาคัง","ข้าว","วุ้นเส้น","เต้าหู้","กระดูกหมู","ปีกไก่","คอหมู","ก้อย","ต้มยำ","ลาบ","ยำ","ผัด","แกง","ซุป","ซอสมะขาม","ปลาหมึกนึ่งมะนาว","ข้าวผัด","กุ้งเผา","ต้มยำกุ้ง","ลาบปลาหมึก","ยำวุ้นเส้นรวมมิตร"
+])
+
+INVALID_DISH_TOKENS = set([
+    # Pure quality / ambience / price / meta
+    "อร่อย","อร่อยมาก","อร่อยดี","บรรยากาศดี","ราคาไม่แพง","ราคาถูก","ราคาคุ้มค่า","คุ้มค่า","คุ้มราคา","คุณภาพดี","สด","สดๆ","สดมาก","สะอาด","บริการดี","บริการดีมาก","บริการ","หวาน","คาว","เผ็ด","เผ็ดดี","เปรี้ยว","ดีมาก","ดี","ไม่แพง","ผ่าน","แซ่บมาก","แซ่บ","เด็ด","เด็ดมาก"
+])
+
+GENERIC_WORDS = set(["อาหาร","เมนู","ของ", "วัตถุดิบ"])
+
+WHITELIST_MULTI = set([
+    "ปลาหมึกนึ่งมะนาว","ต้มยำกุ้ง","ข้าวผัดกุ้ง","กุ้งเผา","ลาบปลาหมึก","ยำวุ้นเส้นรวมมิตร","แกงป่า","กุ้งซอสมะขาม"
+])
+
+def is_valid_dish_name(name: str) -> bool:
+    if not name or not isinstance(name, str):
+        return False
+    n = name.strip()
+    if not n:
+        return False
+    # Reject if only quality/ambience tokens
+    if n in INVALID_DISH_TOKENS:
+        return False
+    # Reject short adjectives
+    if len(n) < 3 and n not in WHITELIST_MULTI:
+        return False
+    # Contains at least one ingredient/prep root OR whitelisted
+    if n in WHITELIST_MULTI:
+        return True
+    # Reject phrases starting with generic words followed immediately by quality token
+    for g in GENERIC_WORDS:
+        if n.startswith(g):
+            # If generic root but no ingredient root inside and not whitelisted -> reject
+            if not any(r in n for r in INGREDIENT_ROOTS):
+                return False
+    # Must contain at least one ingredient root OR a prep root
+    if any(r in n for r in INGREDIENT_ROOTS):
+        return True
+    return False

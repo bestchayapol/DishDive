@@ -49,22 +49,13 @@ class Config:
     pg_pool_min: int = _int("PG_POOL_MIN", 1)
     pg_pool_max: int = _int("PG_POOL_MAX", 5)
 
-    # LLM
-    ollama_base_url: str = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434")
-    ollama_model: str = os.environ.get("OLLAMA_MODEL", "qwen3:1.7b")
-    ollama_threads: int = _int("OLLAMA_THREADS", 2)
-    ollama_num_ctx: int = _int("OLLAMA_NUM_CTX", 768)
-    ollama_num_predict: int = _int("OLLAMA_NUM_PREDICT", 128)
-    ollama_temperature: float = _float("OLLAMA_TEMPERATURE", 0.2)
-    ollama_top_p: float = _float("OLLAMA_TOP_P", 0.9)
-    ollama_repeat_penalty: float = _float("OLLAMA_REPEAT_PENALTY", 1.05)
-    ollama_json_mode: bool = _bool("OLLAMA_JSON_MODE", True)
-    ollama_cache_max: int = _int("OLLAMA_CACHE_MAX", 1000)
-    ollama_cache_ttl_sec: int = _int("OLLAMA_CACHE_TTL_SEC", 3600)
-
     # Logging
     log_level: str = os.environ.get("LOG_LEVEL", "INFO").upper()
 
     # Output gating (single file by default)
     write_checkpoint: bool = _bool("WRITE_CHECKPOINT", False)
     write_data_extract: bool = _bool("WRITE_DATA_EXTRACT", False)
+
+    # Generic in-memory cache (replaces old ollama_* cache knobs)
+    cache_max: int = _int("CACHE_MAX", 2000)
+    cache_ttl_sec: int = _int("CACHE_TTL_SEC", 3600)
