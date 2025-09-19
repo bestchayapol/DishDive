@@ -89,13 +89,36 @@ def ensure_domain_tables(conn):
     conn.commit()
 
 
-def load_review_extracts(conn, source_type: Optional[str] = None):
-    # Pull from review_extracts which was filled by the importer
+def load_review_extracts(
+    conn,
+    source_type: Optional[str] = None,
+    limit: Optional[int] = None,
+    offset: Optional[int] = None,
+):
+    """Yield rows from review_extracts in a deterministic order.
+
+    Parameters
+    ----------
+    source_type : optional str
+        Filter by source_type (case-insensitive) if provided.
+    limit : optional int
+        Max number of rows to return. None means no limit.
+    offset : optional int
+        Number of rows to skip from the start (0-based). None means start at 0.
+    """
     sql = "SELECT rev_ext_id, source_id, source_type, data_extract FROM review_extracts"
-    args = []
+    args: List[Any] = []
     if source_type:
         sql += " WHERE LOWER(source_type) = LOWER(%s)"
         args.append(source_type)
+    sql += " ORDER BY rev_ext_id"  # ensure stable ordering for batching
+    # Apply LIMIT/OFFSET last
+    if limit is not None:
+        sql += " LIMIT %s"
+        args.append(limit)
+    if offset is not None and offset > 0:
+        sql += " OFFSET %s"
+        args.append(offset)
     with conn.cursor() as cur:
         cur.execute(sql, args)
         for rev_ext_id, source_id, s_type, data_extract in cur.fetchall():
@@ -367,7 +390,13 @@ def categorize_keyword(token: str, default_sentiment: str) -> Tuple[str, str]:
     return ("others", "neutral")
 
 
-def process(conn, source_type_filter: Optional[str] = None, limit: Optional[int] = None, logger: Optional[logging.Logger] = None):
+def process(
+    conn,
+    source_type_filter: Optional[str] = None,
+    limit: Optional[int] = None,
+    offset: Optional[int] = None,
+    logger: Optional[logging.Logger] = None,
+):
     logger = logger or logging.getLogger("normalize")
 
     ensure_domain_tables(conn)
@@ -376,11 +405,11 @@ def process(conn, source_type_filter: Optional[str] = None, limit: Optional[int]
     dish_cache: Dict[Tuple[int, str], int] = {}
     kw_cache: Dict[Tuple[str, str, str], int] = {}
 
-    total_rows = 0
-    processed_rows = 0
-    for idx, (rev_ext_id, source_id, s_type, data_extract) in enumerate(load_review_extracts(conn, source_type_filter)):
-        if limit is not None and processed_rows >= limit:
-            break
+    total_rows = 0  # rows fetched from the DB (within limit/offset slice)
+    processed_rows = 0  # rows that produced at least one dish/restaurant linkage
+    for idx, (rev_ext_id, source_id, s_type, data_extract) in enumerate(
+        load_review_extracts(conn, source_type_filter, limit=limit, offset=offset)
+    ):
         total_rows += 1
         arr = safe_json_array(data_extract)
         if not arr:
@@ -450,7 +479,17 @@ def process(conn, source_type_filter: Optional[str] = None, limit: Optional[int]
             insert_review_dish_keywords(conn, rdid, rdk_keyword_ids)
         processed_rows += 1
 
-    logger.info("Fetched %d review_extract rows; processed %d with non-empty extractions.", total_rows, processed_rows)
+    if offset is None:
+        eff_offset = 0
+    else:
+        eff_offset = offset
+    logger.info(
+        "Slice start=%d, limit=%s -> fetched=%d rows; processed=%d rows with non-empty extractions.",
+        eff_offset,
+        str(limit) if limit is not None else "ALL",
+        total_rows,
+        processed_rows,
+    )
 
     # Recompute aggregate scores and restaurant metadata
     recompute_dish_scores(conn)
@@ -461,6 +500,13 @@ def main():
     ap = argparse.ArgumentParser(description="Normalize review_extracts JSON into domain tables.")
     ap.add_argument("--source-type", default=None, help="Filter by source_type (e.g., web)")
     ap.add_argument("--limit", type=int, default=None, help="Limit number of review_extract rows to process")
+    ap.add_argument("--offset", type=int, default=None, help="Row offset (start index) for batching")
+    ap.add_argument(
+        "--start",
+        type=int,
+        default=None,
+        help="Alias for --offset (if both provided, --offset wins)",
+    )
     ap.add_argument("--log-level", default=os.getenv("LOG_LEVEL", "INFO"))
     args = ap.parse_args()
 
@@ -479,8 +525,25 @@ def main():
         connect_timeout=10,
         sslmode=cfg.pg_sslmode,
     )
+    # Resolve offset precedence (offset overrides start if both given)
+    resolved_offset = args.offset if args.offset is not None else args.start
+
+    if resolved_offset is not None and resolved_offset < 0:
+        logger.error("Offset/start cannot be negative: %d", resolved_offset)
+        return
+
+    if args.limit is not None and args.limit <= 0:
+        logger.error("Limit must be positive when provided: %d", args.limit)
+        return
+
     try:
-        process(conn, source_type_filter=args.source_type, limit=args.limit, logger=logger)
+        process(
+            conn,
+            source_type_filter=args.source_type,
+            limit=args.limit,
+            offset=resolved_offset,
+            logger=logger,
+        )
     finally:
         try:
             conn.close()

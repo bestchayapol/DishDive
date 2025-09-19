@@ -25,3 +25,16 @@ Thumbs.db
 *.log
 *.sqlite3
 outputs/
+llm_processing/__pycache__/config.cpython-38.pyc
+llm_processing/__pycache__/db.cpython-38.pyc
+llm_processing/__pycache__/llm.cpython-38.pyc
+llm_processing/__pycache__/main.cpython-38.pyc
+llm_processing/__pycache__/processor.cpython-38.pyc
+llm_processing/__pycache__/utils.cpython-38.pyc
+outputs/processed_reviews.csv
+llm_processing/__pycache__/config.cpython-38.pyc
+llm_processing/__pycache__/db.cpython-38.pyc
+llm_processing/__pycache__/llm.cpython-38.pyc
+llm_processing/__pycache__/main.cpython-38.pyc
+llm_processing/__pycache__/processor.cpython-38.pyc
+llm_processing/__pycache__/utils.cpython-38.pyc
