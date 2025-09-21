@@ -59,3 +59,6 @@ class Config:
     # Generic in-memory cache (replaces old ollama_* cache knobs)
     cache_max: int = _int("CACHE_MAX", 2000)
     cache_ttl_sec: int = _int("CACHE_TTL_SEC", 3600)
+
+    # Source ID adjustment for review_extracts ingestion
+    source_id_offset: int = _int("SOURCE_ID_OFFSET", 0)

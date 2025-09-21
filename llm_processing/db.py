@@ -118,6 +118,7 @@ class DB:
             return 0
         rows = []
         skipped_filtered = 0
+        offset = getattr(self.cfg, 'source_id_offset', 0)
         for r in results:
             try:
                 if r.get("Status") != "Success":
@@ -141,13 +142,19 @@ class DB:
                 skipped_filtered += 1
                 continue
             filtered_json = json.dumps(arr, ensure_ascii=False)
-            rows.append((int(rn), source_type, filtered_json))
+            # Apply configurable source_id offset (does not alter rev_ext_id sequencing)
+            adj_source_id = int(rn) + offset
+            rows.append((adj_source_id, source_type, filtered_json))
         if not rows:
             if skipped_filtered:
                 self.logger.info("DB upsert skipped %s rows after filter (เมนูรวม)", skipped_filtered)
             return 0
+
         base = self.get_max_rev_ext_id()
-        values_with_ids = [(base + i, sid, s_type, data_json) for i, (sid, s_type, data_json) in enumerate(rows, start=1)]
+        values_with_ids = [
+            (base + i, sid, s_type, data_json) for i, (sid, s_type, data_json) in enumerate(rows, start=1)
+        ]
+
         with self.conn() as c:
             with c.cursor() as cur:
                 pg_extras.execute_values(
@@ -164,6 +171,9 @@ class DB:
                     page_size=1000,
                 )
             c.commit()
+
         if skipped_filtered:
-            self.logger.info("DB upsert inserted %s rows; skipped %s filtered", len(values_with_ids), skipped_filtered)
+            self.logger.info(
+                "DB upsert inserted %s rows; skipped %s filtered", len(values_with_ids), skipped_filtered
+            )
         return len(values_with_ids)
