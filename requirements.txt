@@ -4,3 +4,4 @@ langchain>=0.2,<0.3
 langchain-ollama>=0.1.2,<0.2
 requests>=2.31,<3
 openai>=1.0,<2
+pythainlp>=4.0,<5  # optional for improved Thai alias clustering (segmentation & phonetic)
