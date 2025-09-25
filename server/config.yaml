@@ -1,0 +1,36 @@
+app:
+  port: 8080
+
+jwt:
+  jwtSecret: "DishDive"
+
+db:
+  host: dishdive.sit.kmutt.ac.th
+  port: 5432
+  username: root
+  password: tungtungtungtungsahur
+  database: dishdive_mock
+
+minio:
+  host: "dishdive.sit.kmutt.ac.th"
+  port: 9000
+  accessKey: "jCwwqEVOJh28G0NzhNfk"
+  secretKey: "EadvAEY3FfkFjP7HKBUjn5yeCATDuBt9NS1RIbS6"
+  bucket: "dishdive"
+  publicURL: "https://dishdive.sit.kmutt.ac.th:9000/"
+  
+# minio:
+#   host: "199.241.138.79"
+#   port: 9000
+#   accessKey: "HDeAly8XddiQTvjjTRfL"
+#   secretKey: "9OtiaCEOL1586uDgPAXNANDndM04ga3oMdGy7kGF"
+#   bucket: "dishdivetemp"
+#   publicURL: "https://minio.bocchikitsunei.com"
+
+# minio:
+#   host: "dishdive.sit.kmutt.ac.th"
+#   port: 9000
+#   accessKey: "Go create by yourself"
+#   secretKey: "Get after click create accessKey"
+#   bucket: "dishdivetemp"
+#   publicURL: "https://minio.dishdive.sit.kmutt.ac.th"
