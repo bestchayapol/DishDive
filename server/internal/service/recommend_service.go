@@ -2,11 +2,15 @@ package service
 
 import (
 	"fmt"
+	"os"
+	"os/exec"
+	"path/filepath"
 	"sort"
 
 	"github.com/bestchayapol/DishDive/internal/dtos"
 	"github.com/bestchayapol/DishDive/internal/entities"
 	"github.com/bestchayapol/DishDive/internal/repository"
+	"github.com/spf13/viper"
 )
 
 type recommendService struct {
@@ -145,8 +149,104 @@ func (s *recommendService) GetDishReviewPage(dishID uint) (dtos.DishReviewPageRe
 }
 
 func (s *recommendService) SubmitReview(req dtos.SubmitReviewRequest) (dtos.SubmitReviewResponse, error) {
-	err := s.recommendRepo.SubmitReview(req.UserID, req.DishID, req.ResID, req.ReviewText)
-	return dtos.SubmitReviewResponse{Success: err == nil}, err
+	// 1) Persist the user review and get its ID
+	reviewID, err := s.recommendRepo.SubmitReview(req.UserID, req.DishID, req.ResID, req.ReviewText)
+	if err != nil {
+		return dtos.SubmitReviewResponse{Success: false}, err
+	}
+
+	// 2) Fire-and-forget: invoke Python single-review processor
+	// We pass the restaurant name by looking up from Dish->Restaurant for better context
+	var restaurantName string
+	if dish, derr := s.foodRepo.GetDishByID(req.DishID); derr == nil {
+		if res, rerr := s.foodRepo.GetRestaurantByID(dish.ResID); rerr == nil {
+			restaurantName = res.ResName
+		}
+	}
+	if restaurantName == "" {
+		restaurantName = ""
+	}
+
+	// Construct command: python -m llm_processing.single_review ...
+	// Allow override via PYTHON_EXEC, default to "python"
+	pyExec := os.Getenv("PYTHON_EXEC")
+	if pyExec == "" {
+		pyExec = "python"
+	}
+	cmd := exec.Command(pyExec, "-m", "llm_processing.single_review",
+		"--restaurant", restaurantName,
+		"--review", req.ReviewText,
+		"--source-id", fmt.Sprintf("%d", reviewID),
+		"--source-type", "user",
+	)
+
+	// Propagate DB env and any OpenAI settings from the host environment
+	env := os.Environ()
+	appendIfNotEmpty := func(k string) {
+		if v := os.Getenv(k); v != "" {
+			env = append(env, fmt.Sprintf("%s=%s", k, v))
+		}
+	}
+	for _, k := range []string{
+		"PG_HOST", "PG_PORT", "PG_USER", "PG_PASSWORD", "PG_DATABASE", "PG_SSLMODE",
+		"OPENAI_API_KEY", "OPENAI_MODEL",
+		"LOG_LEVEL",
+	} {
+		appendIfNotEmpty(k)
+	}
+	// Ensure PYTHONPATH includes the project root (parent of server dir) so module imports work
+	if wd, _ := os.Getwd(); wd != "" {
+		projectRoot := filepath.Dir(wd)
+		existing := os.Getenv("PYTHONPATH")
+		sep := string(os.PathListSeparator)
+		if existing != "" {
+			env = append(env, fmt.Sprintf("PYTHONPATH=%s%s%s", existing, sep, projectRoot))
+		} else {
+			env = append(env, fmt.Sprintf("PYTHONPATH=%s", projectRoot))
+		}
+		// Also set working directory for the subprocess to the project root
+		cmd.Dir = projectRoot
+	}
+	// If DB envs are not present, fill from viper config so Python gets the same DB
+	if os.Getenv("PG_HOST") == "" {
+		env = append(env, fmt.Sprintf("%s=%s", "PG_HOST", viper.GetString("db.host")))
+	}
+	if os.Getenv("PG_PORT") == "" {
+		env = append(env, fmt.Sprintf("%s=%d", "PG_PORT", viper.GetInt("db.port")))
+	}
+	if os.Getenv("PG_USER") == "" {
+		env = append(env, fmt.Sprintf("%s=%s", "PG_USER", viper.GetString("db.username")))
+	}
+	if os.Getenv("PG_PASSWORD") == "" {
+		env = append(env, fmt.Sprintf("%s=%s", "PG_PASSWORD", viper.GetString("db.password")))
+	}
+	if os.Getenv("PG_DATABASE") == "" {
+		env = append(env, fmt.Sprintf("%s=%s", "PG_DATABASE", viper.GetString("db.database")))
+	}
+
+	// Ensure DB writes are enabled for this run and disable CSV side outputs by default
+	env = append(env, "PG_WRITE_DISABLED=0")
+	if os.Getenv("WRITE_CHECKPOINT") == "" {
+		env = append(env, "WRITE_CHECKPOINT=0")
+	}
+	if os.Getenv("WRITE_DATA_EXTRACT") == "" {
+		env = append(env, "WRITE_DATA_EXTRACT=0")
+	}
+	cmd.Env = env
+
+	// Start without waiting; log stderr if it fails to start
+	if err := cmd.Start(); err != nil {
+		fmt.Printf("[llm] failed to start single_review processor: %v\n", err)
+	} else {
+		go func() {
+			// Wait in a goroutine so the process can finish in background
+			if werr := cmd.Wait(); werr != nil {
+				fmt.Printf("[llm] processor exited with error: %v\n", werr)
+			}
+		}()
+	}
+
+	return dtos.SubmitReviewResponse{Success: true, ReviewID: &reviewID}, nil
 }
 
 func (s *recommendService) GetRecommendedDishes(userID uint, resID *uint) ([]dtos.RestaurantMenuItemResponse, error) {
@@ -326,6 +426,10 @@ func (s *recommendService) GetRecommendedDishes(userID uint, resID *uint) ([]dto
 	}
 
 	return resp, nil
+}
+
+func (s *recommendService) HasReviewExtract(sourceID uint, sourceType string) (bool, error) {
+	return s.recommendRepo.HasReviewExtract(sourceID, sourceType)
 }
 
 // Helper function to get cuisine image link

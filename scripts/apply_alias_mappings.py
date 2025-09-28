@@ -4,7 +4,7 @@ import logging
 import os
 import pathlib
 import sys
-from typing import Dict, Tuple, List
+from typing import Dict, Tuple, List, Set
 
 import psycopg2
 
@@ -68,6 +68,7 @@ def build_name_id_maps(conn):
     dishes: Dict[str, int] = {}
     keywords: Dict[Tuple[str, str], int] = {}
     restaurants: Dict[str, int] = {}
+    restaurants_by_id: Dict[int, str] = {}
     with conn.cursor() as cur:
         cur.execute("SELECT dish_id, dish_name FROM dishes")
         for did, name in cur.fetchall():
@@ -77,8 +78,10 @@ def build_name_id_maps(conn):
             keywords[(str(kw).strip(), str(cat).strip())] = int(kid)
         cur.execute("SELECT res_id, res_name FROM restaurants")
         for rid, name in cur.fetchall():
-            restaurants[str(name).strip()] = int(rid)
-    return dishes, keywords, restaurants
+            n = str(name).strip()
+            restaurants[n] = int(rid)
+            restaurants_by_id[int(rid)] = n
+    return dishes, keywords, restaurants, restaurants_by_id
 
 
 def upsert_dish_aliases(conn, dish_aliases: List[Tuple[int, str]], dry_run: bool, logger):
@@ -122,11 +125,20 @@ def upsert_restaurant_locations(conn, rest_locs: List[Tuple[int, str]], dry_run:
         for res_id, location_name in rest_locs:
             if not location_name:
                 continue  # skip blank (canonical rows without location segment)
+            # Avoid duplicates: check existence on (res_id, location_name)
+            cur.execute(
+                "SELECT 1 FROM restaurant_locations WHERE res_id=%s AND location_name=%s LIMIT 1",
+                (res_id, location_name),
+            )
+            exists = cur.fetchone() is not None
+            if exists:
+                logger.debug("Skip existing restaurant_location (%s, %s)", res_id, location_name)
+                continue
             if dry_run:
-                logger.info("DRY RUN restaurant_location (%s -> %s)", res_id, location_name)
+                logger.info("DRY RUN restaurant_location INSERT (%s -> %s)", res_id, location_name)
                 continue
             cur.execute(
-                "INSERT INTO restaurant_locations (res_id, location_name, address, latitude, longitude) VALUES (%s, %s, '', 0, 0) ON CONFLICT DO NOTHING",
+                "INSERT INTO restaurant_locations (res_id, location_name, address, latitude, longitude) VALUES (%s, %s, '', 0, 0)",
                 (res_id, location_name),
             )
     if not dry_run:
@@ -142,6 +154,7 @@ def main():
     ap.add_argument("--accept-only", action="store_true", help="Only apply rows where accept=1 (default)")
     ap.add_argument("--include-rejected", action="store_true", help="Also apply rows with accept=0 (overrides accept-only)")
     ap.add_argument("--dry-run", action="store_true", help="Print actions without writing to DB")
+    ap.add_argument("--no-default-locations", action="store_true", help="Do not create a default location row for restaurants without any locations")
     ap.add_argument("--log-level", default=os.getenv("LOG_LEVEL", "INFO"))
     args = ap.parse_args()
 
@@ -166,8 +179,8 @@ def main():
         dish_alias_rows = load_dish_alias_csv(pathlib.Path(args.dish_csv))
         keyword_alias_rows = load_keyword_alias_csv(pathlib.Path(args.keyword_csv))
         rest_location_rows = load_restaurant_location_csv(pathlib.Path(args.restaurant_csv))
-
-        dishes_map, keywords_map, restaurants_map = build_name_id_maps(conn)
+        
+        dishes_map, keywords_map, restaurants_map, restaurants_by_id = build_name_id_maps(conn)
         logger.info("Loaded name->id maps: dishes=%d keywords=%d restaurants=%d", len(dishes_map), len(keywords_map), len(restaurants_map))
 
         dish_alias_inserts: List[Tuple[int, str]] = []
@@ -217,6 +230,19 @@ def main():
                 if not rid:
                     continue
                 rest_location_inserts.append((rid, location_name))
+
+        # Add a default location for any restaurant that currently has zero locations
+        if not args.no_default_locations:
+            with conn.cursor() as cur:
+                cur.execute("SELECT res_id, COUNT(*) FROM restaurant_locations GROUP BY res_id")
+                counts = {int(rid): int(c) for rid, c in cur.fetchall()}
+            missing_defaults: List[Tuple[int, str]] = []
+            for rid, name in restaurants_by_id.items():
+                if counts.get(rid, 0) == 0:
+                    missing_defaults.append((rid, name))
+            if missing_defaults:
+                logger.info("Adding default locations for %d restaurants with no locations", len(missing_defaults))
+                rest_location_inserts.extend(missing_defaults)
 
         logger.info("Prepared inserts: dish_aliases=%d keyword_aliases=%d restaurant_locations=%d", len(dish_alias_inserts), len(keyword_alias_inserts), len(rest_location_inserts))
 

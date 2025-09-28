@@ -43,4 +43,11 @@ type SubmitReviewRequest struct {
 
 type SubmitReviewResponse struct {
 	Success bool `json:"success"`
+	ReviewID *uint `json:"review_id,omitempty"`
+}
+
+type ReviewExtractStatusResponse struct {
+	ReviewID   uint   `json:"review_id"`
+	SourceType string `json:"source_type"`
+	Found      bool   `json:"found"`
 }

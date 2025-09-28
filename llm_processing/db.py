@@ -116,6 +116,14 @@ class DB:
     def upsert_review_extracts(self, results: list, source_type: str = "web") -> int:
         if not self.is_available():
             return 0
+        # Allow env override for source type (useful for single-review ingestion)
+        try:
+            import os as _os
+            env_st = _os.environ.get("SOURCE_TYPE")
+            if env_st:
+                source_type = env_st
+        except Exception:
+            pass
         rows = []
         skipped_filtered = 0
         offset = getattr(self.cfg, 'source_id_offset', 0)

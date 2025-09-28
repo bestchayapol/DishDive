@@ -90,14 +90,23 @@ func (r *recommendRepositoryDB) GetDishReviewPage(dishID uint) (*entities.Dish, 
 	return &dish, &restaurant, nil
 }
 
-func (r *recommendRepositoryDB) SubmitReview(userID uint, dishID uint, resID uint, reviewText string) error {
+func (r *recommendRepositoryDB) SubmitReview(userID uint, dishID uint, resID uint, reviewText string) (uint, error) {
 	review := entities.UserReview{
 		UserID:  userID,
 		DishID:  dishID,
 		ResID:   resID,
 		UserRev: reviewText,
 	}
-	return r.db.Create(&review).Error
+	if err := r.db.Create(&review).Error; err != nil {
+		return 0, err
+	}
+	return review.UserRevID, nil
+}
+
+func (r *recommendRepositoryDB) HasReviewExtract(sourceID uint, sourceType string) (bool, error) {
+	var count int64
+	err := r.db.Table("review_extracts").Where("source_id = ? AND source_type = ?", sourceID, sourceType).Count(&count).Error
+	return count > 0, err
 }
 
 // Get keyword by ID

@@ -8,6 +8,7 @@ import (
 	"gorm.io/driver/postgres"
 
 	"log"
+	"os"
 	"strings"
 	"time"
 
@@ -22,6 +23,7 @@ import (
 )
 
 func main() {
+	loadDotEnv()
 	initTimeZone()
 	initConfig()
 	jwtSecret := viper.GetString("jwt.jwtSecret")
@@ -147,6 +149,10 @@ func main() {
 	app.Post("/SubmitReview", recommendHandler.SubmitReview)
 	app.Get("/GetRecommendedDishes/:userID", recommendHandler.GetRecommendedDishes)
 
+	// Utilities
+	app.Get("/ReviewExtractStatus", recommendHandler.GetReviewExtractStatus) // ?review_id=123
+	app.Get("/EnvStatus", recommendHandler.GetEnvStatus)
+
 	//#####################################################################################
 
 	log.Printf("DishDive running at port:  %v", viper.GetInt("app.port"))
@@ -180,4 +186,42 @@ func initTimeZone() {
 	}
 
 	time.Local = ict
+}
+
+// loadDotEnv provides a tiny .env reader so you can persist secrets like OPENAI_API_KEY
+// in a local file without manually exporting them every session. It looks for ./.env and ../.env.
+func loadDotEnv() {
+	candidates := []string{".env", "../.env"}
+	for _, p := range candidates {
+		b, err := os.ReadFile(p)
+		if err != nil {
+			continue
+		}
+		lines := strings.Split(string(b), "\n")
+		for _, line := range lines {
+			line = strings.TrimSpace(line)
+			if line == "" || strings.HasPrefix(line, "#") {
+				continue
+			}
+			// Split on first '=' only
+			eq := strings.IndexRune(line, '=')
+			if eq <= 0 {
+				continue
+			}
+			k := strings.TrimSpace(line[:eq])
+			v := strings.TrimSpace(line[eq+1:])
+			// strip optional surrounding quotes
+			if len(v) >= 2 {
+				if (v[0] == '"' && v[len(v)-1] == '"') || (v[0] == '\'' && v[len(v)-1] == '\'') {
+					v = v[1 : len(v)-1]
+				}
+			}
+			// Don't override if already set in environment
+			if os.Getenv(k) == "" {
+				_ = os.Setenv(k, v)
+			}
+		}
+		log.Printf("[env] loaded variables from %s", p)
+		break
+	}
 }

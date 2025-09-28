@@ -1,0 +1,3488 @@
+{
+  "a6269926fa22667a2dc47708ac87bd21a7b5762d": {
+    "lat": 13.9620836,
+    "lng": 100.7256369,
+    "formatted_address": "30 Tambon Bueng Kham Phroi, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand",
+    "place_id": "ChIJSWWgIKZ5HTER6iDGru4hEC0",
+    "provider": "google"
+  },
+  "35866e62be9994ef443aa999666511e0e6f51fb1": {
+    "lat": 13.9991774,
+    "lng": 100.2750076,
+    "formatted_address": "Rural Road Nonthaburi 3017, Tambon Khun Sri, Amphoe Sai Noi, Chang Wat Nonthaburi 11150, Thailand",
+    "place_id": "ChIJh7dpgOOL4jARWELeUZR0qmA",
+    "provider": "google"
+  },
+  "a61a33bc80f147add9dde6595228c0015fe5e4d3": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "0f4932e3cd5d6de28c3f9c6c177fe95413241eb7": {
+    "lat": 13.6638546,
+    "lng": 100.4372828,
+    "formatted_address": "ศูนย์การค้าเซ็นทรัล พระราม 2 (โซน Tree Chamber ชั้น 1 160 Rama II Rd, Khwaeng Samae Dam, Khet Bang Khun Thian, Krung Thep Maha Nakhon 10150, Thailand",
+    "place_id": "ChIJefZzbdi94jARIjF70ugAth0",
+    "provider": "google"
+  },
+  "96462deac7553a275ac27449a9a4d111d2a38343": {
+    "lat": 13.7222448,
+    "lng": 100.7616985,
+    "formatted_address": "642 Thanon Lat Krabang, Khwaeng Lat Krabang, Khet Lat Krabang, Krung Thep Maha Nakhon 10520, Thailand",
+    "place_id": "ChIJTeKnAAdnHTERIhdpZ1ZkB_k",
+    "provider": "google"
+  },
+  "bc5b45d642c30f191ed7ad0cf0d12aac7bfaef4b": {
+    "lat": 13.62198,
+    "lng": 99.6050673,
+    "formatted_address": "จอมบึง Tambon Chom Bueng, Amphoe Chom Bueng, Chang Wat Ratchaburi 70150, Thailand",
+    "place_id": "ChIJE5b-Pjo54zARfd3LcxxnI_M",
+    "provider": "google"
+  },
+  "72ebbd5d2f0dbc7b494edc3e53d1c4caa5893d6e": {
+    "lat": 18.1010988,
+    "lng": 98.1447804,
+    "formatted_address": "Pa Pong, Sop Moei District, Mae Hong Son 58110, Thailand",
+    "place_id": "ChIJn0zptSVo2zARusydkFVBJaE",
+    "provider": "google"
+  },
+  "70a80e38d31fe46c4c457c3eb6cef444b0727ab0": {
+    "lat": 13.9277973,
+    "lng": 100.4077824,
+    "formatted_address": "โครงการPARK91 บางบัวทอง เลขที่91 ซ. ปิยะรังสรรค์ หมู่ที่ 1 Tambon Bang Bua Thong, Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand",
+    "place_id": "ChIJ-V1sFSKP4jARGovJKh5AnO8",
+    "provider": "google"
+  },
+  "880b6ad6fe8f9fb3df44d71e208b70313cbc6761": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "8d03931649505398b44e1ff5001ff2cd94fb270b": {
+    "lat": 9.5326585,
+    "lng": 100.0443819,
+    "formatted_address": "G2MV+3Q6, Bo Put, Ko Samui District, Surat Thani 84320, Thailand",
+    "place_id": "ChIJ_85SKK3xVDARnjbjrft7rCo",
+    "provider": "google"
+  },
+  "a3907d9f83f9c1edcdc8bb35f34666a8e45df3d3": {
+    "lat": 15.1755147,
+    "lng": 101.1427759,
+    "formatted_address": "54GV+64, Tha Din Dam, Chai Badan District, Lopburi 15130, Thailand",
+    "place_id": "ChIJd7DxnyRDHjERpmYFRVLfee0",
+    "provider": "google"
+  },
+  "eadefb1fe6ab8d5c7068ebb8e42604448ebbe73a": {
+    "lat": 14.0089973,
+    "lng": 100.234047,
+    "formatted_address": "265M+HJV, Bang Phasi, Bang Len District, Nakhon Pathom 73130, Thailand",
+    "place_id": "ChIJi3157ej04jARi6I8hGZdkuI",
+    "provider": "google"
+  },
+  "0f62b17d663bb80c8535e016f835c7f452d437e0": {
+    "lat": 13.9166489,
+    "lng": 100.4906885,
+    "formatted_address": "44 Tambon Bang Tanai, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand",
+    "place_id": "ChIJVSj_iyCF4jARDxKjYwK3KAo",
+    "provider": "google"
+  },
+  "00126c78793ed78ad594e98453640e4bef69fcdd": {
+    "lat": 13.681762,
+    "lng": 100.5316807,
+    "formatted_address": "661 14 Thanon Sathu Pradit, บางโพงพาง Khet Yan Nawa, Krung Thep Maha Nakhon 10120, Thailand",
+    "place_id": "ChIJ02Cdwvih4jARGMo0N5ayjqs",
+    "provider": "google"
+  },
+  "2c701c54373a16a5f9f650b2133593a8d292299e": {
+    "lat": 13.493703,
+    "lng": 100.387183,
+    "formatted_address": "30/2 ซอย หมู่ 4 หมู่บ้านประมง Tambon Phanthai Norasing, Amphoe Mueang Samut Sakhon, Chang Wat Samut Sakhon 74000, Thailand",
+    "place_id": "ChIJE32COIyw4jARV3bFL7JLcP4",
+    "provider": "google"
+  },
+  "e6e1bdde2e0b134587a32146ffd746f084f08cb2": {
+    "lat": 13.9694555,
+    "lng": 100.6117115,
+    "formatted_address": "22 Phahonyothin 87 Soi 6 Yaek 1/2, Tambon Prachathipat, Amphoe Thanyaburi, Chang Wat Pathum Thani 12130, Thailand",
+    "place_id": "ChIJRzJK-amB4jARJiVJ5bJj8BQ",
+    "provider": "google"
+  },
+  "d92f735b127688d1e19efb1582b85d9e121222f1": {
+    "lat": 13.5708775,
+    "lng": 100.4214405,
+    "formatted_address": "1075 Bang Khun Thian Road, Khwaeng Tha Kham, Khet Bang Khun Thian, Krung Thep Maha Nakhon 10150, Thailand",
+    "place_id": "ChIJ134IzSi94jARjy3solJnGOM",
+    "provider": "google"
+  },
+  "61a7af605a08579448f32a615b19635ad86a3ce8": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "c354b3dfcf3154d1ef537458a213818cca0dbd14": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "4b23396dc7cae9030c76a33b5da51c5f7d1a2ee6": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "c84d41c663a54a8e1c850469ad82654823ed88d4": {
+    "lat": 13.828817,
+    "lng": 100.6302394,
+    "formatted_address": "13 16 Soi Prasert Manutakit 33, Khwaeng Nuanchan, Khet Bueng Kum, Krung Thep Maha Nakhon 10230, Thailand",
+    "place_id": "ChIJTS9UXY9iHTERCxwmx3CvMOc",
+    "provider": "google"
+  },
+  "9e020dec6b432d0a8c3331e984023e457375cb6c": {
+    "lat": 13.5481595,
+    "lng": 100.7825044,
+    "formatted_address": "หลังหมู่บ้านเอกทรัพย์ Tambon Bang Phriang, Amphoe Bang Bo, Chang Wat Samut Prakan 10560, Thailand",
+    "place_id": "ChIJE6q_xC1bHTERjerklN3KvEE",
+    "provider": "google"
+  },
+  "5cb742f2ac72c4f417f0ab686aed6c1c71febbb7": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "741c1a23b6d772d886e0acf7c441bb62e75d64c2": {
+    "lat": 13.6501262,
+    "lng": 100.4826303,
+    "formatted_address": "266 2 ถนน พุทธบูชา Khwaeng Bang Mot, Khet Thung Khru, Krung Thep Maha Nakhon 10140, Thailand",
+    "place_id": "ChIJdWZkaZSj4jARTSAp0pOYmJY",
+    "provider": "google"
+  },
+  "ef1d875f91db5924c43a1a055c6924ca4971cb1d": {
+    "lat": 13.7529736,
+    "lng": 100.746664,
+    "formatted_address": "1/9 ใร่มเกล้า 21/4 Srinagarindra - Rom Klao Rd, Khwaeng Khlong Sam Prawet, Khet Lat Krabang, Krung Thep Maha Nakhon 10520, Thailand",
+    "place_id": "ChIJ8RSzM4xmHTERi4VdfJ2Ngs4",
+    "provider": "google"
+  },
+  "2deab754eb258dded1e26c38eece2fb5e739f14c": {
+    "lat": 13.9244718,
+    "lng": 100.5953652,
+    "formatted_address": "209 Thanon Song Prapha, Khwaeng Don Mueang, Khet Don Mueang, Krung Thep Maha Nakhon 10210, Thailand",
+    "place_id": "ChIJvYLEFl2C4jARnEgs5SmPRTg",
+    "provider": "google"
+  },
+  "2d9dd59602fd25af4e97c824f42d0cb795c9450b": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "25f1ea5b76656c0a2c2bdfa62fd7ab5bdc62b29f": {
+    "lat": 14.0181273,
+    "lng": 100.4854984,
+    "formatted_address": "96 หมู่6 ถ. อิสรภาพ บางหลวง Amphoe Mueang Pathum Thani, Chang Wat Pathum Thani 12000, Thailand",
+    "place_id": "ChIJPSgkjJCH4jARzylpMYW2DmQ",
+    "provider": "google"
+  },
+  "cab51f9ff8868e37544c5b72e0b40727a803c310": {
+    "lat": 13.8846067,
+    "lng": 100.4512516,
+    "formatted_address": "9 15, Tambon Bang Rak Noi, Amphoe Mueang Nonthaburi, Chang Wat Nonthaburi 11000, Thailand",
+    "place_id": "ChIJSTeq0U-F4jARUqc2_DrGks0",
+    "provider": "google"
+  },
+  "695e5c4bf809ee6e091d8e78eb97093fa168f07f": {
+    "lat": 13.4997269,
+    "lng": 100.3772177,
+    "formatted_address": "สค.5036 ต. พันท้ายนรสิงห์, Muang, Chang Wat Samut Sakhon 74000, Thailand",
+    "place_id": "ChIJI7fm8rCx4jARU1TQKcdi39g",
+    "provider": "google"
+  },
+  "1c3b40d4b6a29dab8f0ae416157c0f526de8b0a0": {
+    "lat": 13.6778461,
+    "lng": 100.6983843,
+    "formatted_address": "368 Kanchanaphisek Rd, Khwaeng Dok Mai, Khet Prawet, Krung Thep Maha Nakhon 10250, Thailand",
+    "place_id": "ChIJJXx8agBfHTERXJE3KwBazhc",
+    "provider": "google"
+  },
+  "32ca8e8a9a3c36c338d6fdec573a5519bfebd7de": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "cb50276ba9149c99d7fa60752996810ed3a1534c": {
+    "lat": 13.9389694,
+    "lng": 100.5494117,
+    "formatted_address": "46 88 ซอย ตำบลบ้านใหม่ Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand",
+    "place_id": "ChIJ_R4xJJWD4jARtLNWz2AZctU",
+    "provider": "google"
+  },
+  "1dae07c99dc549c99af1ce8449fa9869e4c6cb1a": {
+    "lat": 13.9334479,
+    "lng": 100.6919466,
+    "formatted_address": "Thanon Lam Luk Ka, Tambon Lat Sawai, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand",
+    "place_id": "ChIJRWYFTGt8HTER3oT44SYMRc0",
+    "provider": "google"
+  },
+  "bb8733e543584bd713759776db3cc10755a76076": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "affefd434554a47e0d9d62c433acdd1df7fb54e0": {
+    "lat": 13.9670805,
+    "lng": 100.514008,
+    "formatted_address": "189 Tambon Bang Khu Wat, Amphoe Mueang Pathum Thani, Chang Wat Pathum Thani 12000, Thailand",
+    "place_id": "ChIJC8y8_gmH4jARAiA6evEVYzI",
+    "provider": "google"
+  },
+  "279fa8569100ccf8cf393f73094cd13289a7527a": {
+    "lat": 13.9565305,
+    "lng": 100.5692869,
+    "formatted_address": "Soi Nawong Phattgana 1, Tambon Lak Hok, Amphoe Mueang Pathum Thani, Chang Wat Pathum Thani 12000, Thailand",
+    "place_id": "ChIJC9PV72mD4jARRzUCCE7vQ04",
+    "provider": "google"
+  },
+  "4d99f05f5f1fafd71ca5f9a6b61da813d7001d43": {
+    "lat": 13.8582634,
+    "lng": 100.7031919,
+    "formatted_address": "22, 2 Soi Liap Khlong Song 8, Khwaeng Bang Chan, Khet Khlong Sam Wa, Krung Thep Maha Nakhon 10510, Thailand",
+    "place_id": "ChIJQyICSJplHTERZXm-s9yeLLw",
+    "provider": "google"
+  },
+  "cb8e15ce5c0386e385459a6758d75fe7cd65c2ea": {
+    "lat": 13.7325022,
+    "lng": 100.4211048,
+    "formatted_address": "132 ถ. ราชมนตรี Khwaeng Khlong Khwang, Khet Phasi Charoen, Krung Thep Maha Nakhon 10160, Thailand",
+    "place_id": "ChIJjcHAGWOX4jAR-G1PBJHfw0s",
+    "provider": "google"
+  },
+  "08e0b4992bc199790af797a3f94f7af9ac0811f0": {
+    "lat": 13.7954672,
+    "lng": 100.5123047,
+    "formatted_address": "160 162 Soi Charan Sanitwong 86/1, Khwaeng Bang Ao, Khet Bang Phlat, Krung Thep Maha Nakhon 10170, Thailand",
+    "place_id": "ChIJIZoKkiWb4jARmyE24O1_Snc",
+    "provider": "google"
+  },
+  "c73cc823c73c08258ca5b3725291e7955631a332": {
+    "lat": 13.7962811,
+    "lng": 100.6476232,
+    "formatted_address": "Soi Muban Thawi Sap 2, Khwaeng Nawamin, Khet Bueng Kum, Krung Thep Maha Nakhon 10240, Thailand",
+    "place_id": "ChIJv67NMz9iHTERv6Qd61JDsIo",
+    "provider": "google"
+  },
+  "34cc96e42e27c87ae0997ac5d8aeec50e4f77ebe": {
+    "lat": 13.7785285,
+    "lng": 100.5706461,
+    "formatted_address": "QHHC+C76, Soi Pracha Songkhro 38, Ratchadaphisek, Khet Din Daeng, Krung Thep Maha Nakhon 10400, Thailand",
+    "place_id": "ChIJRZouNPqf4jARo7cC1QK9J1E",
+    "provider": "google"
+  },
+  "078a763a385a1b050ac49a61ac0924b5727faf1a": {
+    "lat": 13.5447296,
+    "lng": 100.5023943,
+    "formatted_address": "GGV2+VXR, Na Klua, Phra Samut Chedi District, Samut Prakan 10290, Thailand",
+    "place_id": "ChIJZU9t2bal4jARyR_PGX_JhTs",
+    "provider": "google"
+  },
+  "5c759ac143844467e9dab3426af3a75a852cd13d": {
+    "lat": 13.5737873,
+    "lng": 100.4230076,
+    "formatted_address": "712 3 Bang Khun Thian Road, Khwaeng Tha Kham, Khet Bang Khun Thian, Krung Thep Maha Nakhon 10150, Thailand",
+    "place_id": "ChIJN95wb1a74jARuk5Tieub2tI",
+    "provider": "google"
+  },
+  "e8bc5fb37b0436cce4632e834b19686ab2de2af8": {
+    "lat": 13.5907915,
+    "lng": 100.6822013,
+    "formatted_address": "เลขที่ 81 หมู่ 23 Soi Thidin Thai, Tambon Bang Phli Yai, Amphoe Bang Phli, Chang Wat Samut Prakan 10540, Thailand",
+    "place_id": "ChIJ96plS21fHTERgylq0b4s9n0",
+    "provider": "google"
+  },
+  "bbfa5989d06093ca63749c6d73f25d9e655f03e0": {
+    "lat": 13.9268884,
+    "lng": 100.3728408,
+    "formatted_address": "10 ถ. เลียบคลองบางไทร Tambon Phimonrat, Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand",
+    "place_id": "ChIJvbn0qMmP4jAR6vvn18F-1KY",
+    "provider": "google"
+  },
+  "6cdb90fd13e1270d87747064f17d62157e0f5798": {
+    "lat": 13.858529,
+    "lng": 100.2188406,
+    "formatted_address": "15 1, Tambon Don Faek, Amphoe Nakhon Chai Si, Chang Wat Nakhon Pathom 73120, Thailand",
+    "place_id": "ChIJ14Gneyrv4jAReZjIu2mV_JE",
+    "provider": "google"
+  },
+  "cafbae19c31ec2123b15fddf57655bb6bd305ad8": {
+    "lat": 13.5647401,
+    "lng": 100.5369946,
+    "formatted_address": "359 Tambon Laem Fa Pha, Amphoe Phra Samut Chedi, Chang Wat Samut Prakan 10290, Thailand",
+    "place_id": "ChIJJzXlsvun4jARWD9g4UrgW7s",
+    "provider": "google"
+  },
+  "ca38988b1535bad1bf754592cfb9cc7a82aee328": {
+    "lat": 30.6508899,
+    "lng": 104.07572,
+    "formatted_address": "Sichuan, China",
+    "place_id": "ChIJs829aDPn5DYRuf6Zj898j94",
+    "provider": "google"
+  },
+  "9706a7431240255d44fa9c3e7c7fdf504c2ccaa3": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "78fb4f78b8140e569fe7e5355df8d81f3938ff4c": {
+    "lat": 13.7648325,
+    "lng": 100.56896,
+    "formatted_address": "Thanon Ratchadaphisek, Khwaeng Din Daeng, Khet Din Daeng, Krung Thep Maha Nakhon 10400, Thailand",
+    "place_id": "ChIJaZ6-cAuf4jAREVKsxwFZpl0",
+    "provider": "google"
+  },
+  "b6eb14385ccdd7168a13f717b07da776457090c3": {
+    "lat": 13.7370349,
+    "lng": 100.5430368,
+    "formatted_address": "Velaa Sindhorn Village 87 Langsuan rd, ซอย, ถ. หลังสวน แขวงลุมพินี เขตปทุมวัน กรุงเทพมหานคร 10330, Thailand",
+    "place_id": "ChIJ-VSAWMif4jARvExzAXqPmwg",
+    "provider": "google"
+  },
+  "03c0bd67eb4b991f28ae6bf4a07a7bc9413c6872": {
+    "lat": 13.7992136,
+    "lng": 100.6357471,
+    "formatted_address": "เลขที่ 106 ซอย โพธิ์แก้ว คลองจั่น Khet Bang Kapi, Krung Thep Maha Nakhon 10240, Thailand",
+    "place_id": "ChIJP4M-Qt9jHTERYZ6SJ3WWuYk",
+    "provider": "google"
+  },
+  "17e1107f5eacd8cc01eeaca814fb09615aa1793e": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "001101b94b07ef4a15fb6849e6776651a967554d": {
+    "lat": 13.7466982,
+    "lng": 100.5703319,
+    "formatted_address": "1878, 2 Thanon Phetchaburi, Khwaeng Bang Kapi, Khet Huai Khwang, Krung Thep Maha Nakhon 10310, Thailand",
+    "place_id": "ChIJvV4l00Wf4jARcLhcdOovYyA",
+    "provider": "google"
+  },
+  "0a7e2f5fbfc434e24feb450803dfb356546afde8": {
+    "lat": 13.8207916,
+    "lng": 100.4879687,
+    "formatted_address": "69/12 Bang Pai Soi 4, Tambon Bang Phai, Amphoe Mueang Nonthaburi, Chang Wat Nonthaburi 11000, Thailand",
+    "place_id": "ChIJBVXi1Eqb4jARrFz2DQAfDHg",
+    "provider": "google"
+  },
+  "8c14ba7216556be8ffd286c77487f8a6d93de009": {
+    "lat": 13.5637901,
+    "lng": 100.5341568,
+    "formatted_address": "Thanon Khlong Sapphasamit, Tambon Laem Fa Pha, Amphoe Phra Samut Chedi, Chang Wat Samut Prakan 10290, Thailand",
+    "place_id": "ChIJQQdQ_juk4jARUgsx0GDpGTE",
+    "provider": "google"
+  },
+  "7414800fc194872d737edaf7a6b92b7267f39757": {
+    "lat": 13.9527509,
+    "lng": 100.4736635,
+    "formatted_address": "11 31 หมู่2 345 Tambon Khlong Khoi, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand",
+    "place_id": "ChIJp9AYuVGF4jARyjy6yEDBvAE",
+    "provider": "google"
+  },
+  "e0c59cc597dbf3e90f04e4c8edc820152dbbf4fb": {
+    "lat": 13.9527509,
+    "lng": 100.4736635,
+    "formatted_address": "11 31 หมู่2 345 Tambon Khlong Khoi, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand",
+    "place_id": "ChIJp9AYuVGF4jARyjy6yEDBvAE",
+    "provider": "google"
+  },
+  "9b44f5a5f76975459ae620f81da5f5a854e98dfc": {
+    "lat": 13.6506172,
+    "lng": 100.4822,
+    "formatted_address": "241 Soi Phutthabucha 41, Khwaeng Bang Mot, Khet Thung Khru, Krung Thep Maha Nakhon 10140, Thailand",
+    "place_id": "ChIJgc__hSGj4jARfDmKHT1JM8w",
+    "provider": "google"
+  },
+  "1d7b32ee7804417cb89746614077800eeec9fe85": {
+    "lat": 15.9032933,
+    "lng": 103.7289167,
+    "formatted_address": "Roi Et, Thailand",
+    "place_id": "ChIJh7NMFtLlFzERUEpgE0G1AgE",
+    "provider": "google"
+  },
+  "e95a0387919e21741c4e2201f685cbd173d888c6": {
+    "lat": 13.8221505,
+    "lng": 100.6256297,
+    "formatted_address": "20​ ซอยประดิษฐ์มนูธรรม25​ Pradit Manutham Rd, Khwaeng Lat Phrao, Khet Lat Phrao, Krung Thep Maha Nakhon 10230, Thailand",
+    "place_id": "ChIJhSKGQ9xjHTERKL3IlGCiszo",
+    "provider": "google"
+  },
+  "b101f7be74e82b805326dfa7ee1f6aadc548e418": {
+    "lat": 13.684878,
+    "lng": 100.4083801,
+    "formatted_address": "44 ถนน กัลปพฤกษ์ Khwaeng Bang Khae, Khet Bang Khae, Krung Thep Maha Nakhon 10160, Thailand",
+    "place_id": "ChIJOePRCGW94jARBY8RWfQ5-gY",
+    "provider": "google"
+  },
+  "5e5ace46679a05bccd4d2db546e8e14ded54d026": {
+    "lat": 13.9211412,
+    "lng": 100.6772061,
+    "formatted_address": "49 34 Sai Mai Rd, Khwaeng Sai Mai, Khet Sai Mai, Krung Thep Maha Nakhon 10220, Thailand",
+    "place_id": "ChIJDz4Mn9d9HTERJ8u4YiBelao",
+    "provider": "google"
+  },
+  "8415301ef2f66d2122ef6bf8d9c5de66ea504fde": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "f01c8fd6b07807f78a4bdb676193ee4c825ac5fd": {
+    "lat": 13.7226151,
+    "lng": 100.7827428,
+    "formatted_address": "1919, ซอย Lat Krabang 13/8, Khwaeng Lat Krabang, Khet Lat Krabang, Krung Thep Maha Nakhon 10520, Thailand",
+    "place_id": "ChIJV8oEWstnHTERBeWdGdP_dW8",
+    "provider": "google"
+  },
+  "cb01cb6a47aada0a65a7f9c93ae7ebed7f4e4720": {
+    "lat": 13.9212249,
+    "lng": 100.6483003,
+    "formatted_address": "Soi Khachon Bun, Khwaeng Sai Mai, Khet Sai Mai, Krung Thep Maha Nakhon 10120, Thailand",
+    "place_id": "ChIJ0cgjAhN9HTERdJxiKoAypAs",
+    "provider": "google"
+  },
+  "3847807f2b94ad2a2c316ae1fd173a6f6bbf1b5b": {
+    "lat": 13.9981736,
+    "lng": 100.684461,
+    "formatted_address": "87 Tambon Bang Yitho, Amphoe Thanyaburi, Chang Wat Pathum Thani 12130, Thailand",
+    "place_id": "ChIJd4AzIOF-HTERUk-gfXzVBuA",
+    "provider": "google"
+  },
+  "46ec7a5fe37aba451e554f6ad3285bb42ab8c86a": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "e9a54598545eff2f283d272baaae0d1b1559d87d": {
+    "lat": 13.9308069,
+    "lng": 100.7460994,
+    "formatted_address": "18/5 หมู่ที่ 15 Tambon Bueng Kham Phroi, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand",
+    "place_id": "ChIJmVpInKl7HTEReEkGlCLF4Q8",
+    "provider": "google"
+  },
+  "f49ff1420fa3c8643c4f327ac7faeffb48e66689": {
+    "lat": 13.7076107,
+    "lng": 100.3823303,
+    "formatted_address": "1759/3 Phet Kasem Rd, Khwaeng Lak Song, Khet Bang Khae, Krung Thep Maha Nakhon 10160, Thailand",
+    "place_id": "ChIJddbc4f-X4jARCJpr6oUwZyU",
+    "provider": "google"
+  },
+  "c5a62fcf7fcf7c09c1de75e3c01b3b5094eca4de": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "f00eaf28242ac2f8ae89e11a051e915588e2eaa1": {
+    "lat": 13.8593319,
+    "lng": 100.8526389,
+    "formatted_address": "13.85934, 100.85267 Mit Maitri 6, Khwaeng Nong Chok, Khet Nong Chok, Krung Thep Maha Nakhon 10530, Thailand",
+    "place_id": "ChIJzZZ9p6NxHTERK_nmiwwc1Yg",
+    "provider": "google"
+  },
+  "0edb1981aaa70c87b8032f5616e5c1fe45feb8bc": {
+    "lat": 13.6572525,
+    "lng": 100.3954275,
+    "formatted_address": "18, 28 หมู่4 Thanon Ekkachai, Bang Bon Nuea, Khet Bang Bon, Krung Thep Maha Nakhon 10150, Thailand",
+    "place_id": "ChIJtTkMdge94jARGiTubEJNLBw",
+    "provider": "google"
+  },
+  "21c067600928441cb3572dc7acd53a88148b1f61": {
+    "lat": 13.7060531,
+    "lng": 100.3608741,
+    "formatted_address": "P946+C8H, Phet Kasem 77, Khwaeng Nong Khang Phlu, Khet Nong Khaem, Krung Thep Maha Nakhon 10160, Thailand",
+    "place_id": "ChIJ2acONQWW4jARKpWylWidsTg",
+    "provider": "google"
+  },
+  "bcdda7d0ab3e78cad26d8d3e8eac9031c74423d1": {
+    "lat": 13.7832201,
+    "lng": 100.4027039,
+    "formatted_address": "QCM3+73P, Borommaratchachonnani Rd, Khwaeng Sala Thammasop, Khet Thawi Watthana, Krung Thep Maha Nakhon 10170, Thailand",
+    "place_id": "ChIJj0jFC3-X4jARPIhwhOvLb7Q",
+    "provider": "google"
+  },
+  "426fe170707f4846df41b17a5642b95c24857961": {
+    "lat": 13.8292245,
+    "lng": 100.410597,
+    "formatted_address": "69/6 ซอย วัดบางค้อ Tambon Bang Muang, Amphoe Bang Yai, Chang Wat Nonthaburi 11140, Thailand",
+    "place_id": "ChIJ6Spqb_aQ4jARxyQO0nIJdHM",
+    "provider": "google"
+  },
+  "0a63fa2b5490bfa2eeb6de2278fb0993fdcc2cc7": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "6b828be2a8083045b335c53c567f1c6e936fa98d": {
+    "lat": 13.9294252,
+    "lng": 100.4829403,
+    "formatted_address": "56/93 คลองพระอุดม Tambon Khlong Phra Udom, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand",
+    "place_id": "ChIJcWC7Xo2Z4jARk7n2PKaGdIw",
+    "provider": "google"
+  },
+  "484bced3c502489324ab2fe0731680d3ae55187d": {
+    "lat": 13.8556023,
+    "lng": 100.5535754,
+    "formatted_address": "21/133 ซอย งามวงศ์วาน 47 Thanon Ngam Wong Wan, Khwaeng Thung Song Hong, Khet Lak Si, Krung Thep Maha Nakhon 10210, Thailand",
+    "place_id": "ChIJy1dGE8ec4jAR62LccbeHg-0",
+    "provider": "google"
+  },
+  "21dda34feeced5904e3e3908ac86c22fbf7367e2": {
+    "lat": 13.8463079,
+    "lng": 100.7914133,
+    "formatted_address": "ตรงข้าม Soi Pracha Ruam Chai 63, Khwaeng Sai Kong Din Tai, Khet Khlong Sam Wa, Krung Thep Maha Nakhon 10510, Thailand",
+    "place_id": "ChIJz2rwxQtlHTERwPaYmf_dK8o",
+    "provider": "google"
+  },
+  "401a603a3d9ee71dcac001e3fc43247db9106a8a": {
+    "lat": 13.4987747,
+    "lng": 100.3553096,
+    "formatted_address": "26/1 ซอย บ้านประมง 3 Tambon Phanthai Norasing, Amphoe Mueang Samut Sakhon, Chang Wat Samut Sakhon 74000, Thailand",
+    "place_id": "ChIJp1oKC3C44jARDO_kIeUdNnw",
+    "provider": "google"
+  },
+  "2b2b089851b252203875f87b8444faffa68787db": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "cb11add2b0e0cf8aeb14060ebefb22f0141391ec": {
+    "lat": 14.0258378,
+    "lng": 100.7469024,
+    "formatted_address": "หมู่ 4 เลขที่ 134 ระหว่างปั๊มปตทคลองหกและเดอะพอย์ทคอนโด Thanon Rangsit - Nakhon Nayok, Tambon Rangsit, Amphoe Thanyaburi, Chang Wat Pathum Thani 12110, Thailand",
+    "place_id": "ChIJOar3b5Z5HTER7T5yOLViZEo",
+    "provider": "google"
+  },
+  "69d0a2001be23642ce26eb3cd85d86a04ab37105": {
+    "lat": 13.9500077,
+    "lng": 100.3535631,
+    "formatted_address": "7/130 Tambon Sai Noi, Amphoe Sai Noi, Chang Wat Nonthaburi 11150, Thailand",
+    "place_id": "ChIJ54x6uaGO4jARBPhI-wWhQsQ",
+    "provider": "google"
+  },
+  "ea096405cd0338529e1808e3e698e8d25415e13e": {
+    "lat": 13.9606847,
+    "lng": 100.6429091,
+    "formatted_address": "XJ6V+75F, Khu Khot, Lam Luk Ka District, Pathum Thani 12130, Thailand",
+    "place_id": "ChIJXZtdNRx_HTERihAgstyrqW0",
+    "provider": "google"
+  },
+  "dc8c5707e038099d3b979fb15e5676f2f5aef031": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "fae9de336ee0de5a99f04feb71c244af5f5be60f": {
+    "lat": 13.6648399,
+    "lng": 100.5229228,
+    "formatted_address": "13/24 หมู่13 Tambon Bang Phueng, Krung Thep Maha Nakhon 10130, Thailand",
+    "place_id": "ChIJi4AXvM2j4jARwzui0ux412w",
+    "provider": "google"
+  },
+  "baa67f72cd4d883aa8edf086ebd3c640872c6fc7": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "962c1df5b4ad9318de9cc81c27c0d46903b77882": {
+    "lat": 13.9191365,
+    "lng": 100.5394613,
+    "formatted_address": "29 555 Chaeng Wattana-Parkkred 33, Tambon Ban Mai, Amphoe Pak Kret, Chang Wat Nonthaburi 11220, Thailand",
+    "place_id": "ChIJSckJwoKD4jARFLwNt1vMd-c",
+    "provider": "google"
+  },
+  "6d1169379729c46234683beb26e3d9ae088e2ef3": {
+    "lat": 13.8418855,
+    "lng": 100.6976069,
+    "formatted_address": "RMRX+Q29 แขวง บางชัน เขตคลองสามวา บางชัน Khwaeng Bang Chan, คลองสามวา Krung Thep Maha Nakhon 10510, Thailand",
+    "place_id": "ChIJiV4Wwc1jHTER2UneciX5iiM",
+    "provider": "google"
+  },
+  "bc6add4f15591947e7f83cc2677b127eda7904c8": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "9250b1f43336149efc11116a6af5bd45c055e5d4": {
+    "lat": 13.6149624,
+    "lng": 100.6210871,
+    "formatted_address": "ถ. ร้านอาหารรสสุคนธ์ Tambon Bang Muang Mai, Amphoe Mueang Samut Prakan, Chang Wat Samut Prakan 10270, Thailand",
+    "place_id": "ChIJif5Z619fHTERnsHi4kuREWM",
+    "provider": "google"
+  },
+  "5648cc00964a1641ce948611101ad0ed1b80a50b": {
+    "lat": 13.740217,
+    "lng": 100.687147,
+    "formatted_address": "244 Soi Krungthep Kritha 22, Thap Chang, Khet Saphan Sung, Krung Thep Maha Nakhon 10240, Thailand",
+    "place_id": "ChIJL9soC7BhHTERS93N2dgYwZ8",
+    "provider": "google"
+  },
+  "16bcdc83a58437d41e1ded7a81f08eb6d89e0219": {
+    "lat": 13.7223435,
+    "lng": 100.7428564,
+    "formatted_address": "856 5 Thanon Lat Krabang, Khwaeng Lat Krabang, Khet Lat Krabang, Krung Thep Maha Nakhon 10520, Thailand",
+    "place_id": "ChIJxVK2mApnHTERdlLI2qlx0_k",
+    "provider": "google"
+  },
+  "199825ee4b5f5429531fa09503bf399745c88ddf": {
+    "lat": 13.7566826,
+    "lng": 100.5339977,
+    "formatted_address": "55 Khwaeng Thanon Phaya Thai, Khet Ratchathewi, Krung Thep Maha Nakhon 10400, Thailand",
+    "place_id": "ChIJGRLM8W-f4jARHa33ffqVCpY",
+    "provider": "google"
+  },
+  "b9cf61c515fd2e03dc9fd71f2c86d96ee5908c7d": {
+    "lat": 12.9221199,
+    "lng": 100.7874171,
+    "formatted_address": "WQCP+RXV, Bang Lamung District, Chon Buri 20150, Thailand",
+    "place_id": "ChIJj9rsvzyYAjERMAQZyu8y5w4",
+    "provider": "google"
+  },
+  "920cd6f97d084dfeb9ab68743ee7ae5a092e48bc": {
+    "lat": 13.6880096,
+    "lng": 100.5653807,
+    "formatted_address": "111 หมู่ 4 33 Thanon Phetchahung, Tambon Bang Kachao, Amphoe Phra Pradaeng, Chang Wat Samut Prakan 10130, Thailand",
+    "place_id": "ChIJQ3TO1hqf4jARtlu_QGYzYog",
+    "provider": "google"
+  },
+  "b70283ba3a47b8263e02501de19f72832df80909": {
+    "lat": 13.5683251,
+    "lng": 100.8282836,
+    "formatted_address": "ร้านก๊วยเตี๋ยวเรือ พ.พวง สาขาตลาดแสงทองพลาซ่า บางเสาธง Thepharak Rd, Tambon Bang Sao Thong, Amphoe Bang Sao Thong, Chang Wat Samut Prakan 10560, Thailand",
+    "place_id": "ChIJHZJQdq1FHTER1u92poXpeHg",
+    "provider": "google"
+  },
+  "d262fcfa054c5bd0910d8a894f6307ad0c88cd61": {
+    "lat": 13.9007997,
+    "lng": 100.6392412,
+    "formatted_address": "88/85 ถ. เพิ่มสิน Khwaeng Khlong Thanon, Khet Sai Mai, Krung Thep Maha Nakhon 10220, Thailand",
+    "place_id": "ChIJpXA2DldjHTERcX2rL03kFVA",
+    "provider": "google"
+  },
+  "da92ec6eabc899b8403072c63244ffb3ac8d03a2": {
+    "lat": 13.6577639,
+    "lng": 100.6690993,
+    "formatted_address": "Bangna - Trad Road Tambon Bang Kaeo, Amphoe Bang Phli, Chang Wat Samut Prakan 20000, Thailand",
+    "place_id": "ChIJCzSkHeJfHTER2iTV_yfCwu8",
+    "provider": "google"
+  },
+  "ef5df573bffb1cc7d4b25e2b6b1765d42d17996c": {
+    "lat": 13.8286895,
+    "lng": 100.6392381,
+    "formatted_address": "44 Soi Nuan Chan 44, Khwaeng Nuanchan, Khet Bueng Kum, Krung Thep Maha Nakhon 10240, Thailand",
+    "place_id": "ChIJ9zQaX4xiHTERC7DKRPsYZG0",
+    "provider": "google"
+  },
+  "92b21266caf7168f0afab691f97dc69a466344b3": {
+    "lat": 13.8660511,
+    "lng": 100.374593,
+    "formatted_address": "ณ ชมทุ่งริมคลอง Tambon Bang Mae Nang, Amphoe Bang Yai, Chang Wat Nonthaburi 11140, Thailand",
+    "place_id": "ChIJn0yiHTaR4jARr8ZsIvx3oXw",
+    "provider": "google"
+  },
+  "1866d06e49fb0cd823ab1d173046941f50f085c1": {
+    "lat": 13.7817183,
+    "lng": 100.3281787,
+    "formatted_address": "59 Phutthamonthon Sai 4 Rd, Tambon Salaya, Amphoe Phutthamonthon, Chang Wat Nakhon Pathom 73170, Thailand",
+    "place_id": "ChIJFemAWAuU4jARaEICjTMMN_s",
+    "provider": "google"
+  },
+  "3f8116344fef93d0446257cc2c4e183ff6b3f57e": {
+    "lat": 13.680777,
+    "lng": 100.3215185,
+    "formatted_address": "Thanon Phutthasakhon, Tambon Suan Luang, Amphoe Krathum Baen, Chang Wat Samut Sakhon 74110, Thailand",
+    "place_id": "ChIJ22xOhvuX4jARNPF1P0Qtxss",
+    "provider": "google"
+  },
+  "3e9095a4531f4e9d49d600ba8656ce54a063c6b1": {
+    "lat": 13.8016034,
+    "lng": 100.7186899,
+    "formatted_address": "Soi Ramkhamhaeng 191, Khwaeng Min Buri, Khet Min Buri, Krung Thep Maha Nakhon 10510, Thailand",
+    "place_id": "ChIJqd74m3FkHTERWj0NYQSQR8I",
+    "provider": "google"
+  },
+  "1476551dd6b8b6c10718258a4d1ca62d2d14091b": {
+    "lat": 13.7865415,
+    "lng": 100.4633884,
+    "formatted_address": "39/4 Borommaratchachonnani Rd, Khwaeng Taling Chan, Khet Taling Chan, Krung Thep Maha Nakhon 10170, Thailand",
+    "place_id": "ChIJzQsLySGa4jARML8L9NlEyj8",
+    "provider": "google"
+  },
+  "8c60d62fc8e6ebc3bc98da11fa49c9d75deea697": {
+    "lat": 13.8587831,
+    "lng": 100.6914305,
+    "formatted_address": "VM5R+GH7, Bang Chan, Khlong Sam Wa, Bangkok 10510, Thailand",
+    "place_id": "ChIJcbw5UPVjHTERW2F4Yy7Kz_E",
+    "provider": "google"
+  },
+  "7cff8b31d0fc9ff5768529ceee484fa5462e23db": {
+    "lat": 13.8587831,
+    "lng": 100.6914305,
+    "formatted_address": "VM5R+GH7, Bang Chan, Khlong Sam Wa, Bangkok 10510, Thailand",
+    "place_id": "ChIJcbw5UPVjHTERW2F4Yy7Kz_E",
+    "provider": "google"
+  },
+  "540578f6db2f94b1a2b75997ba3bcde2eed6276f": {
+    "lat": 13.8238268,
+    "lng": 100.4453402,
+    "formatted_address": "168 Tambon Bang Khun Kong, Amphoe Bang Kruai, Chang Wat Nonthaburi 11130, Thailand",
+    "place_id": "ChIJo7xqASeb4jARoGbN5P3lr5k",
+    "provider": "google"
+  },
+  "bee49a8e2842f9de8dbf327981bff0311df50bda": {
+    "lat": 13.9065308,
+    "lng": 100.4005789,
+    "formatted_address": "88 19 Tambon Bang Rak Phatthana, Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand",
+    "place_id": "ChIJxdQpU7aP4jARlX2BMwQin6g",
+    "provider": "google"
+  },
+  "432bdbd5b19a36d28dbb53c32a7a3960ea3abb0a": {
+    "lat": 13.53308,
+    "lng": 100.6176458,
+    "formatted_address": "200 22 หมู่ 1 Soi Thetsaban Bang Pu 74, Tambon Bang Pu Mai, Amphoe Mueang Samut Prakan, Chang Wat Samut Prakan 10280, Thailand",
+    "place_id": "ChIJcTcwvYmn4jARbUAvTuYlwqA",
+    "provider": "google"
+  },
+  "da65e479b8eb411670c995cf965b19a2f75cdb80": {
+    "lat": 13.7350457,
+    "lng": 100.6188287,
+    "formatted_address": "8/5 Phatthanakan 30, Khwaeng Suan Luang, Khet Suan Luang, Krung Thep Maha Nakhon 10250, Thailand",
+    "place_id": "ChIJJeAvQkef4jARNzJdFsied5Q",
+    "provider": "google"
+  },
+  "a92e09935f32091050b1c60401c73bf3d6d7b478": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "3b50773241c0f879e441aaeed7b989e54489dba3": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "89347388fec0d86a1b465a0b105c5d0576a15ca6": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "c2cbf8dbd2dcfd83abc644b6cc4058b22092a6be": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "03869e59575c765bef29b1f27ea1731a23d53fd1": {
+    "lat": 13.9250894,
+    "lng": 100.5705278,
+    "formatted_address": "49 Soi Wat Welu Wanaram 9, Khwaeng Don Mueang, Khet Don Mueang, Krung Thep Maha Nakhon 10210, Thailand",
+    "place_id": "ChIJa9qGt62D4jARPRrXu3e6ARI",
+    "provider": "google"
+  },
+  "553d860898ee6d9469522bd872c24f967d705676": {
+    "lat": 13.882744,
+    "lng": 100.6529597,
+    "formatted_address": "440 Sukhaphiban 5 Road, Khwaeng Ao Ngoen, Khet Sai Mai, Krung Thep Maha Nakhon 10220, Thailand",
+    "place_id": "ChIJU3j3oSN9HTERYEz9U8mosAk",
+    "provider": "google"
+  },
+  "d65d37f630cc59696145dc0b9710b591a25a1ac4": {
+    "lat": 13.6338612,
+    "lng": 100.7697056,
+    "formatted_address": "Unnamed Road Tambon Bang Chalong, Amphoe Bang Phli, Chang Wat Samut Prakan 10540, Thailand",
+    "place_id": "ChIJyQhoeqZdHTERJQuPC_b0fDg",
+    "provider": "google"
+  },
+  "60ee798f37b9f3aafb057e25214e0396b73a4be6": {
+    "lat": 13.9383973,
+    "lng": 100.3648416,
+    "formatted_address": "196 1 ม.7 Baan Kluay - Sai Noi Rd, Tambon Phimonrat, Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand",
+    "place_id": "ChIJ8_T3pZGO4jARCOEYSU0_OKU",
+    "provider": "google"
+  },
+  "d6018081d6ce75e7b1e73c0bd46dd88f37f4645a": {
+    "lat": 13.9852215,
+    "lng": 100.4005747,
+    "formatted_address": "จังหวัดนนทบุรี Tambon Khlong Khoi, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand",
+    "place_id": "ChIJ3zcWB3KF4jAR21T6-agPl_A",
+    "provider": "google"
+  },
+  "f258af1aa3932c9aa58787f4bad7ffccbe6ea91c": {
+    "lat": 13.828721,
+    "lng": 100.6462369,
+    "formatted_address": "128/9 Soi Nualchan 36, แขวงนวลจันทร์ เขตบึงกุ่ม กรุงเทพมหานคร 10230, Thailand",
+    "place_id": "ChIJa7EuYfBiHTERddTvZDQcxjg",
+    "provider": "google"
+  },
+  "82df15971931e3ed8121192147155f02ff500612": {
+    "lat": 13.7302444,
+    "lng": 100.7211784,
+    "formatted_address": "PPJC+3FV, Khlong Song Ton Nun, Lat Krabang, Bangkok 10520, Thailand",
+    "place_id": "ChIJ-_lb2dlmHTERLzlrQ4_HCnw",
+    "provider": "google"
+  },
+  "122beb2b9b7fe9b0c26711ec836d0d185da2cde5": {
+    "lat": 13.5827539,
+    "lng": 100.3762731,
+    "formatted_address": "เฟส 7 78/1258 ซอยหมู่บ้านวิเศษสุขนคร Tambon Phanthai Norasing, Amphoe Mueang Samut Sakhon, Chang Wat Samut Sakhon 74000, Thailand",
+    "place_id": "ChIJbQlklWy74jARIwGZqrGMFn4",
+    "provider": "google"
+  },
+  "cf6ab4b3e310ac8411836f5b229c6854a3a7dca1": {
+    "lat": 13.6991182,
+    "lng": 100.7045205,
+    "formatted_address": "160, 3 Thanon Sukhaphiban 2, Khwaeng Dok Mai, Khet Prawet, Krung Thep Maha Nakhon 10250, Thailand",
+    "place_id": "ChIJlbG-pR5hHTERF6TEdzMmua8",
+    "provider": "google"
+  },
+  "db797afc27c5f5c359386fb551812ee0eebda1d3": {
+    "lat": 14.0184872,
+    "lng": 100.5109773,
+    "formatted_address": "57, 81-82 ซอย หมู่บ้านบางหลวง Tambon Ban Chang, เมือง, Chang Wat Pathum Thani 12000, Thailand",
+    "place_id": "ChIJybUv9USH4jARMvlYH8JI4EI",
+    "provider": "google"
+  },
+  "dea927d06bbd525b6bb63eba4db6763cbdd913fa": {
+    "lat": 14.0184872,
+    "lng": 100.5109773,
+    "formatted_address": "57, 81-82 ซอย หมู่บ้านบางหลวง Tambon Ban Chang, เมือง, Chang Wat Pathum Thani 12000, Thailand",
+    "place_id": "ChIJybUv9USH4jARMvlYH8JI4EI",
+    "provider": "google"
+  },
+  "dd9b600f9d7db6c73abed8e3435293d36ba68b65": {
+    "lat": 13.8721552,
+    "lng": 100.8662523,
+    "formatted_address": "เลขที่ 21/6 Soi Sakundi 5, Khwaeng Nong Chok, Khet Nong Chok, Krung Thep Maha Nakhon 10530, Thailand",
+    "place_id": "ChIJ-3gelyJxHTERtJMJun07Seg",
+    "provider": "google"
+  },
+  "7809d161f7810cfb6f976a4a921e5067fd8a7909": {
+    "lat": 16.5235265,
+    "lng": 102.0832543,
+    "formatted_address": "Chum Phae, Chum Phae District, Khon Kaen, Thailand",
+    "place_id": "ChIJP3blI5QfIjER0IamnG6zbro",
+    "provider": "google"
+  },
+  "c4a5301098703a2bfbdee48ba12cf5758d1654d9": {
+    "lat": 13.7459681,
+    "lng": 100.7930335,
+    "formatted_address": "39 Thanon Chalong Krung, Lam Pla Thio, Khet Lat Krabang, Krung Thep Maha Nakhon 10520, Thailand",
+    "place_id": "ChIJZWTECiJmHTERoA2IoeH9uog",
+    "provider": "google"
+  },
+  "94644f7aa95f51ff3be52480b72e8643c9c010cf": {
+    "lat": 13.7674582,
+    "lng": 100.51396,
+    "formatted_address": "ชั้น 1 อาคาร 605 สำนักพระราชวังสนามเสือป่า Thanon Si Ayutthaya, Khwaeng Dusit, Khet Dusit, Krung Thep Maha Nakhon 10300, Thailand",
+    "place_id": "ChIJlQLmVV6Z4jARXZsZE5qmzcQ",
+    "provider": "google"
+  },
+  "6ef131972f4e8e3207318ac1cfff3e781615355c": {
+    "lat": 13.8711356,
+    "lng": 100.6172489,
+    "formatted_address": "6 Soi Ram Intra 5 Yaek 4, Khwaeng Anusawari, Khet Bang Khen, Krung Thep Maha Nakhon 10220, Thailand",
+    "place_id": "ChIJyyw73lKd4jAR42qDaJHdxYA",
+    "provider": "google"
+  },
+  "96665eddcba90777d68a4f067e70e6cb24354499": {
+    "lat": 13.9487873,
+    "lng": 100.6848512,
+    "formatted_address": "3, 22 หมู่5 Tambon Lam Luk Ka, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12130, Thailand",
+    "place_id": "ChIJA74dUiJ8HTER1zASZiXaoGs",
+    "provider": "google"
+  },
+  "5224892e1406165adc25daab19f13bbb993f4dc0": {
+    "lat": 13.8451151,
+    "lng": 100.4334175,
+    "formatted_address": "9 13 หมู่ที่10 Bang Len Soi 21 Tambon Bang Len, Amphoe Bang Yai, Chang Wat Nonthaburi 11140, Thailand",
+    "place_id": "ChIJ_VXeQ5yR4jARzLfoUXJldJc",
+    "provider": "google"
+  },
+  "e000fab9a9d763b635616e365a5173a7f055e82c": {
+    "lat": 13.7629575,
+    "lng": 100.5640368,
+    "formatted_address": "Thanon Ratchadaphisek, Khwaeng Din Daeng, Khet Din Daeng, Krung Thep Maha Nakhon 10400, Thailand",
+    "place_id": "ChIJcTO_GY6e4jAR48a8HTc6u8w",
+    "provider": "google"
+  },
+  "599230c7cf776ecc0c63a3aa7f765259b919d9bc": {
+    "lat": 13.6770301,
+    "lng": 100.4061129,
+    "formatted_address": "3 Thanon Kanchanaphisek, Khwaeng Lak Song, Khet Bang Khae, Krung Thep Maha Nakhon 10160, Thailand",
+    "place_id": "ChIJyW79XWm94jAR7yi7AfK2cjU",
+    "provider": "google"
+  },
+  "2a062bbf41ba575322e2f1a5d72b6e7a4f7a2497": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "fc4877130af12410202992963204cc7eb68cb822": {
+    "lat": 13.8742624,
+    "lng": 100.2405681,
+    "formatted_address": "89/14 Tambon Huai Phlu, Amphoe Nakhon Chai Si, Chang Wat Nakhon Pathom 73120, Thailand",
+    "place_id": "ChIJXztZqf7t4jARlxiiEN43CVk",
+    "provider": "google"
+  },
+  "dc5d8ee9de1a47141664d61fe5b77d79e3b43720": {
+    "lat": 13.911433,
+    "lng": 100.5405689,
+    "formatted_address": "50 833-836 Bond St, Tambon Bang Phut, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand",
+    "place_id": "ChIJP592AXqD4jARamHBVixHXAU",
+    "provider": "google"
+  },
+  "9961fc17b8181d15f65cbad6f400ac7c0c6770f6": {
+    "lat": 13.7348482,
+    "lng": 100.323125,
+    "formatted_address": "111/13 หมู่ 6 ต Tambon Krathum Lom, Amphoe Sam Phran, Chang Wat Nakhon Pathom 73220, Thailand",
+    "place_id": "ChIJ85XjWMaV4jARnw9ldBZjXXg",
+    "provider": "google"
+  },
+  "ed119d30d04d3c212c042ef99f7c0185f4e423cc": {
+    "lat": 13.8471406,
+    "lng": 100.4381573,
+    "formatted_address": "39, 37 บางเลน ซอย 15 Tambon Bang Len, Amphoe Bang Yai, Chang Wat Nonthaburi 11140, Thailand",
+    "place_id": "ChIJ3QvSOnaj4jARSOmpl4mpADk",
+    "provider": "google"
+  },
+  "26c1fca8087cc483aafcbbae058176a2d6744ec2": {
+    "lat": 13.9722721,
+    "lng": 100.5278493,
+    "formatted_address": "15, 1 Soi Pathum Thani-Sai Nai, Tambon Bang Kha Yaeng, Amphoe Mueang Pathum Thani, Chang Wat Pathum Thani 12000, Thailand",
+    "place_id": "ChIJYTjjrvOG4jARYXAAFni6ZDg",
+    "provider": "google"
+  },
+  "f3ab362eb7d5083c9f510952b993f11b0ce69275": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "dc354442cdb1d16eb669e4a0800f9891e1cb860b": {
+    "lat": 13.8034566,
+    "lng": 100.3204215,
+    "formatted_address": "88 อยู่ด้านหลัง โครงการเดอะศาลายา เลเชอร์ ปาร์ค 8 ถนนศาลายา-บางภาษี Tambon Salaya, Amphoe Phutthamonthon, Chang Wat Nakhon Pathom 73170, Thailand",
+    "place_id": "ChIJmWcc5W2T4jARbX-nAgSU6p8",
+    "provider": "google"
+  },
+  "200f56cf32f39dd99514ed95070d784fdcc8c273": {
+    "lat": 13.858041,
+    "lng": 100.2993233,
+    "formatted_address": "V75X+6P8, Khlong Yong, Phutthamonthon District, Nakhon Pathom 73170, Thailand",
+    "place_id": "ChIJJzjtp_SS4jARrN8yb6A9yzQ",
+    "provider": "google"
+  },
+  "666e62c452d0604932128ad3a1df95ebc4bd9e1f": {
+    "lat": 13.858041,
+    "lng": 100.2993233,
+    "formatted_address": "V75X+6P8, Khlong Yong, Phutthamonthon District, Nakhon Pathom 73170, Thailand",
+    "place_id": "ChIJJzjtp_SS4jARrN8yb6A9yzQ",
+    "provider": "google"
+  },
+  "654d324eaea3a92f635cee30b46d40bec5fb60e9": {
+    "lat": 18.8037903,
+    "lng": 98.9724298,
+    "formatted_address": "72 Thanon Santiuk, Tambon Chang Phueak, Amphoe Mueang Chiang Mai, Chang Wat Chiang Mai 50300, Thailand",
+    "place_id": "ChIJPSt2dmE72jARZiWA03nht80",
+    "provider": "google"
+  },
+  "7e016da9ad9379e490231add9de94fe26769dc8a": {
+    "lat": 13.8733435,
+    "lng": 100.3642602,
+    "formatted_address": "8 3, Tambon Ban Mai, Amphoe Bang Yai, Chang Wat Nonthaburi 11140, Thailand",
+    "place_id": "ChIJGVHy9TyR4jARaSBBLpQr-Ao",
+    "provider": "google"
+  },
+  "9b124ec2c6d8b356e79f1a8875f4afb7fb450c4f": {
+    "lat": 13.6778038,
+    "lng": 100.6321167,
+    "formatted_address": "912 Sukhumvit 103 Rd, Bang Na Nuea, Khet Bang Na, Krung Thep Maha Nakhon 10260, Thailand",
+    "place_id": "ChIJ4RAHY-RfHTERFAuh3GCybp4",
+    "provider": "google"
+  },
+  "a2be861f4128eac4b29e4d40c79eb505367adb77": {
+    "lat": 13.8853365,
+    "lng": 100.6169276,
+    "formatted_address": "300/203 ถนนเทพรักษ์ ซอย 36 Khwaeng Khlong Thanon, Khet Sai Mai, Krung Thep Maha Nakhon 10220, Thailand",
+    "place_id": "ChIJGeDKKqeC4jARU5QHk9WazqM",
+    "provider": "google"
+  },
+  "f89dd5a8ef4be8967436c0c8d147530c6159ca92": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "ca46d6581eb99981374b8211baf6098bd4b630d1": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "62a822da5ea2536fe38124db4f7f1cf64344ac24": {
+    "lat": 13.4933678,
+    "lng": 100.3863907,
+    "formatted_address": "231 ซอย หมู่ 8 Tambon Phanthai Norasing, Amphoe Mueang Samut Sakhon, Chang Wat Samut Sakhon 74000, Thailand",
+    "place_id": "ChIJbbNfS4yw4jAR3srZsYap1Ww",
+    "provider": "google"
+  },
+  "41490836db755100616ae1e810cccf56cf034d97": {
+    "lat": 13.768313,
+    "lng": 100.486658,
+    "formatted_address": "293 Thanon Somdet Phra Pin Klao, Khwaeng Bang Yi Khan, Khet Bang Phlat, Krung Thep Maha Nakhon 10700, Thailand",
+    "place_id": "ChIJdbwCrneZ4jARBRNJz3ZazYw",
+    "provider": "google"
+  },
+  "db1c11a32d2c541dee8ba3e30f39a286719b20d0": {
+    "lat": 13.8152816,
+    "lng": 100.5764047,
+    "formatted_address": "22 167 Soi Ratchadaphisek 32, Lane 2, Khwaeng Chan Kasem, Khet Chatuchak, Krung Thep Maha Nakhon 10900, Thailand",
+    "place_id": "ChIJGf174M-d4jARWADNtsSz_G4",
+    "provider": "google"
+  },
+  "1bbbda4ac422918acc5e6cae70d699bc574598e4": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "9e2b82950a9a48f2e2ba505ca158911465c09195": {
+    "lat": 13.7346107,
+    "lng": 100.553249,
+    "formatted_address": "223 Soi Sukhumvit 4, Khwaeng Khlong Toei, Khet Khlong Toei, Krung Thep Maha Nakhon 10110, Thailand",
+    "place_id": "ChIJV__9EtCf4jARmuo83ogjkw0",
+    "provider": "google"
+  },
+  "975f0cce24c5ab2c19495e3e423ee16b76148e7c": {
+    "lat": 13.6172374,
+    "lng": 100.7617696,
+    "formatted_address": "บางนาตราด กม Tambon Bang Chalong, Amphoe Bang Phli, Chang Wat Samut Prakan 10540, Thailand",
+    "place_id": "ChIJMZ_KTvFcHTERjgoBX3PiE50",
+    "provider": "google"
+  },
+  "82631abcc094991af76172e9618ebe8f0789ccdb": {
+    "lat": 13.663853,
+    "lng": 100.6132453,
+    "formatted_address": "Bang Na, Bangkok, Thailand",
+    "place_id": "ChIJPfQYsgug4jARcFDiXbIAAQM",
+    "provider": "google"
+  },
+  "ffec90d34a1da295aaa2c36e79c930fbd0637571": {
+    "lat": 13.9386134,
+    "lng": 100.4038767,
+    "formatted_address": "14 บางบัวทอง 3333 หมู่14 ซ. หมู่บ้านบัวทองธานี Tambon Bang Bua Thong, Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand",
+    "place_id": "ChIJ8QnOqxyP4jARqxao8FF_vKw",
+    "provider": "google"
+  },
+  "8c4b470bff88330873b6500ec51aa798b9e6cf16": {
+    "lat": 13.8931214,
+    "lng": 100.4915652,
+    "formatted_address": "117 ซอย นนทบุรี 27/6 Tambon Tha Sai, Amphoe Mueang Nonthaburi, Chang Wat Nonthaburi 11000, Thailand",
+    "place_id": "ChIJ5TBUlC6F4jARDGxjcNIEiQQ",
+    "provider": "google"
+  },
+  "ce2af99784da0f7416d43790ac14bb49bda01318": {
+    "lat": 13.9210748,
+    "lng": 100.3144358,
+    "formatted_address": "W8C7+CQ, Thawi Watthana, Sai Noi District, Nonthaburi 11150, Thailand",
+    "place_id": "ChIJzQQlco6N4jAR3YValeZ9q5U",
+    "provider": "google"
+  },
+  "941d45923105cb05a6601a90de085ab0d2f8e17a": {
+    "lat": 13.5133227,
+    "lng": 100.6540109,
+    "formatted_address": "164 หมู่ที่ 2 Sukhumvit Rd, Tambon Bang Pu Mai, Amphoe Mueang Samut Prakan, Chang Wat Samut Prakan 10280, Thailand",
+    "place_id": "ChIJEeLNADdYHTERueiNGtYulx8",
+    "provider": "google"
+  },
+  "2e400026d8448c3608e69d2abb00d74f31224b5f": {
+    "lat": 13.7787957,
+    "lng": 100.5301137,
+    "formatted_address": "102/5 Set Siri Rd, Phaya Thai, Khet Phaya Thai, Krung Thep Maha Nakhon 10400, Thailand",
+    "place_id": "ChIJ79cMyaqe4jARXaet1WiwD4g",
+    "provider": "google"
+  },
+  "d154536b389b92c9197f24b72f21180865ab18cd": {
+    "lat": 13.8144513,
+    "lng": 100.6941591,
+    "formatted_address": "999/1 ห้องที่ 12 Ram Inthra Rd, แขวง รามอินทรา, Khet Khan Na Yao, Krung Thep Maha Nakhon 10900, Thailand",
+    "place_id": "ChIJV3n2X0ad4jARfHZg18atV9M",
+    "provider": "google"
+  },
+  "4449a61b60c478015b9487b8a77221839777b3e5": {
+    "lat": 13.7946512,
+    "lng": 100.5937589,
+    "formatted_address": "1652 Lat Phrao 56 Alley, Khwaeng Wang Thonglang, วังทองหลาง Krung Thep Maha Nakhon 10310, Thailand",
+    "place_id": "ChIJ6eYf7hSd4jARIImoR9bDHU4",
+    "provider": "google"
+  },
+  "6eade6fb9522dd829247da942eef8efd6e4c9c39": {
+    "lat": 13.9085888,
+    "lng": 100.668696,
+    "formatted_address": "199 หลังรองสุดท้าย Sukhaphiban 5 Soi 59, Khwaeng Ao Ngoen, Khet Sai Mai, Krung Thep Maha Nakhon 10220, Thailand",
+    "place_id": "ChIJ-1KguLB9HTER7iM-69SDjGE",
+    "provider": "google"
+  },
+  "4e0fbb32cef06b05c930db618c4364c4bb48bc28": {
+    "lat": 13.7220145,
+    "lng": 100.5461887,
+    "formatted_address": "54 Soi Ngam Du Phli, Khwaeng Thung Maha Mek, Khet Sathon, Krung Thep Maha Nakhon 10120, Thailand",
+    "place_id": "ChIJqQINqiuf4jARYmGq6dTJBSg",
+    "provider": "google"
+  },
+  "3c37e00cbb7b35bf9748f9569ec56999395b068f": {
+    "lat": 13.7411536,
+    "lng": 100.4200171,
+    "formatted_address": "12 ซอยจรัญสนิทวงศ์13 Khwaeng Khlong Khwang, Khet Phasi Charoen, Krung Thep Maha Nakhon 10160, Thailand",
+    "place_id": "ChIJSa4LOiuY4jARR2hIJZq58mw",
+    "provider": "google"
+  },
+  "64bd7e426317870a19bfd55d4c89eeae4bde2857": {
+    "lat": 13.5966754,
+    "lng": 100.7457524,
+    "formatted_address": "HPWW+M8C 3 Tambon Bang Pla, Amphoe Bang Phli, Chang Wat Samut Prakan 10540, Thailand",
+    "place_id": "ChIJoUEo_ftdHTERgH13o7YrA_k",
+    "provider": "google"
+  },
+  "e405bfd16fec3f5ccd5b4f2d35e67d4ce06a97e3": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "daca89af2d6658dd32495bdbd699cc06bd0d2e85": {
+    "lat": 13.5427228,
+    "lng": 100.2424542,
+    "formatted_address": "49 หมู่6 ท่าจีน Tambon Tha Chin, เมือง Chang Wat Samut Sakhon 74000, Thailand",
+    "place_id": "ChIJwfHxnpTH4jARKmVn-hITzTQ",
+    "provider": "google"
+  },
+  "5efe21016ac91f2ffae79c3df32034d3384c5c82": {
+    "lat": 13.8770955,
+    "lng": 100.459639,
+    "formatted_address": "Tha it-Saima, Tambon Bang Rak Noi, Amphoe Mueang Nonthaburi, Chang Wat Nonthaburi 11000, Thailand",
+    "place_id": "ChIJiYG5_UqF4jAR9Wy-rGZNMH0",
+    "provider": "google"
+  },
+  "f8299d1455d80e24becb2b3f3a42e3d0c7907802": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "193ab1d2d61adaac9412b5e4c6d20b7ca769fe44": {
+    "lat": 13.8294342,
+    "lng": 100.5920367,
+    "formatted_address": "1 Soi Lat Phrao Wang Hin 78, Khwaeng Lat Phrao, Khet Lat Phrao, Krung Thep Maha Nakhon 10230, Thailand",
+    "place_id": "ChIJbd72Cwyd4jAR7hxhIpiNtWE",
+    "provider": "google"
+  },
+  "a3410e99e9d2a0c5b20f45521aff0bce2b37b1d7": {
+    "lat": 16.5632344,
+    "lng": 104.670443,
+    "formatted_address": "Mukdahan, Mueang Mukdahan District, Mukdahan 49000, Thailand",
+    "place_id": "ChIJN8-R2OXHPTERdSSVDQPETKA",
+    "provider": "google"
+  },
+  "ed0b285210771db159f2c97ffc7217f78da96a85": {
+    "lat": 13.8688784,
+    "lng": 100.5924766,
+    "formatted_address": "251/35 10210 หมู่บ้านถาวรวิลล่า Khwaeng Anusawari, Khet Bang Khen, Krung Thep Maha Nakhon 10220, Thailand",
+    "place_id": "ChIJc-yFOcuC4jARPoyex0gsltQ",
+    "provider": "google"
+  },
+  "b825d19cd52346cc30d441a3f5fee515cdf03214": {
+    "lat": 16.0765757,
+    "lng": 102.6586504,
+    "formatted_address": "191 Tambon Mueang Phia, Amphoe Ban Phai, Chang Wat Khon Kaen 40110, Thailand",
+    "place_id": "ChIJZ6qFJLGDGDER4QXeQFX12hU",
+    "provider": "google"
+  },
+  "c5cc6e7549c4311b97cd5f043ac94844754af0be": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "69c6b202fb4ac7a263c4f82321fe178ee94a8515": {
+    "lat": 13.7881917,
+    "lng": 100.6930734,
+    "formatted_address": "291 รามคำแหง 157 สะพานสูง Khet Saphan Sung, Krung Thep Maha Nakhon 10240, Thailand",
+    "place_id": "ChIJf9Ko1u5jHTERQKbIxRLUuJU",
+    "provider": "google"
+  },
+  "c2c4ac78247573401b571d76a0579ac1fc314347": {
+    "lat": 13.5501272,
+    "lng": 100.2570777,
+    "formatted_address": "ตลาดทะเลไทย 1/2 หมู่1 Rama II Rd, ตำบลท่าจีน อำเภอเมือง Chang Wat Samut Sakhon 74000, Thailand",
+    "place_id": "ChIJHTCjWIjH4jARR_PN5UhhlO4",
+    "provider": "google"
+  },
+  "8d729bcc9f65ff0a7aea8a0653d0580bb7e2be99": {
+    "lat": 13.805823,
+    "lng": 100.3948251,
+    "formatted_address": "44 2, Tambon Sala Klang, Amphoe Bang Kruai, Chang Wat Nonthaburi 11130, Thailand",
+    "place_id": "ChIJYbAXe9-Q4jARP82_t7OzBPU",
+    "provider": "google"
+  },
+  "8f18ace544f27bae7316bee98ec8ba7e4de63d57": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "2176c212e444c828c2ffe0d0ad0471a9207bce25": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "9eac41b2ca8c1af0643463e72e29fa519fc3237e": {
+    "lat": 13.925518,
+    "lng": 100.5987247,
+    "formatted_address": "371/72 สรณคมน์ 3 แยก 18 Khwaeng Si Kan, Khet Don Mueang, Krung Thep Maha Nakhon 10210, Thailand",
+    "place_id": "ChIJc3r9X7uD4jAR97_PsqRNbnY",
+    "provider": "google"
+  },
+  "ae912c986b827472eb2c1f9e6df9a03aa2ecb76c": {
+    "lat": 13.7515943,
+    "lng": 100.5042198,
+    "formatted_address": "232 - 240 Mahachai Road Sumranrath 232 Maha Chai Rd, Khwaeng Samran Rat, Khet Phra Nakhon, Krung Thep Maha Nakhon 10200, Thailand",
+    "place_id": "ChIJf3TQalWZ4jAR9UaI72JQKI4",
+    "provider": "google"
+  },
+  "75d47fee7feb995c2ae447eb379eb1ee3e436950": {
+    "lat": 13.811509,
+    "lng": 100.609611,
+    "formatted_address": "Soi Bamrung Sin, Khwaeng Lat Phrao, Khet Lat Phrao, Krung Thep Maha Nakhon 10230, Thailand",
+    "place_id": "ChIJPTJw7_1jHTERFof0GNwgXiE",
+    "provider": "google"
+  },
+  "33a34cc922bed6d44c7066c38cb4d297b7437b08": {
+    "lat": 13.8269568,
+    "lng": 100.7237955,
+    "formatted_address": "RPGF+QGM, Soi Mu Ban Niran Siri Phase 1, Khwaeng Min Buri, Khet Min Buri, Krung Thep Maha Nakhon 10510, Thailand",
+    "place_id": "ChIJSxiruktlHTERzwBXKSaM6k4",
+    "provider": "google"
+  },
+  "1a88921d30dd88dd9c840fd50ef34463cbf8d1e3": {
+    "lat": 13.5940271,
+    "lng": 100.6354864,
+    "formatted_address": "155/29 ม.4 Tambon Bang Muang, เมือง Chang Wat Samut Prakan 10270, Thailand",
+    "place_id": "ChIJaWaFCe1fHTERG9DMCMKEqhs",
+    "provider": "google"
+  },
+  "fa55422bfd306a1c58af3ea5dc7dd17868df1b2c": {
+    "lat": 13.9648215,
+    "lng": 100.7447006,
+    "formatted_address": "39 306 Tambon Bueng Kham Phroi, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand",
+    "place_id": "ChIJiViFGwB5HTER_-KVJJ8Hv8Y",
+    "provider": "google"
+  },
+  "b583353ed71b40005fc8db87c1f81189e812dfdc": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "c3aa929dc11a9b6708381ae59eb5147e99ebbda3": {
+    "lat": 13.9340208,
+    "lng": 100.7272316,
+    "formatted_address": "หมู่6 ตำบลบึงคำพร้อย Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand",
+    "place_id": "ChIJC2Yj-Ox7HTERmdJv07e_X9Q",
+    "provider": "google"
+  },
+  "7147e102abaef3db3e428796e3659733cf280ec1": {
+    "lat": 13.5111747,
+    "lng": 100.3071533,
+    "formatted_address": "54 5 ซอยกรมประมง Tambon Khok Kham, เมือง Chang Wat Samut Sakhon 74000, Thailand",
+    "place_id": "ChIJqZTfuim54jARb4CJolBVtJM",
+    "provider": "google"
+  },
+  "6fdf8dffcf4d982b8ffca8bb5837d840824fc740": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "93faa4b21dfb593b59608638f567a147eb3d1b95": {
+    "lat": 13.9881322,
+    "lng": 100.6376251,
+    "formatted_address": "736 ถนนเลียบคลองรังสิต-นครนายก ตำบลประชาธิปัตย์ Amphoe Thanyaburi, Chang Wat Pathum Thani 12130, Thailand",
+    "place_id": "ChIJ-Q98Tzl-HTERyEvSdSztsbk",
+    "provider": "google"
+  },
+  "972a87f4e3bf643ff44209eb0bed9cfcd9e24ad6": {
+    "lat": 13.5915977,
+    "lng": 100.5799953,
+    "formatted_address": "6 Tambon Pak Khlong Bang Pla Kot, Amphoe Phra Samut Chedi, Chang Wat Samut Prakan 10290, Thailand",
+    "place_id": "ChIJzyaCiSun4jARvR5f3AVp99Y",
+    "provider": "google"
+  },
+  "626b600db4db096f28b775162633f465c1fc67c4": {
+    "lat": 13.7748821,
+    "lng": 100.6486678,
+    "formatted_address": "8 ถนน ศรีบูรพา Khwaeng Khlong Chan, Khet Bang Kapi, Krung Thep Maha Nakhon 10240, Thailand",
+    "place_id": "ChIJf4qO5IlhHTERN3qBGN786_Q",
+    "provider": "google"
+  },
+  "b8973ee4fc03eb86fd66362208dc1779210cf748": {
+    "lat": 13.6878346,
+    "lng": 100.3826746,
+    "formatted_address": "888 8 ถ. บางบอน 3 Khwaeng Lak Song, Khet Bang Khae, Krung Thep Maha Nakhon 10160, Thailand",
+    "place_id": "ChIJJ8NrIhy94jAR2B1MszPeVeI",
+    "provider": "google"
+  },
+  "43630bc3b56cb927c00b4b8a71cbeb6ea89a6781": {
+    "lat": 14.0399047,
+    "lng": 100.335018,
+    "formatted_address": "ที่อยู่ 57 ต Tambon Rat Niyom, Amphoe Sai Noi, Chang Wat Nonthaburi 11150, Thailand",
+    "place_id": "ChIJ3diVhwCL4jARsdA3M9QmEuc",
+    "provider": "google"
+  },
+  "420d88989e66fbf47bcba4f395d36dfe185cabe2": {
+    "lat": 13.5968808,
+    "lng": 100.7450508,
+    "formatted_address": "HPWW+Q23, Soi Bangpla 43, Tambon Bang Pla, Amphoe Bang Phli, Chang Wat Samut Prakan 10540, Thailand",
+    "place_id": "ChIJVcjLX3pcHTERrJ_d5hYLYlI",
+    "provider": "google"
+  },
+  "4a9675c885624cd41a6ba48c0b97f0463b889d34": {
+    "lat": 13.9414116,
+    "lng": 100.6461677,
+    "formatted_address": "60 20 ซอย ลำลูกกา 21 Tambon Khu Khot, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12130, Thailand",
+    "place_id": "ChIJ4--I8gF9HTER2UZPi1a6kDo",
+    "provider": "google"
+  },
+  "6e951ac763d6de4b4a20c522aab05190f20458a6": {
+    "lat": 13.7532229,
+    "lng": 100.6115779,
+    "formatted_address": "166 Ramkhamhaeng Rd, Khwaeng Hua Mak, Khet Bang Kapi, Krung Thep Maha Nakhon 10240, Thailand",
+    "place_id": "ChIJ8-OxZCKe4jARhAFLdQhfFM8",
+    "provider": "google"
+  },
+  "725a23ff20d47b8dd215247ac578e44eeacd14ee": {
+    "lat": 13.7532229,
+    "lng": 100.6115779,
+    "formatted_address": "166 Ramkhamhaeng Rd, Khwaeng Hua Mak, Khet Bang Kapi, Krung Thep Maha Nakhon 10240, Thailand",
+    "place_id": "ChIJ8-OxZCKe4jARhAFLdQhfFM8",
+    "provider": "google"
+  },
+  "1ce4393d0ba13cc141bae70c72291d27b842a03f": {
+    "lat": 13.9317496,
+    "lng": 100.8646819,
+    "formatted_address": "10 12 Pracha Samran Rd, Khwaeng Khlong Sip Song, Khet Nong Chok, Krung Thep Maha Nakhon 10530, Thailand",
+    "place_id": "ChIJJ8UL0YhxHTERiU_8TFQUwUs",
+    "provider": "google"
+  },
+  "aabc06d0509731798ab4d5f9dbee21bcd880a24e": {
+    "lat": 13.8881232,
+    "lng": 100.5101006,
+    "formatted_address": "11 หมู่ 2 Soi Tiwanon 45, Tambon Tha Sai, Amphoe Mueang Nonthaburi, Chang Wat Nonthaburi 11000, Thailand",
+    "place_id": "ChIJa5q1HbmE4jAR9WaC8pXpFYw",
+    "provider": "google"
+  },
+  "5e7392a42c35e6f05e634b930e70dd360f4efdba": {
+    "lat": 13.7496103,
+    "lng": 100.3288161,
+    "formatted_address": "158 Phutthamonthon Sai 4 Rd, Tambon Krathum Lom, Amphoe Sam Phran, Chang Wat Nakhon Pathom 73220, Thailand",
+    "place_id": "ChIJQW4F0KKV4jARLO25yBORy_4",
+    "provider": "google"
+  },
+  "c012f24941601b10ce71b8e8be59936fd5ea23ba": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "cd5cb1d6034173da24a4a8108464f8ffe481f5e0": {
+    "lat": 13.7923725,
+    "lng": 100.7007356,
+    "formatted_address": "8, 9 Ramkhamhaeng Rd, Rat Phatthana, Khet Saphan Sung, Krung Thep Maha Nakhon 10240, Thailand",
+    "place_id": "ChIJQZwIFO1jHTERTPsAb__DyVw",
+    "provider": "google"
+  },
+  "023233075b2ec82b83bc7d483c722aaff57a5149": {
+    "lat": 7.612848599999999,
+    "lng": 99.6118667,
+    "formatted_address": "Mueang Trang District, Trang, Thailand",
+    "place_id": "ChIJk5TxL1WJTTAREIQ2LLwjAgM",
+    "provider": "google"
+  },
+  "8f0d083faeb2320d03cdf62a7ae119ea7cd3b510": {
+    "lat": 13.9152811,
+    "lng": 100.5226526,
+    "formatted_address": "36/143 ม.9 บางพูด Tambon Bang Phut, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand",
+    "place_id": "ChIJxdCTZN2F4jARnLKmjBsd-8g",
+    "provider": "google"
+  },
+  "19ce42db78288ce3959809e727fbcd9e338837ab": {
+    "lat": 13.9634642,
+    "lng": 100.5137317,
+    "formatted_address": "Bang Khu Wat, Mueang Pathum Thani District, Pathum Thani 12000, Thailand",
+    "place_id": "ChIJwdpo7h2E4jARZyhwOUXDeT4",
+    "provider": "google"
+  },
+  "09abc50035a6bcac6ba6bbf605302ea21342350d": {
+    "lat": 13.9634642,
+    "lng": 100.5137317,
+    "formatted_address": "Bang Khu Wat, Mueang Pathum Thani District, Pathum Thani 12000, Thailand",
+    "place_id": "ChIJwdpo7h2E4jARZyhwOUXDeT4",
+    "provider": "google"
+  },
+  "c570bb6c3f7a8c8da27d08e58db9d5003717a591": {
+    "lat": 13.8865745,
+    "lng": 100.7082822,
+    "formatted_address": "172 Soi Hathai Rat 39 Khwaeng Sam Wa Tawan Tok, Khet Khlong Sam Wa, Krung Thep Maha Nakhon 10510, Thailand",
+    "place_id": "ChIJI4k_IqB8HTERPt5jdY9qjgM",
+    "provider": "google"
+  },
+  "02aab6f513abfd6747d439f63a6aed87962a86d4": {
+    "lat": 13.9742257,
+    "lng": 100.356312,
+    "formatted_address": "38 9, Tambon Bang Bua Thong, Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand",
+    "place_id": "ChIJp9KmfrGJ4jARdOox8cnXi44",
+    "provider": "google"
+  },
+  "3c7967ecec5054e27fa6da9559051fb136821d91": {
+    "lat": 13.7207101,
+    "lng": 100.4282879,
+    "formatted_address": "PCCH+78H, Bang Duan, Phasi Charoen, Bangkok 10160, Thailand",
+    "place_id": "ChIJCaKSlN6X4jAR2yI34htSSKg",
+    "provider": "google"
+  },
+  "2c1deb1e422b0a92281a51cd97cd3cdda15b6d66": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "7a975696dcddd3dfd83acd760c798ae7d902f2a6": {
+    "lat": 13.7866094,
+    "lng": 100.3071947,
+    "formatted_address": "Baromranchonnee, Bang kra tuek, Sam Phran District, Nakhon Pathom 73210, Thailand",
+    "place_id": "ChIJAw0LVn6U4jARyJnHI4P3bvg",
+    "provider": "google"
+  },
+  "9d64766ff69db1916b8944c9e0378de3cc7b9357": {
+    "lat": 13.7207486,
+    "lng": 100.2564161,
+    "formatted_address": "2/25 ท่าข้าม Tambon Yai Cha, Amphoe Sam Phran, Chang Wat Nakhon Pathom 73110, Thailand",
+    "place_id": "ChIJy92drbXq4jARDZ6WEP8Yq0M",
+    "provider": "google"
+  },
+  "c0cd9ec655abf05365f2f900e431d8269b896009": {
+    "lat": 13.5409014,
+    "lng": 100.4447106,
+    "formatted_address": "13 ถนนเลียบคลองพิทยาลงกรณ์ Khwaeng Tha Kham, Khet Bang Khun Thian, Krung Thep Maha Nakhon 10150, Thailand",
+    "place_id": "ChIJ08zvvyel4jAR1PQ4gfZCXZs",
+    "provider": "google"
+  },
+  "1f540d67bab2b20c42615066bc9dcd486e9d440c": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "8b533cbfe0ac9d6a1f6325d0f719ec343b18dcf0": {
+    "lat": 13.6499297,
+    "lng": 100.4187492,
+    "formatted_address": "14 12 ซอยพระรามที่2 แยก1 Khwaeng Samae Dam, Khet Bang Khun Thian, Krung Thep Maha Nakhon 10150, Thailand",
+    "place_id": "ChIJnfYARyC94jAR0OQpUNLbg-s",
+    "provider": "google"
+  },
+  "8c4ea5c1c6e59c96dc3fce7fdf0fe810cb667d9c": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "4123f85acd3b9ed246f119de656867927a74bd97": {
+    "lat": 13.764846,
+    "lng": 100.7251793,
+    "formatted_address": "Thanon Kheha Rom Klao, Krung Thep Maha Nakhon, Thailand",
+    "place_id": "ChIJRRMm9CFkHTERNkLat21edts",
+    "provider": "google"
+  },
+  "4767038230078a0250fb934b40b5d5004df09500": {
+    "lat": 13.8908434,
+    "lng": 100.5813764,
+    "formatted_address": "100/2 Kamphaeng Phet 6 Soi 5 Yaek 4, Khwaeng Thung Song Hong, Khet Lak Si, Krung Thep Maha Nakhon 10210, Thailand",
+    "place_id": "ChIJ2TdBwgOD4jARoSDQWKouv6I",
+    "provider": "google"
+  },
+  "92b64dd13b39e3e5329b52b27b6f5f56a221bbbf": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "7b53da88d681f639751621fd191bbf14ebdd39ba": {
+    "lat": 13.5110426,
+    "lng": 100.7444909,
+    "formatted_address": "GP6V+CQ9, Bang Pu, Mueang Samut Prakan District, Samut Prakan 10280, Thailand",
+    "place_id": "ChIJtfk-ZmNbHTERQYsfCih7AXY",
+    "provider": "google"
+  },
+  "e1b90df6aa5b4985bd682e7b684d80d6203cdd56": {
+    "lat": 13.9003566,
+    "lng": 100.3518378,
+    "formatted_address": "W922+4PW, Bang Khu Rat, Bang Bua Thong District, Nonthaburi 11110, Thailand",
+    "place_id": "ChIJS4Jr-gqO4jARBOG4m3ve1ks",
+    "provider": "google"
+  },
+  "8ca43917bad3411b2985331c60ac3fb56ace2012": {
+    "lat": 13.9520757,
+    "lng": 100.4278963,
+    "formatted_address": "หมู่บ้านศุภลัยวิวล์ วงแหวน-บางใหญ่ 98/77 ซอย10 Tambon Lam Pho, Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand",
+    "place_id": "ChIJqVxqdz2P4jARatqPmpKU8mk",
+    "provider": "google"
+  },
+  "1c47015877938e4fd5c940482f505ab161c8eabc": {
+    "lat": 13.6959844,
+    "lng": 100.8553648,
+    "formatted_address": "888 Khwaeng Khum Thong, Khet Lat Krabang, Krung Thep Maha Nakhon 10520, Thailand",
+    "place_id": "ChIJN1N9DWtpHTERkFiKOK6B8OY",
+    "provider": "google"
+  },
+  "d96aaf8ac0f37d18926b5e0af74e73577c124409": {
+    "lat": 13.7822027,
+    "lng": 100.2134399,
+    "formatted_address": "76, 5, Tambon Khun Kaeo, Amphoe Nakhon Chai Si, Chang Wat Nakhon Pathom 73120, Thailand",
+    "place_id": "ChIJ6Y1rwpzr4jARuXBi3aT_BQE",
+    "provider": "google"
+  },
+  "9da4b292fbe00591be229e4d341214b05ea2ce75": {
+    "lat": 13.5721349,
+    "lng": 100.606637,
+    "formatted_address": "666, Tambon Thai Ban Mai, Amphoe Mueang Samut Prakan, Chang Wat Samut Prakan 10280, Thailand",
+    "place_id": "ChIJ89jTI_On4jARhiAWk6MlEEU",
+    "provider": "google"
+  },
+  "1a5072ef02b28311f17337b5ae762166b9014f4e": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "e078dce6df1638e5c5f06680d0dc2cde09473ecd": {
+    "lat": 7.8649213,
+    "lng": 98.3636131,
+    "formatted_address": "Mueang Phuket District, Phuket, Thailand",
+    "place_id": "ChIJiZxUjDEuUDARcIA2LLwjAgM",
+    "provider": "google"
+  },
+  "edee54f99f477609df3af4c3c028ce245e487cb1": {
+    "lat": 13.7834583,
+    "lng": 100.2916372,
+    "formatted_address": "เลขที่ 55 10 Tambon Bang Toei, Amphoe Sam Phran, Chang Wat Nakhon Pathom 73210, Thailand",
+    "place_id": "ChIJf8BezQqV4jARNUwedwx1HqM",
+    "provider": "google"
+  },
+  "9911798233562adca1f67a3cf6d30be3cc8fee36": {
+    "lat": 14.0345339,
+    "lng": 100.8004057,
+    "formatted_address": "คลอง9 ตำบล ลำผักกูด อำเภอธัญบุรี ปทุมธานี 12110, Thailand",
+    "place_id": "ChIJW7Hwffh3HTER0w-hvzjA-x4",
+    "provider": "google"
+  },
+  "55cb60c2519acd7bc451029d808dabe389d00593": {
+    "lat": 13.9810396,
+    "lng": 100.5242244,
+    "formatted_address": "XGJF+CM9, Bang Khayaeng, Mueang Pathum Thani District, Pathum Thani 12000, Thailand",
+    "place_id": "ChIJD1VVCLKG4jARD5qcU-A5VmM",
+    "provider": "google"
+  },
+  "c3bbbc601a20e99d85e24acaab37fad3763dbc54": {
+    "lat": 13.9248179,
+    "lng": 100.59577,
+    "formatted_address": "310 48 Thanon Song Prapha, Khwaeng Si Kan, Khet Don Mueang, Krung Thep Maha Nakhon 10210, Thailand",
+    "place_id": "ChIJm3FAyJOD4jARCGd_ytU1snQ",
+    "provider": "google"
+  },
+  "fa4e5a561b87c59cbad57b1a10dd47016234c672": {
+    "lat": 13.9647148,
+    "lng": 100.7468138,
+    "formatted_address": "99 9, Tambon Bueng Kham Phroi, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand",
+    "place_id": "ChIJ3zsYY3p5HTERyhWTABolKPk",
+    "provider": "google"
+  },
+  "c115b2a9fb1e99d6c30045be8ec7eb042ae04e50": {
+    "lat": 13.5393816,
+    "lng": 100.6117835,
+    "formatted_address": "GJQ6+QP3, Soi Mu Ban Phanason Villa 12, Tambon Thai Ban, Amphoe Mueang Samut Prakan, Chang Wat Samut Prakan 10280, Thailand",
+    "place_id": "ChIJaYSoroWn4jARvLI0qMc3-v0",
+    "provider": "google"
+  },
+  "899dc8dceffbb375bc3f88e8c9dcdb13a9bdc75d": {
+    "lat": 14.0286165,
+    "lng": 100.7536824,
+    "formatted_address": "184, 2 หมู่4 Thanon Rangsit - Nakhon Nayok, Tambon Rangsit, Amphoe Thanyaburi, Chang Wat Pathum Thani 12110, Thailand",
+    "place_id": "ChIJobog84l4HTER_23sgXxMfuI",
+    "provider": "google"
+  },
+  "2e3bf0c5671da328a6dfc82efe1602174210419d": {
+    "lat": 13.6639019,
+    "lng": 100.4286942,
+    "formatted_address": "2, Bang Khun Thian 14, Khwaeng Samae Dam, Khet Bang Khun Thian, Krung Thep Maha Nakhon 10150, Thailand",
+    "place_id": "ChIJya-2VUy94jARpnj2OAkBdcs",
+    "provider": "google"
+  },
+  "ce4ab544c8fa36bdb2a99e8ce5d642c05e2bd1e3": {
+    "lat": 13.8973066,
+    "lng": 100.8639079,
+    "formatted_address": "10/7 คลองสิบสอง Khwaeng Khlong Sip Song, Khet Nong Chok, Krung Thep Maha Nakhon 10530, Thailand",
+    "place_id": "ChIJh_2wU4BxHTERtI23kmh_SFs",
+    "provider": "google"
+  },
+  "34c9d98132c967992cedd2b64317c9fe0894247c": {
+    "lat": 13.8762543,
+    "lng": 100.7204317,
+    "formatted_address": "49 Soi Hathai Rat 37, Khwaeng Sam Wa Tawan Tok, Khet Khlong Sam Wa, Krung Thep Maha Nakhon 10510, Thailand",
+    "place_id": "ChIJKTv0C5d7HTERI0-fRHtvpNo",
+    "provider": "google"
+  },
+  "d9348a693ca04533466c1e938484cc3def347d89": {
+    "lat": 13.4794828,
+    "lng": 100.8492483,
+    "formatted_address": "Song Khlong, Bang Pakong District, Chachoengsao 24130, Thailand",
+    "place_id": "ChIJkR9QQHdPHTER8LPwmYzShag",
+    "provider": "google"
+  },
+  "1b1670848880c201a7eb7fec1dc7d22445ecc8e3": {
+    "lat": 13.8765815,
+    "lng": 100.4385557,
+    "formatted_address": "20 Thanon Rattanathibet, บางรักใหญ่ Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand",
+    "place_id": "ChIJq9yRDK6P4jARZwpd-YNGxBM",
+    "provider": "google"
+  },
+  "37d63b30a4e96a34b6bb35b0e42f0bb7930ef126": {
+    "lat": 13.5926858,
+    "lng": 100.3416346,
+    "formatted_address": "57 3, Tambon Khok Krabue, Amphoe Mueang Samut Sakhon, Chang Wat Samut Sakhon 74000, Thailand",
+    "place_id": "ChIJQ0AYObS1AjERPPeLPlm_YHo",
+    "provider": "google"
+  },
+  "cac69d53986852bac3bb081461ce0702b4fb41aa": {
+    "lat": 13.719161,
+    "lng": 100.515462,
+    "formatted_address": "1481 ถ. เจริญกรุง Si Lom, Khet Bang Rak, Krung Thep Maha Nakhon 10500, Thailand",
+    "place_id": "ChIJ3-0SM8SY4jARUiYgWPODBq4",
+    "provider": "google"
+  },
+  "46d09b82eb6486c92cf307bd5415ab60ff400881": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "ba5854873eb691ad15d5822c9557eba415d07413": {
+    "lat": 13.8640042,
+    "lng": 100.6432508,
+    "formatted_address": "55 Sukhaphiban 5 Soi 8/2, Khwaeng Tha Raeng, Khet Bang Khen, Krung Thep Maha Nakhon 10220, Thailand",
+    "place_id": "ChIJz5uIYcpiHTER3E9pWSYq-94",
+    "provider": "google"
+  },
+  "31ec365137a12b27b0f681876687c730c206270c": {
+    "lat": 36.204824,
+    "lng": 138.252924,
+    "formatted_address": "Japan",
+    "place_id": "ChIJLxl_1w9OZzQRRFJmfNR1QvU",
+    "provider": "google"
+  },
+  "9d355948e0307b62b0ce6133002560f9316faffd": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "5acaec1f566f8f4b9d416b06d1487da0f0436e37": {
+    "lat": 13.9560209,
+    "lng": 100.4587412,
+    "formatted_address": "9, 6 Thanon Ratchaphruek, Tambon Khlong Khoi, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand",
+    "place_id": "ChIJS6UuUgCF4jARksmWH0XYvVk",
+    "provider": "google"
+  },
+  "d8b4d90578a92a37fd4192478591af228b360d2f": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "54ac04384ee9fb74048de2269f334bdafafdb89a": {
+    "lat": 13.5403728,
+    "lng": 100.6107875,
+    "formatted_address": "999 369 Soi Mu Ban Phanason Villa 12, Tambon Thai Ban, Amphoe Mueang Samut Prakan, Chang Wat Samut Prakan 10280, Thailand",
+    "place_id": "ChIJURBB_ISn4jARh7ZCoqAkfvE",
+    "provider": "google"
+  },
+  "881df80976f644a1f9b5adf00f7f1153e84c43e5": {
+    "lat": 13.7779297,
+    "lng": 100.6636591,
+    "formatted_address": "Thanon Seri Thai, Khwaeng Khlong Kum, Khet Bueng Kum, Krung Thep Maha Nakhon 10240, Thailand",
+    "place_id": "ChIJAZ6PIytiHTERJ85ovRAl9MM",
+    "provider": "google"
+  },
+  "759ce3f7e2e9e7e2ce5cd64984f80d8787dd5e54": {
+    "lat": 13.7900346,
+    "lng": 100.2279275,
+    "formatted_address": "69, Tambon Khun Kaeo, Amphoe Nakhon Chai Si, Chang Wat Nakhon Pathom 73120, Thailand",
+    "place_id": "ChIJqT9aGWPr4jARq_oTXfdvHqE",
+    "provider": "google"
+  },
+  "0d43ae82efd8a76f309201c8a9e52aae13ac2128": {
+    "lat": 13.7227643,
+    "lng": 100.5832934,
+    "formatted_address": "12, 1 Sukhumvit 61, Khwaeng Khlong Tan Nuea, Watthana, Krung Thep Maha Nakhon 10110, Thailand",
+    "place_id": "ChIJ20LTpq-f4jAR_L7Cp3X8q90",
+    "provider": "google"
+  },
+  "14368fc35b6a37860536eb628b1f3f12d4238f13": {
+    "lat": 13.5966391,
+    "lng": 100.7379083,
+    "formatted_address": "888 Kabuto22 Japanese Restaurant @Syn Space 2, Tambon Bang Pla, Amphoe Bang Phli, Chang Wat Samut Prakan 10540, Thailand",
+    "place_id": "ChIJBdcSnL9dHTERMT0sIjd14YU",
+    "provider": "google"
+  },
+  "aa5dc143b6259c8d72ad088283704b7fc75e471a": {
+    "lat": 13.507068,
+    "lng": 100.822953,
+    "formatted_address": "GR4F+R5G, Khlong Dan, Bang Bo District, Samut Prakan 10550, Thailand",
+    "place_id": "ChIJPZTFKm9FHTERW0ZUNlNNQas",
+    "provider": "google"
+  },
+  "6f26a9f84f9d626f01620db97980ff6b661203c9": {
+    "lat": 13.6425699,
+    "lng": 100.4480143,
+    "formatted_address": "414 3 ถนนอนามัยงามเจริญ Khwaeng Tha Kham, Khet Bang Khun Thian, Krung Thep Maha Nakhon 10150, Thailand",
+    "place_id": "ChIJwW9Ofsqj4jARYfHYkA1PeRQ",
+    "provider": "google"
+  },
+  "a974021c16c8667fc4055ad4b5e8f298f2c11ae5": {
+    "lat": 13.6885463,
+    "lng": 100.6465208,
+    "formatted_address": "เลขที่ 96 Thanon Srinagarindra, Khwaeng Nong Bon, Khet Prawet, Krung Thep Maha Nakhon 10250, Thailand",
+    "place_id": "ChIJVRez3NphHTER39WoTRjDc7c",
+    "provider": "google"
+  },
+  "34a75f75e36a75ff9493519ffae3e486891417a6": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "09eb7e0231e36b95abcb8c97f2d6991009152ae4": {
+    "lat": 17.3672683,
+    "lng": 100.5071143,
+    "formatted_address": "Ban Dong, Chat Trakan District, Phitsanulok 65170, Thailand",
+    "place_id": "ChIJI3P78zZn3zAR8NoJsFT7BAQ",
+    "provider": "google"
+  },
+  "faca865cbb34b4e5684264a93ba833678d031769": {
+    "lat": 9.707061,
+    "lng": 98.583825,
+    "formatted_address": "24 9 Tambon Ratchakrut, Amphoe Mueang Ranong, Chang Wat Ranong 85000, Thailand",
+    "place_id": "ChIJy7LLpI75VjARsOcdZW3LEa8",
+    "provider": "google"
+  },
+  "f5b8dd658ddd2c749720e307c4795f081e6f57f0": {
+    "lat": 13.7457913,
+    "lng": 100.5578836,
+    "formatted_address": "73/7-8, 73 Soi Sukhumvit 13, Khwaeng Khlong Toei Nuea, Watthana, Krung Thep Maha Nakhon 10110, Thailand",
+    "place_id": "ChIJG3PhKLKf4jARylYRZrcVwxo",
+    "provider": "google"
+  },
+  "4d6eb259f8920b91d182944394e07efdc0fa399c": {
+    "lat": 16.7186177,
+    "lng": 102.8744945,
+    "formatted_address": "Nam Phong District, Khon Kaen, Thailand",
+    "place_id": "ChIJq8a9Md_5IjEREGTeyM9pBAM",
+    "provider": "google"
+  },
+  "86da3f5116c69dc2351beafb7498055362afc3f9": {
+    "lat": 13.743442,
+    "lng": 100.5132799,
+    "formatted_address": "215 2-3 Yi Sip Song Karakadakhom 1 Rd, Khwaeng Pom Prap, Khet Pom Prap Sattru Phai, Krung Thep Maha Nakhon 10100, Thailand",
+    "place_id": "ChIJOcTueiSZ4jARbKAfTDNjlpg",
+    "provider": "google"
+  },
+  "489291d7b0c53c825ad3ec10407eac64a06c20bc": {
+    "lat": 13.6876763,
+    "lng": 100.3642917,
+    "formatted_address": "35/6 ถนนเลี่ยบคลองทวีวัฒนาฝั่งเหนือ ซอยเพรชเกษม69 หนองแขม Khet Nong Khaem, Krung Thep Maha Nakhon 10160, Thailand",
+    "place_id": "ChIJT9ZVZtW94jAR0S7X6yxL-nI",
+    "provider": "google"
+  },
+  "381ee8c3bcf9fab69122d82f5083c5e0c9c98665": {
+    "lat": 13.9442936,
+    "lng": 100.4663428,
+    "formatted_address": "19, 1, Tambon Khlong Khoi, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand",
+    "place_id": "ChIJnZ_ETQ2F4jARx2AONHp2J6A",
+    "provider": "google"
+  },
+  "d225a1f8c3a322a34f87d3f0d551c34f29cacab6": {
+    "lat": 13.5695589,
+    "lng": 100.4202714,
+    "formatted_address": "HC9C+R4C, Tha Kham, Bang Khun Thian, Bangkok 10150, Thailand",
+    "place_id": "ChIJfcQg4Ty74jARpoRQJiL1F44",
+    "provider": "google"
+  },
+  "50e59f82419192a1e1913283eea81a836823812d": {
+    "lat": 13.7038133,
+    "lng": 100.3113759,
+    "formatted_address": "68/3 หมู่13 ร้านข้าวแกงเปิดหม้อ ปั๊มปตท ฝั่งขาออก Tambon Om Noi, Amphoe Krathum Baen, Chang Wat Samut Sakhon 74130, Thailand",
+    "place_id": "ChIJKep7dpCV4jAR9UMZHA8Q9b0",
+    "provider": "google"
+  },
+  "e80c19fce606abbe703d8849ecf86690e1c5cb62": {
+    "lat": 13.7911234,
+    "lng": 100.4283639,
+    "formatted_address": "29, 2 Thanon Thung Mangkon, Khwaeng Chim Phli, Khet Taling Chan, Krung Thep Maha Nakhon 10170, Thailand",
+    "place_id": "ChIJIUmTv0GR4jARUgwa5LFRAxs",
+    "provider": "google"
+  },
+  "5602cfe20b5c4ebec37cf3f04ea7d562c81e2fbf": {
+    "lat": 13.9196728,
+    "lng": 100.7144905,
+    "formatted_address": "Hatairat Rd, Tambon Bueng Kham Phroi, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand",
+    "place_id": "ChIJ3yL3EWh7HTEREka5DAE5dgY",
+    "provider": "google"
+  },
+  "f554d2e9f62d411af5ded837c4f1c9048a931c03": {
+    "lat": 13.9367411,
+    "lng": 100.5851592,
+    "formatted_address": "6 Soi Decha Tungkha 1, Khwaeng Si Kan, Khet Don Mueang, Krung Thep Maha Nakhon 10210, Thailand",
+    "place_id": "ChIJlYq3ckiC4jAR8chq6t1BXuw",
+    "provider": "google"
+  },
+  "24b668a2700aecbd7e15edb0fe322af9385cd062": {
+    "lat": 13.7547371,
+    "lng": 100.4215626,
+    "formatted_address": "198 Phran Nok Phutthamonthon Sai 4 Rd, Khwaeng Bang Phrom, Khet Taling Chan, Krung Thep Maha Nakhon 10170, Thailand",
+    "place_id": "ChIJcYRq9XeX4jAR0UNtxdM3PNA",
+    "provider": "google"
+  },
+  "7619d8ee7e6f1456e006ad93f0dc4acc9aceaf4d": {
+    "lat": 13.730738,
+    "lng": 100.3636109,
+    "formatted_address": "15 หมู่ 4 Thanon Phutta Monthon Sai 3, Khwaeng Bang Phai, Khet Bang Khae, Krung Thep Maha Nakhon 10160, Thailand",
+    "place_id": "ChIJrRPJeGWW4jARIxSKVyouURE",
+    "provider": "google"
+  },
+  "e122b93fdc3f04aced08b47823937c99e76215d8": {
+    "lat": 14.0557944,
+    "lng": 101.3787071,
+    "formatted_address": "208 Thanon Prachin-Takham, Tambon Na Muang, Amphoe Mueang Prachin Buri, Chang Wat Prachin Buri 25000, Thailand",
+    "place_id": "ChIJ8eWXx4BVHDERbodgpJ52RmY",
+    "provider": "google"
+  },
+  "ea5ee56f95add9ceeb3ef15c91af8edf142f9cbe": {
+    "lat": 13.8208491,
+    "lng": 100.5031031,
+    "formatted_address": "Suanyai, Phibun Songkhram 3 Tambon Suan Yai, Amphoe Mueang Nonthaburi, Chang Wat Nonthaburi 11000, Thailand",
+    "place_id": "ChIJr0nMJMub4jARnli8u5vx1pA",
+    "provider": "google"
+  },
+  "1f3f78b7bf86ea812ccc6d3a045d6d66f86c9aa8": {
+    "lat": 13.9519483,
+    "lng": 100.6652673,
+    "formatted_address": "6 10, Tambon Lat Sawai, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand",
+    "place_id": "ChIJsQQ4Vit8HTERBGIbPlcLijo",
+    "provider": "google"
+  },
+  "7952aab0cc51d6d3e08bee778da5863fc44c752c": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "6914af0700394b54cde212749940ce241d41120e": {
+    "lat": 13.9216477,
+    "lng": 100.6539044,
+    "formatted_address": "123 33/1 Soi Sai Mai 33, Khwaeng Sai Mai, Khet Sai Mai, Krung Thep Maha Nakhon 10220, Thailand",
+    "place_id": "ChIJjWcSfqV9HTERKQEGTcoAGVY",
+    "provider": "google"
+  },
+  "12a47803be704ca1dece1a86a43740cfc20dd253": {
+    "lat": 14.0228707,
+    "lng": 100.7444204,
+    "formatted_address": "เลขที่ 71 Tambon Rangsit, Amphoe Thanyaburi, Chang Wat Pathum Thani 12110, Thailand",
+    "place_id": "ChIJr-kzTI14HTERPnbnCxuJzzk",
+    "provider": "google"
+  },
+  "c31a5a21b8b1237d959c741419d6665b29c6878e": {
+    "lat": 13.6161771,
+    "lng": 100.797423,
+    "formatted_address": "JQ8W+FXF, Sisa Chorakhe Yai, Bang Sao Thong District, Samut Prakan 10540, Thailand",
+    "place_id": "ChIJi5q79MxcHTERGGLT4mPoc64",
+    "provider": "google"
+  },
+  "3ce026289a8ef60b5bfae2779430ecf7f2f1ef80": {
+    "lat": 13.6863396,
+    "lng": 100.5474499,
+    "formatted_address": "1023 ห้อง 1-9 อาคาร เอ็ม เอส สยาม ทาวเวอร์ Khwaeng Chong Nonsi, Khet Yan Nawa, Krung Thep Maha Nakhon 10120, Thailand",
+    "place_id": "ChIJN3Nm3ceh4jARhs37YAA7xZE",
+    "provider": "google"
+  },
+  "fa77f32428a2c4cdeeab901bfec0d2415971f0e0": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "9482b1bb039791ab51fede72e8d84eb1f4c0e47f": {
+    "lat": 13.7812225,
+    "lng": 100.5440072,
+    "formatted_address": "1/22, ซอยอารีย์ 2 ถนนพลโยธิน สามเสนใน พญาไท Krung Thep Maha Nakhon 10400, Thailand",
+    "place_id": "ChIJ2-Kuv6ee4jARBFIceBSs6sA",
+    "provider": "google"
+  },
+  "8648c49b661e2270299e949295be28e4b6f5fe71": {
+    "lat": 13.6220145,
+    "lng": 100.7638915,
+    "formatted_address": "JQC7+RH2, Bang Chalong, Bang Phli District, Samut Prakan 10540, Thailand",
+    "place_id": "ChIJa5tzg_pcHTER_ne7kibH1gU",
+    "provider": "google"
+  },
+  "fe862cb9e56dcda0806ad4068ba01c2015b6416e": {
+    "lat": 13.9023414,
+    "lng": 100.4290043,
+    "formatted_address": "Bang Rak Phatthana, Bang Bua Thong District, Nonthaburi 11110, Thailand",
+    "place_id": "ChIJvzbnH82P4jARyNzTqCWWl1s",
+    "provider": "google"
+  },
+  "f8b5c5afdc2f25bacaf88b119a3e57e659797145": {
+    "lat": 13.9352702,
+    "lng": 100.7498541,
+    "formatted_address": "37, 15 หมู่ 11 Soi Thetsaban 17, Tambon Lam Luk Ka, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand",
+    "place_id": "ChIJy2yU58t7HTERqDh_L8V6Ze4",
+    "provider": "google"
+  },
+  "da674fe2987e3651c24f49506e9098d54201235f": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "9239b1c3a55056301f6af84f8b04c8716a0eb420": {
+    "lat": 13.8890439,
+    "lng": 100.5781965,
+    "formatted_address": "200/635 อาคาร บุราวรรณ Soi Chang Watthana 10, Khwaeng Thung Song Hong, Khet Lak Si, Krung Thep Maha Nakhon 10210, Thailand",
+    "place_id": "ChIJwQWT796C4jARxcEEJSQBSCU",
+    "provider": "google"
+  },
+  "a63b75533abddb9e40ebcb1a839406afb25fa110": {
+    "lat": 13.9524201,
+    "lng": 100.6478712,
+    "formatted_address": "29/48 Tambon Khu Khot, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12130, Thailand",
+    "place_id": "ChIJ6zpWlx5_HTER9-ksBVt2W5s",
+    "provider": "google"
+  },
+  "c89e317137d3277722598f51f9bd39341f4e06f3": {
+    "lat": 13.7483786,
+    "lng": 100.5839073,
+    "formatted_address": "4th floor, Bangkok Plaza Building Bangkok General Hospital, Soi Soonvijai 7 Bangkapi Khwaeng Bang Kapi, Khet Huai Khwang, Krung Thep Maha Nakhon 10310, Thailand",
+    "place_id": "ChIJkUZHomef4jARHr0ppE2gdik",
+    "provider": "google"
+  },
+  "4aa510b60312d3af78927e52f51a7ed6bb7a140e": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "a2d2176d167fd49c5072fb620cd970d9b4f06b17": {
+    "lat": 13.9134636,
+    "lng": 100.5893018,
+    "formatted_address": "299, WH7Q+CRG, 1 Thanon Chang Akat Uthit, Khwaeng Don Mueang, Khet Don Mueang, Krung Thep Maha Nakhon 10210, Thailand",
+    "place_id": "ChIJ1w47SfaC4jARdg5B7daCFNg",
+    "provider": "google"
+  },
+  "0f0757677025e6cdd4252ceb6e9be2cb33be82a2": {
+    "lat": 13.9357154,
+    "lng": 100.5574157,
+    "formatted_address": "336, ต.บ้านใหม่, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand",
+    "place_id": "ChIJN1LSTNmD4jARLRqNtZvQdiw",
+    "provider": "google"
+  },
+  "a2836ff50506856c95f3a2be70c47f39e40ea956": {
+    "lat": 13.629288,
+    "lng": 100.5837778,
+    "formatted_address": "259 หมู่ที่ 8 ซอย บางด้วน Tambon Bang Duan, Amphoe Mueang Samut Prakan, Chang Wat Samut Prakan 10270, Thailand",
+    "place_id": "ChIJI2k6Hhmh4jARm8BhP7CE8_w",
+    "provider": "google"
+  },
+  "a77be84f3dff702134ccd2e2cd2654736efb91c0": {
+    "lat": 13.9437757,
+    "lng": 100.4337305,
+    "formatted_address": "345 Tambon Lahan, Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand",
+    "place_id": "ChIJj_mpYoiF4jAR5nBohty5BQY",
+    "provider": "google"
+  },
+  "c86c53029c27c8021398860c62c374128c534f23": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "fc95b88fb6a91e5c49827cec2e42d5a2be57f382": {
+    "lat": 13.7993369,
+    "lng": 100.5498419,
+    "formatted_address": "587 โครงการ 22 ซอย 4 /2ตลาดนัด จตุจักร 10 Kamphaeng Phet 2 Rd, Khwaeng Chatuchak, Khet Chatuchak, Krung Thep Maha Nakhon 10900, Thailand",
+    "place_id": "ChIJyaweqRWc4jARszM8RKge0Gw",
+    "provider": "google"
+  },
+  "d309f37346098bc33957f233b0a893266c52cfc6": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "624c4a5ac59ade683100a5d91724d3d1165ac73c": {
+    "lat": 13.5558218,
+    "lng": 100.2756114,
+    "formatted_address": "ตลาด Thaprong Rd, Tambon Mahachai, เมือง Chang Wat Samut Sakhon 74000, Thailand",
+    "place_id": "ChIJZQgOZey54jARwErp2CSEmkg",
+    "provider": "google"
+  },
+  "235967eef7199499500e00d238bc5e0c83b87dc2": {
+    "lat": 13.5200097,
+    "lng": 100.665292,
+    "formatted_address": "789, 2, Tambon Bang Pu Mai, Amphoe Mueang Samut Prakan, Chang Wat Samut Prakan 10270, Thailand",
+    "place_id": "ChIJi8LtBbxZHTERxsJfyuLpJYg",
+    "provider": "google"
+  },
+  "e84515ee48cc69578e12b8b0b07b9f64ce62d717": {
+    "lat": 13.8655844,
+    "lng": 100.8596196,
+    "formatted_address": "64 หมู่ 9 Pracha Samran Rd, Khwaeng Nong Chok, Khet Nong Chok, Krung Thep Maha Nakhon 10530, Thailand",
+    "place_id": "ChIJ-VuS8ZpxHTERjE_VikF4nMQ",
+    "provider": "google"
+  },
+  "22f08da00e8b250cc505ca8e9b38ca15f609d3ea": {
+    "lat": 13.8776517,
+    "lng": 100.5755001,
+    "formatted_address": "Chaengwatthana, Khwaeng Talat Bang Khen, Khet Lak Si, Krung Thep Maha Nakhon 10210, Thailand",
+    "place_id": "ChIJVaI08EeD4jAR00kPq4U3hYA",
+    "provider": "google"
+  },
+  "5ebdd362e86328e438b9b49bfde6582483a865c6": {
+    "lat": 13.9330623,
+    "lng": 100.6342721,
+    "formatted_address": "24 15 Soi Ngok Ngoei, Khwaeng Sai Mai, Khet Sai Mai, Krung Thep Maha Nakhon 10220, Thailand",
+    "place_id": "ChIJ-QFDxA19HTERdSOzaAWEk3E",
+    "provider": "google"
+  },
+  "12bdb48863f104abe39a42db0f7592b0f46c9b36": {
+    "lat": 13.7308719,
+    "lng": 100.5817669,
+    "formatted_address": "210 Soi Thong Lo 8, Khwaeng Khlong Tan Nuea, Watthana, Krung Thep Maha Nakhon 10110, Thailand",
+    "place_id": "ChIJfwSd7qyf4jAR7tQi7OIm9t4",
+    "provider": "google"
+  },
+  "9fa8fcc9084215b7d10e9009f2963aebd66690ac": {
+    "lat": 13.7589597,
+    "lng": 100.5113612,
+    "formatted_address": "11 Soi Nakhon Sawan 2, Khwaeng Wat Sommanat, Khet Pom Prap Sattru Phai, Krung Thep Maha Nakhon 10100, Thailand",
+    "place_id": "ChIJ35IPmECZ4jARvr7OecVtBGM",
+    "provider": "google"
+  },
+  "0426020107f6e7930d79877d5d2b4bfd55fa2a41": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "e75f207cd7983f6fdfe3cf924078b082f7b5b93c": {
+    "lat": 14.0051951,
+    "lng": 100.382274,
+    "formatted_address": "294J+4W8, Lat Lum Kaeo, Lat Lum Kaeo District, Pathum Thani 12140, Thailand",
+    "place_id": "ChIJx3Hei3uJ4jARM1TExxXP5T0",
+    "provider": "google"
+  },
+  "3ee64103d1e79de6248604be2cdbbc8cfb7ca97a": {
+    "lat": 13.8942119,
+    "lng": 100.7973254,
+    "formatted_address": "ถนน คู้คลองเก้า Khwaeng Khlong Sip, Khet Nong Chok, Krung Thep Maha Nakhon 10530, Thailand",
+    "place_id": "ChIJHfX0_P17HTERAjKJbdMolzA",
+    "provider": "google"
+  },
+  "200d32f6e0fd0d89151e1401cdd59e47ea31dc54": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "7ea6a261fb92cc25481edb1b8640f637f56831cf": {
+    "lat": 13.5819035,
+    "lng": 100.368914,
+    "formatted_address": "H9J9+RG4 สค.5021 Tambon Phanthai Norasing, Amphoe Mueang Samut Sakhon, Chang Wat Samut Sakhon 74000, Thailand",
+    "place_id": "ChIJy3DX1x274jARzLE5_6ympOc",
+    "provider": "google"
+  },
+  "adf34ccefd62889d615514f4e50a4ba91b81a161": {
+    "lat": 13.8574619,
+    "lng": 100.7222747,
+    "formatted_address": "690/1 Thanon Hathai Rat, Khwaeng Bang Chan, Khet Khlong Sam Wa, Krung Thep Maha Nakhon 10510, Thailand",
+    "place_id": "ChIJTwCe9LFkHTERH4rtrIiZa-M",
+    "provider": "google"
+  },
+  "abb18ef003a407293f8c0b6d85044aee7b0f9756": {
+    "lat": 13.9336646,
+    "lng": 100.4752573,
+    "formatted_address": "เลขที่ 13 หมู่ 3 คลองพระอุดม Tambon Khlong Phra Udom, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand",
+    "place_id": "ChIJsR7EWrCF4jARpP1A-zNTiZM",
+    "provider": "google"
+  },
+  "fa8c2fcb6fee920bc2af42b13cc96adc0e37c060": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "eba1cd3e8143af9fff12c697d601526ff028e4cc": {
+    "lat": 13.7402224,
+    "lng": 100.6158286,
+    "formatted_address": "245 Phatthanakan 25, Khwaeng Suan Luang, Khet Suan Luang, Krung Thep Maha Nakhon 10250, Thailand",
+    "place_id": "ChIJHQDw5Sie4jAR3_RPrdLZfck",
+    "provider": "google"
+  },
+  "6ffdd7d20884b52656b5730d63a1a7216bc6ec42": {
+    "lat": 13.5142692,
+    "lng": 100.5303645,
+    "formatted_address": "ร้านครัวคุณตั้ม ซีฟู้ดส์ Tambon Laem Fa Pha, Amphoe Phra Samut Chedi, Chang Wat Samut Prakan 10290, Thailand",
+    "place_id": "ChIJkWl-68Gn4jARKonW8UhEBgs",
+    "provider": "google"
+  },
+  "5ef122232abf72382468f8b1b55c3c709c6e879d": {
+    "lat": 13.8146912,
+    "lng": 100.4113457,
+    "formatted_address": "54/15 Moo tee 2 Tambon Bang Khu Wiang, กรุงเทพมหานคร อำเภอบางกรวย นนทบุรี 11130, Thailand",
+    "place_id": "ChIJg7KTY9mR4jAR-iFHAuLv7XY",
+    "provider": "google"
+  },
+  "074864557e707509c0e282adc7a50fdf1a8c35fe": {
+    "lat": 14.2062134,
+    "lng": 101.2170361,
+    "formatted_address": "6648+FRM, Thanon Suwannason, Tambon Nakhon Nayok, Amphoe Mueang Nakhon Nayok, Chang Wat Nakhon Nayok 26000, Thailand",
+    "place_id": "ChIJCcVPPSiuHTERQKcY9VSMSIk",
+    "provider": "google"
+  },
+  "4767fc2fc4a0db81bd73735cac99b7792d0526ac": {
+    "lat": 13.8817826,
+    "lng": 100.4108389,
+    "formatted_address": "8/213 Soi Mu Ban Rattanathibet, Tambon Bang Rak Phatthana, Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand",
+    "place_id": "ChIJfwotktiP4jARSEP_ZxJX-3s",
+    "provider": "google"
+  },
+  "21adb13cf19a5605ceea2af4891f179f2e392ba5": {
+    "lat": 14.3474803,
+    "lng": 100.2067501,
+    "formatted_address": "Ongkharak, Bang Pla Ma District, Suphan Buri 72150, Thailand",
+    "place_id": "ChIJt5GJfntB4jARC9FtjSeBAZo",
+    "provider": "google"
+  },
+  "2cef00ad7b467f5f2b5d29fa4d24459407e4b49c": {
+    "lat": 13.7544393,
+    "lng": 100.4865535,
+    "formatted_address": "320 Thanon Wang Lang, Khwaeng Siriraj, Khet Bangkok Noi, Krung Thep Maha Nakhon 10700, Thailand",
+    "place_id": "ChIJFz9uCUqZ4jARIl5_2symYuQ",
+    "provider": "google"
+  },
+  "3f88b5d5023d0019a20f1ae5ff29b221a97153e3": {
+    "lat": 13.8458734,
+    "lng": 100.3896035,
+    "formatted_address": "18, 3, Tambon Bang Yai, Amphoe Bang Yai, Chang Wat Nonthaburi 11140, Thailand",
+    "place_id": "ChIJgeCNz7OR4jARPzYCkIPl4a0",
+    "provider": "google"
+  },
+  "94b55e69a185bf0d22a3b191ce44031d10440c4e": {
+    "lat": 13.7438249,
+    "lng": 100.6529617,
+    "formatted_address": "150/1 Thanon Krung Thep Kritha, Khwaeng Hua Mak, Khet Bang Kapi, Krung Thep Maha Nakhon 10240, Thailand",
+    "place_id": "ChIJjznWlQ5hHTER4OWYw1ULZkI",
+    "provider": "google"
+  },
+  "5c9c9dbd4d47d4dc81a8dea9a6a143ee02e240f6": {
+    "lat": 13.8815999,
+    "lng": 100.7396185,
+    "formatted_address": "147 Soi Nimit Mai 36, Khwaeng Sam Wa Tawan Ok, Khet Khlong Sam Wa, Krung Thep Maha Nakhon 10510, Thailand",
+    "place_id": "ChIJsXvhxol7HTERRataaV3lyxs",
+    "provider": "google"
+  },
+  "255400724baf8e4b7cf3d0a2732cf1801e6891c2": {
+    "lat": 13.6584664,
+    "lng": 100.6801023,
+    "formatted_address": "42/10 หมู่ 14 Tambon Bang Kaeo, Amphoe Bang Phli, Chang Wat Samut Prakan 10540, Thailand",
+    "place_id": "ChIJqaa_EfdhHTERXEtBcv2HjWU",
+    "provider": "google"
+  },
+  "9a623e9a271046d05d3fd54e96e8d05451b202d7": {
+    "lat": 13.748189,
+    "lng": 100.6557545,
+    "formatted_address": "181 10 Thanon Krung Thep Kritha, Khwaeng Hua Mak, Khet Bang Kapi, Krung Thep Maha Nakhon 10240, Thailand",
+    "place_id": "ChIJDeip3IVhHTERpxWrON9Z1wY",
+    "provider": "google"
+  },
+  "9eebd59a85cf53699ed881c0ff575241b97bfeeb": {
+    "lat": 13.9255741,
+    "lng": 100.5368673,
+    "formatted_address": "Muangthongthani, Tambon Ban Mai, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand",
+    "place_id": "ChIJqZswu5mD4jARx6ec5KKSSfw",
+    "provider": "google"
+  },
+  "81b08aa6beb0a74cba5ebee9725554298e6c4ab7": {
+    "lat": 13.8035058,
+    "lng": 100.3036506,
+    "formatted_address": "Salaya, Phutthamonthon District, Nakhon Pathom 73170, Thailand",
+    "place_id": "ChIJR3fkFACT4jAR35d0pllYQMo",
+    "provider": "google"
+  },
+  "4a6e27916f6b138314a1983cea0ae991978e3398": {
+    "lat": 13.5952744,
+    "lng": 100.8016997,
+    "formatted_address": "25 บางเสาธง 7 Thanon Bang Na-Trat Frontage, Tambon Bang Sao Thong, Amphoe Bang Sao Thong, Chang Wat Samut Prakan 10570, Thailand",
+    "place_id": "ChIJsxCO5lJDHTERKl0KFlyBoPY",
+    "provider": "google"
+  },
+  "8c7b89054fe24f9baeeba5e62012f6a17807040e": {
+    "lat": 13.7517058,
+    "lng": 100.4414158,
+    "formatted_address": "519 Khwaeng Bang Phrom, Khet Taling Chan, Krung Thep Maha Nakhon 10170, Thailand",
+    "place_id": "ChIJmUCuueWZ4jARajzSjcahZdE",
+    "provider": "google"
+  },
+  "beaa275456704ba74081c2dbae17e328aa22579e": {
+    "lat": 13.5134705,
+    "lng": 100.3025581,
+    "formatted_address": "4 16 ถนน สหกรณ์ Tambon Khok Kham, Amphoe Mueang Samut Sakhon, Chang Wat Samut Sakhon 74000, Thailand",
+    "place_id": "ChIJce1URYC34jARn-dSS2hr0WA",
+    "provider": "google"
+  },
+  "e22c65a4eb24ab11e8fc091a7fbea0126b7505e6": {
+    "lat": 13.9092992,
+    "lng": 100.3957425,
+    "formatted_address": "A 109, Tambon Phimonrat, Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand",
+    "place_id": "ChIJwdV5vDKP4jARt6lDt59Hm-A",
+    "provider": "google"
+  },
+  "568db7a2e59513de202bdb66939433c708a8f171": {
+    "lat": 13.8554178,
+    "lng": 100.4029862,
+    "formatted_address": "18 1, Tambon Bang Mae Nang, Amphoe Bang Yai, Chang Wat Nonthaburi 11140, Thailand",
+    "place_id": "ChIJUQYEMzaQ4jARo8xf8MjmQwg",
+    "provider": "google"
+  },
+  "5ddaca67cb91c72f088d95ad89248ef899a9536e": {
+    "lat": 13.630622,
+    "lng": 100.4027934,
+    "formatted_address": "Thailand, Khwaeng Samae Dam, Khet Bang Khun Thian, Krung Thep Maha Nakhon 10150, Thailand",
+    "place_id": "ChIJA8Z1zvO84jAR_-gspod8NkY",
+    "provider": "google"
+  },
+  "d4111c2565d2bd56c2594d9fef08befacbad2041": {
+    "lat": 13.7822866,
+    "lng": 100.4472477,
+    "formatted_address": "14 Borommaratchachonnani Rd, ฉิมพลี Khet Taling Chan, Krung Thep Maha Nakhon 10170, Thailand",
+    "place_id": "ChIJtWc1RKaZ4jARrVSYE8aRLqI",
+    "provider": "google"
+  },
+  "b3c976e77055c835871d9627568d9a4fbc6a7223": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "2008cae0cb5397b48d272bd3e5316662fee55030": {
+    "lat": 13.7138084,
+    "lng": 100.3960852,
+    "formatted_address": "เลขที่ 50 Thanon PhutthaMonthon Sai 2, Khwaeng Bang Khae, Khet Bang Khae, Krung Thep Maha Nakhon 10160, Thailand",
+    "place_id": "ChIJgQ7qFsuX4jARElSJyaaP5CQ",
+    "provider": "google"
+  },
+  "f93732420ef4497d5067071c8b659b81f4aa5a4b": {
+    "lat": 13.8766925,
+    "lng": 100.6395021,
+    "formatted_address": "695 Thep Rak Rd, Khwaeng Tha Raeng, Khet Bang Khen, Krung Thep Maha Nakhon 10220, Thailand",
+    "place_id": "ChIJTRWVE659HTERaqCtR0rhhgM",
+    "provider": "google"
+  },
+  "0a1bfa4dc3713bfc62329442c51f17f42c866771": {
+    "lat": 13.7466076,
+    "lng": 100.3697915,
+    "formatted_address": "757/1 Bang Waek Rd, Khwaeng Bang Phai, Khet Bang Khae, Krung Thep Maha Nakhon 10160, Thailand",
+    "place_id": "ChIJY-X4KB2X4jARvR-pU-6_E9U",
+    "provider": "google"
+  },
+  "da08b6e44989b4c3098508c7b76a0830ab829af1": {
+    "lat": 13.7083895,
+    "lng": 100.4204333,
+    "formatted_address": "228 Thanon Bang Khae, Khwaeng Bang Khae, Khet Bang Khae, Krung Thep Maha Nakhon 10160, Thailand",
+    "place_id": "ChIJD7-EBOmX4jARfavONjVNKIE",
+    "provider": "google"
+  },
+  "0870004625526aba27ecb7f507efabffbaf7c2cc": {
+    "lat": 13.8431704,
+    "lng": 100.5686448,
+    "formatted_address": "47/1 Thanon Ngam Wong Wan, Khwaeng Lat Yao, Khet Chatuchak, Krung Thep Maha Nakhon 10900, Thailand",
+    "place_id": "ChIJYY5cyeac4jARYl6Z2efJMwY",
+    "provider": "google"
+  },
+  "4558f2cb92bf81a9f189510e247c8cec4b8a380d": {
+    "lat": 13.7501581,
+    "lng": 100.3634836,
+    "formatted_address": "27/30 หมู่3 ถนนพุทธมณฑลสาย3 แขวงบางไผ่ เขตบางแค Khwaeng Bang Phai, Khet Bang Khae, Krung Thep Maha Nakhon 10160, Thailand",
+    "place_id": "ChIJu3jPBo-W4jARCOcEMd3NcHA",
+    "provider": "google"
+  },
+  "0378865c307a525f253d2ae7ee1a9e2061951869": {
+    "lat": 13.7634334,
+    "lng": 100.4732251,
+    "formatted_address": "23 Charan Sanit Wong Rd, Khwaeng Bang Yi Khan, Khet Bang Phlat, Krung Thep Maha Nakhon 10700, Thailand",
+    "place_id": "ChIJO3DefJeZ4jARAUFtS91EnBk",
+    "provider": "google"
+  },
+  "745f7823a6362c1c8ef73b9628b6667e94537815": {
+    "lat": 13.7285755,
+    "lng": 100.4276561,
+    "formatted_address": "1/2 19 ถนน พุทธมณฑลสาย 1 Khwaeng Bang Duan, Khet Phasi Charoen, Krung Thep Maha Nakhon 10160, Thailand",
+    "place_id": "ChIJr81cgfeX4jAR-kKxQzH9PA8",
+    "provider": "google"
+  },
+  "706108c4d17918f1450820b0dccd79f5eab1ed17": {
+    "lat": 14.019848,
+    "lng": 100.311938,
+    "formatted_address": "Khlong Khwang, Sai Noi District, Nonthaburi 11150, Thailand",
+    "place_id": "ChIJ8WNQP1OK4jARYVpGtwGOiQ0",
+    "provider": "google"
+  },
+  "b9df6fc87c7173ad2b0d653d06aab09b0b1d22fb": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "4d3a080a255780bb979e02f7ae8e3e58f42dc61f": {
+    "lat": 13.8647404,
+    "lng": 100.6465626,
+    "formatted_address": "341 91/39 ถ. วัชรพล Khwaeng Tha Raeng, Khet Bang Khen, Krung Thep Maha Nakhon 10220, Thailand",
+    "place_id": "ChIJRcTXRstiHTERDMcPJeE-ON0",
+    "provider": "google"
+  },
+  "fbf04742b0c3d31a1d03235e0babec1727602f00": {
+    "lat": 13.8434555,
+    "lng": 100.3826871,
+    "formatted_address": "เลขที่ 99/7 ม.3 Bang Yai-Bang Khu Lat Rd, Tambon Bang Yai, Amphoe Bang Yai, Chang Wat Nonthaburi 11140, Thailand",
+    "place_id": "ChIJ04BXu5GR4jARYkEPRqzjvdQ",
+    "provider": "google"
+  },
+  "0db4156f17247edd0fa492fb02721ae22ae90b51": {
+    "lat": 13.7489293,
+    "lng": 100.7938043,
+    "formatted_address": "Thanon Chalong Krung, Lam Pla Thio, Khet Lat Krabang, Krung Thep Maha Nakhon 10520, Thailand",
+    "place_id": "ChIJQyc5SERnHTERJ4fYJqlpgig",
+    "provider": "google"
+  },
+  "ed143cca636e401b42b24c60a2f5c2e0175877d3": {
+    "lat": 13.8626667,
+    "lng": 100.2193182,
+    "formatted_address": "Unnamed Road Tambon Huai Phlu, Amphoe Nakhon Chai Si, Chang Wat Nakhon Pathom 73120, Thailand",
+    "place_id": "ChIJnYIBB9Ht4jARv1pdZdkMu8U",
+    "provider": "google"
+  },
+  "ade4db9fb239d0e372f35d864a549a5b8448f015": {
+    "lat": 13.7085031,
+    "lng": 100.3735268,
+    "formatted_address": "1 1 ซอย 102/4 Khwaeng Bang Khae Nuea, Khet Bang Khae, Krung Thep Maha Nakhon 10160, Thailand",
+    "place_id": "ChIJU756aj2W4jARI3h2vHzCb60",
+    "provider": "google"
+  },
+  "db9d97771444e81cf11d12bbb77ef11407bef67d": {
+    "lat": 14.025024,
+    "lng": 100.7534958,
+    "formatted_address": "88 28-29 หมู่ที่ 3 Thanon Rangsit - Nakhon Nayok, Tambon Rangsit, Amphoe Thanyaburi, Chang Wat Pathum Thani 12110, Thailand",
+    "place_id": "ChIJz4jxahh5HTERD1AfGQ_JYLU",
+    "provider": "google"
+  },
+  "ba88e0f474007790c540fc5b7ff6a702b7a4bf90": {
+    "lat": 13.5251016,
+    "lng": 100.4175595,
+    "formatted_address": "GCG9+22V, Tha Kham, Bang Khun Thian, Bangkok 10150, Thailand",
+    "place_id": "ChIJl71Bf7264jARJhFFMzZepbY",
+    "provider": "google"
+  },
+  "80d770574ca0f7c4753ff7bfe76a12957a385f15": {
+    "lat": 13.5977588,
+    "lng": 100.5067554,
+    "formatted_address": "แขวง ทุ่งครุ, Thung Khru, Bangkok 10140, Thailand",
+    "place_id": "ChIJ6xesVnWk4jARCZPG8GwG6dY",
+    "provider": "google"
+  },
+  "816fe9fde2ba81245d6276ea5ddefbeff6908ef2": {
+    "lat": 13.7606502,
+    "lng": 100.6404724,
+    "formatted_address": "6 1 Soi Ramkhamhaeng 44, Khwaeng Hua Mak, Khet Bang Kapi, Krung Thep Maha Nakhon 10240, Thailand",
+    "place_id": "ChIJWxUbS9FhHTERYoZLDY3QZy8",
+    "provider": "google"
+  },
+  "0539aa352ef875df1af395a5afbe24c6a01a17e9": {
+    "lat": 13.8657942,
+    "lng": 100.3991879,
+    "formatted_address": "9 1 Tambon Bang Mae Nang, Amphoe Bang Yai, Chang Wat Nonthaburi 11140, Thailand",
+    "place_id": "ChIJb3CSaaCR4jAR5ZITEqjpFA4",
+    "provider": "google"
+  },
+  "e4873bd60267f28cf44a5db4dc7bc9007668a53f": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "7144990e204cb59be28ec0ee934b0277424225e3": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "4e5d69b7f163302f4f821e05808e4883b3045332": {
+    "lat": 13.7361062,
+    "lng": 100.5232989,
+    "formatted_address": "923 ซอย จุฬาลงกรณ์ 5 Khwaeng Wang Mai, Pathum Wan, Krung Thep Maha Nakhon 10500, Thailand",
+    "place_id": "ChIJDbpY1i-Z4jARZ33QZIjuNEs",
+    "provider": "google"
+  },
+  "24e12ec46efdfa0842dfbe6c783ab3bd388b06c1": {
+    "lat": 12.5102778,
+    "lng": 102.1069444,
+    "formatted_address": "Khlong Ban ตำบล บางสระเก้า อำเภอ แหลมสิงห์ จันทบุรี 22190, Thailand",
+    "place_id": "ChIJow_piMh_BDER1DJdLsH0mhQ",
+    "provider": "google"
+  },
+  "63a05c32b14464a811cb488681b85d3098cef598": {
+    "lat": 13.8398518,
+    "lng": 100.5536481,
+    "formatted_address": "89/462 Thetsaban Songkhro Rd, Khwaeng Lat Yao, Khet Chatuchak, Krung Thep Maha Nakhon 10900, Thailand",
+    "place_id": "ChIJk3YFAZOc4jARmHUXM6jbbrg",
+    "provider": "google"
+  },
+  "98ef8f66718decf50d9b14284dd25a6f31009c83": {
+    "lat": 13.8993685,
+    "lng": 100.6294764,
+    "formatted_address": "2/63 ถ. เพิ่มสิน Khwaeng Khlong Thanon, Khet Sai Mai, Krung Thep Maha Nakhon 10220, Thailand",
+    "place_id": "ChIJbT74bWV9HTERZjtczFf1T0k",
+    "provider": "google"
+  },
+  "f81cfbc7959e6c16c7a98dce3e1862719f02b52c": {
+    "lat": 13.3448229,
+    "lng": 101.5446987,
+    "formatted_address": "Mai Hom, Kasetsuwan, Bo Thong District, Chon Buri, Thailand",
+    "place_id": "ChIJicmnuOrNHDERUl5fj6zI8fo",
+    "provider": "google"
+  },
+  "0d86e56208597a0ac5b638cee15bc70ee51934e6": {
+    "lat": 13.6397513,
+    "lng": 100.3969878,
+    "formatted_address": "J9QW+VR2, แขวง บางบอน, Bang Bon, Bangkok 10150, Thailand",
+    "place_id": "ChIJDzoub9O94jARihjbFBDntQk",
+    "provider": "google"
+  },
+  "3732972d042c79cde643701b5e45732264aef875": {
+    "lat": 13.6524842,
+    "lng": 100.2118884,
+    "formatted_address": "5, Tambon Bang Yang, Amphoe Krathum Baen, Chang Wat Samut Sakhon 74110, Thailand",
+    "place_id": "ChIJ2RqHdqzB4jARB7SntsvgY8U",
+    "provider": "google"
+  },
+  "a9b8e01439230f4baa6a930c1db275b5792e0618": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "72916183a5e915594b729be79e77521522feef93": {
+    "lat": 13.6562243,
+    "lng": 100.6223597,
+    "formatted_address": "555/3 ถนน แบริ่ง - ลาซาล, Khwaeng Bang Na, Khet Bang Na, Krung Thep Maha Nakhon 10270, Thailand",
+    "place_id": "ChIJwXHZsRtfHTERm5tTM8Lohv4",
+    "provider": "google"
+  },
+  "45090cee4b17013134167a770300a627ae51e293": {
+    "lat": 13.6562243,
+    "lng": 100.6223597,
+    "formatted_address": "555/3 ถนน แบริ่ง - ลาซาล, Khwaeng Bang Na, Khet Bang Na, Krung Thep Maha Nakhon 10270, Thailand",
+    "place_id": "ChIJwXHZsRtfHTERm5tTM8Lohv4",
+    "provider": "google"
+  },
+  "2620e73134a8564599bb822b69f30067d7d285f2": {
+    "lat": 13.0106794,
+    "lng": 101.455984,
+    "formatted_address": "44 1, Tambon Pa Yup Nai, Amphoe Wang Chan, Chang Wat Rayong 21210, Thailand",
+    "place_id": "ChIJA4rC654lAzER2_z0YKFMS10",
+    "provider": "google"
+  },
+  "5e8a11dc439efd9477b2f44b0ba86cfe2f760be2": {
+    "lat": 13.7353105,
+    "lng": 100.5975118,
+    "formatted_address": "ซอย ปรีดีพนมยงค์ 43 คลองตัน Watthana, Krung Thep Maha Nakhon 10110, Thailand",
+    "place_id": "ChIJ-Qy1-Nmf4jAR7rwhsj7Oxic",
+    "provider": "google"
+  },
+  "efbc1775aaf3ccaf64ed4438bd8a9a21b8117197": {
+    "lat": 13.5817395,
+    "lng": 100.5157217,
+    "formatted_address": "82 148 หมู่ที่ 10 ซอย23 Tambon Nai Khlong Bang Pla Kot, Amphoe Phra Samut Chedi, Chang Wat Samut Prakan 10290, Thailand",
+    "place_id": "ChIJywv-HXWl4jARCiasHq--Ugs",
+    "provider": "google"
+  },
+  "f633cb70b9af1fcdd619c1e4e2663fcf5bf6ba2b": {
+    "lat": 13.53296,
+    "lng": 100.617881,
+    "formatted_address": "GJM9+736, Thai Ban, Mueang Samut Prakan District, Samut Prakan 10280, Thailand",
+    "place_id": "ChIJeXcoJgCn4jARFodhPerfycM",
+    "provider": "google"
+  },
+  "16cdeae12bd16952207a1b28acbbcdc24b4bb7a3": {
+    "lat": 13.9035599,
+    "lng": 100.7935594,
+    "formatted_address": "8 2 หมู่ 8 Khwaeng Khlong Sip, Khet Nong Chok, Krung Thep Maha Nakhon 10530, Thailand",
+    "place_id": "ChIJZ2WTIYd6HTERXvUpCtOZMOU",
+    "provider": "google"
+  },
+  "c8e21d38f7c231b1c3bcc0c2809e1eadc36646d9": {
+    "lat": 13.8932547,
+    "lng": 100.7019986,
+    "formatted_address": "265, 15 Thanon Thai Raman, Khwaeng Sam Wa Tawan Tok, Khet Khlong Sam Wa, Krung Thep Maha Nakhon 10510, Thailand",
+    "place_id": "ChIJvSaP5q99HTERiQcdQjYxHD4",
+    "provider": "google"
+  },
+  "223b9a9c47571bad18ad6688054253bcb21152fb": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "eb65526d2acddc8067d744ecc22d2ab7d5531f6d": {
+    "lat": 13.9507944,
+    "lng": 100.463361,
+    "formatted_address": "โครงการ 345 อเวนิว เลขที่ 42 ถนนสาย 345 ต.คลองข่อย, Nonthaburi, อำเภอปากเกร็ด นนทบุรี 11120, Thailand",
+    "place_id": "ChIJAX3pdUGF4jARagLzd0dC7r8",
+    "provider": "google"
+  },
+  "9b5460b3de8f3bd7dbfda65e8636a3f76c3839d6": {
+    "lat": 13.7227306,
+    "lng": 100.7409896,
+    "formatted_address": "933 1 Thanon Lat Krabang, Khwaeng Lat Krabang, Khet Lat Krabang, Krung Thep Maha Nakhon 10520, Thailand",
+    "place_id": "ChIJ2fqqdtFmHTERvp96z4zunvU",
+    "provider": "google"
+  },
+  "6c7bd8b17457824b26a7ab543ac0266b80a557c7": {
+    "lat": 13.8200472,
+    "lng": 100.6992793,
+    "formatted_address": "281/3 Thanon Phraya Suren, Khwaeng Bang Chan, Khet Khlong Sam Wa, Krung Thep Maha Nakhon 10510, Thailand",
+    "place_id": "ChIJfzN1F3hjHTERwbHyNSFKHbU",
+    "provider": "google"
+  },
+  "d68aa8e979c851aa315c1dac1456895cb6f432a1": {
+    "lat": 14.027684,
+    "lng": 100.538997,
+    "formatted_address": "54 Thanon Tad Bomrong, Tambon Bang Prok, Amphoe Mueang Pathum Thani, Chang Wat Pathum Thani 12000, Thailand",
+    "place_id": "ChIJHfKj6ciA4jARK-eExuz2sPg",
+    "provider": "google"
+  },
+  "983cdc1ac56ea53936bf91ae1c52391efadaf409": {
+    "lat": 13.6327073,
+    "lng": 100.3648615,
+    "formatted_address": "62/44 หมู่บ้านเอกนครทาวเวอร์ Thanon Ekkachai, ตำบลบางน้ำจืด อำเภอเมือง Chang Wat Samut Sakhon 74000, Thailand",
+    "place_id": "ChIJdf2f9jy84jARTQCtg3e_Ync",
+    "provider": "google"
+  },
+  "84eb060efc0abdab5b3888400d993a7f7d41986a": {
+    "lat": 13.8024086,
+    "lng": 100.3063674,
+    "formatted_address": "159 Tambon Salaya, Amphoe Phutthamonthon, Chang Wat Nakhon Pathom 73170, Thailand",
+    "place_id": "ChIJMehEe0qT4jARGAx-2a5LWeU",
+    "provider": "google"
+  },
+  "d4e9207af1c5616041a4d0ef8ed93bb43e0026ae": {
+    "lat": 13.5259599,
+    "lng": 100.419626,
+    "formatted_address": "189ถนนเลียบคลองพิทยาลงกรณ์, แขวงท่าข้าม เขตบางขุนเทียน กรุงเทพมหานคร 10150, Thailand",
+    "place_id": "ChIJI1SPsb264jAR7XnoSXpfI6Q",
+    "provider": "google"
+  },
+  "b526c6e715eb4655770a32989ab9248ac145d6e0": {
+    "lat": 12.9787319,
+    "lng": 100.9114344,
+    "formatted_address": "83 4 Soi Na Kluea 4, Muang Pattaya, Amphoe Bang Lamung, Chang Wat Chon Buri 20150, Thailand",
+    "place_id": "ChIJb3Crwme-AjERaZ3k8IDOdcU",
+    "provider": "google"
+  },
+  "884c1b8ebde69d21e21ef8ea932ebd4d8fa4a577": {
+    "lat": 13.9228172,
+    "lng": 100.4753539,
+    "formatted_address": "85/3 หมู่ 5 Tambon Khlong Phra Udom, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand",
+    "place_id": "ChIJk28mwLGF4jARfplOuOpxKNQ",
+    "provider": "google"
+  },
+  "f1fc338a2fda085f4c034f37d1ef99dccb2ec1b1": {
+    "lat": 13.5996829,
+    "lng": 100.613661,
+    "formatted_address": "22/6 หมู่ 5 ปากชอบ Soi Thetsaban Bang Pu 30, บางเมือง เมือง Chang Wat Samut Prakan 10400, Thailand",
+    "place_id": "ChIJldohMfOh4jARIkvffx6CZNM",
+    "provider": "google"
+  },
+  "eb5d1ceeafa64af7d59636efc434b21833e6c19b": {
+    "lat": 13.568419,
+    "lng": 100.838567,
+    "formatted_address": "306 หมู่2 Thanon Bang Bo-Khlong Dan, Tambon Bang Bo, Amphoe Bang Bo, Chang Wat Samut Prakan 10560, Thailand",
+    "place_id": "ChIJI4YauY5EHTERaWYZfOY0Cn4",
+    "provider": "google"
+  },
+  "336d1bb721431c64ccbe82acb108a5acc736c4cc": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "3aefe60f4e76e26d16931f829e9e51d627ad490a": {
+    "lat": 13.9800899,
+    "lng": 100.8413319,
+    "formatted_address": "ถนน ลํา Tambon Bung Thong Lang, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand",
+    "place_id": "ChIJpUYbFgB3HTERXOVA2Th8Gas",
+    "provider": "google"
+  },
+  "e663cd1b93f694931ecae89baaff5a88ec2c35a0": {
+    "lat": 13.9505005,
+    "lng": 100.8129003,
+    "formatted_address": "อยู่ติดกับป้ายรถเมล์ Tambon Bung Thong Lang, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand",
+    "place_id": "ChIJj210AOl7HTERnd6BzzCKBvY",
+    "provider": "google"
+  },
+  "c3fa625563c261b56d0d3bbd7fbf79ab2c3d1fc1": {
+    "lat": 13.8308236,
+    "lng": 100.6000873,
+    "formatted_address": "Cho Amon Phan 9 Soi 2, Khwaeng Lat Phrao, Khet Lat Phrao, Krung Thep Maha Nakhon 10230, Thailand",
+    "place_id": "ChIJYfPHp3Od4jAR8toBsCdVByk",
+    "provider": "google"
+  },
+  "201c3b135be35955332798c6cc643a1b180a7d4a": {
+    "lat": 13.6508664,
+    "lng": 100.2546646,
+    "formatted_address": "260, 36 Sukhontawit Road, Tambon Talad Krathum Baen, Amphoe Krathum Baen, Chang Wat Samut Sakhon 74110, Thailand",
+    "place_id": "ChIJ5U7hr5nB4jARQpzjiFC9Au4",
+    "provider": "google"
+  },
+  "cd12e1c548a3754558f799c746a0b4776f7db2fa": {
+    "lat": 13.5397988,
+    "lng": 100.6117365,
+    "formatted_address": "999, 361 หมู่ที่ 2 Soi Thetsaban Bang Pu 70, Tambon Thai Ban, Amphoe Mueang Samut Prakan, Chang Wat Samut Prakan 10280, Thailand",
+    "place_id": "ChIJAwb5q4Wn4jARYrriBqXvuDA",
+    "provider": "google"
+  },
+  "263fcc8748857a3e6c9d73f8f9917c6d5d80a1cd": {
+    "lat": 13.7569707,
+    "lng": 100.5637003,
+    "formatted_address": "500 28 ซ อยู่เจริญ ดินแดง Khet Din Daeng, Krung Thep Maha Nakhon 10400, Thailand",
+    "place_id": "ChIJzyaaAhCf4jAR-65sHnO-PIw",
+    "provider": "google"
+  },
+  "bb5f772503e6279eeb4e6305314daa01862bde53": {
+    "lat": 14.2887597,
+    "lng": 100.4986793,
+    "formatted_address": "Song Ton, Bang Sai District, Phra Nakhon Si Ayutthaya 13190, Thailand",
+    "place_id": "ChIJ88cn9h5x4jARgV2M8shDVx0",
+    "provider": "google"
+  },
+  "e5950c523f98c039777a57ae49fd0356f94ad03b": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "2a204a42c3eddeb16a145ae82c0a24425a1dea1b": {
+    "lat": 13.8415068,
+    "lng": 100.5922842,
+    "formatted_address": "เลขที่ 100 Lat Pla Khao Rd, Khwaeng Chorakhe Bua, Khet Lat Phrao, Krung Thep Maha Nakhon 10230, Thailand",
+    "place_id": "ChIJOV4PX72d4jARnM3B7eq7Y3M",
+    "provider": "google"
+  },
+  "6388f3c454a27e3198426a3bc30a615c65caa700": {
+    "lat": 13.6159063,
+    "lng": 100.3473193,
+    "formatted_address": "28, 92 หมู่2 ซอยตลับทอง 2 Tambon Bang Nam Chuet, เมิอง Chang Wat Samut Sakhon 74000, Thailand",
+    "place_id": "ChIJD-TwsYm94jARQXZfu3AaxNg",
+    "provider": "google"
+  },
+  "f8e6aa02481c736d14d29cbd1a9671875459264d": {
+    "lat": 13.774965,
+    "lng": 100.2988596,
+    "formatted_address": "72 หมู่4 ซอยบางกระทึก2 ถนนพุทธมณฑลสาย5 ตำบลบางกระทึก Amphoe Sam Phran, Chang Wat Nakhon Pathom 73210, Thailand",
+    "place_id": "ChIJ_TxryI6U4jARdYAeQSFc1Qg",
+    "provider": "google"
+  },
+  "287bf7a7d4b0d5ecc4794e403d470453d5cbf87d": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "629f742106f842280050f2e8342b512875c6e60a": {
+    "lat": 13.8768407,
+    "lng": 100.636443,
+    "formatted_address": "456 Thep Rak Rd, Khwaeng Tha Raeng, Khet Bang Khen, Krung Thep Maha Nakhon 10220, Thailand",
+    "place_id": "ChIJC0UqJRt9HTERzUv27txjNww",
+    "provider": "google"
+  },
+  "c3fc6014b91343ba7f1b2c89653a043275b391e4": {
+    "lat": 13.9770083,
+    "lng": 100.3160305,
+    "formatted_address": "46/11 Tambon Sai Noi, Amphoe Sai Noi, Chang Wat Nonthaburi 11150, Thailand",
+    "place_id": "ChIJB-PKibGL4jAR-pFskW5f9hg",
+    "provider": "google"
+  },
+  "4a85f8389c500510eed49c002d3a5db07838853a": {
+    "lat": 13.9962952,
+    "lng": 100.4362274,
+    "formatted_address": "เลขที่ 30/8 หมู่ 2 คลองพระอุดม Tambon Khlong Phra Udom, Amphoe Lat Lum Kaeo, Chang Wat Pathum Thani 12140, Thailand",
+    "place_id": "ChIJOZoIxoqJ4jARdOgT5VMS188",
+    "provider": "google"
+  },
+  "e2b5b95dc8f7cda6cb03d620fde39cae9780de81": {
+    "lat": 13.5396267,
+    "lng": 100.87258,
+    "formatted_address": "GVQF+V24, Ban Rakat, Bang Bo District, Samut Prakan 10550, Thailand",
+    "place_id": "ChIJN5zu8DREHTERFbnIqygck6o",
+    "provider": "google"
+  },
+  "54e2cabb6c1a4427ffe9f8edcea134bfd621e80a": {
+    "lat": 13.6665227,
+    "lng": 100.4287088,
+    "formatted_address": "MC8H+JF4, Bang Khun Thian Road, Khlong Bang Bon, Khet Bang Bon, Krung Thep Maha Nakhon 10150, Thailand",
+    "place_id": "ChIJb7esZje94jARfW3GdgjXSy0",
+    "provider": "google"
+  },
+  "88e30dded6daeaadc35d30ac787999f5c8b032ed": {
+    "lat": 13.928571,
+    "lng": 100.7203576,
+    "formatted_address": "36 ตำบล บึงคำพร้อย Tambon Bueng Kham Phroi, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand",
+    "place_id": "ChIJ8VBZxNN7HTERhfyGMcKWXxk",
+    "provider": "google"
+  },
+  "047dcafe705a2d3b04a331d50461449a0dfbf469": {
+    "lat": 13.8260325,
+    "lng": 100.2427735,
+    "formatted_address": "Lan Tak Fa, Nakhon Chai Si District, Nakhon Pathom 73170, Thailand",
+    "place_id": "ChIJq1Teo73t4jARr2oUfDpt6MM",
+    "provider": "google"
+  },
+  "77ab387a11c2a5c1e761613589910e9c7e199cda": {
+    "lat": 13.7246309,
+    "lng": 100.5307626,
+    "formatted_address": "150 Silom Soi 3 (Naratiwas Soi 3 or Sathorn, Soi 8, แขวงสีลม banrak, กรุงเทพมหานคร 10500, Thailand",
+    "place_id": "ChIJ9ZNlwh6f4jAREYFJqYBLXuA",
+    "provider": "google"
+  },
+  "c060d68b26abb19eaa035d42cf2b6f1f256526db": {
+    "lat": 13.7157478,
+    "lng": 100.5336584,
+    "formatted_address": "102 Soi Akhan Songkhro Sai Ti 4, Khwaeng Thung Maha Mek, Khet Sathon, Krung Thep Maha Nakhon 10120, Thailand",
+    "place_id": "ChIJXXpU5tuf4jARKYnka_2riWU",
+    "provider": "google"
+  },
+  "4949bb3f94e4f9dcf9f75f186f5d806f0875cf09": {
+    "lat": 13.4881435,
+    "lng": 100.3620299,
+    "formatted_address": "39 ซอย หมู่ 8 หมู่บ้านประมง Tambon Phanthai Norasing, Amphoe Mueang Samut Sakhon, Chang Wat Samut Sakhon 74000, Thailand",
+    "place_id": "ChIJFWrRyMew4jAR9SJLJlBYOXA",
+    "provider": "google"
+  },
+  "a7b7976d7aa1d36dc8e6a0da2cf401cb9595b81d": {
+    "lat": 17.6924843,
+    "lng": 103.0472164,
+    "formatted_address": "Kranuan 159 Nam Phong Rd, Tambon Nong Kung, Amphoe Nam Phong, Chang Wat Khon Kaen 40140, Thailand",
+    "place_id": "ChIJq6qqqnqcJDER3uXV-iauias",
+    "provider": "google"
+  },
+  "7f69f2b42e0e2574bb85dc4d509c91d06c33e07a": {
+    "lat": 13.7806858,
+    "lng": 100.4292942,
+    "formatted_address": "99 1 Borommaratchachonnani Rd, Khwaeng Chim Phli, Khet Taling Chan, Krung Thep Maha Nakhon 10170, Thailand",
+    "place_id": "ChIJ719wpgiX4jARGNySiSL8pdY",
+    "provider": "google"
+  },
+  "abb7974600552df008a8a9414bafaa0cbf46d549": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "952ec35c4bebdcc05dbd5ac7cf2077a2bdafb814": {
+    "lat": 13.6454505,
+    "lng": 100.6734289,
+    "formatted_address": "29, 31-32 Soi Ratwinit Bangkaew Tambon Bang Kaeo, Amphoe Bang Phli, Chang Wat Samut Prakan 10540, Thailand",
+    "place_id": "ChIJvd51tZxfHTERNt0qekjahWs",
+    "provider": "google"
+  },
+  "6e64351b22dc359909a99f60e589b2ff4d036478": {
+    "lat": 13.7394776,
+    "lng": 100.5563134,
+    "formatted_address": "9 Soi Sukhumvit 8, Khwaeng Khlong Toei, Khet Khlong Toei, Krung Thep Maha Nakhon 10110, Thailand",
+    "place_id": "ChIJbUl5yuae4jARjQO2iv41p84",
+    "provider": "google"
+  },
+  "90ac8469550d033612cbe4eb845776cdc9f2890e": {
+    "lat": 13.8579863,
+    "lng": 100.5294422,
+    "formatted_address": "200 Thanon Ngam Wong Wan, Tambon Bang Khen, เมือง, Chang Wat Nonthaburi 11000, Thailand",
+    "place_id": "ChIJe2EV2qmd4jARx3DOMzflYXM",
+    "provider": "google"
+  },
+  "dd34f0ba7c60b215dd83a626779ce44c1a32016a": {
+    "lat": 13.9383435,
+    "lng": 100.5165364,
+    "formatted_address": "49 Sukkhaprachasan 2, Tambon Bang Phut, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand",
+    "place_id": "ChIJq-Tg2pyF4jARIO_87ZHJNEM",
+    "provider": "google"
+  },
+  "2c5a14516430ad23b91b6e61d5c3f59d4e35fb59": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "edc576adb5c648642f0a5d7bf0cad6f32111b08e": {
+    "lat": 13.6504099,
+    "lng": 100.3568264,
+    "formatted_address": "36/22 เอกชัย Bang Bon Nuea, Khet Bang Bon, Krung Thep Maha Nakhon 10150, Thailand",
+    "place_id": "ChIJB88x3i-84jARqOptruTmrmo",
+    "provider": "google"
+  },
+  "4333ace8ffc355f90f3d14d64a33b009182084ea": {
+    "lat": 13.7116178,
+    "lng": 100.6317189,
+    "formatted_address": "40 On Nut 35, Khwaeng Suan Luang, Khet Suan Luang, Krung Thep Maha Nakhon 10250, Thailand",
+    "place_id": "ChIJefCUxzxgHTERfr7UXYpIVjQ",
+    "provider": "google"
+  },
+  "c2f8c7a21ce03e8d323c85464039765203865d8b": {
+    "lat": 13.7538817,
+    "lng": 100.6109769,
+    "formatted_address": "19 21 Soi Ramkhamhaeng 19/1, Khwaeng Hua Mak, Khet Bang Kapi, Krung Thep Maha Nakhon 10240, Thailand",
+    "place_id": "ChIJm232IHWf4jARFFpm8A0NBts",
+    "provider": "google"
+  },
+  "6607e5e9d71a9e2452fc9983ba552d99e6050565": {
+    "lat": 13.7301922,
+    "lng": 100.5811893,
+    "formatted_address": "125 24 Soi Thong Lo, Khwaeng Khlong Tan Nuea, Watthana, Krung Thep Maha Nakhon 10110, Thailand",
+    "place_id": "ChIJh7s6GVOe4jAReTmapQOwBQ0",
+    "provider": "google"
+  },
+  "d831d1f4a12c3333e69a00beee1b87513a84e1b0": {
+    "lat": 13.802136,
+    "lng": 100.8835968,
+    "formatted_address": "42 Thanon Suwinthawong, Khwaeng Lam Toi Ting, Khet Nong Chok, Krung Thep Maha Nakhon 10530, Thailand",
+    "place_id": "ChIJ48oifABvHTERlK2otpTsJZ4",
+    "provider": "google"
+  },
+  "c7bcc161ed758836548dcf637c05453caba5da22": {
+    "lat": 13.4985286,
+    "lng": 100.3388253,
+    "formatted_address": "F8XQ+CG8, Khok Kham, Mueang Samut Sakhon District, Samut Sakhon 74000, Thailand",
+    "place_id": "ChIJ8wsraW634jARdRD1zLPi07s",
+    "provider": "google"
+  },
+  "dddfc4925fff52d217f68518786fce255b42f5c4": {
+    "lat": 13.9161035,
+    "lng": 100.3403779,
+    "formatted_address": "26 4, Tambon Bang Khu Rat, Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand",
+    "place_id": "ChIJDwv5ciCN4jARWOmWkiS1W5I",
+    "provider": "google"
+  },
+  "02a9d7cb2defad5d952ec5d6fcb386396fb0ffa0": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "2257eb01e4c108c85ebdfeb2561ebd18d77a3c18": {
+    "lat": 13.6292211,
+    "lng": 100.7077607,
+    "formatted_address": "ตลาดคิงคอง 3256 Tambon Bang Phli Yai, Amphoe Bang Phli, Chang Wat Samut Prakan 10540, Thailand",
+    "place_id": "ChIJt9BFOoJeHTERsLIM4m52iJA",
+    "provider": "google"
+  },
+  "dfedb943a1f490fb12b1239cecc5e497435b8395": {
+    "lat": 13.4921725,
+    "lng": 100.3862864,
+    "formatted_address": "223, 2 พันท้ายนรสิงห์ อำเภอเมืองสมุทรสาคร สมุทรสาคร 74000, Thailand",
+    "place_id": "ChIJlS0d_oyw4jARPCn77KK-ppQ",
+    "provider": "google"
+  },
+  "f9c802f988683cb7172d88f1888a06fbfecb5514": {
+    "lat": 13.8411296,
+    "lng": 100.6341048,
+    "formatted_address": "10 Yoyen Rd, Khwaeng Lat Phrao, Khet Lat Phrao, Krung Thep Maha Nakhon 10230, Thailand",
+    "place_id": "ChIJlf2pU4BjHTERzkqYSldQ52Y",
+    "provider": "google"
+  },
+  "90d25aed8dee59a1be9f3409042c40f70513efea": {
+    "lat": 13.7491743,
+    "lng": 100.5161575,
+    "formatted_address": "678/1-7 Thanon Bamrung Mueang, Khwaeng Wat Thepsirin, Khet Pom Prap Sattru Phai, Krung Thep Maha Nakhon 10100, Thailand",
+    "place_id": "ChIJl9od-jqZ4jARVmMNi4wBU2o",
+    "provider": "google"
+  },
+  "b4bb26d76cd1abc143138e5dbcd2196154b9f5e8": {
+    "lat": 13.5439375,
+    "lng": 100.4670625,
+    "formatted_address": "Ban Khlong Suan, Phra Samut Chedi District, Samut Prakan 10290, Thailand",
+    "place_id": "ChIJx-MsIbGl4jARMyXCHKAyLgk",
+    "provider": "google"
+  },
+  "df856893e847858d600f9d0782ba64b208be1b12": {
+    "lat": 13.841332,
+    "lng": 100.4136328,
+    "formatted_address": "16/8 หมู่ที่ 11 Kanchanaphisek Rd, Tambon Bang Muang, Amphoe Bang Yai, Chang Wat Nonthaburi 11140, Thailand",
+    "place_id": "ChIJ18wS3VyQ4jAR6Grrwf4PZ_Q",
+    "provider": "google"
+  },
+  "35e07772ca4139f870960d0c16b9f30bfa783147": {
+    "lat": 13.8523188,
+    "lng": 100.8159415,
+    "formatted_address": "26/24-25 หมู่ที่ 1 Khwaeng Khok Faet, Khet Nong Chok, Krung Thep Maha Nakhon 10530, Thailand",
+    "place_id": "ChIJ8ZrZd35vHTER9jTsMY4nObw",
+    "provider": "google"
+  },
+  "fbd37617c0719090a4d717aa05793c964e9a862e": {
+    "lat": 13.7223669,
+    "lng": 100.7244268,
+    "formatted_address": "ปาก, 1/5 ถนน ลาดกระบัง แขวงลาดกระบัง เขตลาดกระบัง กรุงเทพมหานคร 10520, Thailand",
+    "place_id": "ChIJE9gJ8iZnHTER3hPmZqqJguQ",
+    "provider": "google"
+  },
+  "e8a5aff2324892e8e5092db108b8e9f28098a687": {
+    "lat": 13.7661297,
+    "lng": 100.5590757,
+    "formatted_address": "QH85+FJ4, Soi Pracha Songkhro 6 (Phuttipho), Khwaeng Din Daeng, Khet Din Daeng, Krung Thep Maha Nakhon 10400, Thailand",
+    "place_id": "ChIJCenIw5Ce4jARMmi2mIvZxAw",
+    "provider": "google"
+  },
+  "75b27528e2421e1bf4460337ef68ed1e14c57df4": {
+    "lat": 13.7993151,
+    "lng": 100.6346828,
+    "formatted_address": "4390 ซอย ลาดพร้าว 101 ซ. 56 คลองจั่น, Khet Bang Kapi, Krung Thep Maha Nakhon 10240, Thailand",
+    "place_id": "ChIJKZYXz2xiHTERV8xWlae4rmc",
+    "provider": "google"
+  },
+  "e4521688e9260c8723531fadfc7b83b451ed34df": {
+    "lat": 13.8118213,
+    "lng": 100.5912495,
+    "formatted_address": "345 Soi Lat Phrao Wang Hin 47, Khwaeng Lat Phrao, Khet Lat Phrao, Krung Thep Maha Nakhon 10230, Thailand",
+    "place_id": "ChIJIxa7jAud4jARfuRfccE_TgA",
+    "provider": "google"
+  },
+  "23758bafd42115e0365427656bfa904ac233db40": {
+    "lat": 14.002942,
+    "lng": 100.6932688,
+    "formatted_address": "Thanon Rangsit - Nakhon Nayok, Tambon Bang Yitho, Amphoe Thanyaburi, Chang Wat Pathum Thani 12130, Thailand",
+    "place_id": "ChIJW69zTid_HTERAoZ35bXZoi8",
+    "provider": "google"
+  },
+  "6c055c28a4329047c4542ec5464ee9c5ad69f22e": {
+    "lat": 13.8089592,
+    "lng": 100.9236597,
+    "formatted_address": "RW5F+HFM, Krathum Rai, Nong Chok, Bangkok 10530, Thailand",
+    "place_id": "ChIJvYXV-ddtHTERkGbIGZ2t8KI",
+    "provider": "google"
+  },
+  "4aa77ad88aa51b92ab69a9bc172b5784172ff579": {
+    "lat": 13.7616541,
+    "lng": 100.5650244,
+    "formatted_address": "322 376 Soi Ratchadaphisek 3, Khwaeng Din Daeng, Khet Din Daeng, Krung Thep Maha Nakhon 10400, Thailand",
+    "place_id": "ChIJZe9Zabef4jARYo-ZxpVJr5o",
+    "provider": "google"
+  },
+  "20fc0b068294bad1ac848132173fa088bcb0f99d": {
+    "lat": 13.6284333,
+    "lng": 100.6348056,
+    "formatted_address": "JJHM+9V3, Bang Kaeo, Bang Phli District, Samut Prakan 10540, Thailand",
+    "place_id": "ChIJd4TcMW9fHTERdC6V_ZKkVME",
+    "provider": "google"
+  },
+  "092ba4776bc351c3d7b2d26d28d6989a5fec36b4": {
+    "lat": 13.6960433,
+    "lng": 100.6487626,
+    "formatted_address": "ชั้น G MUNx2, M108 109, 55 ถ. ศรีนครินทร์ แขวงหนองบอน เขตประเวศ กรุงเทพมหานคร 10250, Thailand",
+    "place_id": "ChIJBYIxmN1hHTERASQfl3IVUgs",
+    "provider": "google"
+  },
+  "6ba7da0a3fcb6efcb9245655987b62bdd85a4ad7": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "a784845d73b4562c8dc002a7f479f8411c469e0a": {
+    "lat": 13.5054063,
+    "lng": 100.7093208,
+    "formatted_address": "689 1, อ.เมือง, Chang Wat Samut Prakan 10280, Thailand",
+    "place_id": "ChIJayqPPC9ZHTERtefnSzH6NwU",
+    "provider": "google"
+  },
+  "a26f9d416fffd6c24c7ae2869220a47cf14f450f": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "ce965dc4cc88ff71fe96bacdec8038f0ba750ac9": {
+    "lat": 13.6302673,
+    "lng": 100.8579314,
+    "formatted_address": "ตรงข้ามเซเว่น คลองเจ้า(วัดสุคันธาราม, บางบ่อ, ตำบล บางบ่อ อำเภอบางบ่อ สมุทรปราการ 10560, Thailand",
+    "place_id": "ChIJbyVmGHZdHTERUXinJ2SdmDM",
+    "provider": "google"
+  },
+  "b4810c2810b768cc7f04d946a8c98a02fdb898cb": {
+    "lat": 13.6345787,
+    "lng": 100.5192976,
+    "formatted_address": "ครุใน ไนซ์มาร์เก็ต Suk Sawat 70 Road, Tambon Bang Kru, Amphoe Phra Pradaeng, Chang Wat Samut Prakan 10130, Thailand",
+    "place_id": "ChIJgWY91L2j4jAR0LBG63myoI0",
+    "provider": "google"
+  },
+  "223357d2d88ef38bfa4777b7d5cc7b7018b8b024": {
+    "lat": 18.3022116,
+    "lng": 99.4969767,
+    "formatted_address": "สายลมจอย ซอย 1 Amphoe Mueang Lampang, Chang Wat Lampang 52000, Thailand",
+    "place_id": "ChIJBwvVxWNs2TAR51wc_OSCo68",
+    "provider": "google"
+  },
+  "87c443005cce2d64836a9caea83b8f26675409a3": {
+    "lat": 13.8327989,
+    "lng": 100.4876139,
+    "formatted_address": "25 15 บางไผ่ ซอย 21 Tambon Bang Phai, Amphoe Mueang Nonthaburi, Chang Wat Nonthaburi 11000, Thailand",
+    "place_id": "ChIJ4eVUtL-b4jAR-CqP6a1dt6E",
+    "provider": "google"
+  },
+  "342cb65d5b1d5f5c51deb9d313cfb6368ef6b3c4": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "606345dfcdf25f8ae28dd68115c1efd48cf673b5": {
+    "lat": 13.9233258,
+    "lng": 100.6011415,
+    "formatted_address": "WJF2+8FJ, Thanon Song Prapha, ดอนเมือง Khet Don Mueang, Krung Thep Maha Nakhon 10210, Thailand",
+    "place_id": "ChIJIxQAF8SD4jARGEJdfR32YDU",
+    "provider": "google"
+  },
+  "f18c89cdd81778d2a21c94adf6a56436404480ef": {
+    "lat": 13.633524,
+    "lng": 100.6899678,
+    "formatted_address": "181/1 ม.13 ซ.มหาชัย ถ.บางนาตราด กม.10 Tambon Bang Phli Yai, Amphoe Bang Phli, Chang Wat Samut Prakan 10540, Thailand",
+    "place_id": "ChIJc8TNXhpfHTERUuHLk3pXEm4",
+    "provider": "google"
+  },
+  "2102733861a5615d357b7d5241f2ab8786ed1728": {
+    "lat": 13.5148461,
+    "lng": 100.530255,
+    "formatted_address": "20, ชายทะเล, Tambon Na Klua, Amphoe Phra Samut Chedi, Chang Wat Samut Prakan 10290, Thailand",
+    "place_id": "ChIJ2R_GQQCn4jAR48YkpqLVCTE",
+    "provider": "google"
+  },
+  "95293e3c77af203cffc6ca98628eb9933c0a2345": {
+    "lat": 13.893692,
+    "lng": 100.4311806,
+    "formatted_address": "100/2 moo3 BangGruay-Srainoi Rd. Bangbuatong, Nonthaburi 11110, ตำบล บางรักพัฒนา อำเภอบางบัวทอง นนทบุรี 11110, Thailand",
+    "place_id": "ChIJKzQEZfGP4jARPLHINu7jTSE",
+    "provider": "google"
+  },
+  "f07bcddfd7eaf265afe1ed21ad941a07938c3a9d": {
+    "lat": 13.5599016,
+    "lng": 100.6753028,
+    "formatted_address": "30 1, Tambon Phraeksa, Amphoe Mueang Samut Prakan, Chang Wat Samut Prakan 10280, Thailand",
+    "place_id": "ChIJ0Qg0cmVZHTERotGABaLa0Cw",
+    "provider": "google"
+  },
+  "895f3e0b6b91e7b72fe5f26076a86e693799c416": {
+    "lat": 13.8387079,
+    "lng": 100.6626269,
+    "formatted_address": "351,353 ปาก Ram Inthra Rd, Khwaeng Ram Inthra, Khet Khan Na Yao, Krung Thep Maha Nakhon 10230, Thailand",
+    "place_id": "ChIJ0z1GmOFiHTERolblA96rVfw",
+    "provider": "google"
+  },
+  "a4cbc4c781411184b98c46e9151bbcf92e766efc": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "baf207441e8663cbe0bb8ba7944b4b1f65f0b9aa": {
+    "lat": 13.8136389,
+    "lng": 100.3264258,
+    "formatted_address": "เนี๊ยะสุกี้ ปั๊มเอสโซ่เพียวไทย สาขาศาลากลาง Tambon Sala Klang, Amphoe Bang Kruai, Chang Wat Nonthaburi 11130, Thailand",
+    "place_id": "ChIJW_5s5Jqb4jARtm3RQrR1D2c",
+    "provider": "google"
+  },
+  "1b608bcafa2a23703c4f7f67c6b359b991bb0161": {
+    "lat": 13.5515986,
+    "lng": 100.5020717,
+    "formatted_address": "444 Tambon Na Klua, Amphoe Phra Samut Chedi, Chang Wat Samut Prakan 10290, Thailand",
+    "place_id": "ChIJK9bsRFql4jARv18uy1yh7uU",
+    "provider": "google"
+  },
+  "bd84c9167b5c9e40e2533c8667a5807e3d3675db": {
+    "lat": 13.8747809,
+    "lng": 100.5999593,
+    "formatted_address": "44/248-250 Phahon Yothin Road, อนุสาวรีย์ Khet Bang Khen, Krung Thep Maha Nakhon 10220, Thailand",
+    "place_id": "ChIJgXlfbBOD4jAR601fC9oYnjQ",
+    "provider": "google"
+  },
+  "ef3213f65893d96edbcc6d4225d095bfcf10c455": {
+    "lat": 13.6327539,
+    "lng": 100.4273812,
+    "formatted_address": "35, 44 ถนน สะแกงาม Khwaeng Samae Dam, Khet Bang Khun Thian, Krung Thep Maha Nakhon 10150, Thailand",
+    "place_id": "ChIJO4kWZta94jARjSU_n5_TryE",
+    "provider": "google"
+  },
+  "c92a8e2f7ecc14dd2eec76ae1dacf3075097857b": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "8aaa5a40c53567cee73101dab7325a3f148ce8b5": {
+    "lat": 13.7467027,
+    "lng": 100.5984029,
+    "formatted_address": "38, 2 Thanon Phet Phra Ram, แขวง ห้วยขวาง, Khet Bang Kapi, Krung Thep Maha Nakhon 10310, Thailand",
+    "place_id": "ChIJwRp8Hbuf4jARap5xdHUzO_Y",
+    "provider": "google"
+  },
+  "38dfa03fa72045aac4d1bfacac533d0cd4cd77ca": {
+    "lat": 13.8651459,
+    "lng": 100.5356005,
+    "formatted_address": "285 162 Soi Wat Bua Kwan 11, Tambon Bang Kraso, อำเภอเมือง Chang Wat Nonthaburi 11000, Thailand",
+    "place_id": "ChIJq5RKzq6c4jARlzKIFFR7j4U",
+    "provider": "google"
+  },
+  "b82052009c001c527e211c76133705e814ef37a8": {
+    "lat": 13.9180426,
+    "lng": 100.4951127,
+    "formatted_address": "เลขที่ 76/1 ซอย หมู่ 3 Tambon Bang Tanai, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand",
+    "place_id": "ChIJk3fYGfiE4jARivWMW-mr76c",
+    "provider": "google"
+  },
+  "3f7c2d7fced04dad8e2cd3b4a91c6eb2a0e5c927": {
+    "lat": 13.9242964,
+    "lng": 100.4718305,
+    "formatted_address": "100 สิมิลันโภชนา 3 ถ.ชัพฤกษ์ Tambon Khlong Phra Udom, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand",
+    "place_id": "ChIJpd0ht3iF4jARN0tHB2nIfK8",
+    "provider": "google"
+  },
+  "7460a89c6ff58cf1e34bcdec22f92dbb816a7d21": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "7d0e6a1e210dcb6dccca7c2731e109e953ea453d": {
+    "lat": 13.7480392,
+    "lng": 100.7931167,
+    "formatted_address": "444 Thanon Chalong Krung, Lam Pla Thio, Khet Lat Krabang, Krung Thep Maha Nakhon 10520, Thailand",
+    "place_id": "ChIJpbYawRhmHTERn2EKkafJu-M",
+    "provider": "google"
+  },
+  "d129140f7cec8035f3891b7d9a184eb5a6562021": {
+    "lat": 13.5838562,
+    "lng": 100.4287129,
+    "formatted_address": "1035 2 Bang Khun Thian Road, Khwaeng Tha Kham, Khet Bang Khun Thian, Krung Thep Maha Nakhon 10150, Thailand",
+    "place_id": "ChIJax5qZdm94jARE1dzR7tJb-I",
+    "provider": "google"
+  },
+  "ea37efc205146f925986bcd816020a9d919ea568": {
+    "lat": 13.895012,
+    "lng": 100.6079651,
+    "formatted_address": "1 Soi, Khwaeng Anusawari, Khet Bang Khen, Krung Thep Maha Nakhon 10220, Thailand",
+    "place_id": "ChIJgycWYCOD4jARAaJorQUIHHI",
+    "provider": "google"
+  },
+  "9d924fc4a8f5fce76a73d6699d09ddc6d606ec35": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "ae69913a8ee0019736ddde0c5147ff79f84d11a5": {
+    "lat": 13.7307846,
+    "lng": 100.5611207,
+    "formatted_address": "37 Soi Sukhumvit 16, Khwaeng Khlong Toei, Khet Khlong Toei, Krung Thep Maha Nakhon 10110, Thailand",
+    "place_id": "ChIJdyUydBWf4jAR5uHs1qUPVDg",
+    "provider": "google"
+  },
+  "3d83d65019cc45d7f80870cb0a9a85c59c1a7206": {
+    "lat": 13.623693,
+    "lng": 100.768411,
+    "formatted_address": "JQF9+2RF, Bang Chalong, Bang Phli District, Samut Prakan 10540, Thailand",
+    "place_id": "ChIJCywnd4NdHTERjxM5IPVKMeE",
+    "provider": "google"
+  },
+  "d181d49e467169757122c0f9871e8cffb89d6a23": {
+    "lat": 13.8667248,
+    "lng": 100.6257627,
+    "formatted_address": "14 Soi Ram Intra 39, Ln 11, Khwaeng Anusawari, Khet Bang Khen, Krung Thep Maha Nakhon 10220, Thailand",
+    "place_id": "ChIJxcqmL_BjHTERT_YiSSdTS_c",
+    "provider": "google"
+  },
+  "3c9a8144def057f12289d37e33ab3a601387a675": {
+    "lat": 13.6112573,
+    "lng": 100.5102635,
+    "formatted_address": "8/8-9 ร้านข้าวแกงเปิดหม้อ Soi Pracha Uthit 90, Khwaeng Thung Khru, Khet Thung Khru, Krung Thep Maha Nakhon 10140, Thailand",
+    "place_id": "ChIJ8dGrVgCj4jAR9E2lY6mENLc",
+    "provider": "google"
+  },
+  "0536497508c9c1487e189f260727d49cc216b95e": {
+    "lat": 13.8439334,
+    "lng": 100.4486762,
+    "formatted_address": "103 Tambon Bang Krang, เมือง Chang Wat Nonthaburi 11000, Thailand",
+    "place_id": "ChIJhRr_7Sqb4jARpDMaJic1M0g",
+    "provider": "google"
+  },
+  "d4b4177863e34c0cf1fd016c43c04f1e9a07d3d2": {
+    "lat": 13.9481433,
+    "lng": 100.6397709,
+    "formatted_address": "เลขที่53/15-16 หมู่11 Soi Phahon Yothin 64 Yaek, Tambon Khu Khot, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12130, Thailand",
+    "place_id": "ChIJKxKIzud9HTER5IrtXfKfZgE",
+    "provider": "google"
+  },
+  "b6448df29f7bace5851d2fbe0605b88d73dc5994": {
+    "lat": 13.5720634,
+    "lng": 100.4485661,
+    "formatted_address": "เลขที่ 305 ตำบลบ้านคลองสวน อำเภอพระสมุทรเจดีย์ Tambon Ban Khlong Suan, Amphoe Phra Samut Chedi, Chang Wat Samut Prakan 10290, Thailand",
+    "place_id": "ChIJgal0K8-k4jARS4ngmPXkORY",
+    "provider": "google"
+  },
+  "9598e1dc67a23c2e4d871410a905ca442aa2a9bb": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "f8001900bba25066954f12834277b6964b4d81fe": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "7efac359f1edf513e7cbb2436d638762e216d040": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "6098c8b602763f2898f00fb883bf45d5cd26fba9": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "8df11b20646a18a92f91598121146acf464797ce": {
+    "lat": 13.5620185,
+    "lng": 100.5286666,
+    "formatted_address": "38 Tambon Na Klua, Amphoe Phra Samut Chedi, Chang Wat Samut Prakan 10290, Thailand",
+    "place_id": "ChIJGdReujSj4jARTnmzJYsaayU",
+    "provider": "google"
+  },
+  "a046f7826bc6f899ab6799601e13018977abdd5b": {
+    "lat": 13.7872985,
+    "lng": 100.3099897,
+    "formatted_address": "25 12 หมู่ 6 Borommaratchachonnani Rd, Tambon Bang Krathuk, Amphoe Sam Phran, Chang Wat Nakhon Pathom 73210, Thailand",
+    "place_id": "ChIJMz1WLn-U4jARf7t3xJHRlsg",
+    "provider": "google"
+  },
+  "173469d117bd868287d88111830d4563fe4932d2": {
+    "lat": 13.8712255,
+    "lng": 100.3791571,
+    "formatted_address": "ร้าน ฌิม คาเฟ่&เรสเตอร์รอง โครงการ The twelve ซ. ประชาร่วมใจ Tambon Bang Mae Nang, Amphoe Bang Yai, Chang Wat Nonthaburi 11140, Thailand",
+    "place_id": "ChIJwbewFNyR4jAR2H8GaX5jCbI",
+    "provider": "google"
+  },
+  "f481f91b68c092eeb100c3fc44326b5260ac1949": {
+    "lat": 13.6795601,
+    "lng": 100.4352989,
+    "formatted_address": "104, 270 Soi Ekkachai 56, Khlong Bang Phran, Khet Bang Bon, Krung Thep Maha Nakhon 10150, Thailand",
+    "place_id": "ChIJnzgLss694jARLM9w4dqS1GU",
+    "provider": "google"
+  },
+  "db8a34f5de7114b1cd242d6bf89b5eb6bad82800": {
+    "lat": 13.8328813,
+    "lng": 100.6462978,
+    "formatted_address": "3 Soi Nuan Chan 56, Khwaeng Nuanchan, Khet Bueng Kum, Krung Thep Maha Nakhon 10230, Thailand",
+    "place_id": "ChIJyf-CiJljHTERiwzcrrVJfv4",
+    "provider": "google"
+  },
+  "72ee28974be7ff65f67f43e27ecb140b723b5bc5": {
+    "lat": 13.5430043,
+    "lng": 100.5726014,
+    "formatted_address": "GHVF+625, Laem Fa Pha, Phra Samut Chedi District, Samut Prakan 10290, Thailand",
+    "place_id": "ChIJiUaxblOm4jARaFslVZfnw98",
+    "provider": "google"
+  },
+  "2e078b6529f1b4f8eab399756563d5bc87e52199": {
+    "lat": 13.9734238,
+    "lng": 100.6827365,
+    "formatted_address": "18 37 ม.6, Tambon Lat Sawai, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand",
+    "place_id": "ChIJAVPFWWp_HTERpnn8_YjTH4Y",
+    "provider": "google"
+  },
+  "5edcfdf4789f0147577c48d18b2bd55c48ff59f0": {
+    "lat": 14.8992269,
+    "lng": 101.9015507,
+    "formatted_address": "Na Klang, Sung Noen District, Nakhon Ratchasima 30380, Thailand",
+    "place_id": "ChIJh83uxOSvHjERRsTOzZpPWhc",
+    "provider": "google"
+  },
+  "405e12d62123cc771667ca39a509ef5b89f53b87": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "e805435a6eaf81442d332a93a925ca236f656ac7": {
+    "lat": 13.840667,
+    "lng": 100.3081827,
+    "formatted_address": "R8R5+777, Khlong Yong, Phutthamonthon District, Nakhon Pathom 73170, Thailand",
+    "place_id": "ChIJtTFh6euT4jAR_TzTLytNfGE",
+    "provider": "google"
+  },
+  "646b58ea18ae874ee34197d9ae3ed1cb8a812085": {
+    "lat": 13.9323927,
+    "lng": 100.4008283,
+    "formatted_address": "บางบัวทอง 127 หมู่ 3 Bang Kruai - Sai Noi Rd, Tambon Bang Bua Thong, Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand",
+    "place_id": "ChIJp_zg_2uP4jARb3r02l8-OIU",
+    "provider": "google"
+  },
+  "bebf11eba6161293a212fcffa42bec6bc68ac57b": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "a32040e4d6caf343d4d006c14bdbfa9e423695a5": {
+    "lat": 13.7267238,
+    "lng": 100.5271765,
+    "formatted_address": "152/4-7 Si Lom Rd, Khwaeng Suriya Wong, Khet Bang Rak, Krung Thep Maha Nakhon 10500, Thailand",
+    "place_id": "ChIJK1_rJtOY4jARlI9sYo7H3nE",
+    "provider": "google"
+  },
+  "544976d39a3814dade5ce78d8dcd6096e96d5b99": {
+    "lat": 13.6833152,
+    "lng": 100.635951,
+    "formatted_address": "บางจาก 1 Soi Muban Piti, Khwaeng Bang Chak, Khet Phra Khanong, Krung Thep Maha Nakhon 10260, Thailand",
+    "place_id": "ChIJhU-CotlfHTERFL5wxcCMYxE",
+    "provider": "google"
+  }
+}

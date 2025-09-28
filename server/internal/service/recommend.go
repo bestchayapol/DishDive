@@ -13,4 +13,5 @@ type RecommendService interface {
 	GetDishReviewPage(dishID uint) (dtos.DishReviewPageResponse, error)
 	SubmitReview(req dtos.SubmitReviewRequest) (dtos.SubmitReviewResponse, error)
 	GetRecommendedDishes(userID uint, resID *uint) ([]dtos.RestaurantMenuItemResponse, error)
+	HasReviewExtract(sourceID uint, sourceType string) (bool, error)
 }

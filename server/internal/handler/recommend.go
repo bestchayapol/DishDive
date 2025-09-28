@@ -3,6 +3,8 @@ package handler
 import (
 	"strconv"
 
+	"os"
+
 	"github.com/bestchayapol/DishDive/internal/dtos"
 	"github.com/bestchayapol/DishDive/internal/service"
 	"github.com/gofiber/fiber/v2"
@@ -97,6 +99,38 @@ func (h *RecommendHandler) GetRecommendedDishes(c *fiber.Ctx) error {
 	resp, err := h.recommendService.GetRecommendedDishes(uint(userID), resID)
 	if err != nil {
 		return err
+	}
+	return c.JSON(resp)
+}
+
+// Check if a review extract exists for a given review_id
+func (h *RecommendHandler) GetReviewExtractStatus(c *fiber.Ctx) error {
+	id, err := strconv.Atoi(c.Query("review_id", ""))
+	if err != nil || id <= 0 {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "missing or invalid review_id"})
+	}
+	found, err := h.recommendService.HasReviewExtract(uint(id), "user")
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+	return c.JSON(dtos.ReviewExtractStatusResponse{ReviewID: uint(id), SourceType: "user", Found: found})
+}
+
+// Return selected environment variables (masked) to verify server config
+func (h *RecommendHandler) GetEnvStatus(c *fiber.Ctx) error {
+	mask := func(s string) string {
+		if len(s) <= 6 {
+			return "***"
+		}
+		return s[:3] + "***" + s[len(s)-3:]
+	}
+	resp := fiber.Map{
+		"PG_HOST": os.Getenv("PG_HOST"),
+		"PG_PORT": os.Getenv("PG_PORT"),
+		"PG_USER": os.Getenv("PG_USER"),
+		"PG_DATABASE": os.Getenv("PG_DATABASE"),
+		"OPENAI_API_KEY": mask(os.Getenv("OPENAI_API_KEY")),
+		"PYTHON_EXEC": os.Getenv("PYTHON_EXEC"),
 	}
 	return c.JSON(resp)
 }
