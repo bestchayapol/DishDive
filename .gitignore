@@ -41,3 +41,4 @@ llm_processing/__pycache__/utils.cpython-38.pyc
 llm_processing/__pycache__/config.cpython-38.pyc
 llm_processing/__pycache__/db.cpython-38.pyc
 server/.env
+.cache/geocode_cache.json

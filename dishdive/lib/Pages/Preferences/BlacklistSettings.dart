@@ -184,7 +184,11 @@ class _SetBlackState extends State<SetBlack> {
         });
       }
 
-      final requestData = {'settings': settingsUpdates};
+      final Map<String, dynamic> requestData = {
+        'settings': settingsUpdates,
+        'flavor_en_blacklisted': selectedKeywords['flavor']!.toList(),
+        'cost_en_blacklisted': selectedKeywords['cost']!.toList(),
+      };
 
       final response = await dio.post(
         ApiConfig.updateUserSettingsEndpoint(userId),

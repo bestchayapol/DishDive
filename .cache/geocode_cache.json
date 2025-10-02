@@ -3484,5 +3484,131 @@
     "formatted_address": "บางจาก 1 Soi Muban Piti, Khwaeng Bang Chak, Khet Phra Khanong, Krung Thep Maha Nakhon 10260, Thailand",
     "place_id": "ChIJhU-CotlfHTERFL5wxcCMYxE",
     "provider": "google"
+  },
+  "fb12155d75599ff76dd04488b8ea47740ecb8468": {
+    "lat": 8.539451099999999,
+    "lng": 99.5909956,
+    "formatted_address": "Thung Na Mai, Phipun District, Nakhon Si Thammarat 80270, Thailand",
+    "place_id": "ChIJ18oO4n-3UzARVtCKGbHyuj0",
+    "provider": "google"
+  },
+  "290f22a269a948ae3d30ce23f26a11c2083108fc": {
+    "lat": 13.6550022,
+    "lng": 100.4429649,
+    "formatted_address": "MC4V+254, Thanon Thakham, Khwaeng Samae Dam, Khet Bang Khun Thian, Krung Thep Maha Nakhon 10150, Thailand",
+    "place_id": "ChIJiaI14Aaj4jARPhLb42WR0xU",
+    "provider": "google"
+  },
+  "5d7e413f07e5a0bd040a15fa94e9188417f8234a": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "5336adff0d1528480f6f0221d31bb16a851bb222": {
+    "lat": 13.7900845,
+    "lng": 100.428953,
+    "formatted_address": "36/238 Soi Mu Ban Muang Phet, Khwaeng Chim Phli, Khet Taling Chan, Krung Thep Maha Nakhon 10170, Thailand",
+    "place_id": "ChIJQe6edjKR4jARpYSpSoP4kIw",
+    "provider": "google"
+  },
+  "eff5c4699952ce7fadb6228e123f79427c9f35ef": {
+    "lat": 13.7184779,
+    "lng": 100.4675947,
+    "formatted_address": "73 ปาก Soi Thoet Thai 47, Khwaeng Pak Khlong Phasi Charoen, Khet Phasi Charoen, Krung Thep Maha Nakhon 10160, Thailand",
+    "place_id": "ChIJT3ZAob-Z4jARZKL_lsJzvVY",
+    "provider": "google"
+  },
+  "322d42864a88f392efe28dd275e1b7857cf873b0": {
+    "lat": 13.5877916,
+    "lng": 100.6576336,
+    "formatted_address": "252 ม.5 Mangkon-Khandi, Tambon Phraeksa, Amphoe Mueang Samut Prakan, Chang Wat Samut Prakan 10280, Thailand",
+    "place_id": "ChIJEzhM2nFfHTER-d3jTiZZmVY",
+    "provider": "google"
+  },
+  "2facf105c4c3b464c09e3217971fd77b7a29bb61": {
+    "lat": 13.8251117,
+    "lng": 100.7592283,
+    "formatted_address": "บ้านเลขที่ 6 5 ซอย ราษฎร์อุทิศ Khwaeng Saen Saep, Khet Min Buri, Krung Thep Maha Nakhon 10510, Thailand",
+    "place_id": "ChIJFchgcwNlHTERW5z694btA-A",
+    "provider": "google"
+  },
+  "ce2d0664cbbcdc746ca1b8d6f668c4f5858932bb": {
+    "lat": 13.7571409,
+    "lng": 100.5099464,
+    "formatted_address": "209 Thanon Chakkraphatdi Phong, Khwaeng Wat Sommanat, Khet Pom Prap Sattru Phai, Krung Thep Maha Nakhon 10100, Thailand",
+    "place_id": "ChIJj6G7lH2Z4jAR9PaLNwRbjus",
+    "provider": "google"
+  },
+  "ad12bab5236b1825c58d9629572ed1f360d9f976": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "c44d1fc83837dc460a0ea4fbed5cfff2241edbea": {
+    "lat": 13.8574768,
+    "lng": 100.6831815,
+    "formatted_address": "135 1 Khu Bon Rd, Khwaeng Bang Chan, Khet Khlong Sam Wa, Krung Thep Maha Nakhon 10510, Thailand",
+    "place_id": "ChIJpZ3EVCJjHTERpjQ9W29ITY8",
+    "provider": "google"
+  },
+  "a4595bd35e093a6339ff5ec264d9b152feb0e68e": {
+    "lat": 13.4684008,
+    "lng": 100.9795556,
+    "formatted_address": "6 หมู่ 8 Tambon Tha Kham, Amphoe Bang Pakong, Chang Wat Chachoengsao 24130, Thailand",
+    "place_id": "ChIJpReBFR5IHTERY3sfZj3GAzc",
+    "provider": "google"
+  },
+  "1d33ea610075acbb6089615635dbe3707e9b3bac": {
+    "lat": 13.7730179,
+    "lng": 100.621654,
+    "formatted_address": "QJFC+6M2, Phlabphla, Wang Thonglang, Bangkok 10312, Thailand",
+    "place_id": "ChIJcSrOUf5hHTER7lQaB6ULAnI",
+    "provider": "google"
+  },
+  "053519301f51b759c55706cb2ec494d3901dcd20": {
+    "lat": 15.870032,
+    "lng": 100.992541,
+    "formatted_address": "Thailand",
+    "place_id": "ChIJsU1CR_eNTTARAuhXB4gs154",
+    "provider": "google"
+  },
+  "b58308f0a730eb3eeaed825f97ddba81ecf9c9a4": {
+    "lat": 13.6616448,
+    "lng": 100.6049395,
+    "formatted_address": "70 Thanon Lasalle, Khwaeng Bang Na, Khet Bang Na, Krung Thep Maha Nakhon 10260, Thailand",
+    "place_id": "ChIJ51meFGqh4jAReaGxA6by4Z4",
+    "provider": "google"
+  },
+  "e3e0e37761d55314f126da833852664262cdb605": {
+    "lat": 13.7116368,
+    "lng": 100.5946034,
+    "formatted_address": "8 Soi Sukhumvit 48, Khwaeng Phra Khanong, Khet Khlong Toei, Krung Thep Maha Nakhon 10110, Thailand",
+    "place_id": "ChIJy37T6hef4jARXBJAwJMx7pM",
+    "provider": "google"
+  },
+  "266229bcf0ba732cba317d9b036c9969ab93de90": {
+    "lat": 13.786517,
+    "lng": 100.5380988,
+    "formatted_address": "200/1 Soi Phibun Watthana 1, Phaya Thai, Khet Phaya Thai, Krung Thep Maha Nakhon 10400, Thailand",
+    "place_id": "ChIJO3XZ_WRhHTERqBiGft_FPoQ",
+    "provider": "google"
+  },
+  "7b86e16a297452aa9ac53192289bb7fa319a7c1b": {
+    "lat": 13.7289902,
+    "lng": 100.5300218,
+    "formatted_address": "9/1 Si Lom Rd, แขวง บางรัก, Khet Bang Rak, Krung Thep Maha Nakhon 10500, Thailand",
+    "place_id": "ChIJz0acViuf4jARXlpi6UYfOoM",
+    "provider": "google"
+  },
+  "79393b0296c4c564cc87f3d7c193c779e8764bfa": {
+    "lat": 13.7802988,
+    "lng": 100.3027753,
+    "formatted_address": "14/15 หมู่6 ตำบลบางกระทึก Amphoe Sam Phran, Chang Wat Nakhon Pathom 73210, Thailand",
+    "place_id": "ChIJ33Fht4eU4jAR4-qwP0RIv3k",
+    "provider": "google"
   }
 }

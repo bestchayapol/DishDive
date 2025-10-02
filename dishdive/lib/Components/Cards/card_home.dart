@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class RestaurantCard extends StatelessWidget {
   final String name;
   final String cuisine;
-  final String distance;
+  final String? distance;
   final String imageUrl;
   final VoidCallback onTap;
 
@@ -11,7 +11,7 @@ class RestaurantCard extends StatelessWidget {
     super.key,
     required this.name,
     required this.cuisine,
-    required this.distance,
+  this.distance,
     required this.imageUrl,
     required this.onTap,
   });
@@ -103,8 +103,8 @@ class RestaurantCard extends StatelessWidget {
                       style: const TextStyle(fontSize: 18, color: Colors.black),
                     ),
                     const SizedBox(height: 2),
-                    Text(
-                      distance,
+                    if (distance != null && distance!.isNotEmpty) Text(
+                      distance!,
                       style: const TextStyle(fontSize: 18, color: Colors.black),
                     ),
                   ],

@@ -16,7 +16,11 @@ func NewFoodRepositoryDB(db *gorm.DB) FoodRepository {
 // RestaurantLocation methods
 func (r *foodRepositoryDB) GetLocationsByRestaurant(resID uint) ([]entities.RestaurantLocation, error) {
 	var locations []entities.RestaurantLocation
-	result := r.db.Where("res_id = ?", resID).Find(&locations)
+	// Only return definite locations: coords present and non-zero, and not the known default centroid
+	result := r.db.Where(
+		"res_id = ? AND latitude IS NOT NULL AND longitude IS NOT NULL AND latitude <> 0 AND longitude <> 0 AND NOT (latitude = ? AND longitude = ?)",
+		resID, 15.870032, 100.992541,
+	).Find(&locations)
 	return locations, result.Error
 }
 
@@ -31,7 +35,12 @@ func (r *foodRepositoryDB) AddOrUpdateLocation(location *entities.RestaurantLoca
 // Restaurant methods
 func (r *foodRepositoryDB) GetAllRestaurants() ([]entities.Restaurant, error) {
 	var restaurants []entities.Restaurant
-	result := r.db.Find(&restaurants)
+	// Only include restaurants that have at least one definite location
+	result := r.db.Model(&entities.Restaurant{}).
+		Select("DISTINCT restaurants.*").
+		Joins("JOIN restaurant_locations rl ON rl.res_id = restaurants.res_id").
+		Where("rl.latitude IS NOT NULL AND rl.longitude IS NOT NULL AND rl.latitude <> 0 AND rl.longitude <> 0 AND NOT (rl.latitude = ? AND rl.longitude = ?)", 15.870032, 100.992541).
+		Find(&restaurants)
 	return restaurants, result.Error
 }
 
@@ -47,8 +56,12 @@ func (r *foodRepositoryDB) GetRestaurantByID(resID uint) (*entities.Restaurant, 
 func (r *foodRepositoryDB) SearchRestaurantsByDish(dishName string, latitude, longitude, radius float64) ([]entities.Restaurant, error) {
 	var restaurants []entities.Restaurant
 	// Example: join dishes and filter by dish name. You can add location filtering later.
-	result := r.db.Joins("JOIN dishes ON dishes.res_id = restaurants.res_id").
+	result := r.db.Model(&entities.Restaurant{}).
+		Select("DISTINCT restaurants.*").
+		Joins("JOIN dishes ON dishes.res_id = restaurants.res_id").
+		Joins("JOIN restaurant_locations rl ON rl.res_id = restaurants.res_id").
 		Where("dishes.dish_name LIKE ?", "%"+dishName+"%").
+		Where("rl.latitude IS NOT NULL AND rl.longitude IS NOT NULL AND rl.latitude <> 0 AND rl.longitude <> 0 AND NOT (rl.latitude = ? AND rl.longitude = ?)", 15.870032, 100.992541).
 		Find(&restaurants)
 	return restaurants, result.Error
 }

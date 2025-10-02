@@ -26,49 +26,6 @@ class CardReviews extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Dish image or grey placeholder
-              Container(
-                height: 180,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.grey[400],
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: dishData.imageLink != null && dishData.imageLink!.isNotEmpty
-                    ? ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Image.network(
-                          dishData.imageLink!,
-                          width: double.infinity,
-                          height: 180,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) {
-                            return Container(
-                              color: Colors.grey[400],
-                              child: const Icon(
-                                Icons.broken_image,
-                                color: Colors.white,
-                                size: 50,
-                              ),
-                            );
-                          },
-                        ),
-                      )
-                    : Container(
-                        decoration: BoxDecoration(
-                          color: Colors.grey[400],
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: const Center(
-                          child: Icon(
-                            Icons.restaurant,
-                            color: Colors.white,
-                            size: 50,
-                          ),
-                        ),
-                      ),
-              ),
-              const SizedBox(height: 8),
               Text(
                 dishData.dishName,
                 style: const TextStyle(
@@ -77,7 +34,7 @@ class CardReviews extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-              const SizedBox(height: 4),
+              const SizedBox(height: 2),
               Text(
                 dishData.resName,
                 style: const TextStyle(

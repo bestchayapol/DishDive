@@ -20,6 +20,7 @@ import (
 
 	"github.com/spf13/viper"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 func main() {
@@ -36,7 +37,16 @@ func main() {
 	)
 	log.Println(dsn)
 
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	// Configure GORM logger to reduce SLOW SQL noise at startup (schema introspection can be slow)
+	gormLogger := logger.New(
+		log.New(os.Stdout, "", log.LstdFlags),
+		logger.Config{
+			SlowThreshold: time.Second,  // only log queries slower than 1s
+			LogLevel:      logger.Error, // log errors only
+			Colorful:      true,
+		},
+	)
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{Logger: gormLogger})
 	if err != nil {
 		panic("❌ Failed to connect to database: " + err.Error())
 	}
@@ -84,7 +94,7 @@ func main() {
 	recommendRepositoryDB := repository.NewRecommendRepositoryDB(db)
 
 	userService := service.NewUserService(userRepositoryDB, recommendRepositoryDB, jwtSecret)
-	foodService := service.NewFoodService(foodRepositoryDB)
+	foodService := service.NewFoodService(foodRepositoryDB, recommendRepositoryDB)
 	recommendService := service.NewRecommendService(foodRepositoryDB, recommendRepositoryDB)
 
 	userHandler := handler.NewUserHandler(userService, jwtSecret, uploadService)

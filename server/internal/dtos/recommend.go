@@ -13,6 +13,11 @@ type KeywordSettingResponse struct {
 
 type BulkUpdateSettingsRequest struct {
 	Settings []KeywordSettingUpdate `json:"settings"`
+	// Optional normalized English selections; when provided, server will expand them
+	FlavorENPreferred   []string `json:"flavor_en_preferred,omitempty"`
+	CostENPreferred     []string `json:"cost_en_preferred,omitempty"`
+	FlavorENBlacklisted []string `json:"flavor_en_blacklisted,omitempty"`
+	CostENBlacklisted   []string `json:"cost_en_blacklisted,omitempty"`
 }
 
 type KeywordSettingUpdate struct {
@@ -23,6 +28,11 @@ type KeywordSettingUpdate struct {
 
 type UserSettingsResponse struct {
 	Keywords []KeywordSettingResponse `json:"keywords"`
+	// Optional normalized selections (English UI options mapped on server)
+	FlavorENPreferred   []string `json:"flavor_en_preferred,omitempty"`
+	CostENPreferred     []string `json:"cost_en_preferred,omitempty"`
+	FlavorENBlacklisted []string `json:"flavor_en_blacklisted,omitempty"`
+	CostENBlacklisted   []string `json:"cost_en_blacklisted,omitempty"`
 }
 
 // Review DTOs
@@ -42,7 +52,7 @@ type SubmitReviewRequest struct {
 }
 
 type SubmitReviewResponse struct {
-	Success bool `json:"success"`
+	Success  bool  `json:"success"`
 	ReviewID *uint `json:"review_id,omitempty"`
 }
 

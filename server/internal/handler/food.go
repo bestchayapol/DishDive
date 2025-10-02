@@ -40,7 +40,35 @@ func (h *FoodHandler) SearchRestaurantsByDish(c *fiber.Ctx) error {
 }
 
 func (h *FoodHandler) GetRestaurantList(c *fiber.Ctx) error {
-	resp, err := h.foodService.GetRestaurantList()
+	var userLat *float64
+	var userLng *float64
+	var radius *float64
+	var userID *uint
+
+	if v := c.Query("user_lat"); v != "" {
+		if f, err := strconv.ParseFloat(v, 64); err == nil {
+			userLat = &f
+		}
+	}
+	if v := c.Query("user_lng"); v != "" {
+		if f, err := strconv.ParseFloat(v, 64); err == nil {
+			userLng = &f
+		}
+	}
+	if v := c.Query("radius_km"); v != "" {
+		if f, err := strconv.ParseFloat(v, 64); err == nil {
+			radius = &f
+		}
+	}
+
+	if v := c.Query("userID"); v != "" {
+		if i, err := strconv.Atoi(v); err == nil && i > 0 {
+			ui := uint(i)
+			userID = &ui
+		}
+	}
+
+	resp, err := h.foodService.GetRestaurantList(userLat, userLng, radius, userID)
 	if err != nil {
 		return err
 	}

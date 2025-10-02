@@ -40,7 +40,7 @@ class ListViewWidget extends StatelessWidget {
         return RestaurantCard(
           name: r["name"]!,
           cuisine: r["cuisine"]!,
-          distance: r["distance"]!,
+          distance: r["distance"],
           imageUrl: r["imageUrl"]!,
           onTap: () {
             Navigator.push(

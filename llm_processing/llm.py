@@ -222,9 +222,15 @@ def gpt35_extract(restaurant, review):
                         return json.dumps(rb, ensure_ascii=False), "budget-rule-based"
                     return "[]", "budget-rule-based-empty"
 
+        # If caller provided a hint dish (from submit flow), lightly include it to aid extraction
+        hint_dish = os.getenv("HINT_DISH_NAME", "").strip()
+        hinted_review = review
+        if hint_dish:
+            hinted_review = f"(dish mentioned: {hint_dish}) " + review
+
         # Avoid Python str.format on template with many JSON braces causing KeyError.
         def _fill(template: str) -> str:
-            return template.replace('{restaurant}', restaurant).replace('{review}', review)
+            return template.replace('{restaurant}', restaurant).replace('{review}', hinted_review)
 
         primary_prompt = _fill(PROMPT_TEMPLATE)
         # Global lightweight rate limit across threads + bounded concurrency

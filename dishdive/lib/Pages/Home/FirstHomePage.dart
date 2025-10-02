@@ -9,7 +9,11 @@ import 'package:dishdive/widgets/modal_filter.dart';
 import 'package:dishdive/components/my_textfield.dart';
 import 'package:dishdive/provider/token_provider.dart';
 import 'dart:async';
+import 'dart:convert';
+import 'package:flutter/foundation.dart' show compute;
+import 'package:dishdive/parsers/restaurant_parsers.dart';
 import 'package:provider/provider.dart';
+import 'package:dishdive/provider/location_provider.dart';
 
 class FirstHomePage extends StatefulWidget {
   const FirstHomePage({super.key});
@@ -28,6 +32,7 @@ class _FirstHomePageState extends State<FirstHomePage>
   List<Map<String, dynamic>> restaurants = [];
   bool isLoadingRestaurants = false;
   bool isSearching = false;
+  CancelToken? _searchCancelToken;
   
   // Debounce timer for search
   Timer? _debounceTimer;
@@ -35,8 +40,11 @@ class _FirstHomePageState extends State<FirstHomePage>
   @override
   void initState() {
     super.initState();
-    fetchUserData();
-    fetchRestaurants();
+    // Defer initial loads until after first frame to keep UI responsive
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      fetchUserData();
+      fetchRestaurants();
+    });
     _tabController = TabController(length: 2, vsync: this);
     
     // Add listener to search controller with proper debouncing
@@ -85,30 +93,25 @@ class _FirstHomePageState extends State<FirstHomePage>
 
     try {
       Dio dio = Dio();
+      final loc = Provider.of<LocationProvider>(context, listen: false);
+      final query = <String, dynamic>{};
+      if (loc.hasLocation) {
+        query['user_lat'] = loc.latitude;
+        query['user_lng'] = loc.longitude;
+        // Optionally set a default radius (e.g., 25km)
+        query['radius_km'] = 25;
+      }
       final response = await dio.get(
         ApiConfig.getRestaurantListEndpoint,
+        queryParameters: query,
         options: Options(headers: ApiConfig.authHeaders(token)),
       );
 
       if (response.statusCode == 200) {
-        final List<dynamic> restaurantData = response.data;
+        final parsed = await compute(parseRestaurantList, jsonEncode(response.data));
+        if (!mounted) return;
         setState(() {
-          restaurants = restaurantData.map((restaurant) {
-            final locations = restaurant['locations'] as List? ?? [];
-            final firstLocation = locations.isNotEmpty ? locations.first : null;
-            
-            return {
-              'id': restaurant['res_id'],
-              'name': restaurant['res_name'] ?? 'Unknown Restaurant',
-              'cuisine': restaurant['cuisine'] ?? 'Mixed',
-              'distance': '${locations.isNotEmpty ? '0.5' : '0.0'} km away', // Placeholder since distance calculation needs user location
-              'imageUrl': restaurant['image_link'] ?? '',
-              'locations': locations,
-              // Extract coordinates from first location for map display
-              'lat': firstLocation?['latitude']?.toDouble(),
-              'lng': firstLocation?['longitude']?.toDouble(),
-            };
-          }).toList();
+          restaurants = parsed;
           isLoadingRestaurants = false;
         });
       }
@@ -137,32 +140,27 @@ class _FirstHomePageState extends State<FirstHomePage>
     });
 
     try {
+      _searchCancelToken?.cancel("new search");
+      _searchCancelToken = CancelToken();
       Dio dio = Dio();
+      final loc = Provider.of<LocationProvider>(context, listen: false);
+      final payload = {
+        'dish_name': query,
+        if (loc.hasLocation) 'latitude': loc.latitude,
+        if (loc.hasLocation) 'longitude': loc.longitude,
+      };
       final response = await dio.post(
         ApiConfig.searchRestaurantsByDishEndpoint,
-        data: {'dish_name': query},
+        data: payload,
         options: Options(headers: ApiConfig.authHeaders(token)),
+        cancelToken: _searchCancelToken,
       );
 
       if (response.statusCode == 200) {
-        final List<dynamic> searchResults = response.data;
+        final parsed = await compute(parseSearchResults, jsonEncode(response.data));
+        if (!mounted) return;
         setState(() {
-          restaurants = searchResults.map((restaurant) {
-            final location = restaurant['location'] ?? {};
-            
-            return {
-              'id': restaurant['res_id'],
-              'name': restaurant['res_name'] ?? 'Unknown Restaurant',
-              'cuisine': restaurant['cuisine'] ?? 'Mixed',
-              'distance': '${restaurant['distance']?.toStringAsFixed(1) ?? '0.0'} km away',
-              'imageUrl': restaurant['image_link'] ?? '',
-              'location': location,
-              'locations': [location], // Convert single location to array format for consistency
-              // Extract coordinates for map display
-              'lat': location['latitude']?.toDouble(),
-              'lng': location['longitude']?.toDouble(),
-            };
-          }).toList();
+          restaurants = parsed;
           isSearching = false;
         });
       }
@@ -188,6 +186,7 @@ class _FirstHomePageState extends State<FirstHomePage>
   void dispose() {
     _tabController.dispose();
     _searchController.dispose();
+    _searchCancelToken?.cancel("dispose");
     _debounceTimer?.cancel(); // Cancel timer on dispose
     super.dispose();
   }

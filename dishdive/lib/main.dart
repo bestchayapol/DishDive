@@ -6,6 +6,7 @@ import 'package:dishdive/welcome.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:dishdive/provider/location_provider.dart';
 
 void main() {
   runApp(
@@ -13,6 +14,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (context) => TokenProvider()),
         ChangeNotifierProvider(create: (context) => WelcomeProvider()),
+        ChangeNotifierProvider(create: (context) => LocationProvider()),
       ],
       child: const MainApp(),
     ),
@@ -46,13 +48,17 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
-  Position? _currentPosition;
 
   @override
   void initState() {
     super.initState();
-    Provider.of<WelcomeProvider>(context, listen: false).checkWelcomeStatus();
-    Provider.of<TokenProvider>(context, listen: false).loadToken();
+    // Defer async initialization until after first frame to keep UI thread responsive
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Provider.of<WelcomeProvider>(context, listen: false).checkWelcomeStatus();
+      await Provider.of<TokenProvider>(context, listen: false).loadToken();
+      // Get user location after first frame
+      await _getLocation();
+    });
   }
 
   Future<void> _getLocation() async {
@@ -68,9 +74,11 @@ class _MainAppState extends State<MainApp> {
 
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
-    setState(() {
-      _currentPosition = position;
-    });
+    // Share to provider for use across app (Map view, API calls)
+    if (mounted) {
+      Provider.of<LocationProvider>(context, listen: false)
+          .setLocation(position.latitude, position.longitude);
+    }
 
     // Send location to backend
     // Example using Dio:

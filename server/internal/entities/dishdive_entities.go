@@ -17,8 +17,6 @@ type Restaurant struct {
 	ResCuisine     *string `gorm:"column:res_cuisine;size:100" json:"res_cuisine,omitempty"`
 	ResRestriction *string `gorm:"column:res_restriction;size:100" json:"res_restriction,omitempty"`
 	MenuSize       int     `gorm:"column:menu_size" json:"menu_size"`
-	UsableRev      int     `gorm:"column:usable_rev" json:"usable_rev"`
-	TotalRev       int     `gorm:"column:total_rev" json:"total_rev"`
 }
 
 func (Restaurant) TableName() string {

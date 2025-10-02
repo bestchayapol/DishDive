@@ -2,6 +2,7 @@ import json
 import re
 import time
 from typing import List, Dict, Optional
+import os
 
 # Prefilter keyword sets
 GENERIC_KWS = set([
@@ -115,6 +116,23 @@ def extract_dishes_rule_based(text: str) -> List[str]:
 
 
 def build_fallback_entries(restaurant: str, review: str) -> List[Dict]:
+    # First preference: explicit hint from submit flow (dish_id -> dish_name)
+    hint_name = os.getenv("HINT_DISH_NAME", "").strip()
+    hint_id = os.getenv("HINT_DISH_ID", "").strip()
+    if hint_name or hint_id:
+        d = hint_name or (f"dish_id:{hint_id}" if hint_id else None)
+        if d:
+            return [{
+                "restaurant": restaurant,
+                "dish": d,
+                "cuisine": "thai",
+                "restriction": None,
+                "sentiment": {"positive": [], "negative": []},
+                "_hints": {
+                    "dish_id": int(hint_id) if hint_id.isdigit() else None
+                }
+            }]
+    # Otherwise, fall back to rule-based detection over the review text
     dishes = extract_dishes_rule_based(review)
     if not dishes:
         return []
@@ -163,7 +181,7 @@ class TTLCache:
 # ---------------- Dish name validation heuristics -----------------
 
 INGREDIENT_ROOTS = set([
-    "กุ้ง","หมึก","ปลาหมึก","หมู","ไก่","เนื้อ","ปลา","ปลากะพง","ปลาคัง","ข้าว","วุ้นเส้น","เต้าหู้","กระดูกหมู","ปีกไก่","คอหมู","ก้อย","ต้มยำ","ลาบ","ยำ","ผัด","แกง","ซุป","ซอสมะขาม","ปลาหมึกนึ่งมะนาว","ข้าวผัด","กุ้งเผา","ต้มยำกุ้ง","ลาบปลาหมึก","ยำวุ้นเส้นรวมมิตร"
+    "กุ้ง","หมึก","ปลาหมึก","หมู","ไก่","เนื้อ","ปลา","ปลากะพง","ปลาคัง","ข้าว","วุ้นเส้น","เต้าหู้","กระดูกหมู","ปีกไก่","คอหมู","ก้อย","ต้มยำ","ลาบ","ยำ","ผัด","แกง","ซุป","ตำ","ซอสมะขาม","ปลาหมึกนึ่งมะนาว","ข้าวผัด","กุ้งเผา","ต้มยำกุ้ง","ลาบปลาหมึก","ยำวุ้นเส้นรวมมิตร"
 ])
 
 INVALID_DISH_TOKENS = set([

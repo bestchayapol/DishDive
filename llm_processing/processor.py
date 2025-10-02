@@ -237,7 +237,14 @@ def process_rows(df: pd.DataFrame, cfg: Config, db: DB, logger):
             for fut in as_completed(futures):
                 res = fut.result()
                 results.append(res)
-                buffer.append(res)
+                # Only enqueue for DB if Extracted JSON has at least one valid dish object
+                try:
+                    ej = res.get("Extracted JSON", "")
+                    arr = json.loads(ej) if isinstance(ej, str) and ej.strip() else []
+                    if isinstance(arr, list) and any(isinstance(o, dict) and is_valid_dish_name(str(o.get("dish",""))) for o in arr):
+                        buffer.append(res)
+                except Exception:
+                    pass
                 if len(buffer) >= 1000 and db.writes_enabled():
                     try:
                         db.upsert_review_extracts(buffer)
@@ -355,7 +362,7 @@ def process_rows(df: pd.DataFrame, cfg: Config, db: DB, logger):
     except Exception as e:
         logger.warning("Failed to write acceptance_summary.json: %s", e)
 
-    # final DB flush
+    # final DB flush (buffer only contains accepted rows)
     if buffer and db.writes_enabled():
         try:
             db.upsert_review_extracts(buffer)

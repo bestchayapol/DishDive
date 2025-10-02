@@ -3,6 +3,8 @@ import 'package:dishdive/Pages/Auth/login.dart';
 import 'package:dishdive/Pages/Auth/register.dart';
 import 'package:dishdive/Utils/color_use.dart';
 import 'package:dishdive/components/my_button.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart' show defaultTargetPlatform, TargetPlatform, kIsWeb;
 import 'package:dishdive/widgets/BackgroundCircle.dart';
 
 class Welcome extends StatelessWidget {
@@ -12,6 +14,21 @@ class Welcome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String _resolveBaseUrl() {
+      const envBase = String.fromEnvironment('BACKEND_BASE');
+      if (envBase.isNotEmpty) return envBase;
+      if (kIsWeb) {
+        // On web dev, the origin is the Flutter dev server (e.g., :46920).
+        // Default to the Go backend port instead; override with BACKEND_BASE when needed.
+        return 'http://localhost:8080';
+      }
+      if (defaultTargetPlatform == TargetPlatform.android) {
+        // Android emulator maps host loopback to 10.0.2.2
+        return 'http://10.0.2.2:8080';
+      }
+      // iOS simulator / desktop
+      return 'http://localhost:8080';
+    }
     return Scaffold(
       backgroundColor: colorUse.primaryColor,
       body: Column(
@@ -109,6 +126,8 @@ class Welcome extends StatelessWidget {
               borderRadius: 10,
             ),
           ),
+          const SizedBox(height: 10),
+          // ...existing code...
         ],
       ),
     );

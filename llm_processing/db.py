@@ -88,7 +88,10 @@ class DB:
 
     def ensure_table(self):
         if not self.is_available():
-            self.logger.warning("Postgres not reachable; skipping table init.")
+            self.logger.warning(
+                "Postgres not reachable; skipping table init. host=%s db=%s user=%s port=%s",
+                self.cfg.pg_host, self.cfg.pg_database, self.cfg.pg_user, self.cfg.pg_port,
+            )
             return
         ddl = """
         CREATE TABLE IF NOT EXISTS review_extracts (
@@ -122,10 +125,12 @@ class DB:
             env_st = _os.environ.get("SOURCE_TYPE")
             if env_st:
                 source_type = env_st
+            allow_empty = _os.environ.get("ALLOW_EMPTY_INSERT", "0").strip().lower() in ("1","true","yes")
         except Exception:
-            pass
+            allow_empty = False
         rows = []
         skipped_filtered = 0
+        skipped_empty = 0
         offset = getattr(self.cfg, 'source_id_offset', 0)
         for r in results:
             try:
@@ -147,15 +152,22 @@ class DB:
             except Exception:
                 arr = []
             if not arr:
-                skipped_filtered += 1
-                continue
-            filtered_json = json.dumps(arr, ensure_ascii=False)
+                # Do NOT insert empty arrays unless explicitly allowed via ALLOW_EMPTY_INSERT
+                if allow_empty:
+                    filtered_json = "[]"
+                else:
+                    skipped_empty += 1
+                    continue
+            else:
+                filtered_json = json.dumps(arr, ensure_ascii=False)
             # Apply configurable source_id offset (does not alter rev_ext_id sequencing)
             adj_source_id = int(rn) + offset
             rows.append((adj_source_id, source_type, filtered_json))
         if not rows:
             if skipped_filtered:
                 self.logger.info("DB upsert skipped %s rows after filter (เมนูรวม)", skipped_filtered)
+            if skipped_empty:
+                self.logger.info("DB upsert skipped %s rows with empty extracts ([])", skipped_empty)
             return 0
 
         base = self.get_max_rev_ext_id()
@@ -180,8 +192,17 @@ class DB:
                 )
             c.commit()
 
-        if skipped_filtered:
+        # Always report inserts
+        try:
+            sample_sid, sample_st, sample_json = rows[0]
+        except Exception:
+            sample_sid, sample_st, sample_json = None, source_type, None
+        self.logger.info(
+            "DB upsert inserted %s rows into review_extracts (source_type=%s, sample source_id=%s)",
+            len(values_with_ids), source_type, sample_sid,
+        )
+        if skipped_filtered or skipped_empty:
             self.logger.info(
-                "DB upsert inserted %s rows; skipped %s filtered", len(values_with_ids), skipped_filtered
+                "DB upsert skipped filtered=%s empty=%s", skipped_filtered, skipped_empty,
             )
         return len(values_with_ids)

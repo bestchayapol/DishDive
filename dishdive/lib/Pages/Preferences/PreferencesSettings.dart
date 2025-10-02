@@ -185,7 +185,11 @@ class _SetPrefState extends State<SetPref> {
         });
       }
 
-      final requestData = {'settings': settingsUpdates};
+      final Map<String, dynamic> requestData = {
+        'settings': settingsUpdates,
+        'flavor_en_preferred': selectedKeywords['flavor']!.toList(),
+        'cost_en_preferred': selectedKeywords['cost']!.toList(),
+      };
 
       final response = await dio.post(
         ApiConfig.updateUserSettingsEndpoint(userId),

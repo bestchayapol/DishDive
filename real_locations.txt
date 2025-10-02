@@ -1,0 +1,434 @@
+1	ครัวประกายลาบยโส	5	ครัวประกายลาบยโส	30 Tambon Bueng Kham Phroi, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand	13.9620836,100.7256369
+2	ภิรมย์ชมนา คาเฟ่	6	ภิรมย์ชมนา คาเฟ่	Rural Road Nonthaburi 3017, Tambon Khun Sri, Amphoe Sai Noi, Chang Wat Nonthaburi 11150, Thailand	13.9991774,100.2750076
+4	Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2	7	Zaab Eli (แซ่บอีลี่) – เซ็นทรัล พระราม 2	ศูนย์การค้าเซ็นทรัล พระราม 2 (โซน Tree Chamber ชั้น 1 160 Rama II Rd, Khwaeng Samae Dam, Khet Bang Khun Thian, Krung Thep Maha Nakhon 10150, Thailand	13.6638546,100.4372828
+5	พิกุลทองจิ้มจุ่ม สาขา1	8	พิกุลทองจิ้มจุ่ม สาขา1	642 Thanon Lat Krabang, Khwaeng Lat Krabang, Khet Lat Krabang, Krung Thep Maha Nakhon 10520, Thailand	13.7222448,100.7616985
+6	ร้านตะหลิว	9	ร้านตะหลิว	จอมบึง Tambon Chom Bueng, Amphoe Chom Bueng, Chang Wat Ratchaburi 70150, Thailand	13.62198,99.6050673
+7	โป้ง อาหารป่า	10	โป้ง อาหารป่า	Pa Pong, Sop Moei District, Mae Hong Son 58110, Thailand	18.1010988,98.1447804
+8	เนโกะราเมงไทรน้อย@PARK91	11	เนโกะราเมงไทรน้อย@PARK91	โครงการPARK91 บางบัวทอง เลขที่91 ซ. ปิยะรังสรรค์ หมู่ที่ 1 Tambon Bang Bua Thong, Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand	13.9277973,100.4077824
+10	เล็กโภชนา	13	เล็กโภชนา	G2MV+3Q6, Bo Put, Ko Samui District, Surat Thani 84320, Thailand	9.5326585,100.0443819
+11	ร้านอาหารบ้านนอกบ้านนา	14	ร้านอาหารบ้านนอกบ้านนา	54GV+64, Tha Din Dam, Chai Badan District, Lopburi 15130, Thailand	15.1755147,101.1427759
+12	น้องสตางค์ กุ้งแม่น้ำเผา บางเลน	15	น้องสตางค์ กุ้งแม่น้ำเผา บางเลน	265M+HJV, Bang Phasi, Bang Len District, Nakhon Pathom 73130, Thailand	14.0089973,100.234047
+13	จางวางอิ่ม	16	จางวางอิ่ม	44 Tambon Bang Tanai, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand	13.9166489,100.4906885
+14	ร้านเม้งเจริญโภชนา	17	ร้านเม้งเจริญโภชนา	661 14 Thanon Sathu Pradit, บางโพงพาง Khet Yan Nawa, Krung Thep Maha Nakhon 10120, Thailand	13.681762,100.5316807
+15	ร้านเจ๋ง ครัวชายทะเล	18	ร้านเจ๋ง ครัวชายทะเล	30/2 ซอย หมู่ 4 หมู่บ้านประมง Tambon Phanthai Norasing, Amphoe Mueang Samut Sakhon, Chang Wat Samut Sakhon 74000, Thailand	13.493703,100.387183
+16	ร้านอาหารอีสาน เป็นตาแซ่บ สถานีหลักหก	19	ร้านอาหารอีสาน เป็นตาแซ่บ สถานีหลักหก	22 Phahonyothin 87 Soi 6 Yaek 1/2, Tambon Prachathipat, Amphoe Thanyaburi, Chang Wat Pathum Thani 12130, Thailand	13.9694555,100.6117115
+17	ครัวยุพิน ซีฟู้ด	23	ครัวยุพิน ซีฟู้ด	1075 Bang Khun Thian Road, Khwaeng Tha Kham, Khet Bang Khun Thian, Krung Thep Maha Nakhon 10150, Thailand	13.5708775,100.4214405
+21	Waterside Karaoke Restaurant	27	Waterside Karaoke Restaurant	13 16 Soi Prasert Manutakit 33, Khwaeng Nuanchan, Khet Bueng Kum, Krung Thep Maha Nakhon 10230, Thailand	13.828817,100.6302394
+22	Nonstop Resort & Restaurant	28	Nonstop Resort & Restaurant	หลังหมู่บ้านเอกทรัพย์ Tambon Bang Phriang, Amphoe Bang Bo, Chang Wat Samut Prakan 10560, Thailand	13.5481595,100.7825044
+24	แจ่วแจ๋ว ชาบู (ตรงข้ามพุทธบูชา 43)	30	แจ่วแจ๋ว ชาบู (ตรงข้ามพุทธบูชา 43)	266 2 ถนน พุทธบูชา Khwaeng Bang Mot, Khet Thung Khru, Krung Thep Maha Nakhon 10140, Thailand	13.6501262,100.4826303
+25	กลับนครฯ (ร่มเกล้า)	31	กลับนครฯ (ร่มเกล้า)	1/9 ใร่มเกล้า 21/4 Srinagarindra - Rom Klao Rd, Khwaeng Khlong Sam Prawet, Khet Lat Krabang, Krung Thep Maha Nakhon 10520, Thailand	13.7529736,100.746664
+26	ข้าวต้ม OT	32	ข้าวต้ม OT	209 Thanon Song Prapha, Khwaeng Don Mueang, Khet Don Mueang, Krung Thep Maha Nakhon 10210, Thailand	13.9244718,100.5953652
+28	ไถนา	34	ไถนา	96 หมู่6 ถ. อิสรภาพ บางหลวง Amphoe Mueang Pathum Thani, Chang Wat Pathum Thani 12000, Thailand	14.0181273,100.4854984
+29	สามเสนวิลล่า - ราชพฤกษ์​	35	สามเสนวิลล่า - ราชพฤกษ์​	9 15, Tambon Bang Rak Noi, Amphoe Mueang Nonthaburi, Chang Wat Nonthaburi 11000, Thailand	13.8846067,100.4512516
+30	Wang-Chill	36	Wang-Chill	สค.5036 ต. พันท้ายนรสิงห์, Muang, Chang Wat Samut Sakhon 74000, Thailand	13.4997269,100.3772177
+31	ร้านอาหารแดมพ์ซี่ Dempsey Restaurant	37	ร้านอาหารแดมพ์ซี่ Dempsey Restaurant	368 Kanchanaphisek Rd, Khwaeng Dok Mai, Khet Prawet, Krung Thep Maha Nakhon 10250, Thailand	13.6778461,100.6983843
+33	ข้าวหมกไก่สยาม สวนสมเด็จฯ	39	ข้าวหมกไก่สยาม สวนสมเด็จฯ	46 88 ซอย ตำบลบ้านใหม่ Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand	13.9389694,100.5494117
+34	ยอดลาบเป็ดอุดร (คลอง 4 ลำลูกกา)	40	ยอดลาบเป็ดอุดร (คลอง 4 ลำลูกกา)	Thanon Lam Luk Ka, Tambon Lat Sawai, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand	13.9334479,100.6919466
+36	ครัวสามสมุทร	42	ครัวสามสมุทร	189 Tambon Bang Khu Wat, Amphoe Mueang Pathum Thani, Chang Wat Pathum Thani 12000, Thailand	13.9670805,100.514008
+37	ร้านอาหารป่าริมคลอง	43	ร้านอาหารป่าริมคลอง	Soi Nawong Phattgana 1, Tambon Lak Hok, Amphoe Mueang Pathum Thani, Chang Wat Pathum Thani 12000, Thailand	13.9565305,100.5692869
+38	โคซี่สเปซคาเฟ่	44	โคซี่สเปซคาเฟ่	22, 2 Soi Liap Khlong Song 8, Khwaeng Bang Chan, Khet Khlong Sam Wa, Krung Thep Maha Nakhon 10510, Thailand	13.8582634,100.7031919
+39	โอ๊คแลนด์ คาเฟ่ เอ็กซ์ เรสเทอรองค์	45	โอ๊คแลนด์ คาเฟ่ เอ็กซ์ เรสเทอรองค์	132 ถ. ราชมนตรี Khwaeng Khlong Khwang, Khet Phasi Charoen, Krung Thep Maha Nakhon 10160, Thailand	13.7325022,100.4211048
+40	สไปซี่คัก ริมน้ำ by อำแดงไต้ฝุ่น	46	สไปซี่คัก ริมน้ำ by อำแดงไต้ฝุ่น	160 162 Soi Charan Sanitwong 86/1, Khwaeng Bang Ao, Khet Bang Phlat, Krung Thep Maha Nakhon 10170, Thailand	13.7954672,100.5123047
+41	Nuakak Nawamin 87 - นัวคัก นวมินทร์87	47	Nuakak Nawamin 87 - นัวคัก นวมินทร์87	Soi Muban Thawi Sap 2, Khwaeng Nawamin, Khet Bueng Kum, Krung Thep Maha Nakhon 10240, Thailand	13.7962811,100.6476232
+42	ร้านอาหารญี่ปุ่น นัมบะ756	48	ร้านอาหารญี่ปุ่น นัมบะ756	QHHC+C76, Soi Pracha Songkhro 38, Ratchadaphisek, Khet Din Daeng, Krung Thep Maha Nakhon 10400, Thailand	13.7785285,100.5706461
+43	ร้านป้าสุนทร กุ้งเหยียด	49	ร้านป้าสุนทร กุ้งเหยียด	GGV2+VXR, Na Klua, Phra Samut Chedi District, Samut Prakan 10290, Thailand	13.5447296,100.5023943
+44	ครัวโบราณบันเทิง	50	ครัวโบราณบันเทิง	712 3 Bang Khun Thian Road, Khwaeng Tha Kham, Khet Bang Khun Thian, Krung Thep Maha Nakhon 10150, Thailand	13.5737873,100.4230076
+45	ร้านอาหาร วิน แอนด์ เวฟ	51	ร้านอาหาร วิน แอนด์ เวฟ	เลขที่ 81 หมู่ 23 Soi Thidin Thai, Tambon Bang Phli Yai, Amphoe Bang Phli, Chang Wat Samut Prakan 10540, Thailand	13.5907915,100.6822013
+46	บ้านบนบัว Baan Bon Bua	52	บ้านบนบัว Baan Bon Bua	10 ถ. เลียบคลองบางไทร Tambon Phimonrat, Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand	13.9268884,100.3728408
+47	ครัวเมืองไม้ ใน วู้ดแลนด์เมืองไม้	53	ครัวเมืองไม้ ใน วู้ดแลนด์เมืองไม้	15 1, Tambon Don Faek, Amphoe Nakhon Chai Si, Chang Wat Nakhon Pathom 73120, Thailand	13.858529,100.2188406
+48	ครัวเสือดำ อาหารป่า	54	ครัวเสือดำ อาหารป่า	359 Tambon Laem Fa Pha, Amphoe Phra Samut Chedi, Chang Wat Samut Prakan 10290, Thailand	13.5647401,100.5369946
+49	ร้านอาหารจีน(เสฉวน)(ปิ้งย่างหมาล่า)	55	ร้านอาหารจีน(เสฉวน)(ปิ้งย่างหมาล่า)	Sichuan, China	30.6508899,104.07572
+51	แซ่บวัน รัชดา ซอย 5	57	แซ่บวัน รัชดา ซอย 5	Thanon Ratchadaphisek, Khwaeng Din Daeng, Khet Din Daeng, Krung Thep Maha Nakhon 10400, Thailand	13.7648325,100.56896
+52	โค ลิมิเต็ด สาขาเวลา (หลังสวน)	58	โค ลิมิเต็ด สาขาเวลา (หลังสวน)	Velaa Sindhorn Village 87 Langsuan rd, ซอย, ถ. หลังสวน แขวงลุมพินี เขตปทุมวัน กรุงเทพมหานคร 10330, Thailand	13.7370349,100.5430368
+53	ร้านรสทิพย์ ข้าวขาหมู	59	ร้านรสทิพย์ ข้าวขาหมู	เลขที่ 106 ซอย โพธิ์แก้ว คลองจั่น Khet Bang Kapi, Krung Thep Maha Nakhon 10240, Thailand	13.7992136,100.6357471
+55	บ้านลมโชย	61	บ้านลมโชย	1878, 2 Thanon Phetchaburi, Khwaeng Bang Kapi, Khet Huai Khwang, Krung Thep Maha Nakhon 10310, Thailand	13.7466982,100.5703319
+56	ปลูกกับปรุง ' บ้าน•สวน•ครัว	62	ปลูกกับปรุง ' บ้าน•สวน•ครัว	69/12 Bang Pai Soi 4, Tambon Bang Phai, Amphoe Mueang Nonthaburi, Chang Wat Nonthaburi 11000, Thailand	13.8207916,100.4879687
+57	ครัวปลายทาง	63	ครัวปลายทาง	Thanon Khlong Sapphasamit, Tambon Laem Fa Pha, Amphoe Phra Samut Chedi, Chang Wat Samut Prakan 10290, Thailand	13.5637901,100.5341568
+58	มาลองแด๊ก สาขา ถนน 345	64	มาลองแด๊ก สาขา ถนน 345	11 31 หมู่2 345 Tambon Khlong Khoi, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand	13.9527509,100.4736635
+59	มาลองแด๊ก สาขา ถนน 345 (Malongdag)	65	มาลองแด๊ก สาขา ถนน 345 (Malongdag)	11 31 หมู่2 345 Tambon Khlong Khoi, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand	13.9527509,100.4736635
+60	Naruemon Suki House	66	Naruemon Suki House	241 Soi Phutthabucha 41, Khwaeng Bang Mot, Khet Thung Khru, Krung Thep Maha Nakhon 10140, Thailand	13.6506172,100.4822
+61	แจ่วฮ้อนร้อยเอ็ด​สุนทร	67	แจ่วฮ้อนร้อยเอ็ด​สุนทร	Roi Et, Thailand	15.9032933,103.7289167
+62	ร้านมันส์กุ้ง​ เบียร์การ์เด้น	68	ร้านมันส์กุ้ง​ เบียร์การ์เด้น	20​ ซอยประดิษฐ์มนูธรรม25​ Pradit Manutham Rd, Khwaeng Lat Phrao, Khet Lat Phrao, Krung Thep Maha Nakhon 10230, Thailand	13.8221505,100.6256297
+63	นายแอร์ หมูจุ่มสาขา 1	69	นายแอร์ หมูจุ่มสาขา 1	44 ถนน กัลปพฤกษ์ Khwaeng Bang Khae, Khet Bang Khae, Krung Thep Maha Nakhon 10160, Thailand	13.684878,100.4083801
+64	บ้านเพ็ญ สุกี้&กุ้งอบวุ้นเส้น	70	บ้านเพ็ญ สุกี้&กุ้งอบวุ้นเส้น	49 34 Sai Mai Rd, Khwaeng Sai Mai, Khet Sai Mai, Krung Thep Maha Nakhon 10220, Thailand	13.9211412,100.6772061
+66	กระทะร้อน & สเต็กลุงกว้าง	72	กระทะร้อน & สเต็กลุงกว้าง	1919, ซอย Lat Krabang 13/8, Khwaeng Lat Krabang, Khet Lat Krabang, Krung Thep Maha Nakhon 10520, Thailand	13.7226151,100.7827428
+67	ณ ดอยหนอก - สายไหม • Na Doi Norg - SaiMai	73	ณ ดอยหนอก - สายไหม • Na Doi Norg - SaiMai	Soi Khachon Bun, Khwaeng Sai Mai, Khet Sai Mai, Krung Thep Maha Nakhon 10120, Thailand	13.9212249,100.6483003
+68	Kanika Bar & Restaurant	74	Kanika Bar & Restaurant	87 Tambon Bang Yitho, Amphoe Thanyaburi, Chang Wat Pathum Thani 12130, Thailand	13.9981736,100.684461
+70	ก๋วยเตี๋ยวเรือบัวนา	76	ก๋วยเตี๋ยวเรือบัวนา	18/5 หมู่ที่ 15 Tambon Bueng Kham Phroi, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand	13.9308069,100.7460994
+71	สุกี้ตี๋น้อย บิ๊กซีเพชรเกษม	77	สุกี้ตี๋น้อย บิ๊กซีเพชรเกษม	1759/3 Phet Kasem Rd, Khwaeng Lak Song, Khet Bang Khae, Krung Thep Maha Nakhon 10160, Thailand	13.7076107,100.3823303
+73	ครัวหมอหวัง by บารอกัต	79	ครัวหมอหวัง by บารอกัต	13.85934, 100.85267 Mit Maitri 6, Khwaeng Nong Chok, Khet Nong Chok, Krung Thep Maha Nakhon 10530, Thailand	13.8593319,100.8526389
+74	บางหว้าขาหมู สาขาเอกชัย	80	บางหว้าขาหมู สาขาเอกชัย	18, 28 หมู่4 Thanon Ekkachai, Bang Bon Nuea, Khet Bang Bon, Krung Thep Maha Nakhon 10150, Thailand	13.6572525,100.3954275
+75	บิ๊กบอส เมี่ยงปลาเผา	81	บิ๊กบอส เมี่ยงปลาเผา	P946+C8H, Phet Kasem 77, Khwaeng Nong Khang Phlu, Khet Nong Khaem, Krung Thep Maha Nakhon 10160, Thailand	13.7060531,100.3608741
+76	ร้านอาหาร พาชวนชิม	82	ร้านอาหาร พาชวนชิม	QCM3+73P, Borommaratchachonnani Rd, Khwaeng Sala Thammasop, Khet Thawi Watthana, Krung Thep Maha Nakhon 10170, Thailand	13.7832201,100.4027039
+77	ร้านอาหารบ้านพริกสวน	83	ร้านอาหารบ้านพริกสวน	69/6 ซอย วัดบางค้อ Tambon Bang Muang, Amphoe Bang Yai, Chang Wat Nonthaburi 11140, Thailand	13.8292245,100.410597
+79	The 3 Us ปากเกร็ด	84	The 3 Us ปากเกร็ด	56/93 คลองพระอุดม Tambon Khlong Phra Udom, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand	13.9294252,100.4829403
+80	ยุพาอาหารเวียดนาม	85	ยุพาอาหารเวียดนาม	21/133 ซอย งามวงศ์วาน 47 Thanon Ngam Wong Wan, Khwaeng Thung Song Hong, Khet Lak Si, Krung Thep Maha Nakhon 10210, Thailand	13.8556023,100.5535754
+81	ครัว มานา นาดา	507	ครัว มานา นาดา	ตรงข้าม Soi Pracha Ruam Chai 63, Khwaeng Sai Kong Din Tai, Khet Khlong Sam Wa, Krung Thep Maha Nakhon 10510, Thailand	13.8463079,100.7914133
+82	ร้านอาหารลมพันท้าย	86	ร้านอาหารลมพันท้าย	26/1 ซอย บ้านประมง 3 Tambon Phanthai Norasing, Amphoe Mueang Samut Sakhon, Chang Wat Samut Sakhon 74000, Thailand	13.4987747,100.3553096
+84	ร้านต้นไทร ร้านอาหาร	88	ร้านต้นไทร ร้านอาหาร	หมู่ 4 เลขที่ 134 ระหว่างปั๊มปตทคลองหกและเดอะพอย์ทคอนโด Thanon Rangsit - Nakhon Nayok, Tambon Rangsit, Amphoe Thanyaburi, Chang Wat Pathum Thani 12110, Thailand	14.0258378,100.7469024
+85	ร้านใบตองแกงป่า	89	ร้านใบตองแกงป่า	7/130 Tambon Sai Noi, Amphoe Sai Noi, Chang Wat Nonthaburi 11150, Thailand	13.9500077,100.3535631
+86	ร้านลาบเวียงจันทน์ by กบโปงลางสะออน	90	ร้านลาบเวียงจันทน์ by กบโปงลางสะออน	XJ6V+75F, Khu Khot, Lam Luk Ka District, Pathum Thani 12130, Thailand	13.9606847,100.6429091
+88	Kenshiro Izakaya ( เคนชิโร่ อิซากายะ)	92	Kenshiro Izakaya ( เคนชิโร่ อิซากายะ)	13/24 หมู่13 Tambon Bang Phueng, Krung Thep Maha Nakhon 10130, Thailand	13.6648399,100.5229228
+90	Nakama izakaya	21	Nakama izakaya	29 555 Chaeng Wattana-Parkkred 33, Tambon Ban Mai, Amphoe Pak Kret, Chang Wat Nonthaburi 11220, Thailand	13.9191365,100.5394613
+91	เจ๊ดาวซีฟู้ด อาหารทะเลสดอร่อยร้านแนะนำ ราคาเบาๆ	94	เจ๊ดาวซีฟู้ด อาหารทะเลสดอร่อยร้านแนะนำ ราคาเบาๆ	RMRX+Q29 แขวง บางชัน เขตคลองสามวา บางชัน Khwaeng Bang Chan, คลองสามวา Krung Thep Maha Nakhon 10510, Thailand	13.8418855,100.6976069
+93	ร้านอาหารรสสุคนธ์	96	ร้านอาหารรสสุคนธ์	ถ. ร้านอาหารรสสุคนธ์ Tambon Bang Muang Mai, Amphoe Mueang Samut Prakan, Chang Wat Samut Prakan 10270, Thailand	13.6149624,100.6210871
+94	คุงโภชนากรุงเทพกรีฑา22	97	คุงโภชนากรุงเทพกรีฑา22	244 Soi Krungthep Kritha 22, Thap Chang, Khet Saphan Sung, Krung Thep Maha Nakhon 10240, Thailand	13.740217,100.687147
+95	ร้านอีสานเดิม สุวรรณภูมิ	98	ร้านอีสานเดิม สุวรรณภูมิ	856 5 Thanon Lat Krabang, Khwaeng Lat Krabang, Khet Lat Krabang, Krung Thep Maha Nakhon 10520, Thailand	13.7223435,100.7428564
+96	โซแมก พญาไท	99	โซแมก พญาไท	55 Khwaeng Thanon Phaya Thai, Khet Ratchathewi, Krung Thep Maha Nakhon 10400, Thailand	13.7566826,100.5339977
+97	ร้านอาหารเจ๊จุ๋ม สาขาลูก	100	ร้านอาหารเจ๊จุ๋ม สาขาลูก	WQCP+RXV, Bang Lamung District, Chon Buri 20150, Thailand	12.9221199,100.7874171
+98	ร้านอาหารเจ๊จุ๋ม สาขาลูก (Bang Kachao Restaurant)	101	ร้านอาหารเจ๊จุ๋ม สาขาลูก (Bang Kachao Restaurant)	111 หมู่ 4 33 Thanon Phetchahung, Tambon Bang Kachao, Amphoe Phra Pradaeng, Chang Wat Samut Prakan 10130, Thailand	13.6880096,100.5653807
+99	ก๊วยเตี๋ยวเรือ พ.พวง สาขาตลาดแสงทองพลาซ่า	102	ก๊วยเตี๋ยวเรือ พ.พวง สาขาตลาดแสงทองพลาซ่า	ร้านก๊วยเตี๋ยวเรือ พ.พวง สาขาตลาดแสงทองพลาซ่า บางเสาธง Thepharak Rd, Tambon Bang Sao Thong, Amphoe Bang Sao Thong, Chang Wat Samut Prakan 10560, Thailand	13.5683251,100.8282836
+100	โต้ง บักกุ๊ดเต๋	103	โต้ง บักกุ๊ดเต๋	88/85 ถ. เพิ่มสิน Khwaeng Khlong Thanon, Khet Sai Mai, Krung Thep Maha Nakhon 10220, Thailand	13.9007997,100.6392412
+101	อ่างศิลาบางนา ซีฟู๊ด (ปากซอย หมู่บ้านกฤษดานคร 21)	104	อ่างศิลาบางนา ซีฟู๊ด (ปากซอย หมู่บ้านกฤษดานคร 21)	Bangna - Trad Road Tambon Bang Kaeo, Amphoe Bang Phli, Chang Wat Samut Prakan 20000, Thailand	13.6577639,100.6690993
+102	ส้มตำเด็ด ร้านครกใหญ่ นวลจันทร์	105	ส้มตำเด็ด ร้านครกใหญ่ นวลจันทร์	44 Soi Nuan Chan 44, Khwaeng Nuanchan, Khet Bueng Kum, Krung Thep Maha Nakhon 10240, Thailand	13.8286895,100.6392381
+103	ร้านอาหาร ณ ชมทุ่ง ริมคลอง	106	ร้านอาหาร ณ ชมทุ่ง ริมคลอง	ณ ชมทุ่งริมคลอง Tambon Bang Mae Nang, Amphoe Bang Yai, Chang Wat Nonthaburi 11140, Thailand	13.8660511,100.374593
+104	ร้านอาหาร​เชน ​​(บ้านสวนพุด)	107	ร้านอาหาร​เชน ​​(บ้านสวนพุด)	59 Phutthamonthon Sai 4 Rd, Tambon Salaya, Amphoe Phutthamonthon, Chang Wat Nakhon Pathom 73170, Thailand	13.7817183,100.3281787
+105	ไทบ้านอินดี้สาย4	108	ไทบ้านอินดี้สาย4	Thanon Phutthasakhon, Tambon Suan Luang, Amphoe Krathum Baen, Chang Wat Samut Sakhon 74110, Thailand	13.680777,100.3215185
+106	Palm’s by ครัวสวนปาล์ม	109	Palm’s by ครัวสวนปาล์ม	Soi Ramkhamhaeng 191, Khwaeng Min Buri, Khet Min Buri, Krung Thep Maha Nakhon 10510, Thailand	13.8016034,100.7186899
+107	ครัวศรแดง	110	ครัวศรแดง	39/4 Borommaratchachonnani Rd, Khwaeng Taling Chan, Khet Taling Chan, Krung Thep Maha Nakhon 10170, Thailand	13.7865415,100.4633884
+108	แซ่บสะแแด่ว	111	แซ่บสะแแด่ว	VM5R+GH7, Bang Chan, Khlong Sam Wa, Bangkok 10510, Thailand	13.8587831,100.6914305
+109	แซ่บสะแด่ว	112	แซ่บสะแด่ว	VM5R+GH7, Bang Chan, Khlong Sam Wa, Bangkok 10510, Thailand	13.8587831,100.6914305
+110	ร้านอาหาร ตี้ โซ คูล Tee So Cool Meeting & Restaurant	113	ร้านอาหาร ตี้ โซ คูล Tee So Cool Meeting & Restaurant	168 Tambon Bang Khun Kong, Amphoe Bang Kruai, Chang Wat Nonthaburi 11130, Thailand	13.8238268,100.4453402
+111	ครบรส ลาดปลาดุก	114	ครบรส ลาดปลาดุก	88 19 Tambon Bang Rak Phatthana, Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand	13.9065308,100.4005789
+112	ร้านโพธิ์ทะเล	115	ร้านโพธิ์ทะเล	200 22 หมู่ 1 Soi Thetsaban Bang Pu 74, Tambon Bang Pu Mai, Amphoe Mueang Samut Prakan, Chang Wat Samut Prakan 10280, Thailand	13.53308,100.6176458
+113	ครัวคุณเรศ	116	ครัวคุณเรศ	8/5 Phatthanakan 30, Khwaeng Suan Luang, Khet Suan Luang, Krung Thep Maha Nakhon 10250, Thailand	13.7350457,100.6188287
+118	ครัว 152	121	ครัว 152	49 Soi Wat Welu Wanaram 9, Khwaeng Don Mueang, Khet Don Mueang, Krung Thep Maha Nakhon 10210, Thailand	13.9250894,100.5705278
+119	อาเปาคิตช์	122	อาเปาคิตช์	440 Sukhaphiban 5 Road, Khwaeng Ao Ngoen, Khet Sai Mai, Krung Thep Maha Nakhon 10220, Thailand	13.882744,100.6529597
+120	ร้านข้าวต้มครัวเจ้านาย	123	ร้านข้าวต้มครัวเจ้านาย	Unnamed Road Tambon Bang Chalong, Amphoe Bang Phli, Chang Wat Samut Prakan 10540, Thailand	13.6338612,100.7697056
+121	เคี้ยงเยาวราช บางบัวทอง	124	เคี้ยงเยาวราช บางบัวทอง	196 1 ม.7 Baan Kluay - Sai Noi Rd, Tambon Phimonrat, Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand	13.9383973,100.3648416
+122	ร้านละอองน้ำ	125	ร้านละอองน้ำ	จังหวัดนนทบุรี Tambon Khlong Khoi, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand	13.9852215,100.4005747
+123	ต๊ะต่อนยอน อาหารเหนือ (นวลจันทร์)	126	ต๊ะต่อนยอน อาหารเหนือ (นวลจันทร์)	128/9 Soi Nualchan 36, แขวงนวลจันทร์ เขตบึงกุ่ม กรุงเทพมหานคร 10230, Thailand	13.828721,100.6462369
+124	เมืองลุง หรอยแรง	127	เมืองลุง หรอยแรง	PPJC+3FV, Khlong Song Ton Nun, Lat Krabang, Bangkok 10520, Thailand	13.7302444,100.7211784
+125	สะดวกยำ @พันท้าย สมุทรสาคร	128	สะดวกยำ @พันท้าย สมุทรสาคร	เฟส 7 78/1258 ซอยหมู่บ้านวิเศษสุขนคร Tambon Phanthai Norasing, Amphoe Mueang Samut Sakhon, Chang Wat Samut Sakhon 74000, Thailand	13.5827539,100.3762731
+126	korean Kitchen ปิ้งย่างเกาหลี	129	korean Kitchen ปิ้งย่างเกาหลี	160, 3 Thanon Sukhaphiban 2, Khwaeng Dok Mai, Khet Prawet, Krung Thep Maha Nakhon 10250, Thailand	13.6991182,100.7045205
+127	อิจโจ่เกี๊ยวซ่า (ITCHOGYOZA)	130	อิจโจ่เกี๊ยวซ่า (ITCHOGYOZA)	57, 81-82 ซอย หมู่บ้านบางหลวง Tambon Ban Chang, เมือง, Chang Wat Pathum Thani 12000, Thailand	14.0184872,100.5109773
+128	อิจโจ่เกี๊ยวซ่า	131	อิจโจ่เกี๊ยวซ่า	57, 81-82 ซอย หมู่บ้านบางหลวง Tambon Ban Chang, เมือง, Chang Wat Pathum Thani 12000, Thailand	14.0184872,100.5109773
+129	ร้าน ลึกหน่อย อร่อยแน่	132	ร้าน ลึกหน่อย อร่อยแน่	เลขที่ 21/6 Soi Sakundi 5, Khwaeng Nong Chok, Khet Nong Chok, Krung Thep Maha Nakhon 10530, Thailand	13.8721552,100.8662523
+130	ครัวเมืองชุมแพ	133	ครัวเมืองชุมแพ	Chum Phae, Chum Phae District, Khon Kaen, Thailand	16.5235265,102.0832543
+131	อาอ้วน สเต็ก&ไทยฟู้ด	134	อาอ้วน สเต็ก&ไทยฟู้ด	39 Thanon Chalong Krung, Lam Pla Thio, Khet Lat Krabang, Krung Thep Maha Nakhon 10520, Thailand	13.7459681,100.7930335
+132	ร้านปรุงสารพัด สำนักพระราชวัง	135	ร้านปรุงสารพัด สำนักพระราชวัง	ชั้น 1 อาคาร 605 สำนักพระราชวังสนามเสือป่า Thanon Si Ayutthaya, Khwaeng Dusit, Khet Dusit, Krung Thep Maha Nakhon 10300, Thailand	13.7674582,100.51396
+133	ครัวกระแต	136	ครัวกระแต	6 Soi Ram Intra 5 Yaek 4, Khwaeng Anusawari, Khet Bang Khen, Krung Thep Maha Nakhon 10220, Thailand	13.8711356,100.6172489
+134	ลาบยโส เจ๊ขาวคลอง4	137	ลาบยโส เจ๊ขาวคลอง4	3, 22 หมู่5 Tambon Lam Luk Ka, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12130, Thailand	13.9487873,100.6848512
+135	กะเพรากลางสวน(กะเพราบ้านสวน)	138	กะเพรากลางสวน(กะเพราบ้านสวน)	9 13 หมู่ที่10 Bang Len Soi 21 Tambon Bang Len, Amphoe Bang Yai, Chang Wat Nonthaburi 11140, Thailand	13.8451151,100.4334175
+136	ร้านตำตำ บายตาต้า ธิดาครกทอง	139	ร้านตำตำ บายตาต้า ธิดาครกทอง	Thanon Ratchadaphisek, Khwaeng Din Daeng, Khet Din Daeng, Krung Thep Maha Nakhon 10400, Thailand	13.7629575,100.5640368
+137	มาชิตะGrill กาญจนาภิเษก	140	มาชิตะGrill กาญจนาภิเษก	3 Thanon Kanchanaphisek, Khwaeng Lak Song, Khet Bang Khae, Krung Thep Maha Nakhon 10160, Thailand	13.6770301,100.4061129
+139	หล่อเลี้ยงฟาร์ม Cafe&Cuisine	142	หล่อเลี้ยงฟาร์ม Cafe&Cuisine	89/14 Tambon Huai Phlu, Amphoe Nakhon Chai Si, Chang Wat Nakhon Pathom 73120, Thailand	13.8742624,100.2405681
+140	ห้องอาหารเก็จแก้ว	143	ห้องอาหารเก็จแก้ว	50 833-836 Bond St, Tambon Bang Phut, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand	13.911433,100.5405689
+141	ฝากมารุม สาขา 5 พุทธมณฑลสาย 4	144	ฝากมารุม สาขา 5 พุทธมณฑลสาย 4	111/13 หมู่ 6 ต Tambon Krathum Lom, Amphoe Sam Phran, Chang Wat Nakhon Pathom 73220, Thailand	13.7348482,100.323125
+142	แคทส้มตำ จิ้มจุ่ม อาหารอีสาน บางใหญ่ สาขา 1	145	แคทส้มตำ จิ้มจุ่ม อาหารอีสาน บางใหญ่ สาขา 1	39, 37 บางเลน ซอย 15 Tambon Bang Len, Amphoe Bang Yai, Chang Wat Nonthaburi 11140, Thailand	13.8471406,100.4381573
+143	Wine Port & clubhouse	146	Wine Port & clubhouse	15, 1 Soi Pathum Thani-Sai Nai, Tambon Bang Kha Yaeng, Amphoe Mueang Pathum Thani, Chang Wat Pathum Thani 12000, Thailand	13.9722721,100.5278493
+145	Bungalow River	148	Bungalow River	88 อยู่ด้านหลัง โครงการเดอะศาลายา เลเชอร์ ปาร์ค 8 ถนนศาลายา-บางภาษี Tambon Salaya, Amphoe Phutthamonthon, Chang Wat Nakhon Pathom 73170, Thailand	13.8034566,100.3204215
+146	ร้าน เสบียง กุ้งเผา (คลองโยง) { ปิดทุกวันพระ }	149	ร้าน เสบียง กุ้งเผา (คลองโยง) { ปิดทุกวันพระ }	V75X+6P8, Khlong Yong, Phutthamonthon District, Nakhon Pathom 73170, Thailand	13.858041,100.2993233
+147	ร้าน เสบียง กุ้งเผา (คลองโยง)	150	ร้าน เสบียง กุ้งเผา (คลองโยง)	V75X+6P8, Khlong Yong, Phutthamonthon District, Nakhon Pathom 73170, Thailand	13.858041,100.2993233
+148	ร้าน อาหารบ้านแม่	151	ร้าน อาหารบ้านแม่	72 Thanon Santiuk, Tambon Chang Phueak, Amphoe Mueang Chiang Mai, Chang Wat Chiang Mai 50300, Thailand	18.8037903,98.9724298
+149	ร้านอาหารครัวบ้านใหม่	152	ร้านอาหารครัวบ้านใหม่	8 3, Tambon Ban Mai, Amphoe Bang Yai, Chang Wat Nonthaburi 11140, Thailand	13.8733435,100.3642602
+150	ลายยโส บางนา-ตราด กม.27	153	ลายยโส บางนา-ตราด กม.27	912 Sukhumvit 103 Rd, Bang Na Nuea, Khet Bang Na, Krung Thep Maha Nakhon 10260, Thailand	13.6778038,100.6321167
+151	บ้านระเบียงบึง Restaurant	154	บ้านระเบียงบึง Restaurant	300/203 ถนนเทพรักษ์ ซอย 36 Khwaeng Khlong Thanon, Khet Sai Mai, Krung Thep Maha Nakhon 10220, Thailand	13.8853365,100.6169276
+154	ครัวริมทะเล	157	ครัวริมทะเล	231 ซอย หมู่ 8 Tambon Phanthai Norasing, Amphoe Mueang Samut Sakhon, Chang Wat Samut Sakhon 74000, Thailand	13.4933678,100.3863907
+155	สเต๊กตัวน้ำ โดย ป้าแก้ว คลองหลอด	158	สเต๊กตัวน้ำ โดย ป้าแก้ว คลองหลอด	293 Thanon Somdet Phra Pin Klao, Khwaeng Bang Yi Khan, Khet Bang Phlat, Krung Thep Maha Nakhon 10700, Thailand	13.768313,100.486658
+156	ครัวคุณอิ้น รัชดา32	159	ครัวคุณอิ้น รัชดา32	22 167 Soi Ratchadaphisek 32, Lane 2, Khwaeng Chan Kasem, Khet Chatuchak, Krung Thep Maha Nakhon 10900, Thailand	13.8152816,100.5764047
+158	ร้านอาหารข้าวสุข By flower cafe	161	ร้านอาหารข้าวสุข By flower cafe	223 Soi Sukhumvit 4, Khwaeng Khlong Toei, Khet Khlong Toei, Krung Thep Maha Nakhon 10110, Thailand	13.7346107,100.553249
+159	เตียกุ่ยฮวดก๋วยเตี๋ยวเป็ด บางนาตราด กม.19	162	เตียกุ่ยฮวดก๋วยเตี๋ยวเป็ด บางนาตราด กม.19	บางนาตราด กม Tambon Bang Chalong, Amphoe Bang Phli, Chang Wat Samut Prakan 10540, Thailand	13.6172374,100.7617696
+160	เตียกุ่ยฮวดก๋วยเตี๋ยวเป็ด บางนาตราด กม.19 (Tiaguihuad restaurant)	163	เตียกุ่ยฮวดก๋วยเตี๋ยวเป็ด บางนาตราด กม.19 (Tiaguihuad restaurant)	Bang Na, Bangkok, Thailand	13.663853,100.6132453
+161	Nanoni Italian Fusion	164	Nanoni Italian Fusion	14 บางบัวทอง 3333 หมู่14 ซ. หมู่บ้านบัวทองธานี Tambon Bang Bua Thong, Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand	13.9386134,100.4038767
+162	สิริ ริว่า	165	สิริ ริว่า	117 ซอย นนทบุรี 27/6 Tambon Tha Sai, Amphoe Mueang Nonthaburi, Chang Wat Nonthaburi 11000, Thailand	13.8931214,100.4915652
+163	ปลายนา คาเฟ่ ไทรน้อย	166	ปลายนา คาเฟ่ ไทรน้อย	W8C7+CQ, Thawi Watthana, Sai Noi District, Nonthaburi 11150, Thailand	13.9210748,100.3144358
+164	ศาลาสุขใจ	167	ศาลาสุขใจ	164 หมู่ที่ 2 Sukhumvit Rd, Tambon Bang Pu Mai, Amphoe Mueang Samut Prakan, Chang Wat Samut Prakan 10280, Thailand	13.5133227,100.6540109
+165	ร้านรถเสบียง	168	ร้านรถเสบียง	102/5 Set Siri Rd, Phaya Thai, Khet Phaya Thai, Krung Thep Maha Nakhon 10400, Thailand	13.7787957,100.5301137
+166	Hops and Hope craft bar	169	Hops and Hope craft bar	999/1 ห้องที่ 12 Ram Inthra Rd, แขวง รามอินทรา, Khet Khan Na Yao, Krung Thep Maha Nakhon 10900, Thailand	13.8144513,100.6941591
+167	YONAKA IZAKAYA  ร้านอาหารญี่ปุ่น อิซากายะ ลาดพร้าว	170	YONAKA IZAKAYA  ร้านอาหารญี่ปุ่น อิซากายะ ลาดพร้าว	1652 Lat Phrao 56 Alley, Khwaeng Wang Thonglang, วังทองหลาง Krung Thep Maha Nakhon 10310, Thailand	13.7946512,100.5937589
+168	ละอ่อนน้ำเงี้ยวอาหารเหนือ	171	ละอ่อนน้ำเงี้ยวอาหารเหนือ	199 หลังรองสุดท้าย Sukhaphiban 5 Soi 59, Khwaeng Ao Ngoen, Khet Sai Mai, Krung Thep Maha Nakhon 10220, Thailand	13.9085888,100.668696
+169	ห้องอาหารมาลัย	172	ห้องอาหารมาลัย	54 Soi Ngam Du Phli, Khwaeng Thung Maha Mek, Khet Sathon, Krung Thep Maha Nakhon 10120, Thailand	13.7220145,100.5461887
+170	สวนอาหารซุ้มไผ่ เรโทร บางแวก 83	173	สวนอาหารซุ้มไผ่ เรโทร บางแวก 83	12 ซอยจรัญสนิทวงศ์13 Khwaeng Khlong Khwang, Khet Phasi Charoen, Krung Thep Maha Nakhon 10160, Thailand	13.7411536,100.4200171
+171	ข้าวต้มอันดา ตลาดเรือบิน เด็ดสุดในย่านนี้	174	ข้าวต้มอันดา ตลาดเรือบิน เด็ดสุดในย่านนี้	HPWW+M8C 3 Tambon Bang Pla, Amphoe Bang Phli, Chang Wat Samut Prakan 10540, Thailand	13.5966754,100.7457524
+173	ครัวป้าสวน ชวนแซ่บ อร่อยในตำนาน	176	ครัวป้าสวน ชวนแซ่บ อร่อยในตำนาน	49 หมู่6 ท่าจีน Tambon Tha Chin, เมือง Chang Wat Samut Sakhon 74000, Thailand	13.5427228,100.2424542
+174	เดอะบริค ท่าอิฐ The Brick Tha-it	177	เดอะบริค ท่าอิฐ The Brick Tha-it	Tha it-Saima, Tambon Bang Rak Noi, Amphoe Mueang Nonthaburi, Chang Wat Nonthaburi 11000, Thailand	13.8770955,100.459639
+176	อร่อยวังหิน	179	อร่อยวังหิน	1 Soi Lat Phrao Wang Hin 78, Khwaeng Lat Phrao, Khet Lat Phrao, Krung Thep Maha Nakhon 10230, Thailand	13.8294342,100.5920367
+177	ครัวมุกดาหาร	180	ครัวมุกดาหาร	Mukdahan, Mueang Mukdahan District, Mukdahan 49000, Thailand	16.5632344,104.670443
+178	ทิพวรรณ ร้านอาหารเวียดนาม สาขาบางเขน	181	ทิพวรรณ ร้านอาหารเวียดนาม สาขาบางเขน	251/35 10210 หมู่บ้านถาวรวิลล่า Khwaeng Anusawari, Khet Bang Khen, Krung Thep Maha Nakhon 10220, Thailand	13.8688784,100.5924766
+179	ร้านป้าอู๊ด	182	ร้านป้าอู๊ด	191 Tambon Mueang Phia, Amphoe Ban Phai, Chang Wat Khon Kaen 40110, Thailand	16.0765757,102.6586504
+181	ครัวบ้านอ้อ ราม157	185	ครัวบ้านอ้อ ราม157	291 รามคำแหง 157 สะพานสูง Khet Saphan Sung, Krung Thep Maha Nakhon 10240, Thailand	13.7881917,100.6930734
+182	ร้านอาหารนกนุ่นซีฟูดส์	186	ร้านอาหารนกนุ่นซีฟูดส์	ตลาดทะเลไทย 1/2 หมู่1 Rama II Rd, ตำบลท่าจีน อำเภอเมือง Chang Wat Samut Sakhon 74000, Thailand	13.5501272,100.2570777
+183	ธรรมชาติโอชา	187	ธรรมชาติโอชา	44 2, Tambon Sala Klang, Amphoe Bang Kruai, Chang Wat Nonthaburi 11130, Thailand	13.805823,100.3948251
+186	Madamzabb	190	Madamzabb	371/72 สรณคมน์ 3 แยก 18 Khwaeng Si Kan, Khet Don Mueang, Krung Thep Maha Nakhon 10210, Thailand	13.925518,100.5987247
+187	Absorn Thai Bistro ครัวอัปสรประตูผี	191	Absorn Thai Bistro ครัวอัปสรประตูผี	232 - 240 Mahachai Road Sumranrath 232 Maha Chai Rd, Khwaeng Samran Rat, Khet Phra Nakhon, Krung Thep Maha Nakhon 10200, Thailand	13.7515943,100.5042198
+188	ครัวมัทนา	192	ครัวมัทนา	Soi Bamrung Sin, Khwaeng Lat Phrao, Khet Lat Phrao, Krung Thep Maha Nakhon 10230, Thailand	13.811509,100.609611
+189	ร้านกินกับจาบ้อ	193	ร้านกินกับจาบ้อ	RPGF+QGM, Soi Mu Ban Niran Siri Phase 1, Khwaeng Min Buri, Khet Min Buri, Krung Thep Maha Nakhon 10510, Thailand	13.8269568,100.7237955
+190	แม่ปะดิ ปากหม้อญวนก๋วยจั๊บญวน	194	แม่ปะดิ ปากหม้อญวนก๋วยจั๊บญวน	155/29 ม.4 Tambon Bang Muang, เมือง Chang Wat Samut Prakan 10270, Thailand	13.5940271,100.6354864
+191	ร้านarea9cafeลำลูกกาคลอง7	195	ร้านarea9cafeลำลูกกาคลอง7	39 306 Tambon Bueng Kham Phroi, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand	13.9648215,100.7447006
+193	ครัวมะลิแกงใต้ หรอยจังฮู้	197	ครัวมะลิแกงใต้ หรอยจังฮู้	หมู่6 ตำบลบึงคำพร้อย Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand	13.9340208,100.7272316
+194	ร้านครัวชมสวน	198	ร้านครัวชมสวน	54 5 ซอยกรมประมง Tambon Khok Kham, เมือง Chang Wat Samut Sakhon 74000, Thailand	13.5111747,100.3071533
+196	ข้าวแกงป้าทิน	200	ข้าวแกงป้าทิน	736 ถนนเลียบคลองรังสิต-นครนายก ตำบลประชาธิปัตย์ Amphoe Thanyaburi, Chang Wat Pathum Thani 12130, Thailand	13.9881322,100.6376251
+197	ร้านอาหารเต่าทอง พระสมุทรเจดีย์	201	ร้านอาหารเต่าทอง พระสมุทรเจดีย์	6 Tambon Pak Khlong Bang Pla Kot, Amphoe Phra Samut Chedi, Chang Wat Samut Prakan 10290, Thailand	13.5915977,100.5799953
+198	ร้านโกบู้ รสซิ่ง สาขา1	202	ร้านโกบู้ รสซิ่ง สาขา1	8 ถนน ศรีบูรพา Khwaeng Khlong Chan, Khet Bang Kapi, Krung Thep Maha Nakhon 10240, Thailand	13.7748821,100.6486678
+199	เจ้าสัว69	203	เจ้าสัว69	888 8 ถ. บางบอน 3 Khwaeng Lak Song, Khet Bang Khae, Krung Thep Maha Nakhon 10160, Thailand	13.6878346,100.3826746
+200	ร้านสวนหลังบ้าน (นนทบุรี)​	204	ร้านสวนหลังบ้าน (นนทบุรี)​	ที่อยู่ 57 ต Tambon Rat Niyom, Amphoe Sai Noi, Chang Wat Nonthaburi 11150, Thailand	14.0399047,100.335018
+201	ร้านครัวเรือบิน	205	ร้านครัวเรือบิน	HPWW+Q23, Soi Bangpla 43, Tambon Bang Pla, Amphoe Bang Phli, Chang Wat Samut Prakan 10540, Thailand	13.5968808,100.7450508
+202	เจ้มดเมืองลุง	206	เจ้มดเมืองลุง	60 20 ซอย ลำลูกกา 21 Tambon Khu Khot, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12130, Thailand	13.9414116,100.6461677
+203	ติ้งไท้ฝู ต้นตำรับ • รามคำแหง	207	ติ้งไท้ฝู ต้นตำรับ • รามคำแหง	166 Ramkhamhaeng Rd, Khwaeng Hua Mak, Khet Bang Kapi, Krung Thep Maha Nakhon 10240, Thailand	13.7532229,100.6115779
+204	ติ่งไท้ฝู ต้นตำรับ • รามคำแหง	208	ติ่งไท้ฝู ต้นตำรับ • รามคำแหง	166 Ramkhamhaeng Rd, Khwaeng Hua Mak, Khet Bang Kapi, Krung Thep Maha Nakhon 10240, Thailand	13.7532229,100.6115779
+205	สนุกกินถิ่นสิบสอง	209	สนุกกินถิ่นสิบสอง	10 12 Pracha Samran Rd, Khwaeng Khlong Sip Song, Khet Nong Chok, Krung Thep Maha Nakhon 10530, Thailand	13.9317496,100.8646819
+206	ตำซั่วเส้นสด	210	ตำซั่วเส้นสด	11 หมู่ 2 Soi Tiwanon 45, Tambon Tha Sai, Amphoe Mueang Nonthaburi, Chang Wat Nonthaburi 11000, Thailand	13.8881232,100.5101006
+207	ต๋องริมทาง@สาย4	211	ต๋องริมทาง@สาย4	158 Phutthamonthon Sai 4 Rd, Tambon Krathum Lom, Amphoe Sam Phran, Chang Wat Nakhon Pathom 73220, Thailand	13.7496103,100.3288161
+209	ฟาตินชิ้นสะดุ้ง	508	ฟาตินชิ้นสะดุ้ง	8, 9 Ramkhamhaeng Rd, Rat Phatthana, Khet Saphan Sung, Krung Thep Maha Nakhon 10240, Thailand	13.7923725,100.7007356
+210	ครัวเมืองตรัง นายปืน	213	ครัวเมืองตรัง นายปืน	Mueang Trang District, Trang, Thailand	7.612848599999999,99.6118667
+211	คุณเอียดชาววัง & ANYA Cafe	214	คุณเอียดชาววัง & ANYA Cafe	36/143 ม.9 บางพูด Tambon Bang Phut, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand	13.9152811,100.5226526
+212	โตเกียวชิ อิซากายะ	215	โตเกียวชิ อิซากายะ	Bang Khu Wat, Mueang Pathum Thani District, Pathum Thani 12000, Thailand	13.9634642,100.5137317
+213	โตเกียวชิ อิซากายะ (Tokyoshi Izakaya)	216	โตเกียวชิ อิซากายะ (Tokyoshi Izakaya)	Bang Khu Wat, Mueang Pathum Thani District, Pathum Thani 12000, Thailand	13.9634642,100.5137317
+214	สะไบมอญ	217	สะไบมอญ	172 Soi Hathai Rat 39 Khwaeng Sam Wa Tawan Tok, Khet Khlong Sam Wa, Krung Thep Maha Nakhon 10510, Thailand	13.8865745,100.7082822
+215	สเต็กบางพลู@Little Cafe'บางบัวทอง	218	สเต็กบางพลู@Little Cafe'บางบัวทอง	38 9, Tambon Bang Bua Thong, Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand	13.9742257,100.356312
+216	ร้านอาหารจีน ญ Chay พุทธมณฑลสาย 1	219	ร้านอาหารจีน ญ Chay พุทธมณฑลสาย 1	PCCH+78H, Bang Duan, Phasi Charoen, Bangkok 10160, Thailand	13.7207101,100.4282879
+218	นิยมแซ่บ ณ ศาลายา	221	นิยมแซ่บ ณ ศาลายา	Baromranchonnee, Bang kra tuek, Sam Phran District, Nakhon Pathom 73210, Thailand	13.7866094,100.3071947
+219	ไก่ย่าง สุภาพร	222	ไก่ย่าง สุภาพร	2/25 ท่าข้าม Tambon Yai Cha, Amphoe Sam Phran, Chang Wat Nakhon Pathom 73110, Thailand	13.7207486,100.2564161
+220	ร้านบ้านยายเวียง	223	ร้านบ้านยายเวียง	13 ถนนเลียบคลองพิทยาลงกรณ์ Khwaeng Tha Kham, Khet Bang Khun Thian, Krung Thep Maha Nakhon 10150, Thailand	13.5409014,100.4447106
+222	ร้านข้าวต้มจิดาภา	225	ร้านข้าวต้มจิดาภา	14 12 ซอยพระรามที่2 แยก1 Khwaeng Samae Dam, Khet Bang Khun Thian, Krung Thep Maha Nakhon 10150, Thailand	13.6499297,100.4187492
+224	ร้านยายเดือนเคหะร่มเกล้า	227	ร้านยายเดือนเคหะร่มเกล้า	Thanon Kheha Rom Klao, Krung Thep Maha Nakhon, Thailand	13.764846,100.7251793
+225	ห้องอาหารแพรว Praew Restaurant	228	ห้องอาหารแพรว Praew Restaurant	100/2 Kamphaeng Phet 6 Soi 5 Yaek 4, Khwaeng Thung Song Hong, Khet Lak Si, Krung Thep Maha Nakhon 10210, Thailand	13.8908434,100.5813764
+228	ข้าวแกงใต้ริมน้ำ	231	ข้าวแกงใต้ริมน้ำ	GP6V+CQ9, Bang Pu, Mueang Samut Prakan District, Samut Prakan 10280, Thailand	13.5110426,100.7444909
+229	ครัวลุงพร ป้าหมวย	232	ครัวลุงพร ป้าหมวย	W922+4PW, Bang Khu Rat, Bang Bua Thong District, Nonthaburi 11110, Thailand	13.9003566,100.3518378
+230	TASTY HOUSE ชื่อนี้มีแต่ของอร่อย	233	TASTY HOUSE ชื่อนี้มีแต่ของอร่อย	หมู่บ้านศุภลัยวิวล์ วงแหวน-บางใหญ่ 98/77 ซอย10 Tambon Lam Pho, Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand	13.9520757,100.4278963
+231	โฮงลาบ ลาดกระบัง	234	โฮงลาบ ลาดกระบัง	888 Khwaeng Khum Thong, Khet Lat Krabang, Krung Thep Maha Nakhon 10520, Thailand	13.6959844,100.8553648
+232	ร้านอาหารบ้านณัชชา ริมน้ำท่าจีน นครชัยศรี	235	ร้านอาหารบ้านณัชชา ริมน้ำท่าจีน นครชัยศรี	76, 5, Tambon Khun Kaeo, Amphoe Nakhon Chai Si, Chang Wat Nakhon Pathom 73120, Thailand	13.7822027,100.2134399
+233	ร้านอาหาร บ้านเกาะยอ บางปู	236	ร้านอาหาร บ้านเกาะยอ บางปู	666, Tambon Thai Ban Mai, Amphoe Mueang Samut Prakan, Chang Wat Samut Prakan 10280, Thailand	13.5721349,100.606637
+235	ร้านอาหารใต้เมืองภูเก็ต By.เป้	509	ร้านอาหารใต้เมืองภูเก็ต By.เป้	Mueang Phuket District, Phuket, Thailand	7.8649213,98.3636131
+236	โคตรหมูริมน้ำ	238	โคตรหมูริมน้ำ	เลขที่ 55 10 Tambon Bang Toei, Amphoe Sam Phran, Chang Wat Nakhon Pathom 73210, Thailand	13.7834583,100.2916372
+237	ร้านอาหาร เรือนริมคลอง9	239	ร้านอาหาร เรือนริมคลอง9	คลอง9 ตำบล ลำผักกูด อำเภอธัญบุรี ปทุมธานี 12110, Thailand	14.0345339,100.8004057
+238	อาหารป่าบางเดื่อ	240	อาหารป่าบางเดื่อ	XGJF+CM9, Bang Khayaeng, Mueang Pathum Thani District, Pathum Thani 12000, Thailand	13.9810396,100.5242244
+239	โจ๊กสามย่าน • สรงประภา ดอนเมือง	241	โจ๊กสามย่าน • สรงประภา ดอนเมือง	310 48 Thanon Song Prapha, Khwaeng Si Kan, Khet Don Mueang, Krung Thep Maha Nakhon 10210, Thailand	13.9248179,100.59577
+240	ตลาดชัชวาล คลอง 7	242	ตลาดชัชวาล คลอง 7	99 9, Tambon Bueng Kham Phroi, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand	13.9647148,100.7468138
+241	อ่าวบางปู	243	อ่าวบางปู	GJQ6+QP3, Soi Mu Ban Phanason Villa 12, Tambon Thai Ban, Amphoe Mueang Samut Prakan, Chang Wat Samut Prakan 10280, Thailand	13.5393816,100.6117835
+242	ร้านสูน หมูแดง คลอง7 @ ธัญบุรี รังสิต	244	ร้านสูน หมูแดง คลอง7 @ ธัญบุรี รังสิต	184, 2 หมู่4 Thanon Rangsit - Nakhon Nayok, Tambon Rangsit, Amphoe Thanyaburi, Chang Wat Pathum Thani 12110, Thailand	14.0286165,100.7536824
+243	ร้านข้าวแกงเปิดหม้อ บางขุนเทียน 14	245	ร้านข้าวแกงเปิดหม้อ บางขุนเทียน 14	2, Bang Khun Thian 14, Khwaeng Samae Dam, Khet Bang Khun Thian, Krung Thep Maha Nakhon 10150, Thailand	13.6639019,100.4286942
+244	ครัวบึงพญา	246	ครัวบึงพญา	10/7 คลองสิบสอง Khwaeng Khlong Sip Song, Khet Nong Chok, Krung Thep Maha Nakhon 10530, Thailand	13.8973066,100.8639079
+245	ข้าวต้มปลา โคตรเก๋า หทัยราษฎร์ 37	247	ข้าวต้มปลา โคตรเก๋า หทัยราษฎร์ 37	49 Soi Hathai Rat 37, Khwaeng Sam Wa Tawan Tok, Khet Khlong Sam Wa, Krung Thep Maha Nakhon 10510, Thailand	13.8762543,100.7204317
+246	บ้านหลี ซีฟู้ด	248	บ้านหลี ซีฟู้ด	Song Khlong, Bang Pakong District, Chachoengsao 24130, Thailand	13.4794828,100.8492483
+247	นุ๊ก สดอร่อย ซีฟู้ด อาหารทะเล ย่านบางบัวทอง นนทบุรี	249	นุ๊ก สดอร่อย ซีฟู้ด อาหารทะเล ย่านบางบัวทอง นนทบุรี	20 Thanon Rattanathibet, บางรักใหญ่ Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand	13.8765815,100.4385557
+248	ร้าน มหาแซ่บ	250	ร้าน มหาแซ่บ	57 3, Tambon Khok Krabue, Amphoe Mueang Samut Sakhon, Chang Wat Samut Sakhon 74000, Thailand	13.5926858,100.3416346
+249	พาเลทบาร์	251	พาเลทบาร์	1481 ถ. เจริญกรุง Si Lom, Khet Bang Rak, Krung Thep Maha Nakhon 10500, Thailand	13.719161,100.515462
+251	ครัวพะเยา	253	ครัวพะเยา	55 Sukhaphiban 5 Soi 8/2, Khwaeng Tha Raeng, Khet Bang Khen, Krung Thep Maha Nakhon 10220, Thailand	13.8640042,100.6432508
+252	Guza Drift izakaya/ ร้าน อาหาร ญี่ปุ่น กุซ่าดริฟฟ อิซากายะ สาขาซาฟารีเวิลด์	254	Guza Drift izakaya/ ร้าน อาหาร ญี่ปุ่น กุซ่าดริฟฟ อิซากายะ สาขาซาฟารีเวิลด์	Japan	36.204824,138.252924
+254	อาหารทะเล ซีฟู้ด Tell me cafe & Eatery	255	อาหารทะเล ซีฟู้ด Tell me cafe & Eatery	9, 6 Thanon Ratchaphruek, Tambon Khlong Khoi, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand	13.9560209,100.4587412
+256	ลุงแว่นซีฟู้ด	257	ลุงแว่นซีฟู้ด	999 369 Soi Mu Ban Phanason Villa 12, Tambon Thai Ban, Amphoe Mueang Samut Prakan, Chang Wat Samut Prakan 10280, Thailand	13.5403728,100.6107875
+257	เม้งปูดอง เสรีไทย 27	258	เม้งปูดอง เสรีไทย 27	Thanon Seri Thai, Khwaeng Khlong Kum, Khet Bueng Kum, Krung Thep Maha Nakhon 10240, Thailand	13.7779297,100.6636591
+258	ครัวบ้านพ่อ	259	ครัวบ้านพ่อ	69, Tambon Khun Kaeo, Amphoe Nakhon Chai Si, Chang Wat Nakhon Pathom 73120, Thailand	13.7900346,100.2279275
+259	ซอสามสาย	260	ซอสามสาย	12, 1 Sukhumvit 61, Khwaeng Khlong Tan Nuea, Watthana, Krung Thep Maha Nakhon 10110, Thailand	13.7227643,100.5832934
+260	kabuto22 Japanese restaurant	261	kabuto22 Japanese restaurant	888 Kabuto22 Japanese Restaurant @Syn Space 2, Tambon Bang Pla, Amphoe Bang Phli, Chang Wat Samut Prakan 10540, Thailand	13.5966391,100.7379083
+261	ร้านไอตืม คลองด่าน	262	ร้านไอตืม คลองด่าน	GR4F+R5G, Khlong Dan, Bang Bo District, Samut Prakan 10550, Thailand	13.507068,100.822953
+262	คุ้ง คาแนล คาเฟ่	263	คุ้ง คาแนล คาเฟ่	414 3 ถนนอนามัยงามเจริญ Khwaeng Tha Kham, Khet Bang Khun Thian, Krung Thep Maha Nakhon 10150, Thailand	13.6425699,100.4480143
+263	ภ.คิทเช่น ที่สุดของอบวุ้นเส้น Porkitchen	264	ภ.คิทเช่น ที่สุดของอบวุ้นเส้น Porkitchen	เลขที่ 96 Thanon Srinagarindra, Khwaeng Nong Bon, Khet Prawet, Krung Thep Maha Nakhon 10250, Thailand	13.6885463,100.6465208
+265	ร้านอาหารบ้านดง	266	ร้านอาหารบ้านดง	Ban Dong, Chat Trakan District, Phitsanulok 65170, Thailand	17.3672683,100.5071143
+266	บ้านนี้มีรัก	267	บ้านนี้มีรัก	24 9 Tambon Ratchakrut, Amphoe Mueang Ranong, Chang Wat Ranong 85000, Thailand	9.707061,98.583825
+267	Kwann Restaurant Bangkok	268	Kwann Restaurant Bangkok	73/7-8, 73 Soi Sukhumvit 13, Khwaeng Khlong Toei Nuea, Watthana, Krung Thep Maha Nakhon 10110, Thailand	13.7457913,100.5578836
+268	ร้านส้มตำลาวลำน้ำพอง ไก่บ้านย่างเขาสวนกวาง ใกล้นิด้า	270	ร้านส้มตำลาวลำน้ำพอง ไก่บ้านย่างเขาสวนกวาง ใกล้นิด้า	Nam Phong District, Khon Kaen, Thailand	16.7186177,102.8744945
+269	เอี่ยม โภชนา	271	เอี่ยม โภชนา	215 2-3 Yi Sip Song Karakadakhom 1 Rd, Khwaeng Pom Prap, Khet Pom Prap Sattru Phai, Krung Thep Maha Nakhon 10100, Thailand	13.743442,100.5132799
+270	โจ๊กสามย่าน คลองขวาง	272	โจ๊กสามย่าน คลองขวาง	35/6 ถนนเลี่ยบคลองทวีวัฒนาฝั่งเหนือ ซอยเพรชเกษม69 หนองแขม Khet Nong Khaem, Krung Thep Maha Nakhon 10160, Thailand	13.6876763,100.3642917
+271	345 ห้อยขาริมทุ่ง (ร้านอาหาร&ก๋วยเตี๋ยวเรือ)	273	345 ห้อยขาริมทุ่ง (ร้านอาหาร&ก๋วยเตี๋ยวเรือ)	19, 1, Tambon Khlong Khoi, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand	13.9442936,100.4663428
+272	ครัวคุณอรซีฟู้ด	274	ครัวคุณอรซีฟู้ด	HC9C+R4C, Tha Kham, Bang Khun Thian, Bangkok 10150, Thailand	13.5695589,100.4202714
+274	ข้าวแกงเปิดหม้อ สาขาอ้อมน้อย(สาขาต้นตำหรับ)	276	ข้าวแกงเปิดหม้อ สาขาอ้อมน้อย(สาขาต้นตำหรับ)	68/3 หมู่13 ร้านข้าวแกงเปิดหม้อ ปั๊มปตท ฝั่งขาออก Tambon Om Noi, Amphoe Krathum Baen, Chang Wat Samut Sakhon 74130, Thailand	13.7038133,100.3113759
+275	Elder and Better	277	Elder and Better	29, 2 Thanon Thung Mangkon, Khwaeng Chim Phli, Khet Taling Chan, Krung Thep Maha Nakhon 10170, Thailand	13.7911234,100.4283639
+276	BIG HOUSE (Farm & Cafe & Restaurant) บิ๊กเฮาส์ ฟร์าม คาเฟ่ และ ร้านอาหาร	278	BIG HOUSE (Farm & Cafe & Restaurant) บิ๊กเฮาส์ ฟร์าม คาเฟ่ และ ร้านอาหาร	Hatairat Rd, Tambon Bueng Kham Phroi, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand	13.9196728,100.7144905
+277	ฟอเรสต้า คาเฟ่	279	ฟอเรสต้า คาเฟ่	6 Soi Decha Tungkha 1, Khwaeng Si Kan, Khet Don Mueang, Krung Thep Maha Nakhon 10210, Thailand	13.9367411,100.5851592
+278	แม่กลองหัวปลาหม้อไฟ	280	แม่กลองหัวปลาหม้อไฟ	198 Phran Nok Phutthamonthon Sai 4 Rd, Khwaeng Bang Phrom, Khet Taling Chan, Krung Thep Maha Nakhon 10170, Thailand	13.7547371,100.4215626
+279	ราดหน้านพดลสาย3	281	ราดหน้านพดลสาย3	15 หมู่ 4 Thanon Phutta Monthon Sai 3, Khwaeng Bang Phai, Khet Bang Khae, Krung Thep Maha Nakhon 10160, Thailand	13.730738,100.3636109
+280	ครัวต้นคูณ	282	ครัวต้นคูณ	208 Thanon Prachin-Takham, Tambon Na Muang, Amphoe Mueang Prachin Buri, Chang Wat Prachin Buri 25000, Thailand	14.0557944,101.3787071
+281	SUNTOOB - ซันตุ๊บ (จองล่วงหน้า 24 ชม เท่านั้นทางfacebook)	284	SUNTOOB - ซันตุ๊บ (จองล่วงหน้า 24 ชม เท่านั้นทางfacebook)	Suanyai, Phibun Songkhram 3 Tambon Suan Yai, Amphoe Mueang Nonthaburi, Chang Wat Nonthaburi 11000, Thailand	13.8208491,100.5031031
+282	สปูน เฮ้าส์ ลำลูกกาคลอง 3	285	สปูน เฮ้าส์ ลำลูกกาคลอง 3	6 10, Tambon Lat Sawai, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand	13.9519483,100.6652673
+284	ซ้งเป็ดพะโล้ สายไหม	287	ซ้งเป็ดพะโล้ สายไหม	123 33/1 Soi Sai Mai 33, Khwaeng Sai Mai, Khet Sai Mai, Krung Thep Maha Nakhon 10220, Thailand	13.9216477,100.6539044
+285	บ้านสวนเพลงร้านอาหาร	288	บ้านสวนเพลงร้านอาหาร	เลขที่ 71 Tambon Rangsit, Amphoe Thanyaburi, Chang Wat Pathum Thani 12110, Thailand	14.0228707,100.7444204
+286	ครัวยายติ๋ม	289	ครัวยายติ๋ม	JQ8W+FXF, Sisa Chorakhe Yai, Bang Sao Thong District, Samut Prakan 10540, Thailand	13.6161771,100.797423
+287	เจริญรุ่งเรือง บุฟเฟต์นานาชาติ	290	เจริญรุ่งเรือง บุฟเฟต์นานาชาติ	1023 ห้อง 1-9 อาคาร เอ็ม เอส สยาม ทาวเวอร์ Khwaeng Chong Nonsi, Khet Yan Nawa, Krung Thep Maha Nakhon 10120, Thailand	13.6863396,100.5474499
+289	ครัวแม่ปัญญา	510	ครัวแม่ปัญญา	1/22, ซอยอารีย์ 2 ถนนพลโยธิน สามเสนใน พญาไท Krung Thep Maha Nakhon 10400, Thailand	13.7812225,100.5440072
+290	ข้าวต้ม แม่บังอร	292	ข้าวต้ม แม่บังอร	JQC7+RH2, Bang Chalong, Bang Phli District, Samut Prakan 10540, Thailand	13.6220145,100.7638915
+291	เฮือนดาริกาอาหารเหนือเจียงฮาย	293	เฮือนดาริกาอาหารเหนือเจียงฮาย	Bang Rak Phatthana, Bang Bua Thong District, Nonthaburi 11110, Thailand	13.9023414,100.4290043
+292	สวนอาหารทรงวุฒิ	294	สวนอาหารทรงวุฒิ	37, 15 หมู่ 11 Soi Thetsaban 17, Tambon Lam Luk Ka, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand	13.9352702,100.7498541
+294	ร้านค่าเวลา หลักสี่ New Generetion	296	ร้านค่าเวลา หลักสี่ New Generetion	200/635 อาคาร บุราวรรณ Soi Chang Watthana 10, Khwaeng Thung Song Hong, Khet Lak Si, Krung Thep Maha Nakhon 10210, Thailand	13.8890439,100.5781965
+295	เป็นสุข บาร์ แอนด์ เรสทัวรองท์	297	เป็นสุข บาร์ แอนด์ เรสทัวรองท์	29/48 Tambon Khu Khot, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12130, Thailand	13.9524201,100.6478712
+296	ร้านอาหาร อัล ซาราย	511	ร้านอาหาร อัล ซาราย	4th floor, Bangkok Plaza Building Bangkok General Hospital, Soi Soonvijai 7 Bangkapi Khwaeng Bang Kapi, Khet Huai Khwang, Krung Thep Maha Nakhon 10310, Thailand	13.7483786,100.5839073
+298	ครัว 2 ภาค	299	ครัว 2 ภาค	299, WH7Q+CRG, 1 Thanon Chang Akat Uthit, Khwaeng Don Mueang, Khet Don Mueang, Krung Thep Maha Nakhon 10210, Thailand	13.9134636,100.5893018
+299	วันดีดี คาเฟ่ x เรสเตอร์รองต์	300	วันดีดี คาเฟ่ x เรสเตอร์รองต์	336, ต.บ้านใหม่, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand	13.9357154,100.5574157
+300	ลาซันย่า คอมฟอร์ท ไดน์นิ่ง	301	ลาซันย่า คอมฟอร์ท ไดน์นิ่ง	259 หมู่ที่ 8 ซอย บางด้วน Tambon Bang Duan, Amphoe Mueang Samut Prakan, Chang Wat Samut Prakan 10270, Thailand	13.629288,100.5837778
+301	แซ่บบ้านสวนคาเฟ่	302	แซ่บบ้านสวนคาเฟ่	345 Tambon Lahan, Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand	13.9437757,100.4337305
+303	หมูย่างน้ำผึ้ง แม่สุมณฑา จตุจักร	304	หมูย่างน้ำผึ้ง แม่สุมณฑา จตุจักร	587 โครงการ 22 ซอย 4 /2ตลาดนัด จตุจักร 10 Kamphaeng Phet 2 Rd, Khwaeng Chatuchak, Khet Chatuchak, Krung Thep Maha Nakhon 10900, Thailand	13.7993369,100.5498419
+305	ร้านสายอีสาน	306	ร้านสายอีสาน	ตลาด Thaprong Rd, Tambon Mahachai, เมือง Chang Wat Samut Sakhon 74000, Thailand	13.5558218,100.2756114
+306	ฟาเธอร์ เซย์ เยส	307	ฟาเธอร์ เซย์ เยส	789, 2, Tambon Bang Pu Mai, Amphoe Mueang Samut Prakan, Chang Wat Samut Prakan 10270, Thailand	13.5200097,100.665292
+307	คุ้มพระยา / Braya de Casa	308	คุ้มพระยา / Braya de Casa	64 หมู่ 9 Pracha Samran Rd, Khwaeng Nong Chok, Khet Nong Chok, Krung Thep Maha Nakhon 10530, Thailand	13.8655844,100.8596196
+308	ร้านอาหารเจแจ้ง5	369	ร้านอาหารเจแจ้ง5	Chaengwatthana, Khwaeng Talat Bang Khen, Khet Lak Si, Krung Thep Maha Nakhon 10210, Thailand	13.8776517,100.5755001
+309	ร้านญวน กม.25 (ลูกชายคนโต)	309	ร้านญวน กม.25 (ลูกชายคนโต)	24 15 Soi Ngok Ngoei, Khwaeng Sai Mai, Khet Sai Mai, Krung Thep Maha Nakhon 10220, Thailand	13.9330623,100.6342721
+310	Took Lae Dee Restaurant	310	Took Lae Dee Restaurant	210 Soi Thong Lo 8, Khwaeng Khlong Tan Nuea, Watthana, Krung Thep Maha Nakhon 10110, Thailand	13.7308719,100.5817669
+311	เนื้อตุ๋นนางเลิ้ง	311	เนื้อตุ๋นนางเลิ้ง	11 Soi Nakhon Sawan 2, Khwaeng Wat Sommanat, Khet Pom Prap Sattru Phai, Krung Thep Maha Nakhon 10100, Thailand	13.7589597,100.5113612
+313	ครัวแสงจันทร์ แวะมาหาหน่อย อร่อยแน่	313	ครัวแสงจันทร์ แวะมาหาหน่อย อร่อยแน่	294J+4W8, Lat Lum Kaeo, Lat Lum Kaeo District, Pathum Thani 12140, Thailand	14.0051951,100.382274
+314	ครัวอินทผลัม & ชาอบัย	512	ครัวอินทผลัม & ชาอบัย	ถนน คู้คลองเก้า Khwaeng Khlong Sip, Khet Nong Chok, Krung Thep Maha Nakhon 10530, Thailand	13.8942119,100.7973254
+316	ร้านเด็ด 7 ย่านน้ำ	315	ร้านเด็ด 7 ย่านน้ำ	H9J9+RG4 สค.5021 Tambon Phanthai Norasing, Amphoe Mueang Samut Sakhon, Chang Wat Samut Sakhon 74000, Thailand	13.5819035,100.368914
+317	The Cave หทัยราษฎร์	316	The Cave หทัยราษฎร์	690/1 Thanon Hathai Rat, Khwaeng Bang Chan, Khet Khlong Sam Wa, Krung Thep Maha Nakhon 10510, Thailand	13.8574619,100.7222747
+318	บ้านสวนอิงน้ำ	317	บ้านสวนอิงน้ำ	เลขที่ 13 หมู่ 3 คลองพระอุดม Tambon Khlong Phra Udom, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand	13.9336646,100.4752573
+320	ครัวริมโมงค์	319	ครัวริมโมงค์	245 Phatthanakan 25, Khwaeng Suan Luang, Khet Suan Luang, Krung Thep Maha Nakhon 10250, Thailand	13.7402224,100.6158286
+321	ครัวคุณตั้ม ซีฟู้ดส์​	320	ครัวคุณตั้ม ซีฟู้ดส์​	ร้านครัวคุณตั้ม ซีฟู้ดส์ Tambon Laem Fa Pha, Amphoe Phra Samut Chedi, Chang Wat Samut Prakan 10290, Thailand	13.5142692,100.5303645
+322	Sukigarden	321	Sukigarden	54/15 Moo tee 2 Tambon Bang Khu Wiang, กรุงเทพมหานคร อำเภอบางกรวย นนทบุรี 11130, Thailand	13.8146912,100.4113457
+323	ร้านเล็กพิสดาร	322	ร้านเล็กพิสดาร	6648+FRM, Thanon Suwannason, Tambon Nakhon Nayok, Amphoe Mueang Nakhon Nayok, Chang Wat Nakhon Nayok 26000, Thailand	14.2062134,101.2170361
+324	ร้านครัวลิลเบิร์ด มบ.รัตนาธิเบศร์	323	ร้านครัวลิลเบิร์ด มบ.รัตนาธิเบศร์	8/213 Soi Mu Ban Rattanathibet, Tambon Bang Rak Phatthana, Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand	13.8817826,100.4108389
+325	พวน Puan Thai Home Cook	324	พวน Puan Thai Home Cook	Ongkharak, Bang Pla Ma District, Suphan Buri 72150, Thailand	14.3474803,100.2067501
+326	Yoyak​ ย.ยัก​ษ์​กินผัก​ วังหลัง	325	Yoyak​ ย.ยัก​ษ์​กินผัก​ วังหลัง	320 Thanon Wang Lang, Khwaeng Siriraj, Khet Bangkok Noi, Krung Thep Maha Nakhon 10700, Thailand	13.7544393,100.4865535
+327	ร้านอาหารบ้านแม่คุณ	326	ร้านอาหารบ้านแม่คุณ	18, 3, Tambon Bang Yai, Amphoe Bang Yai, Chang Wat Nonthaburi 11140, Thailand	13.8458734,100.3896035
+328	ไก่ย่างเสือใหญ่ กรุงเทพกรีฑา ซอย 8	327	ไก่ย่างเสือใหญ่ กรุงเทพกรีฑา ซอย 8	150/1 Thanon Krung Thep Kritha, Khwaeng Hua Mak, Khet Bang Kapi, Krung Thep Maha Nakhon 10240, Thailand	13.7438249,100.6529617
+329	มา ดู คลอง Cafe & Restaurant	328	มา ดู คลอง Cafe & Restaurant	147 Soi Nimit Mai 36, Khwaeng Sam Wa Tawan Ok, Khet Khlong Sam Wa, Krung Thep Maha Nakhon 10510, Thailand	13.8815999,100.7396185
+330	ครัวบ้านมะลิ อาหารไทย-ซีฟู้ด ปลาจุ่ม จิ้มจุ่มหมอดิน ข้าวกระเพรา-อาหารจานเดียว	329	ครัวบ้านมะลิ อาหารไทย-ซีฟู้ด ปลาจุ่ม จิ้มจุ่มหมอดิน ข้าวกระเพรา-อาหารจานเดียว	42/10 หมู่ 14 Tambon Bang Kaeo, Amphoe Bang Phli, Chang Wat Samut Prakan 10540, Thailand	13.6584664,100.6801023
+331	The Hope Cafe กรุงเทพกรีฑา	330	The Hope Cafe กรุงเทพกรีฑา	181 10 Thanon Krung Thep Kritha, Khwaeng Hua Mak, Khet Bang Kapi, Krung Thep Maha Nakhon 10240, Thailand	13.748189,100.6557545
+332	เท็นซีซี คอฟฟี่	331	เท็นซีซี คอฟฟี่	Muangthongthani, Tambon Ban Mai, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand	13.9255741,100.5368673
+333	เมืองเกินร้อย (ศาลายา)	269	เมืองเกินร้อย (ศาลายา)	Salaya, Phutthamonthon District, Nakhon Pathom 73170, Thailand	13.8035058,100.3036506
+334	สวนอาหารปิ่นแก้ว	332	สวนอาหารปิ่นแก้ว	25 บางเสาธง 7 Thanon Bang Na-Trat Frontage, Tambon Bang Sao Thong, Amphoe Bang Sao Thong, Chang Wat Samut Prakan 10570, Thailand	13.5952744,100.8016997
+335	ร้านข้าวผัดปูbyณัฏฐ์มาชิม	513	ร้านข้าวผัดปูbyณัฏฐ์มาชิม	519 Khwaeng Bang Phrom, Khet Taling Chan, Krung Thep Maha Nakhon 10170, Thailand	13.7517058,100.4414158
+336	ครัวกุ๊กหมู	333	ครัวกุ๊กหมู	4 16 ถนน สหกรณ์ Tambon Khok Kham, Amphoe Mueang Samut Sakhon, Chang Wat Samut Sakhon 74000, Thailand	13.5134705,100.3025581
+337	Shinzoku Japanese Restaurant	334	Shinzoku Japanese Restaurant	A 109, Tambon Phimonrat, Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand	13.9092992,100.3957425
+338	ร้านอาหารบ้านป้าแจ๋ว	335	ร้านอาหารบ้านป้าแจ๋ว	18 1, Tambon Bang Mae Nang, Amphoe Bang Yai, Chang Wat Nonthaburi 11140, Thailand	13.8554178,100.4029862
+339	ร้านอาหารแมกไม้ชายคลอง	336	ร้านอาหารแมกไม้ชายคลอง	Thailand, Khwaeng Samae Dam, Khet Bang Khun Thian, Krung Thep Maha Nakhon 10150, Thailand	13.630622,100.4027934
+340	กะทิบ้านอาหารไทยและขนม	337	กะทิบ้านอาหารไทยและขนม	14 Borommaratchachonnani Rd, ฉิมพลี Khet Taling Chan, Krung Thep Maha Nakhon 10170, Thailand	13.7822866,100.4472477
+342	สวนอาหารปีกไม้สาย2	338	สวนอาหารปีกไม้สาย2	เลขที่ 50 Thanon PhutthaMonthon Sai 2, Khwaeng Bang Khae, Khet Bang Khae, Krung Thep Maha Nakhon 10160, Thailand	13.7138084,100.3960852
+343	ร้านพหลวิว Phahon View (สาขา ตัดใหม่-วัชรพล)	339	ร้านพหลวิว Phahon View (สาขา ตัดใหม่-วัชรพล)	695 Thep Rak Rd, Khwaeng Tha Raeng, Khet Bang Khen, Krung Thep Maha Nakhon 10220, Thailand	13.8766925,100.6395021
+344	ร้านข้าวแกง​บ้านเคียงเรือ	340	ร้านข้าวแกง​บ้านเคียงเรือ	757/1 Bang Waek Rd, Khwaeng Bang Phai, Khet Bang Khae, Krung Thep Maha Nakhon 10160, Thailand	13.7466076,100.3697915
+345	ครัวกาญจน์ - แกงป่า	341	ครัวกาญจน์ - แกงป่า	228 Thanon Bang Khae, Khwaeng Bang Khae, Khet Bang Khae, Krung Thep Maha Nakhon 10160, Thailand	13.7083895,100.4204333
+346	โอยั๊วะเกษตร	342	โอยั๊วะเกษตร	47/1 Thanon Ngam Wong Wan, Khwaeng Lat Yao, Khet Chatuchak, Krung Thep Maha Nakhon 10900, Thailand	13.8431704,100.5686448
+347	บุ๊ก ข้าวมันไก่	343	บุ๊ก ข้าวมันไก่	27/30 หมู่3 ถนนพุทธมณฑลสาย3 แขวงบางไผ่ เขตบางแค Khwaeng Bang Phai, Khet Bang Khae, Krung Thep Maha Nakhon 10160, Thailand	13.7501581,100.3634836
+348	เพิ่มพูนโภชนา	344	เพิ่มพูนโภชนา	23 Charan Sanit Wong Rd, Khwaeng Bang Yi Khan, Khet Bang Phlat, Krung Thep Maha Nakhon 10700, Thailand	13.7634334,100.4732251
+349	เจ๊ณี โภชนา สาขา 2 (ข้าวต้มโต้รุ่ง)	345	เจ๊ณี โภชนา สาขา 2 (ข้าวต้มโต้รุ่ง)	1/2 19 ถนน พุทธมณฑลสาย 1 Khwaeng Bang Duan, Khet Phasi Charoen, Krung Thep Maha Nakhon 10160, Thailand	13.7285755,100.4276561
+350	ร้านอาหาร 109	346	ร้านอาหาร 109	Khlong Khwang, Sai Noi District, Nonthaburi 11150, Thailand	14.019848,100.311938
+352	ครัวไผ่เขียว	347	ครัวไผ่เขียว	341 91/39 ถ. วัชรพล Khwaeng Tha Raeng, Khet Bang Khen, Krung Thep Maha Nakhon 10220, Thailand	13.8647404,100.6465626
+353	Mini Shabu Cheese สาขา 1 ซอยกันตนา ชาบูบางใหญ่	348	Mini Shabu Cheese สาขา 1 ซอยกันตนา ชาบูบางใหญ่	เลขที่ 99/7 ม.3 Bang Yai-Bang Khu Lat Rd, Tambon Bang Yai, Amphoe Bang Yai, Chang Wat Nonthaburi 11140, Thailand	13.8434555,100.3826871
+354	ครกใหญ่ (ฉลองกรุง)	349	ครกใหญ่ (ฉลองกรุง)	Thanon Chalong Krung, Lam Pla Thio, Khet Lat Krabang, Krung Thep Maha Nakhon 10520, Thailand	13.7489293,100.7938043
+355	ครัวกลางทุ่ง@นครชัยศรี	350	ครัวกลางทุ่ง@นครชัยศรี	Unnamed Road Tambon Huai Phlu, Amphoe Nakhon Chai Si, Chang Wat Nakhon Pathom 73120, Thailand	13.8626667,100.2193182
+356	คานาเล่เฮ้าส์	351	คานาเล่เฮ้าส์	1 1 ซอย 102/4 Khwaeng Bang Khae Nuea, Khet Bang Khae, Krung Thep Maha Nakhon 10160, Thailand	13.7085031,100.3735268
+357	ร้านอาหารเจชาวคลอง คลอง 7 ธัญบุรี	514	ร้านอาหารเจชาวคลอง คลอง 7 ธัญบุรี	88 28-29 หมู่ที่ 3 Thanon Rangsit - Nakhon Nayok, Tambon Rangsit, Amphoe Thanyaburi, Chang Wat Pathum Thani 12110, Thailand	14.025024,100.7534958
+358	ครัวใบเงินซีฟู้ด	352	ครัวใบเงินซีฟู้ด	GCG9+22V, Tha Kham, Bang Khun Thian, Bangkok 10150, Thailand	13.5251016,100.4175595
+359	ร้านแล้วแต่เชฟ	353	ร้านแล้วแต่เชฟ	แขวง ทุ่งครุ, Thung Khru, Bangkok 10140, Thailand	13.5977588,100.5067554
+360	ครัวสราวลี	354	ครัวสราวลี	6 1 Soi Ramkhamhaeng 44, Khwaeng Hua Mak, Khet Bang Kapi, Krung Thep Maha Nakhon 10240, Thailand	13.7606502,100.6404724
+361	แซ่บอิสาน98	355	แซ่บอิสาน98	9 1 Tambon Bang Mae Nang, Amphoe Bang Yai, Chang Wat Nonthaburi 11140, Thailand	13.8657942,100.3991879
+364	บ้านแดง โดย เมธาวลัย ศรแดง	358	บ้านแดง โดย เมธาวลัย ศรแดง	923 ซอย จุฬาลงกรณ์ 5 Khwaeng Wang Mai, Pathum Wan, Krung Thep Maha Nakhon 10500, Thailand	13.7361062,100.5232989
+365	บ้านไม้ชายคลอง	359	บ้านไม้ชายคลอง	Khlong Ban ตำบล บางสระเก้า อำเภอ แหลมสิงห์ จันทบุรี 22190, Thailand	12.5102778,102.1069444
+366	ร้านอาหารบ้านจิตประภัสสร (Jitprapassorn Restaurant)	360	ร้านอาหารบ้านจิตประภัสสร (Jitprapassorn Restaurant)	89/462 Thetsaban Songkhro Rd, Khwaeng Lat Yao, Khet Chatuchak, Krung Thep Maha Nakhon 10900, Thailand	13.8398518,100.5536481
+367	โกเหง่า ข้าวต้มรอบดึก	361	โกเหง่า ข้าวต้มรอบดึก	2/63 ถ. เพิ่มสิน Khwaeng Khlong Thanon, Khet Sai Mai, Krung Thep Maha Nakhon 10220, Thailand	13.8993685,100.6294764
+368	ไม้หอม	362	ไม้หอม	Mai Hom, Kasetsuwan, Bo Thong District, Chon Buri, Thailand	13.3448229,101.5446987
+369	ร้านพริกลิ้น	363	ร้านพริกลิ้น	J9QW+VR2, แขวง บางบอน, Bang Bon, Bangkok 10150, Thailand	13.6397513,100.3969878
+370	โก๊หล่อน RIVER SIDE	364	โก๊หล่อน RIVER SIDE	5, Tambon Bang Yang, Amphoe Krathum Baen, Chang Wat Samut Sakhon 74110, Thailand	13.6524842,100.2118884
+372	ปรุงประเทือง - อาหารใต้	366	ปรุงประเทือง - อาหารใต้	555/3 ถนน แบริ่ง - ลาซาล, Khwaeng Bang Na, Khet Bang Na, Krung Thep Maha Nakhon 10270, Thailand	13.6562243,100.6223597
+373	ปรุงประเทือง - อาหารใต้ ***(ครัวปิด 21:00 น.)	367	ปรุงประเทือง - อาหารใต้ ***(ครัวปิด 21:00 น.)	555/3 ถนน แบริ่ง - ลาซาล, Khwaeng Bang Na, Khet Bang Na, Krung Thep Maha Nakhon 10270, Thailand	13.6562243,100.6223597
+374	ครัวคุณส้ม	368	ครัวคุณส้ม	44 1, Tambon Pa Yup Nai, Amphoe Wang Chan, Chang Wat Rayong 21210, Thailand	13.0106794,101.455984
+375	ร้านลาบเป็ด-ปลาเผา Byเฮียน๊อต ปรีดีพนมยงค์43	370	ร้านลาบเป็ด-ปลาเผา Byเฮียน๊อต ปรีดีพนมยงค์43	ซอย ปรีดีพนมยงค์ 43 คลองตัน Watthana, Krung Thep Maha Nakhon 10110, Thailand	13.7353105,100.5975118
+376	มาดองหลวงเจ๊ (MA DONG LUANGJIE)	371	มาดองหลวงเจ๊ (MA DONG LUANGJIE)	82 148 หมู่ที่ 10 ซอย23 Tambon Nai Khlong Bang Pla Kot, Amphoe Phra Samut Chedi, Chang Wat Samut Prakan 10290, Thailand	13.5817395,100.5157217
+377	ร้านอาหารบ้านลักษ์ริมทะเล	372	ร้านอาหารบ้านลักษ์ริมทะเล	GJM9+736, Thai Ban, Mueang Samut Prakan District, Samut Prakan 10280, Thailand	13.53296,100.617881
+378	สู้แค่หมด ร้านอาหาร10บาท	373	สู้แค่หมด ร้านอาหาร10บาท	8 2 หมู่ 8 Khwaeng Khlong Sip, Khet Nong Chok, Krung Thep Maha Nakhon 10530, Thailand	13.9035599,100.7935594
+379	ครัวปากบาน By เจ๊เจี๊ยบ ถนนไทยรามัญ	374	ครัวปากบาน By เจ๊เจี๊ยบ ถนนไทยรามัญ	265, 15 Thanon Thai Raman, Khwaeng Sam Wa Tawan Tok, Khet Khlong Sam Wa, Krung Thep Maha Nakhon 10510, Thailand	13.8932547,100.7019986
+381	ร้านนามิ 345 ปากเกร็ด Nami at 345 Pakkret	376	ร้านนามิ 345 ปากเกร็ด Nami at 345 Pakkret	โครงการ 345 อเวนิว เลขที่ 42 ถนนสาย 345 ต.คลองข่อย, Nonthaburi, อำเภอปากเกร็ด นนทบุรี 11120, Thailand	13.9507944,100.463361
+382	ป้าเภา	377	ป้าเภา	933 1 Thanon Lat Krabang, Khwaeng Lat Krabang, Khet Lat Krabang, Krung Thep Maha Nakhon 10520, Thailand	13.7227306,100.7409896
+383	ร้านข้าวหอมแกงใต้ ซอยพระยาสุเรนทร์	378	ร้านข้าวหอมแกงใต้ ซอยพระยาสุเรนทร์	281/3 Thanon Phraya Suren, Khwaeng Bang Chan, Khet Khlong Sam Wa, Krung Thep Maha Nakhon 10510, Thailand	13.8200472,100.6992793
+384	บ้านรามัญ	379	บ้านรามัญ	54 Thanon Tad Bomrong, Tambon Bang Prok, Amphoe Mueang Pathum Thani, Chang Wat Pathum Thani 12000, Thailand	14.027684,100.538997
+385	อ้วนเจริญยิ่ง ราชาข้าวต้ม	380	อ้วนเจริญยิ่ง ราชาข้าวต้ม	62/44 หมู่บ้านเอกนครทาวเวอร์ Thanon Ekkachai, ตำบลบางน้ำจืด อำเภอเมือง Chang Wat Samut Sakhon 74000, Thailand	13.6327073,100.3648615
+386	ติดมันส์ ศาลายา	381	ติดมันส์ ศาลายา	159 Tambon Salaya, Amphoe Phutthamonthon, Chang Wat Nakhon Pathom 73170, Thailand	13.8024086,100.3063674
+387	ครัวแพขวัญใจ ซีฟู้ด	382	ครัวแพขวัญใจ ซีฟู้ด	189ถนนเลียบคลองพิทยาลงกรณ์, แขวงท่าข้าม เขตบางขุนเทียน กรุงเทพมหานคร 10150, Thailand	13.5259599,100.419626
+388	ร้านมุมอร่อย อาหารตามสั่ง	383	ร้านมุมอร่อย อาหารตามสั่ง	83 4 Soi Na Kluea 4, Muang Pattaya, Amphoe Bang Lamung, Chang Wat Chon Buri 20150, Thailand	12.9787319,100.9114344
+389	สายแคมป์สโลว์บาร์Cafe (ร้านนั่งชิวใกล้ฉัน)	384	สายแคมป์สโลว์บาร์Cafe (ร้านนั่งชิวใกล้ฉัน)	85/3 หมู่ 5 Tambon Khlong Phra Udom, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand	13.9228172,100.4753539
+390	ร้าน นั่ง ซด ก๋วยเตี๋ยวต้มยำ เย็นตาโฟ รสจัดจ้าน	385	ร้าน นั่ง ซด ก๋วยเตี๋ยวต้มยำ เย็นตาโฟ รสจัดจ้าน	22/6 หมู่ 5 ปากชอบ Soi Thetsaban Bang Pu 30, บางเมือง เมือง Chang Wat Samut Prakan 10400, Thailand	13.5996829,100.613661
+391	ก๋วยเตี๋ยวต้มยำฅนละโว้	386	ก๋วยเตี๋ยวต้มยำฅนละโว้	306 หมู่2 Thanon Bang Bo-Khlong Dan, Tambon Bang Bo, Amphoe Bang Bo, Chang Wat Samut Prakan 10560, Thailand	13.568419,100.838567
+393	ครัวบ้านกังหัน	388	ครัวบ้านกังหัน	ถนน ลํา Tambon Bung Thong Lang, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand	13.9800899,100.8413319
+394	ร้านลุงเหน่งอาหารป่า(ติดถนนคลอง10)	389	ร้านลุงเหน่งอาหารป่า(ติดถนนคลอง10)	อยู่ติดกับป้ายรถเมล์ Tambon Bung Thong Lang, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand	13.9505005,100.8129003
+395	ร้านอาหารเตยหอม กะเพราไส้แตก	390	ร้านอาหารเตยหอม กะเพราไส้แตก	Cho Amon Phan 9 Soi 2, Khwaeng Lat Phrao, Khet Lat Phrao, Krung Thep Maha Nakhon 10230, Thailand	13.8308236,100.6000873
+396	ร้านเจี๊ยบ (เจ้าเก่า) กระทุ่มแบน	391	ร้านเจี๊ยบ (เจ้าเก่า) กระทุ่มแบน	260, 36 Sukhontawit Road, Tambon Talad Krathum Baen, Amphoe Krathum Baen, Chang Wat Samut Sakhon 74110, Thailand	13.6508664,100.2546646
+397	บ้านชิดลมบางปู	392	บ้านชิดลมบางปู	999, 361 หมู่ที่ 2 Soi Thetsaban Bang Pu 70, Tambon Thai Ban, Amphoe Mueang Samut Prakan, Chang Wat Samut Prakan 10280, Thailand	13.5397988,100.6117365
+398	คำปา อาหารเหนือ	393	คำปา อาหารเหนือ	500 28 ซ อยู่เจริญ ดินแดง Khet Din Daeng, Krung Thep Maha Nakhon 10400, Thailand	13.7569707,100.5637003
+399	ร้านก๋วยเตี๋ยวเรือสองตอน	515	ร้านก๋วยเตี๋ยวเรือสองตอน	Song Ton, Bang Sai District, Phra Nakhon Si Ayutthaya 13190, Thailand	14.2887597,100.4986793
+401	ร้านอาหารใต้ บ้านฉลอง	394	ร้านอาหารใต้ บ้านฉลอง	เลขที่ 100 Lat Pla Khao Rd, Khwaeng Chorakhe Bua, Khet Lat Phrao, Krung Thep Maha Nakhon 10230, Thailand	13.8415068,100.5922842
+402	ข้าวมันไก่นายโอชิน อร่อยมาก	395	ข้าวมันไก่นายโอชิน อร่อยมาก	28, 92 หมู่2 ซอยตลับทอง 2 Tambon Bang Nam Chuet, เมิอง Chang Wat Samut Sakhon 74000, Thailand	13.6159063,100.3473193
+403	ติ๊กโภชนา	396	ติ๊กโภชนา	72 หมู่4 ซอยบางกระทึก2 ถนนพุทธมณฑลสาย5 ตำบลบางกระทึก Amphoe Sam Phran, Chang Wat Nakhon Pathom 73210, Thailand	13.774965,100.2988596
+405	บ้านสวยในสวน	398	บ้านสวยในสวน	456 Thep Rak Rd, Khwaeng Tha Raeng, Khet Bang Khen, Krung Thep Maha Nakhon 10220, Thailand	13.8768407,100.636443
+406	ปานชีวา เรสเตอรองท์ แอนด์ คาเฟ่	399	ปานชีวา เรสเตอรองท์ แอนด์ คาเฟ่	46/11 Tambon Sai Noi, Amphoe Sai Noi, Chang Wat Nonthaburi 11150, Thailand	13.9770083,100.3160305
+407	แม่ทองใบ จุดรวมพลคนชอบกิน	400	แม่ทองใบ จุดรวมพลคนชอบกิน	เลขที่ 30/8 หมู่ 2 คลองพระอุดม Tambon Khlong Phra Udom, Amphoe Lat Lum Kaeo, Chang Wat Pathum Thani 12140, Thailand	13.9962952,100.4362274
+408	ร้านอาหารครัวเพลง (มล พลปราการ)	401	ร้านอาหารครัวเพลง (มล พลปราการ)	GVQF+V24, Ban Rakat, Bang Bo District, Samut Prakan 10550, Thailand	13.5396267,100.87258
+409	ครัววาสนา	402	ครัววาสนา	MC8H+JF4, Bang Khun Thian Road, Khlong Bang Bon, Khet Bang Bon, Krung Thep Maha Nakhon 10150, Thailand	13.6665227,100.4287088
+410	จิ้มจุ่มยักษ์ลำลูกกา	403	จิ้มจุ่มยักษ์ลำลูกกา	36 ตำบล บึงคำพร้อย Tambon Bueng Kham Phroi, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand	13.928571,100.7203576
+411	Little dream garden ฝันของพ่อ	404	Little dream garden ฝันของพ่อ	Lan Tak Fa, Nakhon Chai Si District, Nakhon Pathom 73170, Thailand	13.8260325,100.2427735
+412	Lon Lon Local Diner	405	Lon Lon Local Diner	150 Silom Soi 3 (Naratiwas Soi 3 or Sathorn, Soi 8, แขวงสีลม banrak, กรุงเทพมหานคร 10500, Thailand	13.7246309,100.5307626
+413	Morr - Meat on the roof (yakiniku)	406	Morr - Meat on the roof (yakiniku)	102 Soi Akhan Songkhro Sai Ti 4, Khwaeng Thung Maha Mek, Khet Sathon, Krung Thep Maha Nakhon 10120, Thailand	13.7157478,100.5336584
+414	ร้านน้องนก ซีฟู้ด	407	ร้านน้องนก ซีฟู้ด	39 ซอย หมู่ 8 หมู่บ้านประมง Tambon Phanthai Norasing, Amphoe Mueang Samut Sakhon, Chang Wat Samut Sakhon 74000, Thailand	13.4881435,100.3620299
+415	ยอดลาบเป็ดอุดร	408	ยอดลาบเป็ดอุดร	Kranuan 159 Nam Phong Rd, Tambon Nong Kung, Amphoe Nam Phong, Chang Wat Khon Kaen 40140, Thailand	17.6924843,103.0472164
+416	บ้านเกด by บ้านแซ่บวังหลัง สาขาตลิ่งชัน	409	บ้านเกด by บ้านแซ่บวังหลัง สาขาตลิ่งชัน	99 1 Borommaratchachonnani Rd, Khwaeng Chim Phli, Khet Taling Chan, Krung Thep Maha Nakhon 10170, Thailand	13.7806858,100.4292942
+418	So Good Gourmet	411	So Good Gourmet	29, 31-32 Soi Ratwinit Bangkaew Tambon Bang Kaeo, Amphoe Bang Phli, Chang Wat Samut Prakan 10540, Thailand	13.6454505,100.6734289
+419	ครัวปัณฑารีย์	412	ครัวปัณฑารีย์	9 Soi Sukhumvit 8, Khwaeng Khlong Toei, Khet Khlong Toei, Krung Thep Maha Nakhon 10110, Thailand	13.7394776,100.5563134
+420	โจ๊กสามย่าน แคราย (ปากซอยงามวงศ์วาน 4)	413	โจ๊กสามย่าน แคราย (ปากซอยงามวงศ์วาน 4)	200 Thanon Ngam Wong Wan, Tambon Bang Khen, เมือง, Chang Wat Nonthaburi 11000, Thailand	13.8579863,100.5294422
+421	ร้าน ๒๔ โภชนา	414	ร้าน ๒๔ โภชนา	49 Sukkhaprachasan 2, Tambon Bang Phut, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand	13.9383435,100.5165364
+423	ครัวเอื้ออาทร	416	ครัวเอื้ออาทร	36/22 เอกชัย Bang Bon Nuea, Khet Bang Bon, Krung Thep Maha Nakhon 10150, Thailand	13.6504099,100.3568264
+424	อ่อนนุช 35 ข้าวถ้วย	417	อ่อนนุช 35 ข้าวถ้วย	40 On Nut 35, Khwaeng Suan Luang, Khet Suan Luang, Krung Thep Maha Nakhon 10250, Thailand	13.7116178,100.6317189
+425	เจ๊ณี ข้าวต้มแปดริ้ว รามคำแหง19/1	418	เจ๊ณี ข้าวต้มแปดริ้ว รามคำแหง19/1	19 21 Soi Ramkhamhaeng 19/1, Khwaeng Hua Mak, Khet Bang Kapi, Krung Thep Maha Nakhon 10240, Thailand	13.7538817,100.6109769
+426	ครัวเจียงใหม่ - ทองหล่อ	419	ครัวเจียงใหม่ - ทองหล่อ	125 24 Soi Thong Lo, Khwaeng Khlong Tan Nuea, Watthana, Krung Thep Maha Nakhon 10110, Thailand	13.7301922,100.5811893
+427	GOODY CHIC	420	GOODY CHIC	42 Thanon Suwinthawong, Khwaeng Lam Toi Ting, Khet Nong Chok, Krung Thep Maha Nakhon 10530, Thailand	13.802136,100.8835968
+428	ครัวบ้านเลซีฟู้ด (By เชฟนะ)	421	ครัวบ้านเลซีฟู้ด (By เชฟนะ)	F8XQ+CG8, Khok Kham, Mueang Samut Sakhon District, Samut Sakhon 74000, Thailand	13.4985286,100.3388253
+429	ครัวบ้านสวนข้าวหมกไก่	422	ครัวบ้านสวนข้าวหมกไก่	26 4, Tambon Bang Khu Rat, Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand	13.9161035,100.3403779
+431	ครัวหน้าหมี	424	ครัวหน้าหมี	ตลาดคิงคอง 3256 Tambon Bang Phli Yai, Amphoe Bang Phli, Chang Wat Samut Prakan 10540, Thailand	13.6292211,100.7077607
+432	อ้วนทรงไทย ร้านอาหาร & รีสอร์ท	425	อ้วนทรงไทย ร้านอาหาร & รีสอร์ท	223, 2 พันท้ายนรสิงห์ อำเภอเมืองสมุทรสาคร สมุทรสาคร 74000, Thailand	13.4921725,100.3862864
+433	มิรู้โรย อีทเทอรี่ (Mirooroye Eatery)	426	มิรู้โรย อีทเทอรี่ (Mirooroye Eatery)	10 Yoyen Rd, Khwaeng Lat Phrao, Khet Lat Phrao, Krung Thep Maha Nakhon 10230, Thailand	13.8411296,100.6341048
+434	ครัวดอกไม้ขาว	427	ครัวดอกไม้ขาว	678/1-7 Thanon Bamrung Mueang, Khwaeng Wat Thepsirin, Khet Pom Prap Sattru Phai, Krung Thep Maha Nakhon 10100, Thailand	13.7491743,100.5161575
+435	ริมธารา ซีฟู้ด	428	ริมธารา ซีฟู้ด	Ban Khlong Suan, Phra Samut Chedi District, Samut Prakan 10290, Thailand	13.5439375,100.4670625
+436	ครัวชายคลอง	429	ครัวชายคลอง	16/8 หมู่ที่ 11 Kanchanaphisek Rd, Tambon Bang Muang, Amphoe Bang Yai, Chang Wat Nonthaburi 11140, Thailand	13.841332,100.4136328
+437	ร้านนิยมเส้น สาขาหนองจอก حلال‎	516	ร้านนิยมเส้น สาขาหนองจอก حلال‎	26/24-25 หมู่ที่ 1 Khwaeng Khok Faet, Khet Nong Chok, Krung Thep Maha Nakhon 10530, Thailand	13.8523188,100.8159415
+438	ครัวเมืองเว้ ลาว ญวน ลาดกระบัง	430	ครัวเมืองเว้ ลาว ญวน ลาดกระบัง	ปาก, 1/5 ถนน ลาดกระบัง แขวงลาดกระบัง เขตลาดกระบัง กรุงเทพมหานคร 10520, Thailand	13.7223669,100.7244268
+439	อาหารชาวใต้ สำลี	431	อาหารชาวใต้ สำลี	QH85+FJ4, Soi Pracha Songkhro 6 (Phuttipho), Khwaeng Din Daeng, Khet Din Daeng, Krung Thep Maha Nakhon 10400, Thailand	13.7661297,100.5590757
+440	ครัวตานุโพธิ์ทอง	432	ครัวตานุโพธิ์ทอง	4390 ซอย ลาดพร้าว 101 ซ. 56 คลองจั่น, Khet Bang Kapi, Krung Thep Maha Nakhon 10240, Thailand	13.7993151,100.6346828
+441	ร้านอาหาร อีสานนายเทน	433	ร้านอาหาร อีสานนายเทน	345 Soi Lat Phrao Wang Hin 47, Khwaeng Lat Phrao, Khet Lat Phrao, Krung Thep Maha Nakhon 10230, Thailand	13.8118213,100.5912495
+442	ร้านข้าวมันไก่มาลัยทองโภชนา คลอง 4 ธัญบุรี เปิดมากว่า 32 ปี	434	ร้านข้าวมันไก่มาลัยทองโภชนา คลอง 4 ธัญบุรี เปิดมากว่า 32 ปี	Thanon Rangsit - Nakhon Nayok, Tambon Bang Yitho, Amphoe Thanyaburi, Chang Wat Pathum Thani 12130, Thailand	14.002942,100.6932688
+443	ร้านอาหารแบมบู ใหญ่	435	ร้านอาหารแบมบู ใหญ่	RW5F+HFM, Krathum Rai, Nong Chok, Bangkok 10530, Thailand	13.8089592,100.9236597
+444	กะเพราขุนช้าง รัชดา ซอย 3	436	กะเพราขุนช้าง รัชดา ซอย 3	322 376 Soi Ratchadaphisek 3, Khwaeng Din Daeng, Khet Din Daeng, Krung Thep Maha Nakhon 10400, Thailand	13.7616541,100.5650244
+445	แจ่วฮ้อนพระยาแล	437	แจ่วฮ้อนพระยาแล	JJHM+9V3, Bang Kaeo, Bang Phli District, Samut Prakan 10540, Thailand	13.6284333,100.6348056
+446	มันชัน บุฟเฟ่เกาหลี	438	มันชัน บุฟเฟ่เกาหลี	ชั้น G MUNx2, M108 109, 55 ถ. ศรีนครินทร์ แขวงหนองบอน เขตประเวศ กรุงเทพมหานคร 10250, Thailand	13.6960433,100.6487626
+448	บ้านชายเล บางปู - Baan Shine Lay Bang Pu	440	บ้านชายเล บางปู - Baan Shine Lay Bang Pu	689 1, อ.เมือง, Chang Wat Samut Prakan 10280, Thailand	13.5054063,100.7093208
+450	ร้านนายโจอาหารทะเลซีฟู้ด	442	ร้านนายโจอาหารทะเลซีฟู้ด	ตรงข้ามเซเว่น คลองเจ้า(วัดสุคันธาราม, บางบ่อ, ตำบล บางบ่อ อำเภอบางบ่อ สมุทรปราการ 10560, Thailand	13.6302673,100.8579314
+451	Tikishi Japanese Restaurant , ทีกิชิ	443	Tikishi Japanese Restaurant , ทีกิชิ	ครุใน ไนซ์มาร์เก็ต Suk Sawat 70 Road, Tambon Bang Kru, Amphoe Phra Pradaeng, Chang Wat Samut Prakan 10130, Thailand	13.6345787,100.5192976
+452	สายลมจอย ซอย ๑	444	สายลมจอย ซอย ๑	สายลมจอย ซอย 1 Amphoe Mueang Lampang, Chang Wat Lampang 52000, Thailand	18.3022116,99.4969767
+453	รวยริน ข้าวแฝ่โบราณ	445	รวยริน ข้าวแฝ่โบราณ	25 15 บางไผ่ ซอย 21 Tambon Bang Phai, Amphoe Mueang Nonthaburi, Chang Wat Nonthaburi 11000, Thailand	13.8327989,100.4876139
+455	สินาท อาหารเจ	517	สินาท อาหารเจ	WJF2+8FJ, Thanon Song Prapha, ดอนเมือง Khet Don Mueang, Krung Thep Maha Nakhon 10210, Thailand	13.9233258,100.6011415
+456	มหาชัยกรีนฟู้ดส์	447	มหาชัยกรีนฟู้ดส์	181/1 ม.13 ซ.มหาชัย ถ.บางนาตราด กม.10 Tambon Bang Phli Yai, Amphoe Bang Phli, Chang Wat Samut Prakan 10540, Thailand	13.633524,100.6899678
+457	ครัวขุนสมุทรจีน ซีฟู๊ด	448	ครัวขุนสมุทรจีน ซีฟู๊ด	20, ชายทะเล, Tambon Na Klua, Amphoe Phra Samut Chedi, Chang Wat Samut Prakan 10290, Thailand	13.5148461,100.530255
+458	Tanwa : the Food Project HQ	449	Tanwa : the Food Project HQ	100/2 moo3 BangGruay-Srainoi Rd. Bangbuatong, Nonthaburi 11110, ตำบล บางรักพัฒนา อำเภอบางบัวทอง นนทบุรี 11110, Thailand	13.893692,100.4311806
+459	โรงเตี้ยม บางปู อาหาร-เครื่องดืม	450	โรงเตี้ยม บางปู อาหาร-เครื่องดืม	30 1, Tambon Phraeksa, Amphoe Mueang Samut Prakan, Chang Wat Samut Prakan 10280, Thailand	13.5599016,100.6753028
+460	ร้านต้มเลือดหมูเจ๊ไน้	451	ร้านต้มเลือดหมูเจ๊ไน้	351,353 ปาก Ram Inthra Rd, Khwaeng Ram Inthra, Khet Khan Na Yao, Krung Thep Maha Nakhon 10230, Thailand	13.8387079,100.6626269
+462	เนี๊ยะสุกี้ สาขา ศาลายา	453	เนี๊ยะสุกี้ สาขา ศาลายา	เนี๊ยะสุกี้ ปั๊มเอสโซ่เพียวไทย สาขาศาลากลาง Tambon Sala Klang, Amphoe Bang Kruai, Chang Wat Nonthaburi 11130, Thailand	13.8136389,100.3264258
+463	ร้านปูสดพระสมุทร​เจดีย์​	454	ร้านปูสดพระสมุทร​เจดีย์​	444 Tambon Na Klua, Amphoe Phra Samut Chedi, Chang Wat Samut Prakan 10290, Thailand	13.5515986,100.5020717
+464	แหนมเนืองคุณนิด	455	แหนมเนืองคุณนิด	44/248-250 Phahon Yothin Road, อนุสาวรีย์ Khet Bang Khen, Krung Thep Maha Nakhon 10220, Thailand	13.8747809,100.5999593
+465	อู๊ดเย็นตาโฟ	456	อู๊ดเย็นตาโฟ	35, 44 ถนน สะแกงาม Khwaeng Samae Dam, Khet Bang Khun Thian, Krung Thep Maha Nakhon 10150, Thailand	13.6327539,100.4273812
+467	Tonthong Restaurant - ร้านอาหารต้นทอง	458	Tonthong Restaurant - ร้านอาหารต้นทอง	38, 2 Thanon Phet Phra Ram, แขวง ห้วยขวาง, Khet Bang Kapi, Krung Thep Maha Nakhon 10310, Thailand	13.7467027,100.5984029
+468	ร้านอาหารแกงป่า ลุงสง่า	459	ร้านอาหารแกงป่า ลุงสง่า	285 162 Soi Wat Bua Kwan 11, Tambon Bang Kraso, อำเภอเมือง Chang Wat Nonthaburi 11000, Thailand	13.8651459,100.5356005
+469	ระเบียงเคียงน้ำ 77	460	ระเบียงเคียงน้ำ 77	เลขที่ 76/1 ซอย หมู่ 3 Tambon Bang Tanai, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand	13.9180426,100.4951127
+470	สิมิลันโภชนา	461	สิมิลันโภชนา	100 สิมิลันโภชนา 3 ถ.ชัพฤกษ์ Tambon Khlong Phra Udom, Amphoe Pak Kret, Chang Wat Nonthaburi 11120, Thailand	13.9242964,100.4718305
+472	ข้าวต้มฉลองชัย	463	ข้าวต้มฉลองชัย	444 Thanon Chalong Krung, Lam Pla Thio, Khet Lat Krabang, Krung Thep Maha Nakhon 10520, Thailand	13.7480392,100.7931167
+473	วิวทิวไม้ ซีฟู้ด	464	วิวทิวไม้ ซีฟู้ด	1035 2 Bang Khun Thian Road, Khwaeng Tha Kham, Khet Bang Khun Thian, Krung Thep Maha Nakhon 10150, Thailand	13.5838562,100.4287129
+474	โจ๊กสะพานใหม่	465	โจ๊กสะพานใหม่	1 Soi, Khwaeng Anusawari, Khet Bang Khen, Krung Thep Maha Nakhon 10220, Thailand	13.895012,100.6079651
+476	แซ่บคักๆ	466	แซ่บคักๆ	37 Soi Sukhumvit 16, Khwaeng Khlong Toei, Khet Khlong Toei, Krung Thep Maha Nakhon 10110, Thailand	13.7307846,100.5611207
+477	ครัวลุงแกละ	467	ครัวลุงแกละ	JQF9+2RF, Bang Chalong, Bang Phli District, Samut Prakan 10540, Thailand	13.623693,100.768411
+478	จานเดียว @hOMe	468	จานเดียว @hOMe	14 Soi Ram Intra 39, Ln 11, Khwaeng Anusawari, Khet Bang Khen, Krung Thep Maha Nakhon 10220, Thailand	13.8667248,100.6257627
+479	ข้าวแกงเปิดหม้อ สาขาประชาอุทิศ 90	469	ข้าวแกงเปิดหม้อ สาขาประชาอุทิศ 90	8/8-9 ร้านข้าวแกงเปิดหม้อ Soi Pracha Uthit 90, Khwaeng Thung Khru, Khet Thung Khru, Krung Thep Maha Nakhon 10140, Thailand	13.6112573,100.5102635
+480	เหลาริมทาง By เชฟเดช สาขา ราชพฤกษ์	470	เหลาริมทาง By เชฟเดช สาขา ราชพฤกษ์	103 Tambon Bang Krang, เมือง Chang Wat Nonthaburi 11000, Thailand	13.8439334,100.4486762
+481	สวนอาหาร บ้านอิงน้ำ	471	สวนอาหาร บ้านอิงน้ำ	เลขที่53/15-16 หมู่11 Soi Phahon Yothin 64 Yaek, Tambon Khu Khot, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12130, Thailand	13.9481433,100.6397709
+482	ครัววาสนา ซีฟู้ด	472	ครัววาสนา ซีฟู้ด	เลขที่ 305 ตำบลบ้านคลองสวน อำเภอพระสมุทรเจดีย์ Tambon Ban Khlong Suan, Amphoe Phra Samut Chedi, Chang Wat Samut Prakan 10290, Thailand	13.5720634,100.4485661
+487	ร้านอาหารแมวน้ำ	477	ร้านอาหารแมวน้ำ	38 Tambon Na Klua, Amphoe Phra Samut Chedi, Chang Wat Samut Prakan 10290, Thailand	13.5620185,100.5286666
+488	ครัวท่าเรือเมืองกาญ สาขา ศาลายา	478	ครัวท่าเรือเมืองกาญ สาขา ศาลายา	25 12 หมู่ 6 Borommaratchachonnani Rd, Tambon Bang Krathuk, Amphoe Sam Phran, Chang Wat Nakhon Pathom 73210, Thailand	13.7872985,100.3099897
+489	ฌิม คาเฟ่&เรสเตอร์รอง	479	ฌิม คาเฟ่&เรสเตอร์รอง	ร้าน ฌิม คาเฟ่&เรสเตอร์รอง โครงการ The twelve ซ. ประชาร่วมใจ Tambon Bang Mae Nang, Amphoe Bang Yai, Chang Wat Nonthaburi 11140, Thailand	13.8712255,100.3791571
+490	ครัวบ้าน 3 ออ	480	ครัวบ้าน 3 ออ	104, 270 Soi Ekkachai 56, Khlong Bang Phran, Khet Bang Bon, Krung Thep Maha Nakhon 10150, Thailand	13.6795601,100.4352989
+491	ร้านอาหารลงแพ หรือ @บางขวด	481	ร้านอาหารลงแพ หรือ @บางขวด	3 Soi Nuan Chan 56, Khwaeng Nuanchan, Khet Bueng Kum, Krung Thep Maha Nakhon 10230, Thailand	13.8328813,100.6462978
+492	ร้านป้าแหว๋ว	482	ร้านป้าแหว๋ว	GHVF+625, Laem Fa Pha, Phra Samut Chedi District, Samut Prakan 10290, Thailand	13.5430043,100.5726014
+493	Vegan Garden ร้านอาหารเจ - มังสวิรัติ คาเฟ่ คลอง4 ลำลูกกา	518	Vegan Garden ร้านอาหารเจ - มังสวิรัติ คาเฟ่ คลอง4 ลำลูกกา	18 37 ม.6, Tambon Lat Sawai, Amphoe Lam Luk Ka, Chang Wat Pathum Thani 12150, Thailand	13.9734238,100.6827365
+494	ครัวคุณชม	483	ครัวคุณชม	Na Klang, Sung Noen District, Nakhon Ratchasima 30380, Thailand	14.8992269,101.9015507
+496	ร้านตี๋อ้วนโภชนา	485	ร้านตี๋อ้วนโภชนา	R8R5+777, Khlong Yong, Phutthamonthon District, Nakhon Pathom 73170, Thailand	13.840667,100.3081827
+497	ติดมันส์ บุฟเฟ่ต์ปิ้งย่างกระทะร้อน สาขาบางบัวทอง	486	ติดมันส์ บุฟเฟ่ต์ปิ้งย่างกระทะร้อน สาขาบางบัวทอง	บางบัวทอง 127 หมู่ 3 Bang Kruai - Sai Noi Rd, Tambon Bang Bua Thong, Amphoe Bang Bua Thong, Chang Wat Nonthaburi 11110, Thailand	13.9323927,100.4008283
+499	ร้านอาหารจีน เกี๊ยว เหลียว หนิง	488	ร้านอาหารจีน เกี๊ยว เหลียว หนิง	152/4-7 Si Lom Rd, Khwaeng Suriya Wong, Khet Bang Rak, Krung Thep Maha Nakhon 10500, Thailand	13.7267238,100.5271765
+500	ข้าวคัพ	489	ข้าวคัพ	บางจาก 1 Soi Muban Piti, Khwaeng Bang Chak, Khet Phra Khanong, Krung Thep Maha Nakhon 10260, Thailand	13.6833152,100.635951
+501	รสนะคอน ไก่ทอด ชาใต้ อาหารใต้	490	รสนะคอน ไก่ทอด ชาใต้ อาหารใต้	Thung Na Mai, Phipun District, Nakhon Si Thammarat 80270, Thailand	8.539451099999999,99.5909956
+502	เดอะตี๋ ล้านลาภ101	491	เดอะตี๋ ล้านลาภ101	MC4V+254, Thanon Thakham, Khwaeng Samae Dam, Khet Bang Khun Thian, Krung Thep Maha Nakhon 10150, Thailand	13.6550022,100.4429649
+504	ครัวท่าเรือ สาขาทุ่งมังกร	492	ครัวท่าเรือ สาขาทุ่งมังกร	36/238 Soi Mu Ban Muang Phet, Khwaeng Chim Phli, Khet Taling Chan, Krung Thep Maha Nakhon 10170, Thailand	13.7900845,100.428953
+505	ร้าน ตุ้มอร่อย คาเฟ่ Toomaroi Café	493	ร้าน ตุ้มอร่อย คาเฟ่ Toomaroi Café	73 ปาก Soi Thoet Thai 47, Khwaeng Pak Khlong Phasi Charoen, Khet Phasi Charoen, Krung Thep Maha Nakhon 10160, Thailand	13.7184779,100.4675947
+506	Kin Len Len ร้านกินเล่นเล่น ซอยมังกร	494	Kin Len Len ร้านกินเล่นเล่น ซอยมังกร	252 ม.5 Mangkon-Khandi, Tambon Phraeksa, Amphoe Mueang Samut Prakan, Chang Wat Samut Prakan 10280, Thailand	13.5877916,100.6576336
+507	บ้านชิมก่อนเติม ตระกูลโภชนา	495	บ้านชิมก่อนเติม ตระกูลโภชนา	บ้านเลขที่ 6 5 ซอย ราษฎร์อุทิศ Khwaeng Saen Saep, Khet Min Buri, Krung Thep Maha Nakhon 10510, Thailand	13.8251117,100.7592283
+508	BBC : Big Black Cat -Kushiyaki -	496	BBC : Big Black Cat -Kushiyaki -	209 Thanon Chakkraphatdi Phong, Khwaeng Wat Sommanat, Khet Pom Prap Sattru Phai, Krung Thep Maha Nakhon 10100, Thailand	13.7571409,100.5099464
+510	ร้านกุ้งเผา​อยุธยา ถนนคู้บอน กรุงเทพฯ	498	ร้านกุ้งเผา​อยุธยา ถนนคู้บอน กรุงเทพฯ	135 1 Khu Bon Rd, Khwaeng Bang Chan, Khet Khlong Sam Wa, Krung Thep Maha Nakhon 10510, Thailand	13.8574768,100.6831815
+511	ครัวระเบียงน้ำ	499	ครัวระเบียงน้ำ	6 หมู่ 8 Tambon Tha Kham, Amphoe Bang Pakong, Chang Wat Chachoengsao 24130, Thailand	13.4684008,100.9795556
+512	ร้านครัวนายหัว ซอยมหาดไทย	500	ร้านครัวนายหัว ซอยมหาดไทย	QJFC+6M2, Phlabphla, Wang Thonglang, Bangkok 10312, Thailand	13.7730179,100.621654
+514	โจ๊กสยาม ลาซาล	502	โจ๊กสยาม ลาซาล	70 Thanon Lasalle, Khwaeng Bang Na, Khet Bang Na, Krung Thep Maha Nakhon 10260, Thailand	13.6616448,100.6049395
+515	Dhana x Flavourite	503	Dhana x Flavourite	8 Soi Sukhumvit 48, Khwaeng Phra Khanong, Khet Khlong Toei, Krung Thep Maha Nakhon 10110, Thailand	13.7116368,100.5946034
+516	Mitt Restaurant & Space : มิตร อารีย์	504	Mitt Restaurant & Space : มิตร อารีย์	200/1 Soi Phibun Watthana 1, Phaya Thai, Khet Phaya Thai, Krung Thep Maha Nakhon 10400, Thailand	13.786517,100.5380988
+517	คัทซึชิน สาขา สุรวงศ์	505	คัทซึชิน สาขา สุรวงศ์	9/1 Si Lom Rd, แขวง บางรัก, Khet Bang Rak, Krung Thep Maha Nakhon 10500, Thailand	13.7289902,100.5300218
+518	ครัวแม่แช่ม	506	ครัวแม่แช่ม	14/15 หมู่6 ตำบลบางกระทึก Amphoe Sam Phran, Chang Wat Nakhon Pathom 73210, Thailand	13.7802988,100.3027753

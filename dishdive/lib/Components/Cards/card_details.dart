@@ -77,6 +77,8 @@ class _CardDetailsState extends State<CardDetails> {
 
   @override
   Widget build(BuildContext context) {
+    // Clamp and convert rating percent to width factor for the bar
+    final double widthFactor = (widget.ratingPercent.clamp(0, 100)) / 100.0;
     // Categorize keywords
     final tasteKeywords = widget.keywords
         .where((kw) => kw['type'] == 'taste')
@@ -107,113 +109,46 @@ class _CardDetailsState extends State<CardDetails> {
             MainAxisSize.min, // Allow column to size itself based on content
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Stack(
+          // Title row with inlined favorite toggle (image removed)
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Container(
-                  height: 180,
-                  width: double.infinity,
-                  color: Colors.grey[400],
-                  child: widget.imagePath.startsWith('http')
-                      ? Image.network(
-                          widget.imagePath,
-                          height: 180,
-                          width: double.infinity,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) {
-                            return Container(
-                              height: 180,
-                              width: double.infinity,
-                              color: Colors.grey[400],
-                              child: Icon(
-                                Icons.restaurant,
-                                color: Colors.grey[600],
-                                size: 60,
-                              ),
-                            );
-                          },
-                          loadingBuilder: (context, child, loadingProgress) {
-                            if (loadingProgress == null) return child;
-                            return Container(
-                              height: 180,
-                              width: double.infinity,
-                              color: Colors.grey[400],
-                              child: Center(
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                    Colors.grey[600]!,
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        )
-                      : widget.imagePath.isNotEmpty
-                      ? Image.asset(
-                          widget.imagePath,
-                          height: 180,
-                          width: double.infinity,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) {
-                            return Container(
-                              height: 180,
-                              width: double.infinity,
-                              color: Colors.grey[400],
-                              child: Icon(
-                                Icons.restaurant,
-                                color: Colors.grey[600],
-                                size: 60,
-                              ),
-                            );
-                          },
-                        )
-                      : Icon(
-                          Icons.restaurant,
-                          color: Colors.grey[600],
-                          size: 60,
-                        ),
+              Expanded(
+                child: Text(
+                  widget.dishName,
+                  style: const TextStyle(
+                    fontFamily: 'InriaSans',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22,
+                    color: Colors.black,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
-              Positioned(
-                top: 8,
-                right: 8,
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      isFavorite = !isFavorite;
-                    });
-                    widget.onFavoriteToggle?.call();
-                  },
-                  child: Container(
-                    width: 36,
-                    height: 36,
-                    decoration: const BoxDecoration(
-                      color: Colors.black,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(
-                      Icons.favorite,
-                      color: isFavorite
-                          ? colorUse.sentimentColor
-                          : Colors.white,
-                      size: 24,
-                    ),
+              const SizedBox(width: 8),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    isFavorite = !isFavorite;
+                  });
+                  widget.onFavoriteToggle?.call();
+                },
+                child: Container(
+                  width: 36,
+                  height: 36,
+                  decoration: const BoxDecoration(
+                    color: Colors.black,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    Icons.favorite,
+                    color: isFavorite ? colorUse.sentimentColor : Colors.white,
+                    size: 24,
                   ),
                 ),
               ),
             ],
-          ),
-          const SizedBox(height: 8),
-          Text(
-            widget.dishName,
-            style: const TextStyle(
-              fontFamily: 'InriaSans',
-              fontWeight: FontWeight.bold,
-              fontSize: 22,
-              color: Colors.black,
-            ),
           ),
           Text(
             '${widget.cuisine}, ${widget.taste}',
@@ -250,13 +185,16 @@ class _CardDetailsState extends State<CardDetails> {
             width: double.infinity,
             height: 28,
             decoration: BoxDecoration(
-              color: colorUse.sentimentColor,
+              // Dark background when 0%
+              color: Colors.black,
               borderRadius: BorderRadius.circular(8),
             ),
             child: Stack(
               children: [
+                // Pink fill proportional to ratingPercent
                 FractionallySizedBox(
-                  widthFactor: widget.ratingPercent / 100,
+                  widthFactor: widthFactor,
+                  alignment: Alignment.centerLeft,
                   child: Container(
                     decoration: BoxDecoration(
                       color: colorUse.sentimentColor,
@@ -271,21 +209,6 @@ class _CardDetailsState extends State<CardDetails> {
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
-                    ),
-                  ),
-                ),
-                Positioned(
-                  right: 0,
-                  top: 0,
-                  bottom: 0,
-                  child: Container(
-                    width: 28,
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: const BorderRadius.only(
-                        topRight: Radius.circular(8),
-                        bottomRight: Radius.circular(8),
-                      ),
                     ),
                   ),
                 ),

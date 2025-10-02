@@ -46,6 +46,9 @@ class _MenuCardState extends State<MenuCard> {
 
   @override
   Widget build(BuildContext context) {
+    // Clamp rating to 0..100 and convert to widthFactor 0.0..1.0
+    final double widthFactor = (widget.ratingPercent.clamp(0, 100)) / 100.0;
+
     return Container(
       decoration: BoxDecoration(
         color: colorUse.secondaryColor,
@@ -63,123 +66,48 @@ class _MenuCardState extends State<MenuCard> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Image/Grey square inside card with padding
+          // Top row with title and favorite toggle (image removed)
           Padding(
-            padding: const EdgeInsets.only(top: 12, left: 12, right: 12),
-            child: Stack(
+            padding: const EdgeInsets.only(top: 12, left: 16, right: 12, bottom: 4),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Container(
-                    height: 110,
-                    width: double.infinity,
-                    color: Colors.grey[400],
-                    child: widget.imagePath.startsWith('http')
-                        ? Image.network(
-                            widget.imagePath,
-                            height: 100,
-                            width: double.infinity,
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Container(
-                                height: 100,
-                                width: double.infinity,
-                                color: Colors.grey[400],
-                                child: Icon(
-                                  Icons.restaurant,
-                                  color: Colors.grey[600],
-                                  size: 40,
-                                ),
-                              );
-                            },
-                            loadingBuilder: (context, child, loadingProgress) {
-                              if (loadingProgress == null) return child;
-                              return Container(
-                                height: 100,
-                                width: double.infinity,
-                                color: Colors.grey[400],
-                                child: Center(
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 2,
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                      Colors.grey[600]!,
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                          )
-                        : widget.imagePath.isNotEmpty
-                        ? Image.asset(
-                            widget.imagePath,
-                            height: 100,
-                            width: double.infinity,
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Container(
-                                height: 100,
-                                width: double.infinity,
-                                color: Colors.grey[400],
-                                child: Icon(
-                                  Icons.restaurant,
-                                  color: Colors.grey[600],
-                                  size: 40,
-                                ),
-                              );
-                            },
-                          )
-                        : Icon(
-                            Icons.restaurant,
-                            color: Colors.grey[600],
-                            size: 40,
-                          ),
+                Expanded(
+                  child: Text(
+                    widget.dishName,
+                    style: const TextStyle(
+                      fontFamily: 'InriaSans',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: Colors.black,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                Positioned(
-                  top: 8,
-                  right: 8,
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        isFavorite = !isFavorite;
-                      });
-                      widget.onFavoriteToggle?.call(isFavorite);
-                    },
-                    child: Container(
-                      width: 32,
-                      height: 32,
-                      decoration: const BoxDecoration(
-                        color: Colors.black,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Icon(
-                        Icons.favorite,
-                        color: isFavorite
-                            ? colorUse.sentimentColor
-                            : Colors.white,
-                        size: 20,
-                      ),
+                const SizedBox(width: 8),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      isFavorite = !isFavorite;
+                    });
+                    widget.onFavoriteToggle?.call(isFavorite);
+                  },
+                  child: Container(
+                    width: 32,
+                    height: 32,
+                    decoration: const BoxDecoration(
+                      color: Colors.black,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      Icons.favorite,
+                      color: isFavorite ? colorUse.sentimentColor : Colors.white,
+                      size: 20,
                     ),
                   ),
                 ),
               ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: SizedBox(
-              height: 50, // Fixed height to accommodate up to 2 lines
-              child: Text(
-                widget.dishName,
-                style: const TextStyle(
-                  fontFamily: 'InriaSans',
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Colors.black,
-                ),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
             ),
           ),
           // Stretched sentiment bar
@@ -189,13 +117,16 @@ class _MenuCardState extends State<MenuCard> {
               width: double.infinity,
               height: 28,
               decoration: BoxDecoration(
-                color: colorUse.sentimentColor,
+                // Base bar background should be dark/black
+                color: Colors.black,
                 borderRadius: BorderRadius.circular(6),
               ),
               child: Stack(
                 children: [
+                  // Pink fill proportional to rating percent
                   FractionallySizedBox(
-                    widthFactor: widget.ratingPercent / 100,
+                    widthFactor: widthFactor,
+                    alignment: Alignment.centerLeft,
                     child: Container(
                       decoration: BoxDecoration(
                         color: colorUse.sentimentColor,
@@ -210,21 +141,6 @@ class _MenuCardState extends State<MenuCard> {
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    right: 0,
-                    top: 0,
-                    bottom: 0,
-                    child: Container(
-                      width: 32,
-                      decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: const BorderRadius.only(
-                          topRight: Radius.circular(6),
-                          bottomRight: Radius.circular(6),
-                        ),
                       ),
                     ),
                   ),

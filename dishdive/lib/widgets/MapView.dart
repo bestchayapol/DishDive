@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:dishdive/provider/location_provider.dart';
 import 'package:dishdive/Pages/Restaurant/RestaurantPage.dart';
 
 class MapViewWidget extends StatefulWidget {
@@ -22,7 +24,7 @@ class _MapViewWidgetState extends State<MapViewWidget> {
   Set<Marker> getMarkers(BuildContext context) {
     return widget.restaurants.map((r) {
       return Marker(
-        markerId: MarkerId(r["name"] ?? "restaurant"),
+        markerId: MarkerId((r["id"] ?? r["name"] ?? "restaurant").toString()),
         position: LatLng(
           (r["lat"] ?? 13.7563).toDouble(), 
           (r["lng"] ?? 100.5018).toDouble()
@@ -30,6 +32,7 @@ class _MapViewWidgetState extends State<MapViewWidget> {
         icon: BitmapDescriptor.defaultMarker,
         infoWindow: InfoWindow(
           title: r["name"] ?? "Restaurant",
+          snippet: (r["distance"] as String?) ?? "",
           onTap: () {
             Navigator.push(
               context,
@@ -66,10 +69,18 @@ class _MapViewWidgetState extends State<MapViewWidget> {
       );
     }
 
-    // Get initial position from first restaurant or default to Bangkok
-    final firstRestaurant = widget.restaurants.isNotEmpty ? widget.restaurants.first : null;
-    final initialLat = firstRestaurant?["lat"]?.toDouble() ?? 13.7563;
-    final initialLng = firstRestaurant?["lng"]?.toDouble() ?? 100.5018;
+    // Prefer user location if available; else first restaurant; else Bangkok
+    final loc = Provider.of<LocationProvider>(context);
+    double initialLat = 13.7563;
+    double initialLng = 100.5018;
+    if (loc.hasLocation) {
+      initialLat = loc.latitude!;
+      initialLng = loc.longitude!;
+    } else if (widget.restaurants.isNotEmpty) {
+      final firstRestaurant = widget.restaurants.first;
+      initialLat = (firstRestaurant["lat"] ?? initialLat).toDouble();
+      initialLng = (firstRestaurant["lng"] ?? initialLng).toDouble();
+    }
 
     return GoogleMap(
       initialCameraPosition: CameraPosition(
@@ -78,7 +89,8 @@ class _MapViewWidgetState extends State<MapViewWidget> {
       ),
       markers: getMarkers(context),
       onMapCreated: (controller) => mapController = controller,
-      myLocationEnabled: false,
+      myLocationEnabled: true,
+      myLocationButtonEnabled: true,
       zoomControlsEnabled: true,
     );
   }
