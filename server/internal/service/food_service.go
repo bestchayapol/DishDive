@@ -86,7 +86,7 @@ func (s *foodService) SearchRestaurantsByDish(req dtos.SearchRestaurantsByDishRe
 		// Get cuisine image
 		var imageLink *string
 		if r.ResCuisine != nil {
-			imageURL, err := s.foodRepo.GetCuisineImageByCuisine(*r.ResCuisine)
+			imageURL, err := s.foodRepo.GetCuisineImageByCuisineAndTag(*r.ResCuisine, r.ImageTag)
 			if err == nil && imageURL != "" {
 				imageLink = &imageURL
 			}
@@ -232,7 +232,7 @@ func (s *foodService) GetRestaurantList(userLat *float64, userLng *float64, radi
 		// Get cuisine image
 		var imageLink *string
 		if r.ResCuisine != nil {
-			imageURL, err := s.foodRepo.GetCuisineImageByCuisine(*r.ResCuisine)
+			imageURL, err := s.foodRepo.GetCuisineImageByCuisineAndTag(*r.ResCuisine, r.ImageTag)
 			if err == nil && imageURL != "" {
 				imageLink = &imageURL
 			}
@@ -343,7 +343,7 @@ func (s *foodService) GetDishDetail(dishID uint, userID uint) (dtos.DishDetailRe
 	// Get cuisine image
 	var imageLink *string
 	if dish.Cuisine != nil {
-		imageURL, err := s.foodRepo.GetCuisineImageByCuisine(*dish.Cuisine)
+		imageURL, err := s.foodRepo.GetCuisineImageByCuisineAndTag(*dish.Cuisine, nil)
 		if err == nil && imageURL != "" {
 			imageLink = &imageURL
 		}
@@ -419,7 +419,7 @@ func (s *foodService) GetFavoriteDishes(userID uint) ([]dtos.FavoriteDishRespons
 		// Get cuisine image
 		var imageLink *string
 		if d.Cuisine != nil {
-			imageURL, err := s.foodRepo.GetCuisineImageByCuisine(*d.Cuisine)
+			imageURL, err := s.foodRepo.GetCuisineImageByCuisineAndTag(*d.Cuisine, nil)
 			if err == nil && imageURL != "" {
 				imageLink = &imageURL
 			}

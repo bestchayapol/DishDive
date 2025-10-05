@@ -1,14 +1,13 @@
 Row Number,Restaurant Name,Review Text,Status,Extracted JSON,Error Message,Extraction Tier
-1,Okina Izakaya,"Crispy and delicious, I love it",Success,"[
+1,Absorn Thai Bistro ครัวอัปสรประตูผี,"Delicious, not too salty, moderate price, love it",Success,"[
   {
-    ""restaurant"": ""Okina Izakaya"",
-    ""dish"": ""เทมปุระกุ้ง"",
-    ""cuisine"": ""japanese"",
+    ""restaurant"": ""Absorn Thai Bistro ครัวอัปสรประตูผี"",
+    ""dish"": ""ผัดปลาเค็ม"",
+    ""cuisine"": ""thai"",
     ""restriction"": null,
     ""sentiment"": {
       ""positive"": [
-        ""taste"",
-        ""texture""
+        ""delicious""
       ],
       ""negative"": []
     }

@@ -17,6 +17,7 @@ type Restaurant struct {
 	ResCuisine     *string `gorm:"column:res_cuisine;size:100" json:"res_cuisine,omitempty"`
 	ResRestriction *string `gorm:"column:res_restriction;size:100" json:"res_restriction,omitempty"`
 	MenuSize       int     `gorm:"column:menu_size" json:"menu_size"`
+	ImageTag       *string `gorm:"column:image_tag;size:50" json:"image_tag,omitempty"`
 }
 
 func (Restaurant) TableName() string {
@@ -92,8 +93,9 @@ func (Favorite) TableName() string {
 }
 
 type CuisineImage struct {
-	KeywordID       uint   `gorm:"column:keyword_id;primaryKey;not null" json:"keyword_id"`
-	CuisineImageURL string `gorm:"column:cuisine_image_url;size:255" json:"cuisine_image_url"`
+	KeywordID       uint    `gorm:"column:keyword_id;not null" json:"keyword_id"`
+	ImageTag        *string `gorm:"column:image_tag;size:50;primaryKey" json:"image_tag,omitempty"`
+	CuisineImageURL string  `gorm:"column:cuisine_image_url;size:255" json:"cuisine_image_url"`
 }
 
 func (CuisineImage) TableName() string {

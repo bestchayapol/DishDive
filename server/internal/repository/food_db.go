@@ -156,21 +156,30 @@ func (r *foodRepositoryDB) GetProminentFlavorByDish(dishID uint) (*string, error
 	return &result.Keyword, nil
 }
 
-// Get cuisine image URL by cuisine name
-func (r *foodRepositoryDB) GetCuisineImageByCuisine(cuisine string) (string, error) {
-	var cuisineImage entities.CuisineImage
-	result := r.db.Joins("JOIN keywords ON keywords.keyword_id = cuisine_images.keyword_id").
-		Where("LOWER(keywords.keyword) = LOWER(?)", cuisine).
-		First(&cuisineImage)
 
-	if result.Error != nil {
-		if result.Error == gorm.ErrRecordNotFound {
-			return "", nil // Return empty string if no image found
+// Try cuisine + tag first, then cuisine default
+func (r *foodRepositoryDB) GetCuisineImageByCuisineAndTag(cuisine string, imageTag *string) (string, error) {
+	var img entities.CuisineImage
+	// Try with tag if provided
+	if imageTag != nil && *imageTag != "" {
+		res := r.db.Joins("JOIN keywords ON keywords.keyword_id = cuisine_images.keyword_id").
+			Where("LOWER(keywords.keyword) = LOWER(?) AND cuisine_images.image_tag = ?", cuisine, *imageTag).
+			First(&img)
+		if res.Error == nil && img.CuisineImageURL != "" {
+			return img.CuisineImageURL, nil
 		}
-		return "", result.Error
 	}
-
-	return cuisineImage.CuisineImageURL, nil
+	// Fallback to cuisine-only (image_tag NULL)
+	res := r.db.Joins("JOIN keywords ON keywords.keyword_id = cuisine_images.keyword_id").
+		Where("LOWER(keywords.keyword) = LOWER(?) AND cuisine_images.image_tag IS NULL", cuisine).
+		First(&img)
+	if res.Error != nil {
+		if res.Error == gorm.ErrRecordNotFound {
+			return "", nil
+		}
+		return "", res.Error
+	}
+	return img.CuisineImageURL, nil
 }
 
 // Get top keywords for a dish with their frequencies, ordered by frequency

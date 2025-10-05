@@ -3610,5 +3610,12 @@
     "formatted_address": "14/15 หมู่6 ตำบลบางกระทึก Amphoe Sam Phran, Chang Wat Nakhon Pathom 73210, Thailand",
     "place_id": "ChIJ33Fht4eU4jAR4-qwP0RIv3k",
     "provider": "google"
+  },
+  "c4210e25b2a6c9853544bb1692ee952a21aa3cfd": {
+    "lat": 13.5591397,
+    "lng": 100.492918,
+    "formatted_address": "155/1 หมู่ 2 Tambon Ban Khlong Suan, Amphoe Phra Samut Chedi, Chang Wat Samut Prakan 10290, Thailand",
+    "place_id": "ChIJz4eBUmyl4jAR5Gmti7sJXkE",
+    "provider": "google"
   }
 }

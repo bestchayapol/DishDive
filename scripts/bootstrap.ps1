@@ -42,14 +42,15 @@ if (-not (Test-Path $req)) {
 }
 & $venvPy -m pip install -r $req
 
-# Verify core imports
-& $venvPy - <<'PY'
+# Verify core imports (PowerShell-compatible)
+$verify = @'
 import sys
 print('Python exec:', sys.executable)
 print('Python version:', sys.version)
 import numpy, pandas, psycopg2, pydantic
 print('numpy:', numpy.__version__, 'pandas:', pandas.__version__)
 print('psycopg2 OK, pydantic:', pydantic.__version__)
-PY
+'@
+& $venvPy -c $verify
 
 Write-Host 'Environment bootstrap complete.' -ForegroundColor Green

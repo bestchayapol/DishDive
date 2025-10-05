@@ -109,6 +109,12 @@ func (r *recommendRepositoryDB) HasReviewExtract(sourceID uint, sourceType strin
 	return count > 0, err
 }
 
+func (r *recommendRepositoryDB) HasNormalizedReview(sourceID uint) (bool, error) {
+	var count int64
+	err := r.db.Table("review_dishes").Where("source_id = ?", sourceID).Count(&count).Error
+	return count > 0, err
+}
+
 // Get keyword by ID
 func (r *recommendRepositoryDB) GetKeywordByID(keywordID uint) (entities.Keyword, error) {
 	var kw entities.Keyword

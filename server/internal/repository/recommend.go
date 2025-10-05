@@ -14,6 +14,7 @@ type RecommendRepository interface {
 	GetDishReviewPage(dishID uint) (*entities.Dish, *entities.Restaurant, error)
 	SubmitReview(userID uint, dishID uint, resID uint, reviewText string) (uint, error)
 	HasReviewExtract(sourceID uint, sourceType string) (bool, error)
+	HasNormalizedReview(sourceID uint) (bool, error)
 
 	// Keyword lookup
 	GetKeywordByID(keywordID uint) (entities.Keyword, error)

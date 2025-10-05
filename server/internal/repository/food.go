@@ -39,5 +39,5 @@ type FoodRepository interface {
 	GetReviewCountsByDish(dishID uint) (positiveReviews int, totalReviews int, err error)
 
 	// Image-related
-	GetCuisineImageByCuisine(cuisine string) (string, error)
+	GetCuisineImageByCuisineAndTag(cuisine string, imageTag *string) (string, error)
 }

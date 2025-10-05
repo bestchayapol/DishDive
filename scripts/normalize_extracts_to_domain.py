@@ -4,11 +4,13 @@ import logging
 import os
 import pathlib
 import sys
+import time
 from collections import defaultdict
 from typing import Any, Dict, List, Optional, Set, Tuple
 
 import psycopg2
 import psycopg2.extras as pg_extras
+import re
 
 # Ensure project root in path for config reuse
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -16,20 +18,21 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from llm_processing.config import Config
+from llm_processing.normalize_core import NormalizationContext
 
 
 def ensure_domain_tables(conn):
     ddl_list = [
         # restaurants
         """
+        -- NOTE: removed legacy columns usable_rev / total_rev
         CREATE TABLE IF NOT EXISTS restaurants (
             res_id BIGSERIAL PRIMARY KEY,
             res_name VARCHAR(255) NOT NULL UNIQUE,
             res_cuisine VARCHAR(100),
             res_restriction VARCHAR(100),
             menu_size INT NOT NULL DEFAULT 0,
-            usable_rev INT NOT NULL DEFAULT 0,
-            total_rev INT NOT NULL DEFAULT 0
+            image_tag VARCHAR(50)
         );
         """,
         # dishes
@@ -71,7 +74,8 @@ def ensure_domain_tables(conn):
             review_dish_id BIGSERIAL PRIMARY KEY,
             dish_id BIGINT NOT NULL REFERENCES dishes(dish_id),
             res_id BIGINT NOT NULL REFERENCES restaurants(res_id),
-            source_id BIGINT NOT NULL
+            source_id BIGINT NOT NULL,
+            source_type VARCHAR(64) NOT NULL DEFAULT 'web'
         );
         """,
         # review_dish_keywords
@@ -86,6 +90,11 @@ def ensure_domain_tables(conn):
     with conn.cursor() as cur:
         for ddl in ddl_list:
             cur.execute(ddl)
+        # Create idempotency unique index (safe to attempt repeatedly)
+        try:
+            cur.execute("CREATE UNIQUE INDEX IF NOT EXISTS ux_review_dishes_source ON review_dishes (source_type, source_id, dish_id)")
+        except Exception:
+            pass
     conn.commit()
 
 
@@ -153,8 +162,8 @@ def get_or_create_restaurant(conn, cache: Dict[str, int], name: str) -> int:
             return res_id
         # Provide explicit zeros for NOT NULL columns without defaults
         cur.execute(
-            "INSERT INTO restaurants (res_name, menu_size, usable_rev, total_rev) VALUES (%s, %s, %s, %s) RETURNING res_id",
-            (name, 0, 0, 0),
+            "INSERT INTO restaurants (res_name, menu_size) VALUES (%s, %s) RETURNING res_id",
+            (name, 0),
         )
         res_id = int(cur.fetchone()[0])
         cache[name] = res_id
@@ -259,17 +268,22 @@ def insert_review_dish_keywords(conn, rdid: int, keyword_ids: List[int]):
 
 
 def recompute_dish_scores(conn):
-    # Update positive/negative/total scores from dish_keywords joined to keywords.sentiment
+    # Per-review scoring (each review counts at most once per polarity)
     with conn.cursor() as cur:
         cur.execute(
             """
-            WITH agg AS (
-                SELECT dk.dish_id,
-                       SUM(CASE WHEN k.sentiment='positive' THEN dk.frequency ELSE 0 END) AS pos,
-                       SUM(CASE WHEN k.sentiment='negative' THEN dk.frequency ELSE 0 END) AS neg
-                FROM dish_keywords dk
-                JOIN keywords k ON k.keyword_id = dk.keyword_id
-                GROUP BY dk.dish_id
+            WITH per_review AS (
+                SELECT rd.dish_id, rd.review_dish_id,
+                       MAX(CASE WHEN k.sentiment='positive' THEN 1 ELSE 0 END) AS has_pos,
+                       MAX(CASE WHEN k.sentiment='negative' THEN 1 ELSE 0 END) AS has_neg
+                FROM review_dishes rd
+                LEFT JOIN review_dish_keywords rdk ON rdk.review_dish_id = rd.review_dish_id
+                LEFT JOIN keywords k ON k.keyword_id = rdk.keyword_id
+                GROUP BY rd.dish_id, rd.review_dish_id
+            ), agg AS (
+                SELECT dish_id, SUM(has_pos) AS pos, SUM(has_neg) AS neg
+                FROM per_review
+                GROUP BY dish_id
             )
             UPDATE dishes d
             SET positive_score = COALESCE(a.pos,0),
@@ -396,104 +410,127 @@ def process(
     limit: Optional[int] = None,
     offset: Optional[int] = None,
     logger: Optional[logging.Logger] = None,
+    progress_every: int = 250,
 ):
     logger = logger or logging.getLogger("normalize")
 
     ensure_domain_tables(conn)
+    ctx = NormalizationContext(conn, logger)
+    import os
+    debug_mode = os.getenv("DEBUG_NORMALIZE", "0").lower() in ("1","true","yes")
+    debug_samples = 0
+    debug_limit = 15  # max rows to emit detailed diagnostics
 
-    rest_cache: Dict[str, int] = {}
-    dish_cache: Dict[Tuple[int, str], int] = {}
-    kw_cache: Dict[Tuple[str, str, str], int] = {}
+    # Pre-count rows for progress (respect filter, offset/limit)
+    with conn.cursor() as cur:
+        count_sql = "SELECT COUNT(*) FROM review_extracts"
+        c_args: List[Any] = []
+        if source_type_filter:
+            count_sql += " WHERE LOWER(source_type)=LOWER(%s)"
+            c_args.append(source_type_filter)
+        cur.execute(count_sql, c_args)
+        total_candidate = int(cur.fetchone()[0] or 0)
+    # Apply offset/limit to determine target slice
+    if offset:
+        slice_base = max(total_candidate - offset, 0) if False else total_candidate  # placeholder not used
+    target_total = total_candidate
+    if offset:
+        target_total = max(target_total - offset, 0)
+    if limit is not None:
+        target_total = min(target_total, limit)
+    if target_total <= 0:
+        logger.info("No rows to process (target_total=%s)", target_total)
+        return
+    logger.info("Starting normalization slice: target_rows=%d (progress every %d extracts)", target_total, progress_every)
 
-    total_rows = 0  # rows fetched from the DB (within limit/offset slice)
-    processed_rows = 0  # rows that produced at least one dish/restaurant linkage
+    # Derive an adaptive progress frequency so small batches still show incremental updates.
+    if progress_every <= 0:
+        effective_every = 0
+    else:
+        if target_total <= progress_every:
+            # Aim for ~20 updates max (every 5%); at least every row if very tiny.
+            effective_every = max(1, target_total // 20 or 1)
+        else:
+            effective_every = progress_every
+    logger.debug("Adaptive progress: requested=%s effective=%s target_total=%s", progress_every, effective_every, target_total)
+
+    start_ts = time.time()
+    total_rows = 0  # extraction rows encountered in slice
+    processed_rows = 0  # extraction rows with at least one dish
+    created_dishes = created_keywords = upsert_dish_keywords = created_review_dishes = 0
     for idx, (rev_ext_id, source_id, s_type, data_extract) in enumerate(
         load_review_extracts(conn, source_type_filter, limit=limit, offset=offset)
     ):
         total_rows += 1
-        arr = safe_json_array(data_extract)
-        if not arr:
-            continue
-        for item in arr:
-            if not isinstance(item, dict):
-                continue
-            restaurant = (item.get("restaurant") or "").strip()
-            dish_name = (item.get("dish") or "").strip()
-            if not restaurant or not dish_name:
-                continue
-            cuisine = item.get("cuisine")
-            if cuisine is not None:
-                cuisine = str(cuisine).strip().lower() or None
-            restriction = item.get("restriction")
-            if restriction is not None:
-                restriction = str(restriction).strip().lower() or None
+        ctx.current_source_type = s_type or (source_type_filter or 'web')
+        ctx_stats = ctx.normalize_extract_row(source_id, data_extract)
+        if debug_mode and not ctx_stats.get("processed") and debug_samples < debug_limit:
+            # Inspect JSON to explain why skipped
+            try:
+                arr = json.loads(data_extract) if data_extract else []
+            except Exception:
+                arr = f"<parse_error len={len(data_extract or '')}>"
+            reason = []
+            if isinstance(arr, list):
+                if not arr:
+                    reason.append("empty_array")
+                else:
+                    # look at first few items
+                    problems = []
+                    for i, it in enumerate(arr[:3]):
+                        if not isinstance(it, dict):
+                            problems.append(f"item{i}:not_dict")
+                            continue
+                        r = (it.get("restaurant") or '').strip()
+                        d = (it.get("dish") or '').strip()
+                        if not r: problems.append(f"item{i}:no_restaurant")
+                        if not d: problems.append(f"item{i}:no_dish")
+                    if problems:
+                        reason.extend(problems)
+                    else:
+                        reason.append("all_items_filtered? (unexpected)")
+            else:
+                reason.append("not_list_json")
+            logger.warning("DEBUG skip rev_ext_id=%s source_id=%s reasons=%s sample=%r", rev_ext_id, source_id, ','.join(reason), (data_extract or '')[:160])
+            debug_samples += 1
+        if ctx_stats.get("processed"):
+            processed_rows += 1
+        created_dishes += ctx_stats.get("created_dishes", 0)
+        created_keywords += ctx_stats.get("created_keywords", 0)
+        upsert_dish_keywords += ctx_stats.get("dish_kw_links", 0)
+        created_review_dishes += ctx_stats.get("review_dishes", 0)
 
-            res_id = get_or_create_restaurant(conn, rest_cache, restaurant)
-            dish_id = get_or_create_dish(conn, dish_cache, res_id, dish_name, cuisine, restriction)
-
-            # Create review_dish row for this (dish, review)
-            rdid = insert_review_dish(conn, dish_id, res_id, int(source_id))
-
-            # Keywords: cuisine and restriction as neutral
-            rdk_keyword_ids: List[int] = []
-            if cuisine:
-                kid = get_or_create_keyword(conn, kw_cache, cuisine, "cuisine", "neutral")
-                bump_dish_keyword(conn, dish_id, kid, 1)
-                rdk_keyword_ids.append(kid)
-            if restriction:
-                kid = get_or_create_keyword(conn, kw_cache, restriction, "restriction", "neutral")
-                bump_dish_keyword(conn, dish_id, kid, 1)
-                rdk_keyword_ids.append(kid)
-
-            # Sentiment keywords
-            sent = item.get("sentiment") or {}
-            pos = sent.get("positive") or []
-            neg = sent.get("negative") or []
-            # Deduplicate tokens per review-dish
-            seen: Set[Tuple[str, str, str]] = set()
-            for tok in pos:
-                t = str(tok).strip()
-                if not t:
-                    continue
-                cat, senti = categorize_keyword(t, "positive")
-                key = (t, cat, senti)
-                if key in seen:
-                    continue
-                seen.add(key)
-                kid = get_or_create_keyword(conn, kw_cache, t, cat, senti)
-                bump_dish_keyword(conn, dish_id, kid, 1)
-                rdk_keyword_ids.append(kid)
-            for tok in neg:
-                t = str(tok).strip()
-                if not t:
-                    continue
-                cat, senti = categorize_keyword(t, "negative")
-                key = (t, cat, senti)
-                if key in seen:
-                    continue
-                seen.add(key)
-                kid = get_or_create_keyword(conn, kw_cache, t, cat, senti)
-                bump_dish_keyword(conn, dish_id, kid, 1)
-                rdk_keyword_ids.append(kid)
-
-            insert_review_dish_keywords(conn, rdid, rdk_keyword_ids)
-        processed_rows += 1
+        # Progress logging (adaptive). Always log first row if more remain.
+        if effective_every > 0 and (total_rows == 1 or total_rows % effective_every == 0 or total_rows == target_total):
+            elapsed = time.time() - start_ts
+            pct = (total_rows / target_total) * 100 if target_total else 100.0
+            rate = total_rows / elapsed if elapsed > 0 else 0
+            remaining = target_total - total_rows
+            eta_sec = remaining / rate if rate > 0 else 0
+            logger.info(
+                "Progress %d/%d (%.1f%%) dishes_created=%d review_dishes=%d keywords_created=%d dish_kw_links=%d elapsed=%.1fs eta=%.1fs (every %s)",
+                total_rows, target_total, pct, created_dishes, created_review_dishes, created_keywords, upsert_dish_keywords, elapsed, eta_sec, effective_every,
+            )
 
     if offset is None:
         eff_offset = 0
     else:
         eff_offset = offset
+    elapsed = time.time() - start_ts
     logger.info(
-        "Slice start=%d, limit=%s -> fetched=%d rows; processed=%d rows with non-empty extractions.",
+        "Completed slice offset=%d limit=%s -> extracts_seen=%d extracts_with_dishes=%d new_dishes=%d new_keywords=%d dish_kw_links=%d elapsed=%.2fs",
         eff_offset,
         str(limit) if limit is not None else "ALL",
         total_rows,
         processed_rows,
+        created_dishes,
+        created_keywords,
+        upsert_dish_keywords,
+        elapsed,
     )
 
     # Recompute aggregate scores and restaurant metadata
-    recompute_dish_scores(conn)
-    recompute_restaurant_stats(conn)
+    ctx.recompute_scores_and_restaurants()
 
 
 def main():
@@ -508,6 +545,8 @@ def main():
         help="Alias for --offset (if both provided, --offset wins)",
     )
     ap.add_argument("--log-level", default=os.getenv("LOG_LEVEL", "INFO"))
+    ap.add_argument("--progress-every", type=int, default=250, help="Log progress every N review_extract rows (default 250)")
+    ap.add_argument("--reset", action="store_true", help="Truncate dish-related domain tables before processing (dishes, dish_keywords, review_dishes, review_dish_keywords)")
     args = ap.parse_args()
 
     logging.basicConfig(level=args.log_level.upper(), format="[%(levelname)s] %(message)s")
@@ -537,12 +576,20 @@ def main():
         return
 
     try:
+        if args.reset:
+            logger.warning("--reset specified: truncating domain tables (dishes, dish_keywords, review_dishes, review_dish_keywords)...")
+            with conn.cursor() as cur:
+                cur.execute("TRUNCATE review_dish_keywords, review_dishes, dish_keywords, dishes RESTART IDENTITY CASCADE")
+            conn.commit()
+            logger.info("Domain tables truncated.")
+
         process(
             conn,
             source_type_filter=args.source_type,
             limit=args.limit,
             offset=resolved_offset,
             logger=logger,
+            progress_every=args.progress_every,
         )
     finally:
         try:

@@ -116,6 +116,43 @@ func (h *RecommendHandler) GetReviewExtractStatus(c *fiber.Ctx) error {
 	return c.JSON(dtos.ReviewExtractStatusResponse{ReviewID: uint(id), SourceType: "user", Found: found})
 }
 
+func (h *RecommendHandler) GetReviewNormalizationStatus(c *fiber.Ctx) error {
+	id, err := strconv.Atoi(c.Query("review_id", ""))
+	if err != nil || id <= 0 {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "missing or invalid review_id"})
+	}
+	norm, err := h.recommendService.HasNormalizedReview(uint(id))
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+	return c.JSON(fiber.Map{"review_id": id, "normalized": norm})
+}
+
+// Combined processing status for a user-submitted review
+func (h *RecommendHandler) GetReviewProcessingStatus(c *fiber.Ctx) error {
+	id, err := strconv.Atoi(c.Query("review_id", ""))
+	if err != nil || id <= 0 {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "missing or invalid review_id"})
+	}
+	extractFound, err := h.recommendService.HasReviewExtract(uint(id), "user")
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+	norm, err := h.recommendService.HasNormalizedReview(uint(id))
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+	status := "pending"
+	if extractFound { status = "extracted" }
+	if norm { status = "normalized" }
+	return c.JSON(fiber.Map{
+		"review_id": id,
+		"extract_found": extractFound,
+		"normalized": norm,
+		"status": status,
+	})
+}
+
 // Return selected environment variables (masked) to verify server config
 func (h *RecommendHandler) GetEnvStatus(c *fiber.Ctx) error {
 	mask := func(s string) string {

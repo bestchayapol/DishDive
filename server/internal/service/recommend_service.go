@@ -605,7 +605,7 @@ func (s *recommendService) GetRecommendedDishes(userID uint, resID *uint) ([]dto
 		// Get cuisine image
 		var imageLink *string
 		if sd.dish.Cuisine != nil {
-			imageURL, err := s.foodRepo.GetCuisineImageByCuisine(*sd.dish.Cuisine)
+			imageURL, err := s.foodRepo.GetCuisineImageByCuisineAndTag(*sd.dish.Cuisine, nil)
 			if err == nil && imageURL != "" {
 				imageLink = &imageURL
 			}
@@ -644,13 +644,17 @@ func (s *recommendService) HasReviewExtract(sourceID uint, sourceType string) (b
 	return s.recommendRepo.HasReviewExtract(sourceID, sourceType)
 }
 
+func (s *recommendService) HasNormalizedReview(sourceID uint) (bool, error) {
+	return s.recommendRepo.HasNormalizedReview(sourceID)
+}
+
 // Helper function to get cuisine image link
 func getCuisineImageLink(foodRepo repository.FoodRepository, cuisine *string) *string {
 	if cuisine == nil {
 		return nil
 	}
 
-	imageURL, err := foodRepo.GetCuisineImageByCuisine(*cuisine)
+	imageURL, err := foodRepo.GetCuisineImageByCuisineAndTag(*cuisine, nil)
 	if err != nil || imageURL == "" {
 		return nil
 	}

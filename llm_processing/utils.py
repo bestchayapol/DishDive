@@ -122,12 +122,13 @@ def build_fallback_entries(restaurant: str, review: str) -> List[Dict]:
     if hint_name or hint_id:
         d = hint_name or (f"dish_id:{hint_id}" if hint_id else None)
         if d:
+            pos_toks, neg_toks = _infer_sentiment_tokens(review)
             return [{
                 "restaurant": restaurant,
                 "dish": d,
                 "cuisine": "thai",
                 "restriction": None,
-                "sentiment": {"positive": [], "negative": []},
+                "sentiment": {"positive": pos_toks, "negative": neg_toks},
                 "_hints": {
                     "dish_id": int(hint_id) if hint_id.isdigit() else None
                 }
@@ -142,10 +143,22 @@ def build_fallback_entries(restaurant: str, review: str) -> List[Dict]:
             "dish": d,
             "cuisine": "thai",
             "restriction": None,
-            "sentiment": {"positive": [], "negative": []}
+            "sentiment": {"positive": _infer_sentiment_tokens(review)[0], "negative": _infer_sentiment_tokens(review)[1]}
         }
         for d in dishes
     ]
+
+# --- Simple sentiment inference for fallback path (Thai keywords) ---
+_POS_WORDS = {"อร่อย","สด","คุ้ม","คุ้มค่า","คุ้มราคา","ดี","ดีมาก","เด็ด","แซ่บ","หอม","นุ่ม","กรอบ"}
+_NEG_WORDS = {"แพง","แพงไป","ไม่คุ้ม","ไม่คุ้มค่า","เค็ม","จืด","คาว","เหนียว","ไหม้","ดิบ","เลี่ยน"}
+
+def _infer_sentiment_tokens(review: str):
+    if not isinstance(review, str):
+        return ([], [])
+    txt = review.strip().lower()
+    pos = sorted({w for w in _POS_WORDS if w in txt})
+    neg = sorted({w for w in _NEG_WORDS if w in txt})
+    return (pos, neg)
 
 
 class TTLCache:

@@ -126,8 +126,10 @@ class DB:
             if env_st:
                 source_type = env_st
             allow_empty = _os.environ.get("ALLOW_EMPTY_INSERT", "0").strip().lower() in ("1","true","yes")
+            force_sid_env = _os.environ.get("FORCE_SOURCE_ID")  # New: absolute source_id override for single review
         except Exception:
             allow_empty = False
+            force_sid_env = None
         rows = []
         skipped_filtered = 0
         skipped_empty = 0
@@ -161,7 +163,13 @@ class DB:
             else:
                 filtered_json = json.dumps(arr, ensure_ascii=False)
             # Apply configurable source_id offset (does not alter rev_ext_id sequencing)
-            adj_source_id = int(rn) + offset
+            if force_sid_env:
+                try:
+                    adj_source_id = int(force_sid_env)
+                except Exception:
+                    adj_source_id = int(rn) + offset
+            else:
+                adj_source_id = int(rn) + offset
             rows.append((adj_source_id, source_type, filtered_json))
         if not rows:
             if skipped_filtered:
@@ -198,8 +206,8 @@ class DB:
         except Exception:
             sample_sid, sample_st, sample_json = None, source_type, None
         self.logger.info(
-            "DB upsert inserted %s rows into review_extracts (source_type=%s, sample source_id=%s)",
-            len(values_with_ids), source_type, sample_sid,
+            "DB upsert inserted %s rows into review_extracts (source_type=%s, sample source_id=%s, forced=%s)",
+            len(values_with_ids), source_type, sample_sid, bool(force_sid_env),
         )
         if skipped_filtered or skipped_empty:
             self.logger.info(

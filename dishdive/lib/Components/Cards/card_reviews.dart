@@ -7,7 +7,7 @@ class CardReviews extends StatelessWidget {
   final DishReviewPageResponse dishData;
 
   const CardReviews({
-    super.key, 
+    super.key,
     required this.reviewController,
     required this.dishData,
   });
@@ -15,6 +15,7 @@ class CardReviews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         // Dish Information Card
         Container(
@@ -37,10 +38,7 @@ class CardReviews extends StatelessWidget {
               const SizedBox(height: 2),
               Text(
                 dishData.resName,
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey,
-                ),
+                style: const TextStyle(fontSize: 16, color: Colors.grey),
               ),
             ],
           ),

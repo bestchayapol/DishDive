@@ -181,9 +181,9 @@ class _ListDishesGridState extends State<ListDishesGrid> {
       itemCount: _dishes.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        mainAxisSpacing: 18,
+        mainAxisSpacing: 12,
         crossAxisSpacing: 12,
-        childAspectRatio: 0.7,
+        childAspectRatio: 1.25,
       ),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       itemBuilder: (context, index) {
