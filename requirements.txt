@@ -6,3 +6,6 @@ openai>=1.0,<2
 pydantic>=2,<3
 pydantic-core>=2,<3
 pythainlp>=4.0,<5  # optional for improved Thai alias clustering (segmentation & phonetic)
+beautifulsoup4>=4.12,<5
+rapidfuzz>=2.9,<3
+playwright>=1.40,<2
