@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"github.com/bestchayapol/DishDive/internal/config"
 	"github.com/bestchayapol/DishDive/internal/entities"
 	"gorm.io/gorm"
 )
@@ -35,18 +36,19 @@ func (r *foodRepositoryDB) AddOrUpdateLocation(location *entities.RestaurantLoca
 // Restaurant methods
 func (r *foodRepositoryDB) GetAllRestaurants() ([]entities.Restaurant, error) {
 	var restaurants []entities.Restaurant
-	// Only include restaurants that have at least one definite location
+	// Only include restaurants that have at least one definite location AND are in the whitelist
 	result := r.db.Model(&entities.Restaurant{}).
 		Select("DISTINCT restaurants.*").
 		Joins("JOIN restaurant_locations rl ON rl.res_id = restaurants.res_id").
 		Where("rl.latitude IS NOT NULL AND rl.longitude IS NOT NULL AND rl.latitude <> 0 AND rl.longitude <> 0 AND NOT (rl.latitude = ? AND rl.longitude = ?)", 15.870032, 100.992541).
+		Where("restaurants.res_name IN ?", config.WhitelistedRestaurants).
 		Find(&restaurants)
 	return restaurants, result.Error
 }
 
 func (r *foodRepositoryDB) GetRestaurantByID(resID uint) (*entities.Restaurant, error) {
 	var restaurant entities.Restaurant
-	result := r.db.Where("res_id = ?", resID).First(&restaurant)
+	result := r.db.Where("res_id = ? AND res_name IN ?", resID, config.WhitelistedRestaurants).First(&restaurant)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -55,13 +57,14 @@ func (r *foodRepositoryDB) GetRestaurantByID(resID uint) (*entities.Restaurant, 
 
 func (r *foodRepositoryDB) SearchRestaurantsByDish(dishName string, latitude, longitude, radius float64) ([]entities.Restaurant, error) {
 	var restaurants []entities.Restaurant
-	// Example: join dishes and filter by dish name. You can add location filtering later.
+	// Join dishes and filter by dish name, location, and whitelist
 	result := r.db.Model(&entities.Restaurant{}).
 		Select("DISTINCT restaurants.*").
 		Joins("JOIN dishes ON dishes.res_id = restaurants.res_id").
 		Joins("JOIN restaurant_locations rl ON rl.res_id = restaurants.res_id").
 		Where("dishes.dish_name LIKE ?", "%"+dishName+"%").
-		Where("rl.latitude IS NOT NULL AND rl.longitude IS NOT NULL AND rl.latitude <> 0 AND rl.longitude <> 0 AND NOT (rl.latitude = ? AND rl.longitude = ?)", 15.870032, 100.992541).
+		Where("rl.latitude IS NOT NULL AND rl.longitude IS NOT NULL AND rl.latitude <> 0 and rl.longitude <> 0 AND NOT (rl.latitude = ? AND rl.longitude = ?)", 15.870032, 100.992541).
+		Where("restaurants.res_name IN ?", config.WhitelistedRestaurants).
 		Find(&restaurants)
 	return restaurants, result.Error
 }
