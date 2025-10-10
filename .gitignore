@@ -24,7 +24,6 @@ Thumbs.db
 # Other common ignores
 *.log
 *.sqlite3
-outputs/
 llm_processing/__pycache__/config.cpython-38.pyc
 llm_processing/__pycache__/db.cpython-38.pyc
 llm_processing/__pycache__/llm.cpython-38.pyc
