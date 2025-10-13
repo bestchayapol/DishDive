@@ -243,11 +243,7 @@ class ComplexReviewScraper:
             # Extract reviews from all collected links
             restaurant_reviews = []
             for i, review_url in enumerate(all_review_links, 1):
-                if i > 50:  # Limit to prevent excessive processing
-                    logger.info(f"  Limiting to first 50 reviews")
-                    break
-                
-                logger.info(f"    Processing review {i}/{min(len(all_review_links), 50)}")
+                logger.info(f"    Processing review {i}/{len(all_review_links)}")
                 
                 # Extract review content (reuse from simple scraper)
                 review_text = await self.extract_individual_review_content(page, review_url)
@@ -647,7 +643,7 @@ class ComplexReviewScraper:
                     
                     # Longer delay between batches
                     if batch_end < total_complex:
-                        batch_delay = random.randint(30, 60)  # 30-60 seconds between batches
+                        batch_delay = random.randint(15, 25)  # 15-25 seconds between batches (~20s avg)
                         logger.info(f"  💤 Batch complete. Waiting {batch_delay}s before next batch...")
                         await asyncio.sleep(batch_delay)
             
@@ -673,6 +669,7 @@ def main():
     parser.add_argument('--limit', type=int, help='Limit number of restaurants to process')
     parser.add_argument('--start', type=int, default=0, help='Start index (0-based) for processing restaurants')
     parser.add_argument('--end', type=int, help='End index (0-based, exclusive) for processing restaurants')
+
     
     args = parser.parse_args()
     

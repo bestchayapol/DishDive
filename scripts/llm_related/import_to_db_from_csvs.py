@@ -8,7 +8,8 @@ import pathlib
 import pandas as pd
 
 # Ensure project root is on sys.path so we can import llm_processing when running this file directly
-ROOT = pathlib.Path(__file__).resolve().parents[1]
+# This file lives in scripts/llm_related/, so project root is two levels up.
+ROOT = pathlib.Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 

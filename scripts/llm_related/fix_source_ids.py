@@ -7,8 +7,8 @@ from typing import Optional, Tuple, List
 
 import psycopg2
 
-# Ensure project root in path for config reuse
-ROOT = pathlib.Path(__file__).resolve().parents[1]
+# Ensure project root in path for config reuse (this script is in scripts/llm_related -> root is two levels up)
+ROOT = pathlib.Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 

@@ -8,7 +8,8 @@ from typing import Dict, Tuple, List, Set
 
 import psycopg2
 
-ROOT = pathlib.Path(__file__).resolve().parents[1]
+# This script is in scripts/llm_related; project root is two levels up
+ROOT = pathlib.Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
