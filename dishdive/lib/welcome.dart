@@ -4,7 +4,8 @@ import 'package:dishdive/Pages/Auth/register.dart';
 import 'package:dishdive/Utils/color_use.dart';
 import 'package:dishdive/components/my_button.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart' show defaultTargetPlatform, TargetPlatform, kIsWeb;
+import 'package:flutter/foundation.dart'
+    show defaultTargetPlatform, TargetPlatform, kIsWeb;
 import 'package:dishdive/widgets/BackgroundCircle.dart';
 
 class Welcome extends StatelessWidget {
@@ -29,6 +30,7 @@ class Welcome extends StatelessWidget {
       // iOS simulator / desktop
       return 'http://localhost:8080';
     }
+
     return Scaffold(
       backgroundColor: colorUse.primaryColor,
       body: Column(
