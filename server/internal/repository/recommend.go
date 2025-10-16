@@ -16,7 +16,21 @@ type RecommendRepository interface {
 	HasReviewExtract(sourceID uint, sourceType string) (bool, error)
 	HasNormalizedReview(sourceID uint) (bool, error)
 
+	// Extraction results
+	UpsertReviewExtract(sourceID uint, sourceType string, dataExtract string) error
+	GetLatestReviewExtract(sourceID uint, sourceType string) (string, error)
+
+	// Normalization helpers
+	EnsureReviewDish(sourceID uint, dishID uint, resID uint) (*entities.ReviewDish, error)
+	FindKeywordByName(name string) (*entities.Keyword, error)
+	EnsureReviewDishKeyword(reviewDishID uint, keywordID uint) error
+	FindOrCreateKeyword(name string, category string, sentiment string) (*entities.Keyword, error)
+	BumpDishKeyword(dishID uint, keywordID uint, delta int) error
+	RecomputeScoresAndRestaurants() error
+
 	// Keyword lookup
 	GetKeywordByID(keywordID uint) (entities.Keyword, error)
 	GetKeywordsByCategory(categories []string) ([]entities.Keyword, error)
+	// Aliases for normalization
+	FetchKeywordAliases() (map[string]string, error)
 }

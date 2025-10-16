@@ -1,18 +1,20 @@
 package service
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"os"
-	"os/exec"
 	"path/filepath"
-	"runtime"
 	"sort"
+	"time"
 
 	"github.com/bestchayapol/DishDive/internal/dtos"
 	"github.com/bestchayapol/DishDive/internal/entities"
+	"github.com/bestchayapol/DishDive/internal/extract"
+	"github.com/bestchayapol/DishDive/internal/llm"
+	"github.com/bestchayapol/DishDive/internal/normalize"
 	"github.com/bestchayapol/DishDive/internal/repository"
-	"github.com/spf13/viper"
 )
 
 type recommendService struct {
@@ -303,12 +305,22 @@ func (s *recommendService) SubmitReview(req dtos.SubmitReviewRequest) (dtos.Subm
 		return dtos.SubmitReviewResponse{Success: false}, err
 	}
 
-	// 2) Fire-and-forget: invoke Python single-review processor
+	// 1.5) Minimal normalization in Go: ensure a ReviewDish link exists for this user review
+	if _, err := s.recommendRepo.EnsureReviewDish(reviewID, req.DishID, req.ResID); err != nil {
+		// Non-fatal; continue with extraction even if normalization link creation fails
+		fmt.Printf("[normalize] ensure review_dishes failed for review_id=%d: %v\n", reviewID, err)
+	}
+
+	// 2) Fire-and-forget: Go-native LLM extraction and upsert
 	// We pass the restaurant name by looking up from Dish->Restaurant for better context
 	var restaurantName string
 	var dishName string
+	var knownCuisine *string
+	var knownRestrict *string
 	if dish, derr := s.foodRepo.GetDishByID(req.DishID); derr == nil {
 		dishName = dish.DishName
+		if dish.Cuisine != nil && *dish.Cuisine != "" { knownCuisine = dish.Cuisine }
+		if dish.Restriction != nil && *dish.Restriction != "" { knownRestrict = dish.Restriction }
 		if res, rerr := s.foodRepo.GetRestaurantByID(dish.ResID); rerr == nil {
 			restaurantName = res.ResName
 		}
@@ -316,147 +328,31 @@ func (s *recommendService) SubmitReview(req dtos.SubmitReviewRequest) (dtos.Subm
 	if restaurantName == "" {
 		restaurantName = ""
 	}
-
-	// Construct command: python -m llm_processing.single_review ...
-	// Resolve Python executable robustly
-	pyExec := os.Getenv("PYTHON_EXEC")
-	if pyExec == "" {
-		pyExec = os.Getenv("PYTHON_BIN")
-	}
-	if pyExec == "" {
-		pyExec = "python"
-	}
-	if resolved, err := exec.LookPath(pyExec); err == nil {
-		pyExec = resolved
-	}
-	// Prefer project-local virtualenv if available: <repo>/.venv/bin|Scripts/python
-	if wd, _ := os.Getwd(); wd != "" {
-		projectRoot := filepath.Dir(wd)
-		var venvCandidate string
-		if runtime.GOOS == "windows" {
-			venvCandidate = filepath.Join(projectRoot, ".venv", "Scripts", "python.exe")
+	// Start Go-native extraction asynchronously
+	go func(reviewID uint, restaurantName, reviewText string, dishID uint, resID uint) {
+		time.Sleep(10 * time.Millisecond)
+		c := llm.NewClientFromEnv()
+		ex := extract.NewService(c, s.recommendRepo)
+		ctx := context.Background()
+		if err := ex.Run(ctx, extract.SingleReviewInput{
+			ReviewID:       reviewID,
+			RestaurantName: restaurantName,
+			ReviewText:     reviewText,
+			SourceType:     "user",
+			HintDish:       dishName,
+			KnownCuisine:   knownCuisine,
+			KnownRestrict:  knownRestrict,
+		}); err != nil {
+			fmt.Printf("[llm] go extractor error for review_id=%d: %v\n", reviewID, err)
 		} else {
-			venvCandidate = filepath.Join(projectRoot, ".venv", "bin", "python")
+			fmt.Printf("[llm] go extractor completed for review_id=%d\n", reviewID)
 		}
-		if st, err := os.Stat(venvCandidate); err == nil && !st.IsDir() {
-			pyExec = venvCandidate
+		// Normalize immediately in Go (mirrors previous Python auto-normalize)
+		norm := normalize.NewService(s.recommendRepo)
+		if err := norm.Run(ctx, "user", reviewID, dishID, resID); err != nil {
+			fmt.Printf("[normalize] go normalizer error for review_id=%d: %v\n", reviewID, err)
 		}
-	}
-	cmd := exec.Command(pyExec, "-m", "llm_processing.single_review",
-		"--restaurant", restaurantName,
-		"--review", req.ReviewText,
-		"--source-id", fmt.Sprintf("%d", reviewID),
-		"--source-type", "user",
-	)
-
-	// Propagate DB env and any OpenAI settings from the host environment
-	env := os.Environ()
-	appendIfNotEmpty := func(k string) {
-		if v := os.Getenv(k); v != "" {
-			env = append(env, fmt.Sprintf("%s=%s", k, v))
-		}
-	}
-	for _, k := range []string{
-		"PG_HOST", "PG_PORT", "PG_USER", "PG_PASSWORD", "PG_DATABASE", "PG_SSLMODE",
-		"OPENAI_API_KEY", "OPENAI_MODEL",
-		"LOG_LEVEL",
-	} {
-		appendIfNotEmpty(k)
-	}
-	// Make Python output unbuffered for realtime logs
-	env = append(env, "PYTHONUNBUFFERED=1")
-	// Expose the resolved Python exec path for diagnostics
-	env = append(env, fmt.Sprintf("%s=%s", "PYTHON_EXEC_USED", pyExec))
-	// Tag this ingestion as user-sourced for downstream auditing
-	env = append(env, "SOURCE_TYPE=user")
-	// Provide hint values so Python can write a fallback entry if extraction yields no dishes
-	env = append(env, fmt.Sprintf("%s=%d", "HINT_DISH_ID", req.DishID))
-	env = append(env, fmt.Sprintf("%s=%d", "HINT_RES_ID", req.ResID))
-	if dishName != "" {
-		env = append(env, fmt.Sprintf("%s=%s", "HINT_DISH_NAME", dishName))
-	}
-	if restaurantName != "" {
-		env = append(env, fmt.Sprintf("%s=%s", "HINT_RES_NAME", restaurantName))
-	}
-	// Ensure PYTHONPATH includes the project root (parent of server dir) so module imports work
-	if wd, _ := os.Getwd(); wd != "" {
-		projectRoot := filepath.Dir(wd)
-		existing := os.Getenv("PYTHONPATH")
-		sep := string(os.PathListSeparator)
-		if existing != "" {
-			env = append(env, fmt.Sprintf("PYTHONPATH=%s%s%s", existing, sep, projectRoot))
-		} else {
-			env = append(env, fmt.Sprintf("PYTHONPATH=%s", projectRoot))
-		}
-		// Also set working directory for the subprocess to the project root
-		cmd.Dir = projectRoot
-	}
-	// If DB envs are not present, fill from viper config so Python gets the same DB
-	if os.Getenv("PG_HOST") == "" {
-		env = append(env, fmt.Sprintf("%s=%s", "PG_HOST", viper.GetString("db.host")))
-	}
-	if os.Getenv("PG_PORT") == "" {
-		env = append(env, fmt.Sprintf("%s=%d", "PG_PORT", viper.GetInt("db.port")))
-	}
-	if os.Getenv("PG_USER") == "" {
-		env = append(env, fmt.Sprintf("%s=%s", "PG_USER", viper.GetString("db.username")))
-	}
-	if os.Getenv("PG_PASSWORD") == "" {
-		env = append(env, fmt.Sprintf("%s=%s", "PG_PASSWORD", viper.GetString("db.password")))
-	}
-	if os.Getenv("PG_DATABASE") == "" {
-		env = append(env, fmt.Sprintf("%s=%s", "PG_DATABASE", viper.GetString("db.database")))
-	}
-
-	// Ensure DB writes are enabled for this run and disable CSV side outputs by default
-	env = append(env, "PG_WRITE_DISABLED=0")
-	if os.Getenv("WRITE_CHECKPOINT") == "" {
-		env = append(env, "WRITE_CHECKPOINT=0")
-	}
-	if os.Getenv("WRITE_DATA_EXTRACT") == "" {
-		env = append(env, "WRITE_DATA_EXTRACT=0")
-	}
-	cmd.Env = env
-
-	// Capture stdout/stderr to a per-review log file for debugging
-	logDir := filepath.Join("logs")
-	_ = os.MkdirAll(logDir, 0o755)
-	logFilePath := filepath.Join(logDir, fmt.Sprintf("llm_job_user_%d.log", reviewID))
-	lf, lfErr := os.Create(logFilePath)
-	if lfErr == nil {
-		// Write a small header into the log for easier troubleshooting
-		_, _ = lf.WriteString("==== DishDive LLM job ====" + "\n")
-		_, _ = lf.WriteString("Working Dir: " + cmd.Dir + "\n")
-		_, _ = lf.WriteString("Python Exec: " + pyExec + "\n")
-		if pp := os.Getenv("PYTHONPATH"); pp != "" {
-			_, _ = lf.WriteString("PYTHONPATH: " + pp + "\n")
-		}
-		_, _ = lf.WriteString("=========================\n")
-		cmd.Stdout = lf
-		cmd.Stderr = lf
-		fmt.Printf("[llm] logging subprocess output to %s\n", logFilePath)
-	} else {
-		fmt.Printf("[llm] could not create log file: %v\n", lfErr)
-	}
-
-	// Start without waiting; log if it fails to start
-	if err := cmd.Start(); err != nil {
-		fmt.Printf("[llm] failed to start single_review processor: %v\n", err)
-		if lfErr == nil {
-			_ = lf.Close()
-		}
-	} else {
-		go func() {
-			if werr := cmd.Wait(); werr != nil {
-				fmt.Printf("[llm] processor exited with error: %v\n", werr)
-			} else {
-				fmt.Printf("[llm] processor completed for review_id=%d\n", reviewID)
-			}
-			if lfErr == nil {
-				_ = lf.Close()
-			}
-		}()
-	}
+	}(reviewID, restaurantName, req.ReviewText, req.DishID, req.ResID)
 
 	return dtos.SubmitReviewResponse{Success: true, ReviewID: &reviewID}, nil
 }

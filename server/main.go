@@ -41,9 +41,10 @@ func main() {
 	gormLogger := logger.New(
 		log.New(os.Stdout, "", log.LstdFlags),
 		logger.Config{
-			SlowThreshold: time.Second,  // only log queries slower than 1s
-			LogLevel:      logger.Error, // log errors only
-			Colorful:      true,
+			SlowThreshold:             time.Second,  // only log queries slower than 1s
+			LogLevel:                  logger.Error, // log errors only
+			IgnoreRecordNotFoundError: true,         // don't log 'record not found' as errors
+			Colorful:                  true,
 		},
 	)
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{Logger: gormLogger})
@@ -160,7 +161,9 @@ func main() {
 	app.Get("/GetRecommendedDishes/:userID", recommendHandler.GetRecommendedDishes)
 
 	// Utilities
-	app.Get("/ReviewExtractStatus", recommendHandler.GetReviewExtractStatus) // ?review_id=123
+	app.Get("/ReviewExtractStatus", recommendHandler.GetReviewExtractStatus)                // ?review_id=123
+	app.Get("/GetReviewNormalizationStatus", recommendHandler.GetReviewNormalizationStatus) // ?review_id=123
+	app.Get("/GetReviewProcessingStatus", recommendHandler.GetReviewProcessingStatus)       // ?review_id=123
 	app.Get("/EnvStatus", recommendHandler.GetEnvStatus)
 
 	//#####################################################################################
