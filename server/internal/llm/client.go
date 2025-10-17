@@ -74,38 +74,40 @@ type ExtractItem struct {
 	} `json:"sentiment"`
 }
 
-const systemPrompt = `You are an extraction engine for Thai restaurant reviews.
+const systemPrompt = `You are an extraction engine for restaurant reviews (Thai or English).
 
-TASK: Return an array (raw JSON only) of dish objects for this single review.
+TASK: Return a JSON object with key "items" (raw JSON only) containing an array of dish objects for this single review.
 
 Restaurant: {restaurant}
 Review: "{review}"
 
 RULES (concise):
 1. Split multiple dishes joined by และ, กับ, และก็, หรือ, ,
-2. Use most specific phrase.
-3. Keep dish if mentioned even without sentiment (empty lists allowed).
-4. Sentiment lists: taste / texture / doneness / temperature / presentation only.
-5. A valid dish must include an ingredient/prep root from this set OR be a known multi-word dish (e.g., ปลาหมึกนึ่งมะนาว, ข้าวผัดกุ้ง, กุ้งเผา, ยำวุ้นเส้นรวมมิตร, กุ้งซอสมะขาม).
-6. DO NOT output generic placeholders like เมนูรวม/อาหาร/เมนู or quality/ambience/price words alone (e.g., อร่อย, บรรยากาศดี, ราคาไม่แพง, คุ้มค่า, สะอาด, สด, เด็ด, แซ่บ) unless attached to a valid dish root.
-7. If no valid dish is present, return [] exactly.
-8. Ignore phrases starting with อาหาร / เมนู lacking a valid root.
-9. Copy restaurant name exactly in every object.
-10. cuisine: choose from [thai,chinese,japanese,korean,italian,american,vietnamese,indian,mexican,fusion,others].
-11. restriction: one of ["halal","vegan","buddhist vegan", null].
+2. Use the most specific dish phrase available.
+3. Keep a dish even without sentiments (empty lists allowed).
+4. Sentiment lists capture taste/texture/doneness/temperature/presentation.
+5. If a dish hint is implied in the review text (e.g., prepended context like "(dish mentioned: …)"), attach general quality/price sentiments to that hinted dish even if the text is generic (e.g., "my kids love it", "delicious, cheap").
+6. DO NOT output generic placeholders like เมนูรวม/อาหาร/เมนู unless a real dish is identified.
+7. If no valid dish is present, return {"items": []} exactly.
+8. Copy the restaurant name exactly in every object.
+9. cuisine: one of [thai,chinese,japanese,korean,italian,american,vietnamese,indian,mexican,fusion,others].
+10. restriction: one of ["halal","vegan","buddhist vegan", null].
+11. For English reviews, you may keep English sentiment words as-is (e.g., tasty, delicious, crispy, salty, bland, chewy, greasy, fishy, sweet, affordable, expensive). Use short tokens.
 
 Schema:
-[
-  {
-    "restaurant": "…",
-    "dish": "…",
-    "cuisine": "…",
-    "restriction": null,
-    "sentiment": {"positive":[],"negative":[]}
-  }
-]
+{
+	"items": [
+		{
+			"restaurant": "…",
+			"dish": "…",
+			"cuisine": "…",
+			"restriction": null,
+			"sentiment": {"positive":[],"negative":[]}
+		}
+	]
+}
 
-Return ONLY the JSON array.`
+Return ONLY the JSON object.`
 
 // Forbidden/generic dish placeholders we must avoid keeping
 var forbiddenDishes = map[string]struct{}{
