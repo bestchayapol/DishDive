@@ -74,19 +74,38 @@ type ExtractItem struct {
 	} `json:"sentiment"`
 }
 
-const systemPrompt = `You are an information extractor for a single Thai/English restaurant review.
-Return STRICT JSON ONLY as an array with the exact schema:
+const systemPrompt = `You are an extraction engine for Thai restaurant reviews.
+
+TASK: Return an array (raw JSON only) of dish objects for this single review.
+
+Restaurant: {restaurant}
+Review: "{review}"
+
+RULES (concise):
+1. Split multiple dishes joined by และ, กับ, และก็, หรือ, ,
+2. Use most specific phrase.
+3. Keep dish if mentioned even without sentiment (empty lists allowed).
+4. Sentiment lists: taste / texture / doneness / temperature / presentation only.
+5. A valid dish must include an ingredient/prep root from this set OR be a known multi-word dish (e.g., ปลาหมึกนึ่งมะนาว, ข้าวผัดกุ้ง, กุ้งเผา, ยำวุ้นเส้นรวมมิตร, กุ้งซอสมะขาม).
+6. DO NOT output generic placeholders like เมนูรวม/อาหาร/เมนู or quality/ambience/price words alone (e.g., อร่อย, บรรยากาศดี, ราคาไม่แพง, คุ้มค่า, สะอาด, สด, เด็ด, แซ่บ) unless attached to a valid dish root.
+7. If no valid dish is present, return [] exactly.
+8. Ignore phrases starting with อาหาร / เมนู lacking a valid root.
+9. Copy restaurant name exactly in every object.
+10. cuisine: choose from [thai,chinese,japanese,korean,italian,american,vietnamese,indian,mexican,fusion,others].
+11. restriction: one of ["halal","vegan","buddhist vegan", null].
+
+Schema:
 [
   {
-	"restaurant": string,
-	"dish": string,
-	"cuisine": string|null,
-	"restriction": string|null,
-	"sentiment": { "positive": [string], "negative": [string] }
+    "restaurant": "…",
+    "dish": "…",
+    "cuisine": "…",
+    "restriction": null,
+    "sentiment": {"positive":[],"negative":[]}
   }
 ]
-If a field is unknown, set cuisine/restriction to null and use [] for sentiment arrays.
-No extra commentary or markdown—return only the JSON array.`
+
+Return ONLY the JSON array.`
 
 // Forbidden/generic dish placeholders we must avoid keeping
 var forbiddenDishes = map[string]struct{}{
@@ -119,10 +138,11 @@ func (c *Client) Extract(ctx context.Context, restaurant, review string, hintDis
 	reqBody := chatRequest{
 		Model: c.model,
 		Messages: []Message{
-			{Role: "system", Content: systemPrompt},
-			{Role: "user", Content: user},
-		},
-	}
+				{Role: "system", Content: systemPrompt},
+				{Role: "user", Content: user},
+			},
+			ResponseFormat: map[string]string{"type": "json_object"},
+		}
 	data, _ := json.Marshal(reqBody)
 	httpReq, err := http.NewRequestWithContext(ctx, http.MethodPost, "https://api.openai.com/v1/chat/completions", bytes.NewReader(data))
 	if err != nil {
@@ -247,9 +267,8 @@ func ruleBasedExtract(restaurant, review string) []ExtractItem {
 			phrase := ing + strings.Join(extra, "")
 			// trim trailing sentiments glued
 			for _, s := range append(rbPositive, rbNegative...) {
-				if strings.HasSuffix(phrase, s) {
-					phrase = strings.TrimSuffix(phrase, s)
-				}
+				// TrimSuffix is a no-op if the suffix isn't present, so no need to check HasSuffix
+				phrase = strings.TrimSuffix(phrase, s)
 			}
 			phrase = strings.TrimSpace(phrase)
 			if phrase != "" {

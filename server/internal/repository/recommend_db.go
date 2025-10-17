@@ -213,21 +213,24 @@ func (r *recommendRepositoryDB) RecomputeScoresAndRestaurants() error {
 	if err := r.db.Exec(`
 		WITH per_review AS (
 			SELECT rd.dish_id, rd.review_dish_id,
-				   MAX(CASE WHEN k.sentiment='positive' THEN 1 ELSE 0 END) AS has_pos,
-				   MAX(CASE WHEN k.sentiment='negative' THEN 1 ELSE 0 END) AS has_neg
+				   MAX(CASE WHEN k.sentiment = 'positive' THEN 1 ELSE 0 END) AS has_pos,
+				   MAX(CASE WHEN k.sentiment = 'negative' THEN 1 ELSE 0 END) AS has_neg
 			FROM review_dishes rd
 			LEFT JOIN review_dish_keywords rdk ON rdk.review_dish_id = rd.review_dish_id
 			LEFT JOIN keywords k ON k.keyword_id = rdk.keyword_id
 			GROUP BY rd.dish_id, rd.review_dish_id
 		), agg AS (
-			SELECT dish_id, SUM(has_pos) AS pos, SUM(has_neg) AS neg
+			SELECT dish_id,
+				   SUM(has_pos) AS pos,
+				   SUM(has_neg) AS neg,
+				   COUNT(*)      AS total_reviews
 			FROM per_review
 			GROUP BY dish_id
 		)
 		UPDATE dishes d
-		SET positive_score = COALESCE(a.pos,0),
-			negative_score = COALESCE(a.neg,0),
-			total_score = COALESCE(a.pos,0) + COALESCE(a.neg,0)
+		SET positive_score = COALESCE(a.pos, 0),
+			negative_score = COALESCE(a.neg, 0),
+			total_score    = COALESCE(a.total_reviews, 0)
 		FROM agg a
 		WHERE a.dish_id = d.dish_id`).Error; err != nil {
 		return err
