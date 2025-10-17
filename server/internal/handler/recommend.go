@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"encoding/json"
 	"strconv"
 
 	"os"
@@ -170,4 +171,22 @@ func (h *RecommendHandler) GetEnvStatus(c *fiber.Ctx) error {
 		"PYTHON_EXEC": os.Getenv("PYTHON_EXEC"),
 	}
 	return c.JSON(resp)
+}
+
+// Diagnostic: return the latest stored extraction JSON for a given review_id
+func (h *RecommendHandler) GetLatestReviewExtract(c *fiber.Ctx) error {
+	id, err := strconv.Atoi(c.Query("review_id", ""))
+	if err != nil || id <= 0 {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "missing or invalid review_id"})
+	}
+	raw, err := h.recommendService.GetLatestReviewExtract(uint(id), "user")
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+	// Try to decode as JSON array to avoid double-encoding; fallback to raw string
+	var arr []any
+	if err := json.Unmarshal([]byte(raw), &arr); err == nil {
+		return c.JSON(fiber.Map{"review_id": id, "items": arr})
+	}
+	return c.JSON(fiber.Map{"review_id": id, "raw": raw})
 }

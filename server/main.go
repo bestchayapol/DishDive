@@ -165,6 +165,7 @@ func main() {
 	app.Get("/GetReviewNormalizationStatus", recommendHandler.GetReviewNormalizationStatus) // ?review_id=123
 	app.Get("/GetReviewProcessingStatus", recommendHandler.GetReviewProcessingStatus)       // ?review_id=123
 	app.Get("/EnvStatus", recommendHandler.GetEnvStatus)
+	app.Get("/GetLatestReviewExtract", recommendHandler.GetLatestReviewExtract) // ?review_id=123
 
 	//#####################################################################################
 

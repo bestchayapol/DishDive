@@ -15,4 +15,5 @@ type RecommendService interface {
 	GetRecommendedDishes(userID uint, resID *uint) ([]dtos.RestaurantMenuItemResponse, error)
 	HasReviewExtract(sourceID uint, sourceType string) (bool, error)
 	HasNormalizedReview(sourceID uint) (bool, error)
+	GetLatestReviewExtract(sourceID uint, sourceType string) (string, error)
 }

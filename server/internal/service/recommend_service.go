@@ -544,6 +544,11 @@ func (s *recommendService) HasNormalizedReview(sourceID uint) (bool, error) {
 	return s.recommendRepo.HasNormalizedReview(sourceID)
 }
 
+// GetLatestReviewExtract returns the raw stored extraction JSON for diagnostics
+func (s *recommendService) GetLatestReviewExtract(sourceID uint, sourceType string) (string, error) {
+	return s.recommendRepo.GetLatestReviewExtract(sourceID, sourceType)
+}
+
 // Helper function to get cuisine image link
 func getCuisineImageLink(foodRepo repository.FoodRepository, cuisine *string) *string {
 	if cuisine == nil {
