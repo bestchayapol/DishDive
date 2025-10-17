@@ -167,6 +167,7 @@ func (h *RecommendHandler) GetEnvStatus(c *fiber.Ctx) error {
 		"PG_PORT": os.Getenv("PG_PORT"),
 		"PG_USER": os.Getenv("PG_USER"),
 		"PG_DATABASE": os.Getenv("PG_DATABASE"),
+		"OPENAI_MODEL": os.Getenv("OPENAI_MODEL"),
 		"OPENAI_API_KEY": mask(os.Getenv("OPENAI_API_KEY")),
 		"PYTHON_EXEC": os.Getenv("PYTHON_EXEC"),
 	}
