@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:dishdive/Utils/color_use.dart';
 import 'package:dishdive/Utils/api_config.dart';
 import 'package:dishdive/Components/Cards/card_favorites.dart';
+import 'package:dishdive/Pages/Restaurant/DishPage.dart';
 import 'package:dishdive/provider/token_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -61,6 +62,7 @@ class _ListFavoritesWidgetState extends State<ListFavoritesWidget> {
               .map(
                 (dish) => {
                   'dish_id': dish['dish_id'],
+                  'res_id': dish['res_id'] ?? dish['restaurant_id'] ?? 0,
                   'name': dish['dish_name'] ?? 'Unknown Dish',
                   'percent': _toPercentFromParts(
                     positive: dish['positive_reviews'],
@@ -258,12 +260,26 @@ class _ListFavoritesWidgetState extends State<ListFavoritesWidget> {
       itemCount: favorites.length,
       itemBuilder: (context, index) {
         final fav = favorites[index];
-        return FavoriteCard(
-          name: fav["name"],
-          percent: fav["percent"],
-          tags: fav["tags"],
-          imageUrl: fav["imageUrl"],
-          onDelete: () => _showDeleteDialog(index),
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => DishPage(
+                  dishId: fav['dish_id'] as int,
+                  dishName: fav['name'] as String,
+                  restaurantId: (fav['res_id'] as int?) ?? 0,
+                ),
+              ),
+            );
+          },
+          child: FavoriteCard(
+            name: fav["name"],
+            percent: fav["percent"],
+            tags: fav["tags"],
+            imageUrl: fav["imageUrl"],
+            onDelete: () => _showDeleteDialog(index),
+          ),
         );
       },
     );

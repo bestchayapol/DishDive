@@ -228,33 +228,35 @@ class _DishPageState extends State<DishPage>
           ),
           // Content area
           Expanded(child: _buildContent()),
-          // Write Review button
-          const SizedBox(height: 15),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 80.0,
-              vertical: 10.0,
-            ),
-            child: MyButton(
-              text: "Write Review",
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => ReviewPage(
-                      dishId: widget.dishId,
-                      resId: widget.restaurantId,
+          // Write Review button (only when restaurantId is valid)
+          if (widget.restaurantId > 0) ...[
+            const SizedBox(height: 15),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 80.0,
+                vertical: 10.0,
+              ),
+              child: MyButton(
+                text: "Write Review",
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => ReviewPage(
+                        dishId: widget.dishId,
+                        resId: widget.restaurantId,
+                      ),
                     ),
-                  ),
-                );
-              },
-              backgroundColor: colorUse.activeButton,
-              textColor: Colors.white,
-              fontSize: 32,
-              borderRadius: 10,
+                  );
+                },
+                backgroundColor: colorUse.activeButton,
+                textColor: Colors.white,
+                fontSize: 32,
+                borderRadius: 10,
+              ),
             ),
-          ),
-          const SizedBox(height: 40),
+            const SizedBox(height: 40),
+          ],
         ],
       ),
     );

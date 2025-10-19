@@ -68,7 +68,12 @@ class _MenuCardState extends State<MenuCard> {
         children: [
           // Top row with title and favorite toggle (image removed)
           Padding(
-            padding: const EdgeInsets.only(top: 12, left: 16, right: 12, bottom: 4),
+            padding: const EdgeInsets.only(
+              top: 12,
+              left: 16,
+              right: 12,
+              bottom: 4,
+            ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -102,7 +107,9 @@ class _MenuCardState extends State<MenuCard> {
                     ),
                     child: Icon(
                       Icons.favorite,
-                      color: isFavorite ? colorUse.sentimentColor : Colors.white,
+                      color: isFavorite
+                          ? colorUse.sentimentColor
+                          : Colors.white,
                       size: 20,
                     ),
                   ),
@@ -117,34 +124,45 @@ class _MenuCardState extends State<MenuCard> {
               width: double.infinity,
               height: 28,
               decoration: BoxDecoration(
-                // Base bar background should be dark/black
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(6),
+                color: colorUse.negative,
+                borderRadius: BorderRadius.circular(8),
               ),
-              child: Stack(
-                children: [
-                  // Pink fill proportional to rating percent
-                  FractionallySizedBox(
-                    widthFactor: widthFactor,
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: colorUse.sentimentColor,
-                        borderRadius: BorderRadius.circular(6),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  final filledWidth = constraints.maxWidth * widthFactor;
+                  final labelText = '${widget.ratingPercent}%';
+
+                  return Stack(
+                    children: [
+                      // Filled portion
+                      Container(
+                        width: filledWidth,
+                        height: double.infinity,
+                        decoration: BoxDecoration(
+                          color: colorUse.positive,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
                       ),
-                    ),
-                  ),
-                  Center(
-                    child: Text(
-                      "${widget.ratingPercent}%",
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
+                      // Label positioning
+                      Positioned(
+                        left: widthFactor >= 0.30
+                            ? 0
+                            : filledWidth + 5, // Inside or outside
+                        width: widthFactor >= 0.10 ? filledWidth : null,
+                        child: Center(
+                          child: Text(
+                            labelText,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ],
+                    ],
+                  );
+                },
               ),
             ),
           ),

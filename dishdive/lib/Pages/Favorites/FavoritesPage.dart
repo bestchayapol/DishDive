@@ -27,7 +27,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
   Future<void> fetchUserData() async {
     final token = Provider.of<TokenProvider>(context, listen: false).token;
     final userId = Provider.of<TokenProvider>(context, listen: false).userId;
-    
+
     if (token == null || userId == null) {
       return;
     }
@@ -73,7 +73,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                 const Align(
                   alignment: Alignment.center,
                   child: Text(
-                    "Favorite\nDishes",
+                    "Favorite Dishes",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: 'InriaSans',
@@ -100,7 +100,8 @@ class _FavoritesPageState extends State<FavoritesPage> {
                         shape: BoxShape.circle,
                         color: Colors.grey, // Placeholder for profile image
                       ),
-                      child: profileImageUrl != null && profileImageUrl!.isNotEmpty
+                      child:
+                          profileImageUrl != null && profileImageUrl!.isNotEmpty
                           ? ClipOval(
                               child: Image.network(
                                 profileImageUrl!,
@@ -114,15 +115,19 @@ class _FavoritesPageState extends State<FavoritesPage> {
                                     size: 24,
                                   );
                                 },
-                                loadingBuilder: (context, child, loadingProgress) {
-                                  if (loadingProgress == null) return child;
-                                  return const Center(
-                                    child: CircularProgressIndicator(
-                                      strokeWidth: 2,
-                                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                                    ),
-                                  );
-                                },
+                                loadingBuilder:
+                                    (context, child, loadingProgress) {
+                                      if (loadingProgress == null) return child;
+                                      return const Center(
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2,
+                                          valueColor:
+                                              AlwaysStoppedAnimation<Color>(
+                                                Colors.white,
+                                              ),
+                                        ),
+                                      );
+                                    },
                               ),
                             )
                           : const Icon(

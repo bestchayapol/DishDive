@@ -16,19 +16,20 @@ This document explains the end-to-end architecture of DishDive, the main technol
   - Config: Viper (+ simple .env loader)
   - Auth: JWT (v4)
   - Object storage: MinIO client (S3-compatible)
-- Data/AI pipeline: Python
+  - LLM integration: native HTTP client to OpenAI API (no Python subprocess)
+- Optional data/AI batch tools: Python (for offline ingestion only)
   - Libraries: pandas, psycopg2-binary, openai>=1,<2, pydantic, beautifulsoup4, rapidfuzz, pythainlp
-  - Purpose: extract dish-level data from reviews (LLM + rule-based) and write to Postgres for normalization
+  - Purpose: batch extract from CSV and write to Postgres when needed
 - Storage/infra
   - Database: Postgres (hosted on university VM)
   - Object storage: MinIO (local Docker Compose; S3-compatible)
 
 ```
-Flutter (Dio + Provider) ──HTTP──▶ Go API (Fiber + GORM) ──SQL──▶ Postgres
-                │                            │
-                │                            └──S3──▶ MinIO (images)
+Flutter (Dio + Provider) ──HTTP──▶ Go API (Fiber + GORM + native LLM) ──SQL──▶ Postgres
+                │                               │
+                │                               └──S3──▶ MinIO (images)
                 │
-                └──(User submits review)──▶ Go spawns Python (LLM) ──SQL──▶ Postgres (review_extracts)
+                └──(Optional batch ingest)──▶ Python tools ──SQL──▶ Postgres (review_extracts)
 ```
 
 ## Repositories & layout
@@ -76,23 +77,23 @@ Flutter (Dio + Provider) ──HTTP──▶ Go API (Fiber + GORM) ──SQL─�
 - MinIO runtime
   - `server/docker-compose.minio.yml` boots MinIO and an `mc` sidecar to create a bucket and set anonymous download (for dev).
 
-### Python orchestration on review submit
+### Go-native extraction & normalization on review submit
 
 When the app calls `POST /SubmitReview`:
 
-1. Server persists the review and gets a `reviewID`.
-2. Server spawns a Python process: `python -m llm_processing.single_review --restaurant <name> --review <text> --source-id <reviewID> --source-type user`.
-   - Passes DB env (PG_HOST/PORT/USER/PASSWORD/DATABASE/SSL), OpenAI envs, and control flags: `PG_WRITE_DISABLED=0`, `WRITE_CHECKPOINT=0`, `WRITE_DATA_EXTRACT=0`.
-   - Injects hints: `HINT_DISH_ID`, `HINT_RES_ID`, `HINT_DISH_NAME`, `HINT_RES_NAME` to improve extraction.
-   - Sets `PYTHONPATH` and working directory to the repo root; prefers local venv if present (`./.venv`).
-3. Python extracts dish-level JSON and upserts to Postgres table `review_extracts`.
-4. A separate normalization step (scripted) converts `review_extracts.data_extract` into domain tables (dish/keyword links, counts, sentiment), enabling recommendations.
+1. The server persists the review and obtains a `reviewID`.
+2. An asynchronous Go routine runs the LLM extraction using `internal/llm` (HTTP to OpenAI) with optional hinting (dish/restaurant name). It writes the raw JSON array to `review_extracts.data_extract` using the repository.
+3. Immediately after, the Go normalizer (`internal/normalize`) maps the extracted items into domain tables (`review_dishes`, `review_dish_keywords`, `dish_keywords`) and updates rollups in `dishes`/`restaurants`.
 
-## Data/AI pipeline (Python `llm_processing/`)
+No Python subprocess is involved in the online path.
+
+## Optional batch ingestion (Python `llm_processing/`)
+
+Python remains available for offline/batch ingestion tasks only.
 
 - Entrypoints
   - Batch: `python -m llm_processing.main` (or `run_llm_processing.py` wrapper)
-  - Single review: `python -m llm_processing.single_review` (used by Go server)
+  - Single review: `python -m llm_processing.single_review` (for ad-hoc testing; not used in production path)
 - Key modules
   - `config.py`: env-driven configuration (CSV paths, batching, DB, caching)
   - `db.py`: psycopg2 connections/pool; creates `review_extracts` if absent; `upsert_review_extracts()`
@@ -105,7 +106,7 @@ When the app calls `POST /SubmitReview`:
   - Input CSV must contain: `restaurant_name`, `review_text`.
   - Writes accepted rows to `review_extracts` (JSON list of dish objects), and writes a CSV report in `outputs/`.
   - Acceptance summary written to `outputs/acceptance_summary.json`.
-  - Normalization scripts (in `scripts/llm_related/`) should then map extracts into domain tables.
+  - The Go normalizer reads the same table to map extracts into domain tables.
 
 ## Configuration
 
@@ -123,6 +124,53 @@ When the app calls `POST /SubmitReview`:
 - MinIO
   - `server/docker-compose.minio.yml` provides local S3-compatible object storage. Bucket is created by the `mc` sidecar.
 
+## External APIs and keys
+
+- OpenAI (Chat Completions)
+
+  - Used by: Go backend (`server/internal/llm`) in the online path; Python batch tools optionally.
+  - Env: `OPENAI_API_KEY` (required), `OPENAI_MODEL` (optional; defaults to `gpt-4o-mini`).
+  - Diagnostics: `GET /EnvStatus` shows masked `OPENAI_API_KEY` and `OPENAI_MODEL`.
+  - Notes: Go requests strict JSON via `response_format` and stores raw items in `review_extracts` prior to normalization.
+
+- Google Maps (Flutter)
+
+  - Package: `google_maps_flutter` embeds Google Maps SDKs.
+  - Keys: Configure platform-specific API keys (AndroidManifest.xml for Android; Info.plist/AppDelegate for iOS).
+  - Purpose: Map rendering UI on device; no backend dependency.
+
+- Geolocator (Flutter)
+
+  - Package: `geolocator` uses device location services; no external API key.
+  - Requires runtime permissions on Android/iOS; configured in platform manifests.
+
+- MinIO (S3-compatible)
+  - Used by: Go backend for image/object storage.
+  - Config: Access key/secret in `server/config.yaml` (overridable via env), endpoint from compose or deployment.
+  - API: S3-compatible operations via `minio-go` client.
+
+### Optional batch tools: geocoding (Python)
+
+- Google Geocoding API (REST)
+
+  - Used by: Python script `scripts/llm_related/geocode_restaurants.py` (primary geocoder when key present).
+  - Endpoint: `https://maps.googleapis.com/maps/api/geocode/json`
+  - Env: `GOOGLE_MAPS_API_KEY` (required to use Google); optional `GEO_SLEEP_SEC` (batch rate-limit), `GEO_CACHE_PATH` (local JSON cache path).
+  - Behavior: Requests geocode for composed address; writes latitude/longitude, formatted_address, place_id, and provider="google" back to Postgres.
+
+- OpenStreetMap Nominatim (REST)
+  - Used by: Same Python script as fallback or when no Google key is set.
+  - Endpoint: `https://nominatim.openstreetmap.org/search`
+  - Env: `NOMINATIM_UA` (required to set a meaningful User-Agent per OSM usage policy).
+  - Behavior: Returns best match; script enforces a minimum ~1s delay when using OSM to respect rate limits; provider="nominatim".
+
+### Optional batch tools: Thai NLP (Python)
+
+- PyThaiNLP (library)
+  - Used by: Python `llm_processing` utilities for Thai normalization/tokenization and heuristics.
+  - Type: Local library (no external API calls, no API keys).
+  - Context: Only affects offline/batch tools; the online Go pipeline does not depend on PyThaiNLP.
+
 ## Typical data flows
 
 1. Login & user data
@@ -137,8 +185,9 @@ When the app calls `POST /SubmitReview`:
 3. Submit review with AI extraction
 
    - App → `POST /SubmitReview`.
-   - Go saves review, spawns Python job → Python writes to `review_extracts`.
-   - Normalization job maps extracts to domain tables → recommendations use updated signals.
+
+- Go saves review, runs LLM extraction natively (OpenAI) and writes to `review_extracts`.
+- Go normalizer maps extracts to domain tables and updates rollups → recommendations use updated signals.
 
 4. Batch ingestion (web reviews)
    - Clean/prepare CSV (e.g., `scripts/final_review_cleaner.py` output with `restaurant_name`, `review_text`).

@@ -11,4 +11,6 @@ class colorUse {
   static const backgroundColor = Color(0xFF0E2B3B);
   static const accent = Color(0xFFFFBC68);
   static const sentimentColor = Color(0xFFE34483);
+  static const positive = Color(0xFF0eae90);
+  static const negative = Color(0xFF59534E);
 }

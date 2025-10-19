@@ -14,11 +14,7 @@ class ReviewPage extends StatefulWidget {
   final int dishId;
   final int resId;
 
-  const ReviewPage({
-    super.key, 
-    required this.dishId,
-    required this.resId,
-  });
+  const ReviewPage({super.key, required this.dishId, required this.resId});
 
   @override
   State<ReviewPage> createState() => _ReviewPageState();
@@ -29,12 +25,12 @@ class _ReviewPageState extends State<ReviewPage>
   String? username;
   String? profileImageUrl;
   int? userid;
-  
+
   // Dish data
   DishReviewPageResponse? dishData;
   bool isLoadingDish = true;
   String? dishError;
-  
+
   final RestaurantService _restaurantService = RestaurantService();
 
   @override
@@ -55,7 +51,10 @@ class _ReviewPageState extends State<ReviewPage>
         return;
       }
 
-      final data = await _restaurantService.getDishReviewPage(widget.dishId, token);
+      final data = await _restaurantService.getDishReviewPage(
+        widget.dishId,
+        token,
+      );
       setState(() {
         dishData = data;
         isLoadingDish = false;
@@ -71,7 +70,7 @@ class _ReviewPageState extends State<ReviewPage>
   Future<void> fetchUserData() async {
     final token = Provider.of<TokenProvider>(context, listen: false).token;
     final userId = Provider.of<TokenProvider>(context, listen: false).userId;
-    
+
     if (token == null || userId == null) {
       return;
     }
@@ -101,9 +100,9 @@ class _ReviewPageState extends State<ReviewPage>
 
   Future<void> submitReview() async {
     if (_reviewController.text.trim().isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Please write a review.")),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Please write a review.")));
       return;
     }
 
@@ -144,9 +143,9 @@ class _ReviewPageState extends State<ReviewPage>
         );
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Error submitting review: $e")),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Error submitting review: $e")));
     }
   }
 
@@ -200,7 +199,8 @@ class _ReviewPageState extends State<ReviewPage>
                       shape: BoxShape.circle,
                       color: Colors.grey, // Placeholder color
                     ),
-                    child: profileImageUrl != null && profileImageUrl!.isNotEmpty
+                    child:
+                        profileImageUrl != null && profileImageUrl!.isNotEmpty
                         ? ClipOval(
                             child: Image.network(
                               profileImageUrl!,
@@ -214,15 +214,19 @@ class _ReviewPageState extends State<ReviewPage>
                                   size: 24,
                                 );
                               },
-                              loadingBuilder: (context, child, loadingProgress) {
-                                if (loadingProgress == null) return child;
-                                return const Center(
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 2,
-                                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                                  ),
-                                );
-                              },
+                              loadingBuilder:
+                                  (context, child, loadingProgress) {
+                                    if (loadingProgress == null) return child;
+                                    return const Center(
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                              Colors.white,
+                                            ),
+                                      ),
+                                    );
+                                  },
                             ),
                           )
                         : const Icon(
@@ -263,26 +267,28 @@ class _ReviewPageState extends State<ReviewPage>
                     else
                       const Center(child: Text('No dish data available')),
                     const SizedBox(height: 240),
-                    // Submit button
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 80.0,
-                        vertical: 10.0,
-                      ),
-                      child: MyButton(
-                        text: "Submit",
-                        onTap: submitReview,
-                        backgroundColor: colorUse.activeButton,
-                        textColor: Colors.white,
-                        fontSize: 32,
-                        borderRadius: 10,
-                      ),
-                    ),
                   ],
                 ),
               ),
             ),
           ),
+          // Submit button (match DishPage spacing/style)
+          const SizedBox(height: 15),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 80.0,
+              vertical: 10.0,
+            ),
+            child: MyButton(
+              text: "Submit",
+              onTap: submitReview,
+              backgroundColor: colorUse.activeButton,
+              textColor: Colors.white,
+              fontSize: 32,
+              borderRadius: 10,
+            ),
+          ),
+          const SizedBox(height: 40),
         ],
       ),
     );

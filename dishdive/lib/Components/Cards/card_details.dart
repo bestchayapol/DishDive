@@ -105,8 +105,7 @@ class _CardDetailsState extends State<CardDetails> {
       padding: const EdgeInsets.all(12),
       width: double.infinity,
       child: Column(
-        mainAxisSize:
-            MainAxisSize.min, // Allow column to size itself based on content
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Title row with inlined favorite toggle (image removed)
@@ -169,7 +168,7 @@ class _CardDetailsState extends State<CardDetails> {
                 ),
                 TextSpan(
                   text:
-                      '${widget.positiveReviews} positive reviews from ${widget.totalReviews}',
+                      '${widget.positiveReviews} positive out of ${widget.totalReviews}',
                   style: const TextStyle(
                     fontFamily: 'InriaSans',
                     fontWeight: FontWeight.normal,
@@ -181,38 +180,52 @@ class _CardDetailsState extends State<CardDetails> {
             ),
           ),
           const SizedBox(height: 4),
+          // Sentiment bar
           Container(
             width: double.infinity,
             height: 28,
             decoration: BoxDecoration(
-              // Dark background when 0%
-              color: Colors.black,
+              color: colorUse.negative,
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Stack(
-              children: [
-                // Pink fill proportional to ratingPercent
-                FractionallySizedBox(
-                  widthFactor: widthFactor,
-                  alignment: Alignment.centerLeft,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: colorUse.sentimentColor,
-                      borderRadius: BorderRadius.circular(8),
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                final filledWidth = constraints.maxWidth * widthFactor;
+                final labelText = widthFactor < 0.33
+                    ? '${widget.ratingPercent}%' // Shortened label
+                    : '${widget.ratingPercent}% positive';
+
+                return Stack(
+                  children: [
+                    // Filled portion
+                    Container(
+                      width: filledWidth,
+                      height: double.infinity,
+                      decoration: BoxDecoration(
+                        color: colorUse.positive,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
                     ),
-                  ),
-                ),
-                Center(
-                  child: Text(
-                    '${widget.ratingPercent}%',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
+                    // Label positioning
+                    Positioned(
+                      left: widthFactor >= 0.10
+                          ? 0
+                          : filledWidth + 5, // Inside or outside
+                      width: widthFactor >= 0.10 ? filledWidth : null,
+                      child: Center(
+                        child: Text(
+                          labelText,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ],
+                  ],
+                );
+              },
             ),
           ),
           const SizedBox(height: 12),
@@ -225,7 +238,6 @@ class _CardDetailsState extends State<CardDetails> {
             ),
           ),
           const SizedBox(height: 6),
-          // Taste keywords
           KeywordsSection(
             tasteKeywords: tasteKeywords,
             costKeywords: costKeywords,
