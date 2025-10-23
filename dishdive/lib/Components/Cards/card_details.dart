@@ -90,6 +90,18 @@ class _CardDetailsState extends State<CardDetails> {
         .where((kw) => kw['type'] != 'taste' && kw['type'] != 'cost')
         .toList();
 
+    // Determine sentiment bar color based on widthFactor
+    Color sentimentBarColor;
+    if (widthFactor > 0.75) {
+      sentimentBarColor = colorUse.positive;
+    } else if (widthFactor <= 0.75 && widthFactor > 0.49) {
+      sentimentBarColor = colorUse.middleThird;
+    } else if (widthFactor <= 0.49 && widthFactor > 0.25) {
+      sentimentBarColor = colorUse.middleSecond;
+    }else {
+      sentimentBarColor = colorUse.sentimentColor;
+    }
+
     return Container(
       decoration: BoxDecoration(
         color: colorUse.secondaryColor,
@@ -192,9 +204,8 @@ class _CardDetailsState extends State<CardDetails> {
               builder: (context, constraints) {
                 final filledWidth = constraints.maxWidth * widthFactor;
                 final labelText = widthFactor < 0.33
-                    ? '${widget.ratingPercent}%' // Shortened label
+                    ? '${widget.ratingPercent}%'
                     : '${widget.ratingPercent}% positive';
-
                 return Stack(
                   children: [
                     // Filled portion
@@ -202,7 +213,7 @@ class _CardDetailsState extends State<CardDetails> {
                       width: filledWidth,
                       height: double.infinity,
                       decoration: BoxDecoration(
-                        color: colorUse.positive,
+                        color: sentimentBarColor,
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),

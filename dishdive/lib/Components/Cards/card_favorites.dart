@@ -19,6 +19,20 @@ class FavoriteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double widthFactor = (percent.clamp(0, 100)) / 100.0;
+
+    // Determine sentiment bar color based on widthFactor
+    Color sentimentBarColor;
+    if (widthFactor > 0.75) {
+      sentimentBarColor = colorUse.positive;
+    } else if (widthFactor <= 0.75 && widthFactor > 0.49) {
+      sentimentBarColor = colorUse.middleThird;
+    } else if (widthFactor <= 0.49 && widthFactor > 0.25) {
+      sentimentBarColor = colorUse.middleSecond;
+    }else {
+      sentimentBarColor = colorUse.sentimentColor;
+    }
+
     return Container(
       margin: const EdgeInsets.only(bottom: 18),
       decoration: BoxDecoration(
@@ -100,11 +114,11 @@ class FavoriteCard extends StatelessWidget {
                         child: LayoutBuilder(
                           builder: (context, constraints) {
                             final filledWidth =
-                                constraints.maxWidth *
-                                (percent.clamp(0, 100) / 100.0);
-                            final labelText = '$percent%';
+                                constraints.maxWidth * widthFactor;
+                            final labelText = widthFactor < 0.33
+                                ? '${percent}%'
+                                : '${percent}%';
                             final bool showInside = percent >= 10;
-
                             return Stack(
                               children: [
                                 Align(
@@ -113,7 +127,7 @@ class FavoriteCard extends StatelessWidget {
                                     width: filledWidth,
                                     height: double.infinity,
                                     decoration: BoxDecoration(
-                                      color: colorUse.positive,
+                                      color: sentimentBarColor,
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                   ),

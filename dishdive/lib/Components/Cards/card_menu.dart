@@ -49,6 +49,18 @@ class _MenuCardState extends State<MenuCard> {
     // Clamp rating to 0..100 and convert to widthFactor 0.0..1.0
     final double widthFactor = (widget.ratingPercent.clamp(0, 100)) / 100.0;
 
+    // Determine sentiment bar color based on widthFactor
+    Color sentimentBarColor;
+    if (widthFactor > 0.75) {
+      sentimentBarColor = colorUse.positive;
+    } else if (widthFactor <= 0.75 && widthFactor > 0.49) {
+      sentimentBarColor = colorUse.middleThird;
+    } else if (widthFactor <= 0.49 && widthFactor > 0.25) {
+      sentimentBarColor = colorUse.middleSecond;
+    }else {
+      sentimentBarColor = colorUse.sentimentColor;
+    }
+
     return Container(
       decoration: BoxDecoration(
         color: colorUse.secondaryColor,
@@ -130,8 +142,9 @@ class _MenuCardState extends State<MenuCard> {
               child: LayoutBuilder(
                 builder: (context, constraints) {
                   final filledWidth = constraints.maxWidth * widthFactor;
-                  final labelText = '${widget.ratingPercent}%';
-
+                  final labelText = widthFactor < 0.33
+                    ? '${widget.ratingPercent}%'
+                    : '${widget.ratingPercent}%';
                   return Stack(
                     children: [
                       // Filled portion
@@ -139,7 +152,7 @@ class _MenuCardState extends State<MenuCard> {
                         width: filledWidth,
                         height: double.infinity,
                         decoration: BoxDecoration(
-                          color: colorUse.positive,
+                          color: sentimentBarColor,
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
