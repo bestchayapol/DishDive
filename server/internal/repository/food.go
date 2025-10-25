@@ -21,6 +21,8 @@ type FoodRepository interface {
 	GetAllDishes() ([]entities.Dish, error)
 	GetDishByID(dishID uint) (*entities.Dish, error)
 	GetDishesByRestaurant(resID uint) ([]entities.Dish, error)
+	// Dish search within a restaurant
+	GetDishesByRestaurantWithSearch(resID uint, query string) ([]entities.Dish, error)
 
 	// Favorite-related
 	GetFavoriteDishesByUser(userID uint) ([]entities.Dish, error)

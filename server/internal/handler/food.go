@@ -118,11 +118,25 @@ func (h *FoodHandler) GetRestaurantMenu(c *fiber.Ctx) error {
 		return err
 	}
 
+	// Optional: dish name substring query
+	q := c.Query("q")
+
 	// Use the recommend service to get dishes with recommendation algorithm applied
 	resIDPtr := uint(resID)
-	resp, err := h.recommendService.GetRecommendedDishes(uint(userID), &resIDPtr)
-	if err != nil {
-		return err
+	var resp []dtos.RestaurantMenuItemResponse
+	if q != "" {
+		// Filtered within this restaurant
+		r, ferr := h.recommendService.GetRecommendedDishesFiltered(uint(userID), resIDPtr, q)
+		if ferr != nil {
+			return ferr
+		}
+		resp = r
+	} else {
+		r, rerr := h.recommendService.GetRecommendedDishes(uint(userID), &resIDPtr)
+		if rerr != nil {
+			return rerr
+		}
+		resp = r
 	}
 	return c.JSON(resp)
 }

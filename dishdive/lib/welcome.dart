@@ -44,8 +44,12 @@ class Welcome extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 70, bottom: 40),
                 child: Column(
                   children: [
-                    Image.asset("assets/Logo.png"),
-                    const SizedBox(height: 40),
+                    SizedBox(
+                      width: 170,
+                      height: 170,
+                      child: Image.asset("assets/Logo.png"),
+                    ),
+                    const SizedBox(height: 10),
                     Text(
                       'DishDive',
                       style: TextStyle(

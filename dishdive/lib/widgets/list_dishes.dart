@@ -9,11 +9,13 @@ import 'package:provider/provider.dart';
 class ListDishesGrid extends StatefulWidget {
   final int restaurantId;
   final String restaurantName;
+  final String? searchQuery;
 
   const ListDishesGrid({
     super.key,
     required this.restaurantId,
     required this.restaurantName,
+    this.searchQuery,
   });
 
   @override
@@ -30,6 +32,16 @@ class _ListDishesGridState extends State<ListDishesGrid> {
   void initState() {
     super.initState();
     _fetchRestaurantMenu();
+  }
+
+  @override
+  void didUpdateWidget(covariant ListDishesGrid oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.searchQuery != widget.searchQuery) {
+      // Refresh list when search query changes
+      _isLoading = true;
+      _fetchRestaurantMenu();
+    }
   }
 
   Future<void> _fetchRestaurantMenu() async {
@@ -50,6 +62,7 @@ class _ListDishesGridState extends State<ListDishesGrid> {
         widget.restaurantId,
         userId,
         token,
+        query: widget.searchQuery,
       );
 
       setState(() {

@@ -8,25 +8,35 @@ class RestaurantService {
   final Dio _dio = Dio();
 
   /// Fetches menu items for a specific restaurant
-  Future<List<RestaurantMenuItem>> getRestaurantMenu(int restaurantId, int userId, String token) async {
+  Future<List<RestaurantMenuItem>> getRestaurantMenu(
+    int restaurantId,
+    int userId,
+    String token, {
+    String? query,
+  }) async {
     try {
       final response = await _dio.get(
         ApiConfig.getRestaurantMenuEndpoint(restaurantId),
-        queryParameters: {'userID': userId},
-        options: Options(
-          headers: ApiConfig.authHeaders(token),
-        ),
+        queryParameters: {
+          'userID': userId,
+          if (query != null && query.trim().isNotEmpty) 'q': query.trim(),
+        },
+        options: Options(headers: ApiConfig.authHeaders(token)),
       );
 
       if (response.statusCode == 200) {
         final List<dynamic> data = response.data;
         return data.map((json) => RestaurantMenuItem.fromJson(json)).toList();
       } else {
-        throw Exception('Failed to load restaurant menu: ${response.statusCode}');
+        throw Exception(
+          'Failed to load restaurant menu: ${response.statusCode}',
+        );
       }
     } on DioException catch (e) {
       if (e.response != null) {
-        throw Exception('Failed to load restaurant menu: ${e.response?.statusCode} - ${e.response?.data}');
+        throw Exception(
+          'Failed to load restaurant menu: ${e.response?.statusCode} - ${e.response?.data}',
+        );
       } else {
         throw Exception('Network error: ${e.message}');
       }
@@ -41,9 +51,7 @@ class RestaurantService {
       final response = await _dio.get(
         ApiConfig.getDishDetailEndpoint(dishId),
         queryParameters: {'userID': userId},
-        options: Options(
-          headers: ApiConfig.authHeaders(token),
-        ),
+        options: Options(headers: ApiConfig.authHeaders(token)),
       );
 
       if (response.statusCode == 200) {
@@ -53,7 +61,9 @@ class RestaurantService {
       }
     } on DioException catch (e) {
       if (e.response != null) {
-        throw Exception('Failed to load dish detail: ${e.response?.statusCode} - ${e.response?.data}');
+        throw Exception(
+          'Failed to load dish detail: ${e.response?.statusCode} - ${e.response?.data}',
+        );
       } else {
         throw Exception('Network error: ${e.message}');
       }
@@ -67,13 +77,8 @@ class RestaurantService {
     try {
       final response = await _dio.post(
         ApiConfig.addFavoriteEndpoint,
-        data: {
-          'user_id': userId,
-          'dish_id': dishId,
-        },
-        options: Options(
-          headers: ApiConfig.authHeaders(token),
-        ),
+        data: {'user_id': userId, 'dish_id': dishId},
+        options: Options(headers: ApiConfig.authHeaders(token)),
       );
 
       return response.statusCode == 200;
@@ -91,13 +96,8 @@ class RestaurantService {
     try {
       final response = await _dio.delete(
         ApiConfig.removeFavoriteEndpoint,
-        data: {
-          'user_id': userId,
-          'dish_id': dishId,
-        },
-        options: Options(
-          headers: ApiConfig.authHeaders(token),
-        ),
+        data: {'user_id': userId, 'dish_id': dishId},
+        options: Options(headers: ApiConfig.authHeaders(token)),
       );
 
       return response.statusCode == 200;
@@ -111,23 +111,28 @@ class RestaurantService {
   }
 
   /// Fetches dish data for review page
-  Future<DishReviewPageResponse> getDishReviewPage(int dishId, String token) async {
+  Future<DishReviewPageResponse> getDishReviewPage(
+    int dishId,
+    String token,
+  ) async {
     try {
       final response = await _dio.get(
         ApiConfig.getDishReviewPageEndpoint(dishId),
-        options: Options(
-          headers: ApiConfig.authHeaders(token),
-        ),
+        options: Options(headers: ApiConfig.authHeaders(token)),
       );
 
       if (response.statusCode == 200) {
         return DishReviewPageResponse.fromJson(response.data);
       } else {
-        throw Exception('Failed to load dish review page: ${response.statusCode}');
+        throw Exception(
+          'Failed to load dish review page: ${response.statusCode}',
+        );
       }
     } on DioException catch (e) {
       if (e.response != null) {
-        throw Exception('Failed to load dish review page: ${e.response?.statusCode} - ${e.response?.data}');
+        throw Exception(
+          'Failed to load dish review page: ${e.response?.statusCode} - ${e.response?.data}',
+        );
       } else {
         throw Exception('Network error: ${e.message}');
       }
@@ -137,14 +142,15 @@ class RestaurantService {
   }
 
   /// Submits a review for a dish
-  Future<SubmitReviewResponse> submitReview(SubmitReviewRequest request, String token) async {
+  Future<SubmitReviewResponse> submitReview(
+    SubmitReviewRequest request,
+    String token,
+  ) async {
     try {
       final response = await _dio.post(
         ApiConfig.submitReviewEndpoint,
         data: request.toJson(),
-        options: Options(
-          headers: ApiConfig.authHeaders(token),
-        ),
+        options: Options(headers: ApiConfig.authHeaders(token)),
       );
 
       if (response.statusCode == 200) {
@@ -154,7 +160,9 @@ class RestaurantService {
       }
     } on DioException catch (e) {
       if (e.response != null) {
-        throw Exception('Failed to submit review: ${e.response?.statusCode} - ${e.response?.data}');
+        throw Exception(
+          'Failed to submit review: ${e.response?.statusCode} - ${e.response?.data}',
+        );
       } else {
         throw Exception('Network error: ${e.message}');
       }

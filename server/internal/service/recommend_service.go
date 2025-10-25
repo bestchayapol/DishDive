@@ -536,6 +536,177 @@ func (s *recommendService) GetRecommendedDishes(userID uint, resID *uint) ([]dto
 	return resp, nil
 }
 
+// GetRecommendedDishesFiltered returns recommended dishes for a restaurant filtered by a name substring
+func (s *recommendService) GetRecommendedDishesFiltered(userID uint, resID uint, nameQuery string) ([]dtos.RestaurantMenuItemResponse, error) {
+	// 1. Get filtered dishes from the restaurant
+	dishes, err := s.foodRepo.GetDishesByRestaurantWithSearch(resID, nameQuery)
+	if err != nil {
+		return nil, err
+	}
+	// Reuse the scoring logic by temporarily calling the shared builder below
+	return s.buildRecommendedMenuResponse(userID, dishes)
+}
+
+// buildRecommendedMenuResponse converts a list of dishes into RestaurantMenuItemResponse with scoring, favorites, keywords, etc.
+func (s *recommendService) buildRecommendedMenuResponse(userID uint, dishes []entities.Dish) ([]dtos.RestaurantMenuItemResponse, error) {
+	// 2. Get user settings (unified approach)
+	userSettings, err := s.recommendRepo.GetUserSettings(userID)
+	if err != nil {
+		userSettings = []entities.PreferenceBlacklist{}
+	}
+
+	// Create maps for quick lookup
+	preferenceMap := make(map[uint]float64)
+	blacklistMap := make(map[uint]float64)
+	var sentimentPreference float64 = 0
+	var sentimentBlacklist float64 = 0
+
+	for _, setting := range userSettings {
+		if setting.Preference > 0 {
+			// Check if it's sentiment keyword
+			kw, err := s.recommendRepo.GetKeywordByID(setting.KeywordID)
+			if err == nil && kw.Category == "system" && kw.Keyword == "sentiment" {
+				sentimentPreference = setting.Preference
+			} else {
+				preferenceMap[setting.KeywordID] = setting.Preference
+			}
+		}
+		if setting.Blacklist > 0 {
+			// Check if it's sentiment keyword
+			kw, err := s.recommendRepo.GetKeywordByID(setting.KeywordID)
+			if err == nil && kw.Category == "system" && kw.Keyword == "sentiment" {
+				sentimentBlacklist = setting.Blacklist
+			} else {
+				blacklistMap[setting.KeywordID] = setting.Blacklist
+			}
+		}
+	}
+
+	// 3. Get user's favorites
+	favoriteDishes, _ := s.foodRepo.GetFavoriteDishesByUser(userID)
+	favoriteMap := make(map[uint]bool)
+	for _, fav := range favoriteDishes {
+		favoriteMap[fav.DishID] = true
+	}
+
+	// 4. Calculate scores for each dish
+	type scoredDish struct {
+		dish      entities.Dish
+		score     float64
+		isFav     bool
+		sentiment float64
+	}
+
+	var scoredDishes []scoredDish
+	for _, dish := range dishes {
+		// Calculate sentiment percentage using proper review counts
+		positiveReviews, totalReviews, err := s.foodRepo.GetReviewCountsByDish(dish.DishID)
+		if err != nil {
+			positiveReviews, totalReviews = 0, 0
+		}
+
+		var sentimentPercentage float64 = 0
+		if totalReviews > 0 {
+			sentimentPercentage = float64(positiveReviews) / float64(totalReviews) * 100
+		}
+
+		// Start with sentiment as base score
+		score := sentimentPercentage
+		isFav := favoriteMap[dish.DishID]
+		shouldSkip := false
+
+		// Get dish keywords and apply preference/blacklist logic
+		keywords, _ := s.foodRepo.GetKeywordsByDish(dish.DishID)
+
+		// First check blacklist - if ANY keyword is blacklisted, skip dish entirely
+		for _, kw := range keywords {
+			if _, exists := blacklistMap[kw.KeywordID]; exists {
+				shouldSkip = true
+				break
+			}
+		}
+
+		// Check sentiment blacklist
+		if sentimentBlacklist > 0 && sentimentPercentage < (sentimentBlacklist*100) {
+			shouldSkip = true
+		}
+
+		// Skip blacklisted dishes entirely
+		if shouldSkip {
+			continue
+		}
+
+		// Apply preference boosts (+20 per preferred keyword)
+		for _, kw := range keywords {
+			if _, exists := preferenceMap[kw.KeywordID]; exists {
+				score += 20
+			}
+		}
+
+		// Apply sentiment preference boost
+		if sentimentPreference > 0 && sentimentPercentage > (sentimentPreference*100) {
+			score += 20
+		}
+
+		// Favorites boost (x3)
+		if isFav {
+			score *= 3.0
+		}
+
+		scoredDishes = append(scoredDishes, scoredDish{
+			dish:      dish,
+			score:     score,
+			isFav:     isFav,
+			sentiment: sentimentPercentage,
+		})
+	}
+
+	// 5. Sort by recommendation score (highest first)
+	sort.Slice(scoredDishes, func(i, j int) bool {
+		return scoredDishes[i].score > scoredDishes[j].score
+	})
+
+	// 6. Build response
+	var resp []dtos.RestaurantMenuItemResponse
+	for _, sd := range scoredDishes {
+		// Get cuisine image
+		var imageLink *string
+		if sd.dish.Cuisine != nil {
+			imageURL, err := s.foodRepo.GetCuisineImageByCuisineAndTag(*sd.dish.Cuisine, nil)
+			if err == nil && imageURL != "" {
+				imageLink = &imageURL
+			}
+		}
+
+		// Get prominent flavor
+		prominentFlavor, err := s.foodRepo.GetProminentFlavorByDish(sd.dish.DishID)
+		if err != nil {
+			prominentFlavor = nil
+		}
+
+		// Get review counts for response
+		positiveReviews, totalReviews, err := s.foodRepo.GetReviewCountsByDish(sd.dish.DishID)
+		if err != nil {
+			positiveReviews, totalReviews = 0, 0
+		}
+
+		resp = append(resp, dtos.RestaurantMenuItemResponse{
+			DishID:          sd.dish.DishID,
+			DishName:        sd.dish.DishName,
+			ImageLink:       imageLink,
+			SentimentScore:  sd.sentiment,
+			PositiveReviews: positiveReviews,
+			TotalReviews:    totalReviews,
+			Cuisine:         sd.dish.Cuisine,
+			ProminentFlavor: prominentFlavor,
+			IsFavorite:      sd.isFav,
+			RecommendScore:  sd.score,
+		})
+	}
+
+	return resp, nil
+}
+
 func (s *recommendService) HasReviewExtract(sourceID uint, sourceType string) (bool, error) {
 	return s.recommendRepo.HasReviewExtract(sourceID, sourceType)
 }

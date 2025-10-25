@@ -91,6 +91,14 @@ func (r *foodRepositoryDB) GetDishesByRestaurant(resID uint) ([]entities.Dish, e
 	return dishes, result.Error
 }
 
+// Search dishes by name within a restaurant (case-insensitive substring match)
+func (r *foodRepositoryDB) GetDishesByRestaurantWithSearch(resID uint, query string) ([]entities.Dish, error) {
+	var dishes []entities.Dish
+	like := "%" + query + "%"
+	result := r.db.Where("res_id = ? AND dish_name ILIKE ?", resID, like).Find(&dishes)
+	return dishes, result.Error
+}
+
 // Favorite methods
 func (r *foodRepositoryDB) GetFavoriteDishesByUser(userID uint) ([]entities.Dish, error) {
 	var dishes []entities.Dish

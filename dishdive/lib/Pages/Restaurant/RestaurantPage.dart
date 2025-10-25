@@ -6,6 +6,7 @@ import 'package:dishdive/Pages/Profile/profile.dart';
 import 'package:dishdive/widgets/list_dishes.dart';
 import 'package:dishdive/provider/token_provider.dart';
 import 'package:provider/provider.dart';
+import 'dart:async';
 
 class RestaurantPage extends StatefulWidget {
   final int restaurantId;
@@ -26,17 +27,21 @@ class _RestaurantPageState extends State<RestaurantPage>
   String? profileImageUrl;
   String? username;
   int? userid;
+  final TextEditingController _menuSearchController = TextEditingController();
+  String _menuSearchQuery = "";
+  Timer? _debounce;
 
   @override
   void initState() {
     super.initState();
     fetchUserData();
+    _menuSearchController.addListener(_onMenuSearchChanged);
   }
 
   Future<void> fetchUserData() async {
     final token = Provider.of<TokenProvider>(context, listen: false).token;
     final userId = Provider.of<TokenProvider>(context, listen: false).userId;
-    
+
     if (token == null || userId == null) {
       return;
     }
@@ -60,6 +65,23 @@ class _RestaurantPageState extends State<RestaurantPage>
       print('Error fetching user data: $e');
       // Handle error silently for now
     }
+  }
+
+  void _onMenuSearchChanged() {
+    _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 400), () {
+      if (!mounted) return;
+      setState(() {
+        _menuSearchQuery = _menuSearchController.text.trim();
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    _menuSearchController.dispose();
+    super.dispose();
   }
 
   @override
@@ -114,7 +136,8 @@ class _RestaurantPageState extends State<RestaurantPage>
                       shape: BoxShape.circle,
                       color: Colors.grey,
                     ),
-                    child: profileImageUrl != null && profileImageUrl!.isNotEmpty
+                    child:
+                        profileImageUrl != null && profileImageUrl!.isNotEmpty
                         ? ClipOval(
                             child: Image.network(
                               profileImageUrl!,
@@ -128,15 +151,19 @@ class _RestaurantPageState extends State<RestaurantPage>
                                   size: 24,
                                 );
                               },
-                              loadingBuilder: (context, child, loadingProgress) {
-                                if (loadingProgress == null) return child;
-                                return const Center(
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 2,
-                                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                                  ),
-                                );
-                              },
+                              loadingBuilder:
+                                  (context, child, loadingProgress) {
+                                    if (loadingProgress == null) return child;
+                                    return const Center(
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                              Colors.white,
+                                            ),
+                                      ),
+                                    );
+                                  },
                             ),
                           )
                         : const Icon(
@@ -149,24 +176,55 @@ class _RestaurantPageState extends State<RestaurantPage>
               ],
             ),
           ),
-          // Menu label
+          // Menu header + search within this restaurant
           Container(
             width: double.infinity,
             color: colorUse.backgroundColor,
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-            child: const Text(
-              "Menu",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 22,
-                fontWeight: FontWeight.w600,
-              ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 10),
+                TextField(
+                  controller: _menuSearchController,
+                  style: const TextStyle(color: Colors.black),
+                  decoration: InputDecoration(
+                    hintText: 'Search menu',
+                    hintStyle: TextStyle(color: Colors.black.withOpacity(0.6)),
+                    prefixIcon: const Icon(Icons.search, color: Colors.black),
+                    filled: true,
+                    fillColor: colorUse.secondaryColor,
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 0,
+                      horizontal: 12,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: colorUse.activeButton),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: colorUse.activeButton.withOpacity(0.6),
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: colorUse.activeButton,
+                        width: 2,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           Expanded(
             child: ListDishesGrid(
               restaurantId: widget.restaurantId,
               restaurantName: widget.restaurantName,
+              searchQuery: _menuSearchQuery,
             ),
           ),
         ],
