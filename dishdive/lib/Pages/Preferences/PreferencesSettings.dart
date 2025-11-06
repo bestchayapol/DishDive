@@ -227,7 +227,7 @@ class _SetPrefState extends State<SetPref> {
             style: TextStyle(
               fontFamily: 'InriaSans',
               fontWeight: FontWeight.bold,
-              fontSize: 32,
+              fontSize: 24,
               color: Colors.white,
             ),
           ),

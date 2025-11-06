@@ -38,7 +38,7 @@ class CardReviews extends StatelessWidget {
               const SizedBox(height: 2),
               Text(
                 dishData.resName,
-                style: const TextStyle(fontSize: 16, color: Colors.grey),
+                style: const TextStyle(fontSize: 14, color: Colors.grey),
               ),
             ],
           ),

@@ -26,8 +26,8 @@ class Welcome extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(
-                      width: 170,
-                      height: 170,
+                      width: 160,
+                      height: 160,
                       child: Image.asset("assets/Logo.png"),
                     ),
                     const SizedBox(height: 10),
@@ -35,7 +35,7 @@ class Welcome extends StatelessWidget {
                       'DishDive',
                       style: TextStyle(
                         fontFamily: 'InriaSans',
-                        fontSize: 64,
+                        fontSize: 58,
                         fontWeight: FontWeight.bold,
                         color: colorUse.activeButton,
                       ),
@@ -45,7 +45,7 @@ class Welcome extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 50),
+          const SizedBox(height: 30),
           // Subtitle
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 32.0),
@@ -53,13 +53,13 @@ class Welcome extends StatelessWidget {
               'See reviews of\nyour favorite dish',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 36,
+                fontSize: 32,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),
           ),
-          const SizedBox(height: 55),
+          const SizedBox(height: 35),
           // Login Button
           Padding(
             padding: const EdgeInsets.symmetric(
@@ -82,8 +82,10 @@ class Welcome extends StatelessWidget {
               },
               backgroundColor: colorUse.activeButton,
               textColor: Colors.white,
-              fontSize: 32,
+              fontSize: 25,
               borderRadius: 10,
+              width: 145,
+              height: 60,
             ),
           ),
           const SizedBox(height: 20),
@@ -109,12 +111,13 @@ class Welcome extends StatelessWidget {
               },
               backgroundColor: colorUse.secondaryColor,
               textColor: colorUse.activeButton,
-              fontSize: 32,
+              fontSize: 25,
               borderRadius: 10,
+              width: 145,
+              height: 60,
             ),
           ),
           const SizedBox(height: 10),
-          // ...existing code...
         ],
       ),
     );

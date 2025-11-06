@@ -29,7 +29,7 @@ class FavoriteCard extends StatelessWidget {
       sentimentBarColor = colorUse.middleThird;
     } else if (widthFactor <= 0.49 && widthFactor > 0.25) {
       sentimentBarColor = colorUse.middleSecond;
-    }else {
+    } else {
       sentimentBarColor = colorUse.sentimentColor;
     }
 
@@ -77,7 +77,7 @@ class FavoriteCard extends StatelessWidget {
                           style: const TextStyle(
                             fontFamily: 'InriaSans',
                             fontWeight: FontWeight.bold,
-                            fontSize: 24,
+                            fontSize: 16,
                             color: Colors.black,
                           ),
                         ),
@@ -142,7 +142,7 @@ class FavoriteCard extends StatelessWidget {
                                         style: const TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 15,
+                                          fontSize: 14,
                                         ),
                                       ),
                                     ),
@@ -158,7 +158,7 @@ class FavoriteCard extends StatelessWidget {
                   // Tags
                   Text(
                     tags,
-                    style: const TextStyle(fontSize: 18, color: Colors.black),
+                    style: const TextStyle(fontSize: 14, color: Colors.black),
                   ),
                 ],
               ),

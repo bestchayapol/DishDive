@@ -28,7 +28,7 @@ class _AddImageState extends State<AddImage> {
 
   Future<void> _pickImage() async {
     final picker = ImagePicker();
-    
+
     // Show dialog to choose between camera and gallery
     final ImageSource? source = await showDialog<ImageSource>(
       context: context,
@@ -60,14 +60,14 @@ class _AddImageState extends State<AddImage> {
           maxHeight: 1024,
           imageQuality: 85,
         );
-        
+
         if (image != null) {
           final File imageFile = File(image.path);
-          
+
           // Check file size (limit to 5MB)
           final int fileSizeInBytes = await imageFile.length();
           const int maxSizeInBytes = 5 * 1024 * 1024; // 5MB
-          
+
           if (fileSizeInBytes > maxSizeInBytes) {
             if (mounted) {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -78,7 +78,7 @@ class _AddImageState extends State<AddImage> {
             }
             return;
           }
-          
+
           setState(() {
             _imageFile = imageFile;
           });
@@ -102,8 +102,8 @@ class _AddImageState extends State<AddImage> {
       borderRadius: BorderRadius.circular(12),
       onTap: _pickImage,
       child: Container(
-        width: 200,
-        height: 210,
+        width: 170,
+        height: 180,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(12),

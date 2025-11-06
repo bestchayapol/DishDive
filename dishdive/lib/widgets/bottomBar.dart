@@ -50,11 +50,11 @@ class _BottomBarState extends State<BottomBar> {
         showUnselectedLabels: false,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home, size: 32),
+            icon: Icon(Icons.home, size: 28),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark, size: 32),
+            icon: Icon(Icons.bookmark, size: 28),
             label: 'Favorites',
           ),
         ],

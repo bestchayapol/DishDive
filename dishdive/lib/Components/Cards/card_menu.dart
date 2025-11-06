@@ -57,7 +57,7 @@ class _MenuCardState extends State<MenuCard> {
       sentimentBarColor = colorUse.middleThird;
     } else if (widthFactor <= 0.49 && widthFactor > 0.25) {
       sentimentBarColor = colorUse.middleSecond;
-    }else {
+    } else {
       sentimentBarColor = colorUse.sentimentColor;
     }
 
@@ -95,7 +95,7 @@ class _MenuCardState extends State<MenuCard> {
                     style: const TextStyle(
                       fontFamily: 'InriaSans',
                       fontWeight: FontWeight.bold,
-                      fontSize: 18,
+                      fontSize: 16,
                       color: Colors.black,
                     ),
                     maxLines: 2,
@@ -143,8 +143,8 @@ class _MenuCardState extends State<MenuCard> {
                 builder: (context, constraints) {
                   final filledWidth = constraints.maxWidth * widthFactor;
                   final labelText = widthFactor < 0.33
-                    ? '${widget.ratingPercent}%'
-                    : '${widget.ratingPercent}%';
+                      ? '${widget.ratingPercent}%'
+                      : '${widget.ratingPercent}%';
                   return Stack(
                     children: [
                       // Filled portion
@@ -183,7 +183,7 @@ class _MenuCardState extends State<MenuCard> {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Text(
               "${widget.cuisine}, ${widget.taste}",
-              style: const TextStyle(fontSize: 16, color: Colors.black),
+              style: const TextStyle(fontSize: 12, color: Colors.black),
             ),
           ),
         ],

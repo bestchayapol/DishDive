@@ -75,9 +75,9 @@ class _SignUpPageState extends State<SignUpPage> {
       Navigator.of(context).pop();
 
       if (result['success']) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(result['message'])),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(result['message'])));
 
         // Clear the form fields
         usernameController.clear();
@@ -93,9 +93,9 @@ class _SignUpPageState extends State<SignUpPage> {
           MaterialPageRoute(builder: (context) => const LoginPage()),
         );
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(result['message'])),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(result['message'])));
       }
     } catch (e) {
       // Hide loading indicator
@@ -133,7 +133,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             "Register",
                             style: TextStyle(
                               fontFamily: 'InriaSans',
-                              fontSize: 40,
+                              fontSize: 32,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
@@ -270,7 +270,9 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                         );
                       },
-                      textfill: _selectedImage != null ? 'Change picture' : 'Add profile picture +',
+                      textfill: _selectedImage != null
+                          ? 'Change picture'
+                          : 'Add profile picture +',
                     ),
                   ),
                   if (_selectedImage != null)
@@ -291,7 +293,6 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
             ),
             const SizedBox(height: 20),
-
             // Sign up button
             Padding(
               padding: const EdgeInsets.symmetric(
@@ -303,11 +304,13 @@ class _SignUpPageState extends State<SignUpPage> {
                 onTap: signUp,
                 backgroundColor: colorUse.activeButton,
                 textColor: Colors.white,
-                fontSize: 32,
+                fontSize: 25,
                 borderRadius: 10,
+                width: 145,
+                height: 60,
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 14),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

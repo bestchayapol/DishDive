@@ -33,7 +33,7 @@ class _FirstHomePageState extends State<FirstHomePage>
   bool isLoadingRestaurants = false;
   bool isSearching = false;
   CancelToken? _searchCancelToken;
-  
+
   // Debounce timer for search
   Timer? _debounceTimer;
 
@@ -46,7 +46,7 @@ class _FirstHomePageState extends State<FirstHomePage>
       fetchRestaurants();
     });
     _tabController = TabController(length: 2, vsync: this);
-    
+
     // Add listener to search controller with proper debouncing
     _searchController.addListener(_onSearchTextChanged);
   }
@@ -54,7 +54,7 @@ class _FirstHomePageState extends State<FirstHomePage>
   Future<void> fetchUserData() async {
     final token = Provider.of<TokenProvider>(context, listen: false).token;
     final userId = Provider.of<TokenProvider>(context, listen: false).userId;
-    
+
     if (token == null || userId == null) {
       return;
     }
@@ -82,7 +82,7 @@ class _FirstHomePageState extends State<FirstHomePage>
 
   Future<void> fetchRestaurants() async {
     final token = Provider.of<TokenProvider>(context, listen: false).token;
-    
+
     if (token == null) {
       return;
     }
@@ -108,7 +108,10 @@ class _FirstHomePageState extends State<FirstHomePage>
       );
 
       if (response.statusCode == 200) {
-        final parsed = await compute(parseRestaurantList, jsonEncode(response.data));
+        final parsed = await compute(
+          parseRestaurantList,
+          jsonEncode(response.data),
+        );
         if (!mounted) return;
         setState(() {
           restaurants = parsed;
@@ -130,7 +133,7 @@ class _FirstHomePageState extends State<FirstHomePage>
     }
 
     final token = Provider.of<TokenProvider>(context, listen: false).token;
-    
+
     if (token == null) {
       return;
     }
@@ -157,7 +160,10 @@ class _FirstHomePageState extends State<FirstHomePage>
       );
 
       if (response.statusCode == 200) {
-        final parsed = await compute(parseSearchResults, jsonEncode(response.data));
+        final parsed = await compute(
+          parseSearchResults,
+          jsonEncode(response.data),
+        );
         if (!mounted) return;
         setState(() {
           restaurants = parsed;
@@ -175,7 +181,7 @@ class _FirstHomePageState extends State<FirstHomePage>
   void _onSearchTextChanged() {
     // Cancel previous timer
     _debounceTimer?.cancel();
-    
+
     // Create new timer with debouncing
     _debounceTimer = Timer(const Duration(milliseconds: 500), () {
       searchRestaurantsByDish(_searchController.text);
@@ -230,7 +236,9 @@ class _FirstHomePageState extends State<FirstHomePage>
                           shape: BoxShape.circle,
                           color: Colors.grey, // Placeholder color
                         ),
-                        child: profileImageUrl != null && profileImageUrl!.isNotEmpty
+                        child:
+                            profileImageUrl != null &&
+                                profileImageUrl!.isNotEmpty
                             ? ClipOval(
                                 child: Image.network(
                                   profileImageUrl!,
@@ -244,15 +252,20 @@ class _FirstHomePageState extends State<FirstHomePage>
                                       size: 24,
                                     );
                                   },
-                                  loadingBuilder: (context, child, loadingProgress) {
-                                    if (loadingProgress == null) return child;
-                                    return const Center(
-                                      child: CircularProgressIndicator(
-                                        strokeWidth: 2,
-                                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                                      ),
-                                    );
-                                  },
+                                  loadingBuilder:
+                                      (context, child, loadingProgress) {
+                                        if (loadingProgress == null)
+                                          return child;
+                                        return const Center(
+                                          child: CircularProgressIndicator(
+                                            strokeWidth: 2,
+                                            valueColor:
+                                                AlwaysStoppedAnimation<Color>(
+                                                  Colors.white,
+                                                ),
+                                          ),
+                                        );
+                                      },
                                 ),
                               )
                             : const Icon(
@@ -309,7 +322,7 @@ class _FirstHomePageState extends State<FirstHomePage>
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                       vertical: 4,
-                      horizontal: 24,
+                      horizontal: 18,
                     ),
                     child: const Text('List View'),
                   ),
@@ -318,7 +331,7 @@ class _FirstHomePageState extends State<FirstHomePage>
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                       vertical: 4,
-                      horizontal: 24,
+                      horizontal: 18,
                     ),
                     child: const Text('Map View'),
                   ),
@@ -335,12 +348,12 @@ class _FirstHomePageState extends State<FirstHomePage>
               labelStyle: const TextStyle(
                 fontFamily: 'InriaSans',
                 fontWeight: FontWeight.normal,
-                fontSize: 28,
+                fontSize: 22,
               ),
               unselectedLabelStyle: const TextStyle(
                 fontFamily: 'InriaSans',
                 fontWeight: FontWeight.normal,
-                fontSize: 28,
+                fontSize: 22,
               ),
               dividerColor: Colors.transparent,
             ),

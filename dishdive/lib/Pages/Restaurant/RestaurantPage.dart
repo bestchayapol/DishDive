@@ -116,7 +116,7 @@ class _RestaurantPageState extends State<RestaurantPage>
                     style: const TextStyle(
                       fontFamily: 'InriaSans',
                       fontWeight: FontWeight.bold,
-                      fontSize: 32,
+                      fontSize: 24,
                       color: Colors.white,
                     ),
                   ),

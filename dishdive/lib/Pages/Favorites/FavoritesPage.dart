@@ -77,7 +77,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: 'InriaSans',
-                      fontSize: 32,
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),

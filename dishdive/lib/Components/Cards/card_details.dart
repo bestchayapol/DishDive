@@ -63,7 +63,7 @@ class _CardDetailsState extends State<CardDetails> {
             child: Text(
               '$label, mentioned in $count reviews',
               style: const TextStyle(
-                fontSize: 22,
+                fontSize: 16,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),
@@ -98,7 +98,7 @@ class _CardDetailsState extends State<CardDetails> {
       sentimentBarColor = colorUse.middleThird;
     } else if (widthFactor <= 0.49 && widthFactor > 0.25) {
       sentimentBarColor = colorUse.middleSecond;
-    }else {
+    } else {
       sentimentBarColor = colorUse.sentimentColor;
     }
 
@@ -130,7 +130,7 @@ class _CardDetailsState extends State<CardDetails> {
                   style: const TextStyle(
                     fontFamily: 'InriaSans',
                     fontWeight: FontWeight.bold,
-                    fontSize: 22,
+                    fontSize: 20,
                     color: Colors.black,
                   ),
                   maxLines: 2,
@@ -163,7 +163,7 @@ class _CardDetailsState extends State<CardDetails> {
           ),
           Text(
             '${widget.cuisine}, ${widget.taste}',
-            style: const TextStyle(fontSize: 20, color: Colors.black87),
+            style: const TextStyle(fontSize: 14, color: Colors.black87),
           ),
           const SizedBox(height: 8),
           RichText(
@@ -174,7 +174,7 @@ class _CardDetailsState extends State<CardDetails> {
                   style: const TextStyle(
                     fontFamily: 'InriaSans',
                     fontWeight: FontWeight.bold,
-                    fontSize: 22,
+                    fontSize: 18,
                     color: Colors.black,
                   ),
                 ),
@@ -184,7 +184,7 @@ class _CardDetailsState extends State<CardDetails> {
                   style: const TextStyle(
                     fontFamily: 'InriaSans',
                     fontWeight: FontWeight.normal,
-                    fontSize: 18,
+                    fontSize: 16,
                     color: Colors.black,
                   ),
                 ),
@@ -244,7 +244,7 @@ class _CardDetailsState extends State<CardDetails> {
             'Top Keywords',
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 22,
+              fontSize: 16,
               color: Colors.black,
             ),
           ),

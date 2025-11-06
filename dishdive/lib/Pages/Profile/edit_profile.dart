@@ -30,10 +30,12 @@ class _EditProfileState extends State<EditProfile> {
   Future<void> fetchUserData() async {
     final token = Provider.of<TokenProvider>(context, listen: false).token;
     final userId = Provider.of<TokenProvider>(context, listen: false).userId;
-    
+
     if (token == null || userId == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Authentication error. Please login again.')),
+        const SnackBar(
+          content: Text('Authentication error. Please login again.'),
+        ),
       );
       return;
     }
@@ -55,19 +57,21 @@ class _EditProfileState extends State<EditProfile> {
       }
     } catch (e) {
       print('Error fetching user data: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Failed to load user data')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Failed to load user data')));
     }
   }
 
   Future<void> updateUserProfile() async {
     final token = Provider.of<TokenProvider>(context, listen: false).token;
     final userId = Provider.of<TokenProvider>(context, listen: false).userId;
-    
+
     if (token == null || userId == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Authentication error. Please login again.')),
+        const SnackBar(
+          content: Text('Authentication error. Please login again.'),
+        ),
       );
       return;
     }
@@ -75,17 +79,22 @@ class _EditProfileState extends State<EditProfile> {
     try {
       Dio dio = Dio();
       FormData formData = FormData();
-      
+
       // Add username to form data (backend expects 'user_name')
       formData.fields.add(MapEntry('user_name', _userNameController.text));
-      
+
       // Add image if selected (backend expects 'file')
       if (_selectedImage != null) {
         String fileName = _selectedImage!.path.split('/').last;
-        formData.files.add(MapEntry(
-          'file',
-          await MultipartFile.fromFile(_selectedImage!.path, filename: fileName),
-        ));
+        formData.files.add(
+          MapEntry(
+            'file',
+            await MultipartFile.fromFile(
+              _selectedImage!.path,
+              filename: fileName,
+            ),
+          ),
+        );
       }
 
       final response = await dio.patch(
@@ -108,7 +117,9 @@ class _EditProfileState extends State<EditProfile> {
     } catch (e) {
       print('Error updating profile: $e');
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Error updating profile. Please try again.')),
+        const SnackBar(
+          content: Text('Error updating profile. Please try again.'),
+        ),
       );
     }
   }
@@ -135,7 +146,7 @@ class _EditProfileState extends State<EditProfile> {
           style: TextStyle(
             fontFamily: 'InriaSans',
             fontWeight: FontWeight.bold,
-            fontSize: 32,
+            fontSize: 24,
             color: Colors.white,
           ),
         ),
@@ -196,8 +207,10 @@ class _EditProfileState extends State<EditProfile> {
                 onTap: updateUserProfile,
                 backgroundColor: colorUse.activeButton,
                 textColor: Colors.white,
-                fontSize: 32,
+                fontSize: 25,
                 borderRadius: 10,
+                width: 185,
+                height: 60,
               ),
             ),
             const SizedBox(height: 20),

@@ -56,7 +56,7 @@ class KeywordsSection extends StatelessWidget {
             'Cost:',
             style: TextStyle(
               fontWeight: FontWeight.normal,
-              fontSize: 18,
+              fontSize: 16,
               color: Colors.black,
             ),
           ),
@@ -70,7 +70,7 @@ class KeywordsSection extends StatelessWidget {
             'Taste:',
             style: TextStyle(
               fontWeight: FontWeight.normal,
-              fontSize: 18,
+              fontSize: 16,
               color: Colors.black,
             ),
           ),
@@ -84,7 +84,7 @@ class KeywordsSection extends StatelessWidget {
             'General:',
             style: TextStyle(
               fontWeight: FontWeight.normal,
-              fontSize: 18,
+              fontSize: 16,
               color: Colors.black,
             ),
           ),

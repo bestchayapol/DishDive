@@ -11,7 +11,7 @@ class RestaurantCard extends StatelessWidget {
     super.key,
     required this.name,
     required this.cuisine,
-  this.distance,
+    this.distance,
     required this.imageUrl,
     required this.onTap,
   });
@@ -62,7 +62,9 @@ class RestaurantCard extends StatelessWidget {
                             child: const Center(
                               child: CircularProgressIndicator(
                                 strokeWidth: 2,
-                                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  Colors.white,
+                                ),
                               ),
                             ),
                           );
@@ -93,20 +95,24 @@ class RestaurantCard extends StatelessWidget {
                       style: const TextStyle(
                         fontFamily: 'InriaSans',
                         fontWeight: FontWeight.bold,
-                        fontSize: 24,
+                        fontSize: 18,
                         color: Colors.black,
                       ),
                     ),
                     const SizedBox(height: 6),
                     Text(
                       cuisine,
-                      style: const TextStyle(fontSize: 18, color: Colors.black),
+                      style: const TextStyle(fontSize: 12, color: Colors.black),
                     ),
                     const SizedBox(height: 2),
-                    if (distance != null && distance!.isNotEmpty) Text(
-                      distance!,
-                      style: const TextStyle(fontSize: 18, color: Colors.black),
-                    ),
+                    if (distance != null && distance!.isNotEmpty)
+                      Text(
+                        distance!,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.black,
+                        ),
+                      ),
                   ],
                 ),
               ),

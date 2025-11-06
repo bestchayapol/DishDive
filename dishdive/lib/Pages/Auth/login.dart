@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
   void _navigateToFirstHomePage(String token, int userId) {
     // Store token and user ID in provider
     Provider.of<TokenProvider>(context, listen: false).setToken(token, userId);
-    
+
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => const Home()),
@@ -70,9 +70,9 @@ class _LoginPageState extends State<LoginPage> {
         final String token = responseData['token'] ?? '';
         final int userId = responseData['user_id'] ?? 0;
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(result['message'])),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(result['message'])));
 
         // Clear the form fields
         usernameController.clear();
@@ -81,9 +81,9 @@ class _LoginPageState extends State<LoginPage> {
         // Navigate to home page with token and user ID
         _navigateToFirstHomePage(token, userId);
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(result['message'])),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(result['message'])));
       }
     } catch (e) {
       // Hide loading indicator
@@ -113,7 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                       Text(
                         'DishDive',
                         style: TextStyle(
-                          fontSize: 64,
+                          fontSize: 58,
                           fontWeight: FontWeight.bold,
                           color: colorUse.activeButton,
                         ),
@@ -129,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
               "Login",
               style: TextStyle(
                 fontFamily: 'InriaSans',
-                fontSize: 48,
+                fontSize: 36,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -170,8 +170,10 @@ class _LoginPageState extends State<LoginPage> {
                 onTap: login,
                 backgroundColor: colorUse.activeButton,
                 textColor: Colors.white,
-                fontSize: 32,
+                fontSize: 25,
                 borderRadius: 10,
+                width: 145,
+                height: 60,
               ),
             ),
             const SizedBox(height: 40),

@@ -226,7 +226,7 @@ class _SetBlackState extends State<SetBlack> {
             style: TextStyle(
               fontFamily: 'InriaSans',
               fontWeight: FontWeight.bold,
-              fontSize: 32,
+              fontSize: 24,
               color: Colors.white,
             ),
           ),

@@ -149,7 +149,7 @@ class _ListFavoritesWidgetState extends State<ListFavoritesWidget> {
                   style: TextStyle(
                     fontFamily: 'InriaSans',
                     fontWeight: FontWeight.bold,
-                    fontSize: 36,
+                    fontSize: 32,
                     color: Colors.black,
                   ),
                 ),
@@ -196,7 +196,7 @@ class _ListFavoritesWidgetState extends State<ListFavoritesWidget> {
                           ),
                           child: const Text(
                             "Yes",
-                            style: TextStyle(fontSize: 26, color: Colors.white),
+                            style: TextStyle(fontSize: 22, color: Colors.white),
                           ),
                         ),
                         OutlinedButton(
@@ -219,7 +219,7 @@ class _ListFavoritesWidgetState extends State<ListFavoritesWidget> {
                           child: const Text(
                             "No",
                             style: TextStyle(
-                              fontSize: 26,
+                              fontSize: 22,
                               color: colorUse.activeButton,
                             ),
                           ),
@@ -247,7 +247,7 @@ class _ListFavoritesWidgetState extends State<ListFavoritesWidget> {
         child: Text(
           'No favorite dishes yet',
           style: TextStyle(
-            fontSize: 18,
+            fontSize: 16,
             color: Colors.white,
             fontFamily: 'InriaSans',
           ),

@@ -36,12 +36,14 @@ class _DishPageState extends State<DishPage>
   String? profileImageUrl;
   String? username;
   int? userid;
+  int? _reviewResId; // Fallback restaurant id resolved from review page API
 
   @override
   void initState() {
     super.initState();
     fetchUserData();
     _fetchDishDetail();
+    _fetchReviewMeta();
   }
 
   Future<void> _fetchDishDetail() async {
@@ -74,6 +76,24 @@ class _DishPageState extends State<DishPage>
         _error = e.toString();
         _isLoading = false;
       });
+    }
+  }
+
+  Future<void> _fetchReviewMeta() async {
+    final token = Provider.of<TokenProvider>(context, listen: false).token;
+    if (token == null) return;
+
+    try {
+      final reviewMeta = await _restaurantService.getDishReviewPage(
+        widget.dishId,
+        token,
+      );
+      if (!mounted) return;
+      setState(() {
+        _reviewResId = reviewMeta.resId;
+      });
+    } catch (_) {
+      // Silently ignore; if we cannot resolve resId here, the Write Review button will remain hidden
     }
   }
 
@@ -162,6 +182,9 @@ class _DishPageState extends State<DishPage>
 
   @override
   Widget build(BuildContext context) {
+    final int effectiveResId = widget.restaurantId > 0
+        ? widget.restaurantId
+        : (_reviewResId ?? 0);
     return Scaffold(
       backgroundColor: colorUse.backgroundColor,
       body: Column(
@@ -229,7 +252,7 @@ class _DishPageState extends State<DishPage>
           // Content area
           Expanded(child: _buildContent()),
           // Write Review button (only when restaurantId is valid)
-          if (widget.restaurantId > 0) ...[
+          if (effectiveResId > 0) ...[
             const SizedBox(height: 15),
             Padding(
               padding: const EdgeInsets.symmetric(
@@ -244,15 +267,17 @@ class _DishPageState extends State<DishPage>
                     MaterialPageRoute(
                       builder: (_) => ReviewPage(
                         dishId: widget.dishId,
-                        resId: widget.restaurantId,
+                        resId: effectiveResId,
                       ),
                     ),
                   );
                 },
                 backgroundColor: colorUse.activeButton,
                 textColor: Colors.white,
-                fontSize: 32,
+                fontSize: 25,
                 borderRadius: 10,
+                width: 195,
+                height: 60,
               ),
             ),
             const SizedBox(height: 40),
