@@ -171,10 +171,10 @@ func (r *foodRepositoryDB) GetProminentFlavorByDish(dishID uint) (*string, error
 // Try cuisine + tag first, then cuisine default
 func (r *foodRepositoryDB) GetCuisineImageByCuisineAndTag(cuisine string, imageTag *string) (string, error) {
 	var img entities.CuisineImage
-	// Try with tag if provided
+	// Try with tag if provided (case-insensitive, trimmed)
 	if imageTag != nil && *imageTag != "" {
 		res := r.db.Joins("JOIN keywords ON keywords.keyword_id = cuisine_images.keyword_id").
-			Where("LOWER(keywords.keyword) = LOWER(?) AND cuisine_images.image_tag = ?", cuisine, *imageTag).
+			Where("LOWER(keywords.keyword) = LOWER(?) AND LOWER(TRIM(cuisine_images.image_tag)) = LOWER(TRIM(?))", cuisine, *imageTag).
 			First(&img)
 		if res.Error == nil && img.CuisineImageURL != "" {
 			return img.CuisineImageURL, nil

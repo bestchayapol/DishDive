@@ -1,24 +1,35 @@
+import 'package:flutter/foundation.dart'
+    show kIsWeb, kReleaseMode, defaultTargetPlatform, TargetPlatform;
+
 class ApiConfig {
   // Base URL for the backend API. Prefer configuring at run/build time:
   // flutter run --dart-define=BACKEND_BASE=http://dishdive.sit.kmutt.ac.th:3000
-  // Defaults to Android emulator loopback if not provided.
-  static const String baseUrl = String.fromEnvironment(
-    'BACKEND_BASE',
-    defaultValue: 'http://10.0.2.2:8080',
-  );
+  static const _env = String.fromEnvironment('BACKEND_BASE');
+
+  // Change this to your deployed URL
+  static const _prod = 'http://dishdive.sit.kmutt.ac.th:3000';
+
+  static String get baseUrl {
+    if (_env.isNotEmpty) return _env;
+    if (kReleaseMode) return _prod; // APK default
+    if (kIsWeb) return 'http://localhost:8080';
+    if (defaultTargetPlatform == TargetPlatform.android)
+      return 'http://10.0.2.2:8080';
+    return 'http://localhost:8080';
+  }
 
   // ================== Authentication Endpoints ==================
-  static const String loginEndpoint = '$baseUrl/Login';
-  static const String registerEndpoint = '$baseUrl/Register';
+  static String get loginEndpoint => '$baseUrl/Login';
+  static String get registerEndpoint => '$baseUrl/Register';
 
   // ================== User Management Endpoints ==================
-  static const String getCurrentUserEndpoint = '$baseUrl/GetCurrentUser';
-  static const String getUsersEndpoint = '$baseUrl/GetUsers';
+  static String get getCurrentUserEndpoint => '$baseUrl/GetCurrentUser';
+  static String get getUsersEndpoint => '$baseUrl/GetUsers';
 
   // User Profile Endpoints (require UserID parameter)
   static String getUserByUserIdEndpoint(int userId) =>
       '$baseUrl/GetUserByUserId/$userId';
-  static const String getUserByTokenEndpoint = '$baseUrl/GetUserByToken';
+  static String get getUserByTokenEndpoint => '$baseUrl/GetUserByToken';
   static String getProfileOfCurrentUserByUserIdEndpoint(int userId) =>
       '$baseUrl/GetProfileOfCurrentUserByUserId/$userId';
   static String getEditUserProfileByUserIdEndpoint(int userId) =>
@@ -27,12 +38,12 @@ class ApiConfig {
       '$baseUrl/PatchEditUserProfileByUserId/$userId';
 
   // ================== Storage Endpoints ==================
-  static const String uploadFileEndpoint = '$baseUrl/upload';
+  static String get uploadFileEndpoint => '$baseUrl/upload';
 
   // ================== Food Endpoints ==================
-  static const String searchRestaurantsByDishEndpoint =
+  static String get searchRestaurantsByDishEndpoint =>
       '$baseUrl/SearchRestaurantsByDish';
-  static const String getRestaurantListEndpoint = '$baseUrl/GetRestaurantList';
+  static String get getRestaurantListEndpoint => '$baseUrl/GetRestaurantList';
   static String getRestaurantMenuEndpoint(int resId) =>
       '$baseUrl/GetRestaurantMenu/$resId';
   static String getRestaurantLocationsEndpoint(int resId) =>
@@ -41,9 +52,9 @@ class ApiConfig {
       '$baseUrl/GetDishDetail/$dishId';
   static String getFavoriteDishesEndpoint(int userId) =>
       '$baseUrl/GetFavoriteDishes/$userId';
-  static const String addFavoriteEndpoint = '$baseUrl/AddFavorite';
-  static const String removeFavoriteEndpoint = '$baseUrl/RemoveFavorite';
-  static const String addOrUpdateLocationEndpoint =
+  static String get addFavoriteEndpoint => '$baseUrl/AddFavorite';
+  static String get removeFavoriteEndpoint => '$baseUrl/RemoveFavorite';
+  static String get addOrUpdateLocationEndpoint =>
       '$baseUrl/AddOrUpdateLocation';
 
   // ================== Recommendation Endpoints ==================
@@ -55,7 +66,7 @@ class ApiConfig {
 
   static String getDishReviewPageEndpoint(int dishId) =>
       '$baseUrl/GetDishReviewPage/$dishId';
-  static const String submitReviewEndpoint = '$baseUrl/SubmitReview';
+  static String get submitReviewEndpoint => '$baseUrl/SubmitReview';
   static String getRecommendedDishesEndpoint(int userId) =>
       '$baseUrl/GetRecommendedDishes/$userId';
 
