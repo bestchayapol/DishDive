@@ -15,7 +15,7 @@ DishDive is a cross‑platform Flutter application backed by a Go (Fiber + GORM)
 7. [Environment Variables Reference](#environment-variables-reference)
 8. [Troubleshooting & Tips](#troubleshooting--tips)
 9. [Documentation Links](#documentation-links)
-10. [Fresh Machine Setup (Full Environment)](#fresh-machine-setup-full-environment)
+10. [Submission Keystore & APK Signing](#submission-keystore--apk-signing)
 
 ---
 
@@ -254,6 +254,29 @@ Outputs:
 
 ---
 
+## Setting Up OpenAI API Key
+
+To use the OpenAI-powered features in this project, you need an OpenAI API key.
+
+1. **Create an OpenAI Account**:
+   - Go to [https://platform.openai.com/signup/](https://platform.openai.com/signup/) and sign up for an account.
+
+2. **Generate an API Key**:
+   - Log in to the OpenAI dashboard.
+   - Navigate to the API Keys section and click "Create new secret key."
+   - Copy the generated key.
+
+3. **Add the Key to `.env`**:
+   - Open the `.env` file in the `server/` directory.
+   - Add the following line:
+     ```plaintext
+     OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+     ```
+
+**Note**: OpenAI API usage incurs costs. Please use your own API key for testing.
+
+---
+
 ## Troubleshooting & Tips
 
 | Issue                              | Hint                                                                                           |
@@ -279,178 +302,60 @@ Credentials and secrets in `config.yaml` are for development convenience. **Alwa
 
 ---
 
-## Fresh Machine Setup (Full Environment)
+## Submission Keystore & APK Signing
 
-This section assumes a brand‑new Windows machine with no development tooling installed. The installation video you produce should focus ONLY on code dependencies (Flutter, Go modules, Python packages). The README covers both code and non‑code tooling so anyone can reproduce your environment from scratch.
+Generate keystore for professor evaluation:
 
-### 0. System Prep
+1. **Keystore Generation**:
 
-- Recommended OS: Windows 10/11 64‑bit (latest updates applied)
-- Ensure you have at least 15 GB free disk space (Flutter SDK + Android SDK + Go + Python env + caches)
+   ```powershell
+   cd dishdive/android/app/keystore
+   keytool -genkeypair -v -storetype PKCS12 -alias submission -keyalg RSA -keysize 2048 -validity 365 \
+      -keystore submission.keystore -storepass submitBuild -keypass submitBuild \
+      -dname "CN=Submission, OU=Capstone, O=DishDive, L=Bangkok, S=Bangkok, C=TH"
+   ```
 
-### 1. Core Tools (GUI + Editors)
+2. **Add Keystore Info**:
+   Add the following to `dishdive/android/gradle.properties`:
 
-| Tool                      | Purpose                        | Install                              | Verify                               |
-| ------------------------- | ------------------------------ | ------------------------------------ | ------------------------------------ |
-| Git                       | Version control                | https://git-scm.com/download/win     | `git --version`                      |
-| VS Code                   | Primary editor                 | https://code.visualstudio.com/       | Launch `code` (optional add to PATH) |
-| GitHub Desktop (optional) | GUI Git client                 | https://desktop.github.com/          | Sign in & clone repo                 |
-| Android Studio            | Android SDK / emulators        | https://developer.android.com/studio | Start & run SDK Manager              |
-| Anaconda (Python)         | Python distribution / env mgmt | https://www.anaconda.com/download    | `conda --version`                    |
-| Go                        | Backend server                 | https://go.dev/dl/                   | `go version`                         |
-| OpenJDK (bundled)         | Android build toolchain        | Installed via Android Studio (JBR)   | `java -version`                      |
+   ```properties
+   SUBMISSION_STORE_FILE=keystore/submission.keystore
+   SUBMISSION_STORE_PASSWORD=submitBuild
+   SUBMISSION_KEY_ALIAS=submission
+   SUBMISSION_KEY_PASSWORD=submitBuild
+   ```
 
-### 2. Install Flutter SDK
+3. **Build APK**:
 
-1. Download latest stable from https://flutter.dev/docs/get-started/install/windows
-2. Extract to `C:\src\flutter` (recommended path)
-3. Add `C:\src\flutter\bin` to PATH (System Environment Variables)
-4. In new PowerShell window: `flutter doctor` and install any missing components (Android licenses: `flutter doctor --android-licenses`)
+   ```powershell
+   cd dishdive
+   flutter build apk --release
+   ```
 
-### 3. Android Toolchain
+4. **Get SHA‑1**:
 
-Open Android Studio:
+   ```powershell
+   cd android
+   ./gradlew signingReport
+   ```
 
-1. SDK Manager: Install latest Android SDK (e.g. API 34) + Android SDK Platform Tools.
-2. AVD Manager: Create a Pixel/ARM64 emulator.
-3. Accept all licenses: `flutter doctor --android-licenses`.
+5. **Restrict Google Maps API Key**:
+   Restrict your API key to Android apps → package `com.example.dishdive` + SHA‑1 from the signing report.
 
-### 4. Clone Repository
+---
 
-```powershell
-git clone https://github.com/bestchayapol/DishDive.git
-cd DishDive
-```
+## Troubleshooting & Common Pitfalls
 
-Recommended layout:
-
-```
-DishDive/            # repo root
-   dishdive/          # Flutter client
-   server/            # Go backend
-   llm_processing/    # Python pipeline
-```
-
-### 5. Flutter Project Dependencies
-
-```powershell
-cd dishdive
-flutter pub get
-flutter analyze  # optional
-```
-
-Run on emulator (local backend later):
-
-```powershell
-flutter run --dart-define=BACKEND_BASE=http://10.0.2.2:8080
-```
-
-### 6. Go Backend
-
-Install Go (already verified via `go version`). Then:
-
-```powershell
-cd ..\server
-go mod download
-go run main.go
-```
-
-Server default port: 8080. Leave running in its own terminal.
-
-#### Optional: Local PostgreSQL & MinIO
-
-If not using remote services:
-| Service | Quick Start |
-|---------|-------------|
-| PostgreSQL | Install via installer or Docker; create database `dishdive`. Update env vars / config.yaml. |
-| MinIO | `docker run -p 9000:9000 -p 9001:9001 -e MINIO_ROOT_USER=admin -e MINIO_ROOT_PASSWORD=supersecret quay.io/minio/minio server /data --console-address ":9001"` |
-
-Update `server/config.yaml` or `.env` accordingly.
-
-### 7. Python (Anaconda Environment)
-
-Create environment:
-
-```powershell
-conda create -n dishdive-py python=3.12 -y
-conda activate dishdive-py
-pip install --upgrade pip
-pip install -r requirements.txt
-```
-
-Run processing (ensure `restaurant_reviews.csv` exists or adjust `INPUT_CSV`):
-
-```powershell
-python run_llm_processing.py
-```
-
-Set core env vars first (PowerShell example):
-
-```powershell
-$env:OPENAI_API_KEY="sk-xxxx"
-$env:INPUT_CSV="restaurant_reviews.csv"
-$env:PG_WRITE_DISABLED="true"
-```
-
-### 8. Backend ↔ Flutter Connectivity
-
-- Emulator uses `10.0.2.2:8080` for host machine’s `localhost:8080`.
-- Physical device: `adb reverse tcp:8080 tcp:8080` then backend URL is `http://localhost:8080`.
-- Release APK: defaults to deployed host (no `--dart-define` needed unless overriding).
-
-### 9. Signing & Maps API (Submission)
-
-Generate keystore (inside `dishdive/android/app/keystore`):
-
-```powershell
-keytool -genkeypair -v -storetype PKCS12 -alias submission -keyalg RSA -keysize 2048 -validity 365 `
-   -keystore submission.keystore -storepass submitBuild -keypass submitBuild `
-   -dname "CN=Submission, OU=Capstone, O=DishDive, L=Bangkok, S=Bangkok, C=TH"
-```
-
-Add to `dishdive/android/gradle.properties`:
-
-```properties
-SUBMISSION_STORE_FILE=keystore/submission.keystore
-SUBMISSION_STORE_PASSWORD=submitBuild
-SUBMISSION_KEY_ALIAS=submission
-SUBMISSION_KEY_PASSWORD=submitBuild
-```
-
-Build:
-
-```powershell
-cd dishdive
-flutter build apk --release
-```
-
-Get SHA‑1:
-
-```powershell
-cd android
-./gradlew signingReport
-```
-
-Restrict Google Maps API key: Android apps → package `com.example.dishdive` + SHA‑1 from report.
-
-### 10. Path & Verification Checklist
-
-| Command                                | Expectation                            |
-| -------------------------------------- | -------------------------------------- |
-| `flutter doctor`                       | All checks green / minor warnings only |
-| `go version`                           | Shows 1.24.x                           |
-| `conda env list`                       | Includes `dishdive-py`                 |
-| `python -c "import pandas"`            | No errors                              |
-| `curl http://localhost:8080/EnvStatus` | Env status JSON (backend running)      |
-
-### 11. Common Pitfalls
-
-| Pitfall                                 | Fix                                                         |
-| --------------------------------------- | ----------------------------------------------------------- |
-| Emulator can’t reach backend            | Use `10.0.2.2` or enable reverse for device.                |
-| Missing SHA‑1 for Maps key              | Run `./gradlew signingReport` in `android/`.                |
-| Python script writes to DB unexpectedly | Ensure `PG_WRITE_DISABLED=true` while testing.              |
-| MinIO image 404                         | Confirm filename & extension match DB `image_link`.         |
-| R8 missing classes error                | Shrinking disabled; if re‑enabled add Play Core keep rules. |
+| Issue                                   | Hint                                                                                           |
+| --------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| Emulator cannot reach local server      | Use `10.0.2.2` or `adb reverse tcp:8080 tcp:8080` for device.                                  |
+| Favorites dish lacks review button      | Fixed via fallback fetch of `GetDishReviewPage`. Update to latest code.                        |
+| MinIO images not loading                | Verify extension (e.g., `.jpg` vs `.jpeg`) matches DB `image_link`.                            |
+| OpenAI rate limits                      | Lower `BATCH_SIZE` or raise `TARGET_BATCH_SEC`. Implement cooldown via env knobs.              |
+| SHA-1 key restriction failing           | Use Gradle `signingReport` for correct SHA‑1 of signing keystore, not pairing RSA fingerprint. |
+| Missing SHA‑1 for Maps key              | Run `./gradlew signingReport` in `android/`.                                                   |
+| Python script writes to DB unexpectedly | Ensure `PG_WRITE_DISABLED=true` while testing.                                                 |
+| MinIO image 404                         | Confirm filename & extension match DB `image_link`.                                            |
+| R8 missing classes error                | Shrinking disabled; if re‑enabled add Play Core keep rules.                                    |
 
 ---
