@@ -91,10 +91,6 @@ Install the following before starting:
 
 > iOS: supply the same `--dart-define` values when running via Xcode or `flutter build ios`. Ensure appropriate provisioning profiles.
 
-### Maps / External Keys
-
-Add any required keys (e.g., Google Maps) to your platform-specific manifests. Restrict them by SHA‑1 of your signing certificate for production.
-
 ---
 
 ## Go Backend Setup
@@ -116,22 +112,6 @@ Order of config resolution:
 1. `.env` (loaded by `loadDotEnv` if present)
 2. Environment variables (with `.` replaced by `_`, e.g. `db.host` -> `DB_HOST`)
 3. `config.yaml` values
-
-### Example `.env`
-
-```
-DB_HOST=localhost
-DB_PORT=5432
-DB_USERNAME=postgres
-DB_PASSWORD=postgres
-DB_DATABASE=dishdive
-MINIO_HOST=localhost
-MINIO_PORT=9000
-MINIO_ACCESSKEY=admin
-MINIO_SECRETKEY=supersecret
-JWT_JWTSECRET=replace_this_in_prod
-OPENAI_API_KEY=sk-xxx (only if server later validates something against OpenAI)
-```
 
 ### Run
 
@@ -189,31 +169,13 @@ pip install -r requirements.txt
 
 ### Required Environment
 
-Set at minimum:
+Set only:
 
 ```
 OPENAI_API_KEY=sk-...
-INPUT_CSV=restaurant_reviews.csv          # or your file
-PG_WRITE_DISABLED=true                    # keep true while experimenting
 ```
 
-Optional performance/env tweaks (defaults shown):
-
-```
-BATCH_SIZE=25
-MAX_WORKERS=4
-ROW_START=0
-ROW_END=1000
-TARGET_BATCH_SEC=10.0
-PREFILTER_ENABLED=false
-LOG_LEVEL=INFO
-PG_HOST=dishdive.sit.kmutt.ac.th
-PG_PORT=5432
-PG_USER=root
-PG_PASSWORD=***
-PG_DATABASE=testing
-PG_SSLMODE=disable
-```
+**That's it!** The script includes sensible defaults for testing (processes 10 rows, connects to deployed database, enables DB writes, outputs to `outputs/processed_reviews.csv`).
 
 ### Run
 
@@ -228,8 +190,9 @@ Outputs:
 
 ### Notes
 
-- Set `PG_WRITE_DISABLED=false` ONLY when you are confident writes should occur.
-- For rapid local testing, reduce `ROW_END` and `BATCH_SIZE`.
+- The script now defaults to processing only 10 rows and enables database writes for easy testing.
+- To process more data, set `ROW_END` to a higher value (e.g., `ROW_END=1000`).
+- To disable database writes during testing, set `PG_WRITE_DISABLED=true`.
 - `OPENAI_MODEL` may be set (defaults to `gpt-4o-mini`).
 
 ---
@@ -259,9 +222,11 @@ Outputs:
 To use the OpenAI-powered features in this project, you need an OpenAI API key.
 
 1. **Create an OpenAI Account**:
+
    - Go to [https://platform.openai.com/signup/](https://platform.openai.com/signup/) and sign up for an account.
 
 2. **Generate an API Key**:
+
    - Log in to the OpenAI dashboard.
    - Navigate to the API Keys section and click "Create new secret key."
    - Copy the generated key.
@@ -277,15 +242,37 @@ To use the OpenAI-powered features in this project, you need an OpenAI API key.
 
 ---
 
+## Google Maps API Key Setup (Optional)
+
+The Google Maps API key is used for geocoding functionality in some parts of the project:
+
+- `server/internal/handler/food.go`: Contains example code for calling the Google Geocoding API
+- `scripts/llm_related/geocode_restaurants.py`: Implements geocoding functionality
+
+**For testing/submission purposes, this is optional since the core app functionality works without it.**
+
+If you want to set it up:
+
+1. Go to the [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project or select an existing one
+3. Navigate to **APIs & Services > Credentials**
+4. Click **Create Credentials** and select **API Key**
+5. Enable the **Geocoding API** for your project
+6. Copy the generated API key
+
+**For simplicity, no restrictions are needed** - the key can be left unrestricted for testing purposes.
+
+---
+
 ## Troubleshooting & Tips
 
-| Issue                              | Hint                                                                                           |
-| ---------------------------------- | ---------------------------------------------------------------------------------------------- |
-| Emulator cannot reach local server | Use `10.0.2.2` or `adb reverse tcp:8080 tcp:8080` for device.                                  |
-| Favorites dish lacks review button | Fixed via fallback fetch of `GetDishReviewPage`. Update to latest code.                        |
-| MinIO images not loading           | Verify extension (e.g., `.jpg` vs `.jpeg`) matches DB `image_link`.                            |
-| OpenAI rate limits                 | Lower `BATCH_SIZE` or raise `TARGET_BATCH_SEC`. Implement cooldown via env knobs.              |
-| SHA-1 key restriction failing      | Use Gradle `signingReport` for correct SHA‑1 of signing keystore, not pairing RSA fingerprint. |
+| Issue                                 | Hint                                                                                                                      |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Emulator cannot reach local server    | Use `10.0.2.2` or `adb reverse tcp:8080 tcp:8080` for device.                                                             |
+| Favorites dish lacks review button    | Fixed via fallback fetch of `GetDishReviewPage`. Update to latest code.                                                   |
+| MinIO images not loading              | Verify extension (e.g., `.jpg` vs `.jpeg`) matches DB `image_link`.                                                       |
+| OpenAI rate limits                    | Lower `BATCH_SIZE` or raise `TARGET_BATCH_SEC`. Implement cooldown via env knobs.                                         |
+| Google Maps functionality not working | Ensure API key is set up and Geocoding API is enabled in Google Cloud Console. SHA‑1 restrictions not needed for testing. |
 
 ---
 
@@ -302,60 +289,38 @@ Credentials and secrets in `config.yaml` are for development convenience. **Alwa
 
 ---
 
-## Submission Keystore & APK Signing
+## APK Building for Submission
 
-Generate keystore for professor evaluation:
+For a consistent release build:
 
-1. **Keystore Generation**:
-
-   ```powershell
-   cd dishdive/android/app/keystore
-   keytool -genkeypair -v -storetype PKCS12 -alias submission -keyalg RSA -keysize 2048 -validity 365 \
-      -keystore submission.keystore -storepass submitBuild -keypass submitBuild \
-      -dname "CN=Submission, OU=Capstone, O=DishDive, L=Bangkok, S=Bangkok, C=TH"
-   ```
-
-2. **Add Keystore Info**:
-   Add the following to `dishdive/android/gradle.properties`:
-
-   ```properties
-   SUBMISSION_STORE_FILE=keystore/submission.keystore
-   SUBMISSION_STORE_PASSWORD=submitBuild
-   SUBMISSION_KEY_ALIAS=submission
-   SUBMISSION_KEY_PASSWORD=submitBuild
-   ```
-
-3. **Build APK**:
+1. **Simple Release Build**:
 
    ```powershell
    cd dishdive
    flutter build apk --release
    ```
 
-4. **Get SHA‑1**:
+2. **Install on Device/Emulator**:
 
    ```powershell
-   cd android
-   ./gradlew signingReport
+   adb install -r build/app/outputs/flutter-apk/app-release.apk
    ```
 
-5. **Restrict Google Maps API Key**:
-   Restrict your API key to Android apps → package `com.example.dishdive` + SHA‑1 from the signing report.
+**Note**: The app will use the default debug keystore, which is sufficient for testing and submission since no API key restrictions are needed.
 
 ---
 
 ## Troubleshooting & Common Pitfalls
 
-| Issue                                   | Hint                                                                                           |
-| --------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| Emulator cannot reach local server      | Use `10.0.2.2` or `adb reverse tcp:8080 tcp:8080` for device.                                  |
-| Favorites dish lacks review button      | Fixed via fallback fetch of `GetDishReviewPage`. Update to latest code.                        |
-| MinIO images not loading                | Verify extension (e.g., `.jpg` vs `.jpeg`) matches DB `image_link`.                            |
-| OpenAI rate limits                      | Lower `BATCH_SIZE` or raise `TARGET_BATCH_SEC`. Implement cooldown via env knobs.              |
-| SHA-1 key restriction failing           | Use Gradle `signingReport` for correct SHA‑1 of signing keystore, not pairing RSA fingerprint. |
-| Missing SHA‑1 for Maps key              | Run `./gradlew signingReport` in `android/`.                                                   |
-| Python script writes to DB unexpectedly | Ensure `PG_WRITE_DISABLED=true` while testing.                                                 |
-| MinIO image 404                         | Confirm filename & extension match DB `image_link`.                                            |
-| R8 missing classes error                | Shrinking disabled; if re‑enabled add Play Core keep rules.                                    |
+| Issue                                   | Hint                                                                              |
+| --------------------------------------- | --------------------------------------------------------------------------------- |
+| Emulator cannot reach local server      | Use `10.0.2.2` or `adb reverse tcp:8080 tcp:8080` for device.                     |
+| Favorites dish lacks review button      | Fixed via fallback fetch of `GetDishReviewPage`. Update to latest code.           |
+| MinIO images not loading                | Verify extension (e.g., `.jpg` vs `.jpeg`) matches DB `image_link`.               |
+| OpenAI rate limits                      | Lower `BATCH_SIZE` or raise `TARGET_BATCH_SEC`. Implement cooldown via env knobs. |
+| Google Maps functionality not working   | Ensure API key is set up and Geocoding API is enabled in Google Cloud Console.    |
+| Python script writes to DB unexpectedly | Ensure `PG_WRITE_DISABLED=true` while testing.                                    |
+| MinIO image 404                         | Confirm filename & extension match DB `image_link`.                               |
+| R8 missing classes error                | Shrinking disabled; if re‑enabled add Play Core keep rules.                       |
 
 ---

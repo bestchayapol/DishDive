@@ -1,32 +1,20 @@
 {
-  "total_rows": 3264,
-  "accepted": 3032,
-  "rejected": 232,
-  "acceptance_rate_pct": 92.89,
+  "total_rows": 10,
+  "accepted": 5,
+  "rejected": 5,
+  "acceptance_rate_pct": 50.0,
   "by_tier": {
-    "rule-based": {
-      "count": 1837,
-      "accepted": 1836,
-      "rejected": 1,
-      "rate_pct": 99.95
-    },
-    "primary": {
-      "count": 1405,
-      "accepted": 1195,
-      "rejected": 210,
-      "rate_pct": 85.05
-    },
     "rule-based-empty": {
-      "count": 15,
+      "count": 2,
       "accepted": 0,
-      "rejected": 15,
+      "rejected": 2,
       "rate_pct": 0.0
     },
-    "error-primary": {
-      "count": 7,
-      "accepted": 1,
-      "rejected": 6,
-      "rate_pct": 14.29
+    "primary": {
+      "count": 8,
+      "accepted": 5,
+      "rejected": 3,
+      "rate_pct": 62.5
     }
   }
 }

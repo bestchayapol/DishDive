@@ -22,13 +22,13 @@ def _bool(name: str, default: bool) -> bool:
 @dataclass(frozen=True)
 class Config:
     # IO
-    input_csv: str = os.environ.get("INPUT_CSV", "reviews.csv")
+    input_csv: str = os.environ.get("INPUT_CSV", "restaurant_reviews.csv")
     output_dir: str = os.environ.get("OUTPUT_DIR", "outputs")
     # Single-output CSV path (if empty, a default name under output_dir will be used)
-    output_csv: str = os.environ.get("OUTPUT_CSV", "")
+    output_csv: str = os.environ.get("OUTPUT_CSV", "outputs/processed_reviews.csv")
     # Process all rows by default
     row_start: int = _int("ROW_START", 0)
-    row_end: int = _int("ROW_END", 2_147_483_647)
+    row_end: int = _int("ROW_END", 10)
 
     # Processing
     batch_size: int = _int("BATCH_SIZE", 25)
@@ -42,7 +42,7 @@ class Config:
     pg_port: int = _int("PGPORT", int(os.environ.get("PG_PORT", 5432)))
     pg_user: str = os.environ.get("PGUSER", os.environ.get("PG_USER", "root"))
     pg_password: str = os.environ.get("PGPASSWORD", os.environ.get("PG_PASSWORD", "tungtungtungtungsahur"))
-    pg_database: str = os.environ.get("PGDATABASE", os.environ.get("PG_DATABASE", "testing"))
+    pg_database: str = os.environ.get("PGDATABASE", os.environ.get("PG_DATABASE", "postgres"))
     pg_sslmode: str = os.environ.get("PG_SSLMODE", "disable")
     # Default to disabling DB writes unless explicitly enabled
     pg_write_disabled: bool = _bool("PG_WRITE_DISABLED", True)
