@@ -51,6 +51,19 @@ func (h *RecommendHandler) UpdateUserSettings(c *fiber.Ctx) error {
 	return c.JSON(fiber.Map{"success": true})
 }
 
+// Compact EN group status for easy UI binding
+func (h *RecommendHandler) GetUserENGroupStatus(c *fiber.Ctx) error {
+	userID, err := strconv.Atoi(c.Params("userID"))
+	if err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid user ID"})
+	}
+	resp, err := h.recommendService.GetUserENGroupStatus(uint(userID))
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+	return c.JSON(resp)
+}
+
 // Get dish review page
 func (h *RecommendHandler) GetDishReviewPage(c *fiber.Ctx) error {
 	dishID, err := strconv.Atoi(c.Params("dishID"))

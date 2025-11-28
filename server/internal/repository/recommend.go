@@ -8,6 +8,8 @@ type RecommendRepository interface {
 	// Unified Settings (New approach)
 	GetUserSettings(userID uint) ([]entities.PreferenceBlacklist, error)
 	GetAllKeywordsWithUserSettings(userID uint) ([]entities.PreferenceBlacklist, error)
+	// Detailed keyword + settings (avoids N+1 lookups)
+	GetAllKeywordSettingsDetailed(userID uint) ([]KeywordSettingRow, error)
 	BulkUpdateUserSettings(userID uint, settings []entities.PreferenceBlacklist) error
 
 	// Reviews

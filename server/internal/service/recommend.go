@@ -7,6 +7,7 @@ import (
 type RecommendService interface {
 	// New unified settings API
 	GetUserSettings(userID uint) (dtos.UserSettingsResponse, error)
+	GetUserENGroupStatus(userID uint) (dtos.ENGroupStatusResponse, error)
 	UpdateUserSettings(userID uint, req dtos.BulkUpdateSettingsRequest) error
 
 	// Reviews and recommendations

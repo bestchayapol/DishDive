@@ -93,22 +93,22 @@ class _SetBlackState extends State<SetBlack> {
           availableOptions['cuisine']!.clear();
           availableOptions['restriction']!.clear();
 
-          // Process keywords
+          // Process keywords for cuisine/restriction and sentiment only
           for (var keyword in allKeywords) {
-            String name = keyword['keyword'] ?? '';
-            String category = keyword['category'] ?? '';
-            bool isBlacklisted = keyword['is_blacklisted'] ?? false;
-            double blacklistValue =
-                keyword['blacklist_value']?.toDouble() ?? 0.0;
+            final String name = keyword['keyword'] ?? '';
+            final String category = keyword['category'] ?? '';
+            final bool isBlacklisted = keyword['is_blacklisted'] ?? false;
+            final double blacklistValue =
+                (keyword['blacklist_value']?.toDouble() ?? 0.0);
 
-            // Handle sentiment keyword specifically (system category)
+            // Sentiment (system)
             if (category == 'system' && name.toLowerCase() == 'sentiment') {
               sentimentThreshold = blacklistValue;
               sentimentValue = (blacklistValue * 100).round();
-              continue; // Skip adding sentiment to regular categories
+              continue;
             }
 
-            // Add to available options dynamically (only for cuisine and restriction)
+            // Dynamic lists for cuisine and restriction only
             if (category == 'cuisine' &&
                 !availableOptions['cuisine']!.contains(name)) {
               availableOptions['cuisine']!.add(name);
@@ -116,13 +116,21 @@ class _SetBlackState extends State<SetBlack> {
                 !availableOptions['restriction']!.contains(name)) {
               availableOptions['restriction']!.add(name);
             }
-            // Don't add flavor and cost keywords from backend - keep them static
 
-            // Add to selected if blacklisted (only for non-system keywords)
-            if (isBlacklisted && selectedKeywords.containsKey(category)) {
+            // Apply selected state for cuisine/restriction based on Thai keywords
+            if ((category == 'cuisine' || category == 'restriction') &&
+                isBlacklisted) {
               selectedKeywords[category]!.add(name);
             }
           }
+
+          // Initialize English group selections from normalized arrays returned by backend
+          final List<dynamic> flavorEN = data['flavor_en_blacklisted'] ?? [];
+          final List<dynamic> costEN = data['cost_en_blacklisted'] ?? [];
+          selectedKeywords['flavor'] = flavorEN
+              .map((e) => e.toString())
+              .toSet();
+          selectedKeywords['cost'] = costEN.map((e) => e.toString()).toSet();
 
           // Ensure static options exist even if not in database (fallback)
           if (availableOptions['flavor']!.isEmpty) {
@@ -172,6 +180,10 @@ class _SetBlackState extends State<SetBlack> {
         if (category == 'system' && name.toLowerCase() == 'sentiment') {
           blacklistValue = sentimentThreshold;
         } else {
+          // Skip Thai flavor/cost here; rely on normalized EN arrays instead
+          if (category == 'flavor' || category == 'cost') {
+            continue;
+          }
           // Handle regular categories - binary blacklist (1.0 = blacklisted, 0.0 = not blacklisted)
           bool isSelected = selectedKeywords[category]?.contains(name) ?? false;
           blacklistValue = isSelected ? 1.0 : 0.0;

@@ -7,6 +7,7 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
+	"strings"
 	"time"
 
 	"github.com/bestchayapol/DishDive/internal/dtos"
@@ -59,17 +60,35 @@ func (s *recommendService) loadKeywordMapping() {
 		s.costENToIDs = map[string]map[uint]struct{}{}
 		return
 	}
-	// Resolve Thai strings to keyword_ids by category
-	keywords, kerr := s.recommendRepo.GetKeywordsByCategory([]string{"flavor", "cost"})
+	// Resolve Thai strings to keyword_ids by category (support synonyms + case-insensitive)
+	// Include synonyms often used in DB: taste->flavor, price->cost
+	keywords, kerr := s.recommendRepo.GetKeywordsByCategory([]string{"flavor", "taste", "cost", "price"})
 	if kerr != nil {
 		fmt.Printf("[mapping] failed to load keywords: %v\n", kerr)
 		return
 	}
-	// Build lookup: category -> thai word -> id
-	type key struct{ cat, name string }
-	thaiToID := map[key]uint{}
+	// Build keyword lists per canonical category for substring matching
+	type kwItem struct{ id uint; name string }
+	var flavorKw []kwItem
+	var costKw []kwItem
+	canon := func(cat string) string {
+		switch strings.ToLower(strings.TrimSpace(cat)) {
+		case "taste":
+			return "flavor"
+		case "price":
+			return "cost"
+		default:
+			return strings.ToLower(strings.TrimSpace(cat))
+		}
+	}
 	for _, kw := range keywords {
-		thaiToID[key{kw.Category, kw.Keyword}] = kw.KeywordID
+		c := canon(kw.Category)
+		name := strings.ToLower(strings.TrimSpace(kw.Keyword))
+		if c == "flavor" {
+			flavorKw = append(flavorKw, kwItem{id: kw.KeywordID, name: name})
+		} else if c == "cost" {
+			costKw = append(costKw, kwItem{id: kw.KeywordID, name: name})
+		}
 	}
 	s.flavorENToIDs = map[string]map[uint]struct{}{}
 	s.costENToIDs = map[string]map[uint]struct{}{}
@@ -80,126 +99,140 @@ func (s *recommendService) loadKeywordMapping() {
 		}
 		dst[en][id] = struct{}{}
 	}
+	// For each EN group token list, add any keyword whose Thai text contains the token as a substring.
+	// Handle negation for expensive tokens: skip if keyword contains "ไม่" immediately before token (e.g., ไม่แพง).
+	missingFlavor := map[string][]string{}
 	for en, list := range m.Flavor {
-		for _, thai := range list {
-			if id, ok := thaiToID[key{"flavor", thai}]; ok {
-				addSet(s.flavorENToIDs, en, id)
+		foundAny := false
+		// sort tokens by length desc to prefer longer matches
+		tokens := append([]string{}, list...)
+		sort.Slice(tokens, func(i, j int) bool { return len(tokens[i]) > len(tokens[j]) })
+		for _, token := range tokens {
+			t := strings.ToLower(strings.TrimSpace(token))
+			matched := false
+			for _, it := range flavorKw {
+				if strings.Contains(it.name, t) {
+					addSet(s.flavorENToIDs, en, it.id)
+					matched = true
+					foundAny = true
+				}
+			}
+			if !matched {
+				missingFlavor[en] = append(missingFlavor[en], token)
 			}
 		}
+		// ensure key exists even if none matched to show group in logs
+		if !foundAny {
+			if s.flavorENToIDs[en] == nil { s.flavorENToIDs[en] = map[uint]struct{}{} }
+		}
 	}
+	missingCost := map[string][]string{}
 	for en, list := range m.Cost {
-		for _, thai := range list {
-			if id, ok := thaiToID[key{"cost", thai}]; ok {
-				addSet(s.costENToIDs, en, id)
+		foundAny := false
+		tokens := append([]string{}, list...)
+		sort.Slice(tokens, func(i, j int) bool { return len(tokens[i]) > len(tokens[j]) })
+		for _, token := range tokens {
+			t := strings.ToLower(strings.TrimSpace(token))
+			matched := false
+			for _, it := range costKw {
+				// Negation safety for expensive-like tokens (e.g., แพง): if keyword contains "ไม่"+t, skip
+				if strings.Contains(it.name, t) {
+					if strings.Contains(t, "แพง") && strings.Contains(it.name, "ไม่"+t) {
+						continue
+					}
+					addSet(s.costENToIDs, en, it.id)
+					matched = true
+					foundAny = true
+				}
+			}
+			if !matched {
+				missingCost[en] = append(missingCost[en], token)
 			}
 		}
+		if !foundAny {
+			if s.costENToIDs[en] == nil { s.costENToIDs[en] = map[uint]struct{}{} }
+		}
 	}
-	// Log coverage
+	// Log coverage with brief diagnostics
 	fmt.Printf("[mapping] loaded flavor groups=%d, cost groups=%d\n", len(s.flavorENToIDs), len(s.costENToIDs))
+	// Print a short summary of missing terms (at most 3 per group) to help alignment
+	summarizeMissing := func(label string, miss map[string][]string) {
+		shown := 0
+		for en, arr := range miss {
+			if len(arr) == 0 { continue }
+			// show only a few to avoid noisy logs
+			limit := len(arr)
+			if limit > 3 { limit = 3 }
+			fmt.Printf("[mapping] missing %s terms for %s: %v\n", label, en, arr[:limit])
+			shown++
+			if shown >= 5 { break }
+		}
+	}
+	summarizeMissing("flavor", missingFlavor)
+	summarizeMissing("cost", missingCost)
 }
 
 // New unified settings methods
 func (s *recommendService) GetUserSettings(userID uint) (dtos.UserSettingsResponse, error) {
-	settings, err := s.recommendRepo.GetAllKeywordsWithUserSettings(userID)
+	// Joined query (avoids N+1) returns keyword rows with preference/blacklist values
+	detailed, err := s.recommendRepo.GetAllKeywordSettingsDetailed(userID)
 	if err != nil {
 		return dtos.UserSettingsResponse{}, err
 	}
 
-	// Define allowed keywords for restricted categories
-	allowedFlavorKeywords := map[string]bool{
-		"Sweet": true, "Salty": true, "Sour": true, "Spicy": true, "Oily": true,
-	}
-	allowedCostKeywords := map[string]bool{
-		"Cheap": true, "Moderate": true, "Expensive": true,
-	}
+	// Allowed English UI groups
+	allowedFlavorGroups := map[string]bool{"Sweet": true, "Salty": true, "Sour": true, "Spicy": true, "Oily": true}
+	allowedCostGroups := map[string]bool{"Cheap": true, "Moderate": true, "Expensive": true}
 
-	var keywords []dtos.KeywordSettingResponse
-	// Build reverse maps id->english option membership
+	// Reverse maps: keywordID -> []EN groups
 	revFlavor := map[uint][]string{}
 	revCost := map[uint][]string{}
-	for en, ids := range s.flavorENToIDs {
-		for id := range ids {
-			revFlavor[id] = append(revFlavor[id], en)
-		}
-	}
-	for en, ids := range s.costENToIDs {
-		for id := range ids {
-			revCost[id] = append(revCost[id], en)
-		}
-	}
-	// Track selected english options for both preferred and blacklisted
+	for en, ids := range s.flavorENToIDs { for id := range ids { revFlavor[id] = append(revFlavor[id], en) } }
+	for en, ids := range s.costENToIDs { for id := range ids { revCost[id] = append(revCost[id], en) } }
+
+	var keywords []dtos.KeywordSettingResponse
 	prefFlavorEN := map[string]struct{}{}
 	prefCostEN := map[string]struct{}{}
 	blackFlavorEN := map[string]struct{}{}
 	blackCostEN := map[string]struct{}{}
-	for _, setting := range settings {
-		kw, err := s.recommendRepo.GetKeywordByID(setting.KeywordID)
-		if err != nil {
-			continue // Skip if keyword not found
-		}
 
-		// Filter based on category and keyword name
-		shouldInclude := false
-		switch kw.Category {
+	for _, row := range detailed {
+		cat := strings.ToLower(strings.TrimSpace(row.Category))
+		include := false
+		switch cat {
 		case "system", "cuisine", "restriction":
-			// Always include these categories
-			shouldInclude = true
+			include = true
 		case "flavor":
-			// Only include specific flavor keywords
-			shouldInclude = allowedFlavorKeywords[kw.Keyword]
+			if groups, ok := revFlavor[row.KeywordID]; ok {
+				for _, en := range groups { if allowedFlavorGroups[en] { include = true; break } }
+			}
 		case "cost":
-			// Only include specific cost keywords
-			shouldInclude = allowedCostKeywords[kw.Keyword]
-		default:
-			// Don't include any other categories
-			shouldInclude = false
-		}
-
-		if shouldInclude {
-			keywords = append(keywords, dtos.KeywordSettingResponse{
-				KeywordID:       setting.KeywordID,
-				Keyword:         kw.Keyword,
-				Category:        kw.Category,
-				PreferenceValue: setting.Preference,
-				BlacklistValue:  setting.Blacklist,
-				IsPreferred:     setting.Preference > 0,
-				IsBlacklisted:   setting.Blacklist > 0,
-			})
-			// Collect normalized selections
-			if kw.Category == "flavor" {
-				if setting.Preference > 0 {
-					for _, en := range revFlavor[setting.KeywordID] {
-						prefFlavorEN[en] = struct{}{}
-					}
-				}
-				if setting.Blacklist > 0 {
-					for _, en := range revFlavor[setting.KeywordID] {
-						blackFlavorEN[en] = struct{}{}
-					}
-				}
-			} else if kw.Category == "cost" {
-				if setting.Preference > 0 {
-					for _, en := range revCost[setting.KeywordID] {
-						prefCostEN[en] = struct{}{}
-					}
-				}
-				if setting.Blacklist > 0 {
-					for _, en := range revCost[setting.KeywordID] {
-						blackCostEN[en] = struct{}{}
-					}
-				}
+			if groups, ok := revCost[row.KeywordID]; ok {
+				for _, en := range groups { if allowedCostGroups[en] { include = true; break } }
 			}
 		}
-	}
-	// Convert sets to slices (stable order)
-	toSlice := func(m map[string]struct{}) []string {
-		out := make([]string, 0, len(m))
-		for k := range m {
-			out = append(out, k)
+		if !include { continue }
+
+		keywords = append(keywords, dtos.KeywordSettingResponse{
+			KeywordID:       row.KeywordID,
+			Keyword:         row.Keyword,
+			Category:        cat,
+			PreferenceValue: row.Preference,
+			BlacklistValue:  row.Blacklist,
+			IsPreferred:     row.Preference > 0,
+			IsBlacklisted:   row.Blacklist > 0,
+		})
+		if cat == "flavor" {
+			if row.Preference > 0 { for _, en := range revFlavor[row.KeywordID] { prefFlavorEN[en] = struct{}{} } }
+			if row.Blacklist > 0 { for _, en := range revFlavor[row.KeywordID] { blackFlavorEN[en] = struct{}{} } }
+		} else if cat == "cost" {
+			if row.Preference > 0 { for _, en := range revCost[row.KeywordID] { prefCostEN[en] = struct{}{} } }
+			if row.Blacklist > 0 { for _, en := range revCost[row.KeywordID] { blackCostEN[en] = struct{}{} } }
 		}
-		sort.Strings(out)
-		return out
 	}
+
+	toSlice := func(m map[string]struct{}) []string { out := make([]string, 0, len(m)); for k := range m { out = append(out, k) }; sort.Strings(out); return out }
+
 	return dtos.UserSettingsResponse{
 		Keywords:            keywords,
 		FlavorENPreferred:   toSlice(prefFlavorEN),
@@ -209,74 +242,60 @@ func (s *recommendService) GetUserSettings(userID uint) (dtos.UserSettingsRespon
 	}, nil
 }
 
+// GetUserENGroupStatus returns compact EN group booleans to simplify UI binding
+func (s *recommendService) GetUserENGroupStatus(userID uint) (dtos.ENGroupStatusResponse, error) {
+	us, err := s.GetUserSettings(userID)
+	if err != nil { return dtos.ENGroupStatusResponse{}, err }
+	flavor := map[string]bool{"Sweet": false, "Salty": false, "Sour": false, "Spicy": false, "Oily": false}
+	cost := map[string]bool{"Cheap": false, "Moderate": false, "Expensive": false}
+	for _, g := range us.FlavorENPreferred { flavor[g] = true }
+	for _, g := range us.CostENPreferred { cost[g] = true }
+	return dtos.ENGroupStatusResponse{FlavorEN: flavor, CostEN: cost}, nil
+}
+
+// UpdateUserSettings applies explicit per-keyword updates plus English group expansions
 func (s *recommendService) UpdateUserSettings(userID uint, req dtos.BulkUpdateSettingsRequest) error {
-	// Build a map accumulator of updates per keyword_id
+	// Accumulator map
 	upd := map[uint]*entities.PreferenceBlacklist{}
-	ensure := func(id uint) *entities.PreferenceBlacklist {
-		if upd[id] == nil {
-			upd[id] = &entities.PreferenceBlacklist{UserID: userID, KeywordID: id}
-		}
-		return upd[id]
-	}
-	// 1) Start from explicit settings payload to preserve current behavior
-	for _, u := range req.Settings {
-		cur := ensure(u.KeywordID)
-		cur.Preference = u.PreferenceValue
-		cur.Blacklist = u.BlacklistValue
-	}
-	// 2) Expand normalized English selections into keyword_id updates
-	// Helper to set group values
+	ensure := func(id uint) *entities.PreferenceBlacklist { if v, ok := upd[id]; ok { return v }; v := &entities.PreferenceBlacklist{KeywordID: id}; upd[id] = v; return v }
+
+	// 1) Explicit per-keyword updates
+	for _, u := range req.Settings { cur := ensure(u.KeywordID); cur.Preference = u.PreferenceValue; cur.Blacklist = u.BlacklistValue }
+
+	// Helper to set group expansions (overwrite aspect being set; untouched aspect preserved)
 	setGroup := func(groups map[string]map[uint]struct{}, selected []string, setPref bool, setBlack bool) {
+		if len(groups) == 0 { return }
+		// Build selection set
 		sel := map[string]struct{}{}
-		for _, s := range selected {
-			sel[s] = struct{}{}
-		}
+		for _, sname := range selected { sel[sname] = struct{}{} }
 		for en, ids := range groups {
-			valPref := 0.0
-			valBlack := 0.0
+			valPref := 0.0; valBlack := 0.0
 			if _, ok := sel[en]; ok {
-				if setPref {
-					valPref = 1.0
-				}
-				if setBlack {
-					valBlack = 1.0
-				}
+				if setPref { valPref = 1.0 }
+				if setBlack { valBlack = 1.0 }
 			}
 			for id := range ids {
 				cur := ensure(id)
-				// Only override the aspects we’re setting; preserve the other if already set explicitly
-				if setPref {
-					cur.Preference = valPref
-				}
-				if setBlack {
-					cur.Blacklist = valBlack
-				}
+				if setPref { cur.Preference = valPref }
+				if setBlack { cur.Blacklist = valBlack }
 			}
 		}
 	}
-	// Preferences
-	if len(req.FlavorENPreferred) > 0 {
+
+	// 2) English group expansions
+	if len(req.FlavorENPreferred) > 0 || len(req.FlavorENBlacklisted) > 0 {
 		setGroup(s.flavorENToIDs, req.FlavorENPreferred, true, false)
-	}
-	if len(req.CostENPreferred) > 0 {
-		setGroup(s.costENToIDs, req.CostENPreferred, true, false)
-	}
-	// Blacklists
-	if len(req.FlavorENBlacklisted) > 0 {
 		setGroup(s.flavorENToIDs, req.FlavorENBlacklisted, false, true)
 	}
-	if len(req.CostENBlacklisted) > 0 {
+	if len(req.CostENPreferred) > 0 || len(req.CostENBlacklisted) > 0 {
+		setGroup(s.costENToIDs, req.CostENPreferred, true, false)
 		setGroup(s.costENToIDs, req.CostENBlacklisted, false, true)
 	}
 
-	// 3) Convert to slice and persist
+	// 3) Persist
+	if len(upd) == 0 { return nil }
 	out := make([]entities.PreferenceBlacklist, 0, len(upd))
-	for _, v := range upd {
-		out = append(out, *v)
-	}
-	if len(out) == 0 {
-		return nil
-	}
+	for _, v := range upd { out = append(out, *v) }
 	return s.recommendRepo.BulkUpdateUserSettings(userID, out)
 }
 

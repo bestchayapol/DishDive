@@ -11,6 +11,15 @@ type recommendRepositoryDB struct {
 	db *gorm.DB
 }
 
+// Row struct for joined keyword + user setting
+type KeywordSettingRow struct {
+	KeywordID  uint    `json:"keyword_id"`
+	Keyword    string  `json:"keyword"`
+	Category   string  `json:"category"`
+	Preference float64 `json:"preference"`
+	Blacklist  float64 `json:"blacklist"`
+}
+
 func NewRecommendRepositoryDB(db *gorm.DB) RecommendRepository {
 	return &recommendRepositoryDB{db: db}
 }
@@ -40,6 +49,20 @@ func (r *recommendRepositoryDB) GetAllKeywordsWithUserSettings(userID uint) ([]e
 
 	err := r.db.Raw(query, userID, userID).Scan(&result).Error
 	return result, err
+}
+
+// GetAllKeywordSettingsDetailed returns keyword text/category with preference/blacklist in one query
+func (r *recommendRepositoryDB) GetAllKeywordSettingsDetailed(userID uint) ([]KeywordSettingRow, error) {
+	rows := []KeywordSettingRow{}
+	err := r.db.Raw(`
+		SELECT k.keyword_id, k.keyword, LOWER(k.category) AS category,
+			   COALESCE(pb.preference, 0) AS preference,
+			   COALESCE(pb.blacklist, 0) AS blacklist
+		FROM keywords k
+		LEFT JOIN preference_blacklists pb ON pb.keyword_id = k.keyword_id AND pb.user_id = ?
+		ORDER BY k.category, k.keyword
+	`, userID).Scan(&rows).Error
+	return rows, err
 }
 
 // Bulk update user preferences and blacklist

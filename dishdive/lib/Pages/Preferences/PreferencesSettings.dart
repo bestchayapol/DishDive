@@ -93,22 +93,22 @@ class _SetPrefState extends State<SetPref> {
           availableOptions['cuisine']!.clear();
           availableOptions['restriction']!.clear();
 
-          // Process keywords
+          // Process keywords for cuisine/restriction and sentiment only
           for (var keyword in allKeywords) {
-            String name = keyword['keyword'] ?? '';
-            String category = keyword['category'] ?? '';
-            bool isPreferred = keyword['is_preferred'] ?? false;
-            double preferenceValue =
-                keyword['preference_value']?.toDouble() ?? 0.0;
+            final String name = keyword['keyword'] ?? '';
+            final String category = keyword['category'] ?? '';
+            final bool isPreferred = keyword['is_preferred'] ?? false;
+            final double preferenceValue =
+                (keyword['preference_value']?.toDouble() ?? 0.0);
 
-            // Handle sentiment keyword specifically (system category)
+            // Sentiment (system)
             if (category == 'system' && name.toLowerCase() == 'sentiment') {
               sentimentThreshold = preferenceValue;
               sentimentValue = (preferenceValue * 100).round();
-              continue; // Skip adding sentiment to regular categories
+              continue;
             }
 
-            // Add to available options dynamically (only for cuisine and restriction)
+            // Dynamic lists for cuisine and restriction only
             if (category == 'cuisine' &&
                 !availableOptions['cuisine']!.contains(name)) {
               availableOptions['cuisine']!.add(name);
@@ -116,13 +116,21 @@ class _SetPrefState extends State<SetPref> {
                 !availableOptions['restriction']!.contains(name)) {
               availableOptions['restriction']!.add(name);
             }
-            // Don't add flavor and cost keywords from backend - keep them static
 
-            // Add to selected if preferred (only for non-system keywords)
-            if (isPreferred && selectedKeywords.containsKey(category)) {
+            // Apply selected state for cuisine/restriction based on Thai keywords
+            if ((category == 'cuisine' || category == 'restriction') &&
+                isPreferred) {
               selectedKeywords[category]!.add(name);
             }
           }
+
+          // Initialize English group selections from normalized arrays returned by backend
+          final List<dynamic> flavorEN = data['flavor_en_preferred'] ?? [];
+          final List<dynamic> costEN = data['cost_en_preferred'] ?? [];
+          selectedKeywords['flavor'] = flavorEN
+              .map((e) => e.toString())
+              .toSet();
+          selectedKeywords['cost'] = costEN.map((e) => e.toString()).toSet();
 
           // Ensure static options exist even if not in database (fallback)
           if (availableOptions['flavor']!.isEmpty) {
@@ -171,6 +179,10 @@ class _SetPrefState extends State<SetPref> {
         if (category == 'system' && name.toLowerCase() == 'sentiment') {
           preferenceValue = sentimentThreshold;
         } else {
+          // Skip Thai flavor/cost here; rely on normalized EN arrays instead
+          if (category == 'flavor' || category == 'cost') {
+            continue;
+          }
           // Handle regular categories
           bool isSelected = selectedKeywords[category]?.contains(name) ?? false;
           preferenceValue = isSelected

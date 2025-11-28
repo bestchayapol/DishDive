@@ -61,3 +61,9 @@ type ReviewExtractStatusResponse struct {
 	SourceType string `json:"source_type"`
 	Found      bool   `json:"found"`
 }
+
+// Compact English group status for easy UI binding
+type ENGroupStatusResponse struct {
+	FlavorEN map[string]bool `json:"flavor_en"`
+	CostEN   map[string]bool `json:"cost_en"`
+}

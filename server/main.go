@@ -154,6 +154,7 @@ func main() {
 	// New unified settings endpoints
 	app.Get("/GetUserSettings/:userID", recommendHandler.GetUserSettings)
 	app.Post("/UpdateUserSettings/:userID", recommendHandler.UpdateUserSettings)
+	app.Get("/GetUserENGroupStatus/:userID", recommendHandler.GetUserENGroupStatus)
 
 	// Review and recommendation endpoints
 	app.Get("/GetDishReviewPage/:dishID", recommendHandler.GetDishReviewPage)
